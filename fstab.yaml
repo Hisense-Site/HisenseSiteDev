@@ -1,5 +1,6 @@
+# FASTAB FROM development
 mountpoints:
   /:
-    url: "https://author-p130360-e1272151.adobeaemcloud.com/bin/franklin.delivery/adobe-rnd/aem-boilerplate-xwalk/main"
+    url: "https://author-p174152-e1855674.adobeaemcloud.com/bin/franklin.delivery/HisenseSiteDev/HisenseSiteDev/main"
     type: "markup"
     suffix: ".html"

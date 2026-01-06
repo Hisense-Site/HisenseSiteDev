@@ -1,10 +1,11 @@
 {
   "mappings": [
-    "/content/aem-boilerplate/:/",
-    "/content/aem-boilerplate/configuration:/.helix/config.json",
-    "/content/aem-boilerplate/metadata:/metadata.json"
+    "/content/HisenseSiteDev/:/",
+    "/content/HisenseSiteDev/configuration:/.helix/config.json",
+    "/content/HisenseSiteDev/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/aem-boilerplate/"
+    "/content/HisenseSiteDev/",
+    "/content/dam/"
   ]
 }
