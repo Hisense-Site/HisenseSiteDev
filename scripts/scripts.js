@@ -170,8 +170,8 @@ function updateUSLinks() {
 }
 
 async function loadPage() {
-  await loadLazy(document);
   await loadEager(document);
+  await loadLazy(document);
   loadDelayed();
 
   // Update US site links after page load is complete
