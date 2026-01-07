@@ -143,6 +143,24 @@ async function loadLazy(doc) {
   loadFonts();
 }
 
+function loadDelayedImages() {
+  const currentHostname = window.location.hostname;
+
+  if (currentHostname.includes('hisensesitedev')) {
+    const images = document.querySelectorAll('img');
+    const domainPrefix = 'https://publish-p174152-e1855821.adobeaemcloud.com';
+
+    images.forEach((img) => {
+      const src = img.getAttribute('src');
+      if (src && src.startsWith('/content/dam')) {
+        if (!src.startsWith(domainPrefix)) {
+          img.setAttribute('src', domainPrefix + src);
+        }
+      }
+    });
+  }
+}
+
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
@@ -150,7 +168,7 @@ async function loadLazy(doc) {
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
-  // load anything that can be postponed to the latest here
+  loadDelayedImages();
 }
 
 function updateUSLinks() {
