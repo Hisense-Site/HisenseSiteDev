@@ -1,11 +1,11 @@
 {
   "mappings": [
-    "/content/hisense-dev/:/",
-    "/content/hisense-dev/configuration:/.helix/config.json",
-    "/content/hisense-dev/metadata:/metadata.json"
+    "/content/hisensesitedev/:/",
+    "/content/hisensesitedev/configuration:/.helix/config.json",
+    "/content/hisensesitedev/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/hisense-dev/",
-    "/content/dam/"
+    "/content/hisensesitedev/",
+    "/content/dam/dev-only"
   ]
 }

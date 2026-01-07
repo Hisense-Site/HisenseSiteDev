@@ -129,7 +129,7 @@ html {
 body {
 	display: none;
 	margin: 0;
-	background-color: #613838;
+	background-color: var(--background-light);
 	color: var(--text-color);
 	font-family: var(--font-family);
 	font-weight: lighter;
