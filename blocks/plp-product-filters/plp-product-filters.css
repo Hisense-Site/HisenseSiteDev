@@ -135,6 +135,10 @@
   font-weight: 400;
 }
 
+.plp-product-filters .plp-sort-option.selected {
+  font-weight: 500;
+}
+
 .plp-product-filters .plp-sort-options .plp-sort-option:hover {
   color: #000;
   font-weight: 500;
