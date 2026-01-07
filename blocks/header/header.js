@@ -26,22 +26,34 @@ function parseNavLinks(root) {
   });
 }
 
+function fixImageUrl(originalSrc) {
+  let img = '';
+  if (!originalSrc) return img;
+  try {
+    const urlObj = new URL(originalSrc);
+    const { pathname } = urlObj;
+    img = `.${pathname}`;
+  } catch (e) {
+    img = originalSrc.startsWith('./') ? originalSrc : `./${originalSrc}`;
+  }
+  return img;
+}
+
 function parseActions(root) {
   return Array.from(root.querySelectorAll('.navigation-action-wrapper')).map((wrapper) => {
     const title = wrapper.querySelector('p:not(.button-container)')?.textContent?.trim() || '';
     const href = wrapper.querySelector('a')?.href || '#';
-    const originalSrc = wrapper.querySelector('img')?.src || '';
-    let img = '';
-    if (originalSrc) {
-      try {
-        const urlObj = new URL(originalSrc);
-        const { pathname } = urlObj;
-        img = `.${pathname}`;
-      } catch (e) {
-        img = originalSrc.startsWith('./') ? originalSrc : `./${originalSrc}`;
-      }
+    const picList = wrapper.querySelectorAll('img');
+    const lightSrc = picList[0]?.src || '';
+    let darkSrc = '';
+    if (picList.length > 1) {
+      darkSrc = picList[1]?.src || '';
     }
-    return { title, href, img };
+    const img = fixImageUrl(lightSrc);
+    const darkImg = fixImageUrl(darkSrc);
+    return {
+      title, href, img, darkImg,
+    };
   });
 }
 
@@ -378,7 +390,7 @@ export default async function decorate(block) {
       btn.append(img);
       const imgDark = document.createElement('img');
       // imgDark.src = convertToDarkSvgUrl(action.img);
-      imgDark.src = '/content/dam/hisense/us/header/person-dark.svg';
+      imgDark.src = action.darkImg || action.img;
       imgDark.alt = action.title || 'action';
       imgDark.className = 'dark-img';
       btn.append(imgDark);
