@@ -315,7 +315,7 @@ export default function decorate(block) {
 
     const groupedArray = Object.keys(groups).map((k) => {
       const g = groups[k];
-      const sizes = Array.from(g.sizes).filter(Boolean).sort((a, b) => Number(a) - Number(b));
+      const sizes = Array.from(g.sizes).filter(Boolean).sort((a, b) => Number(b) - Number(a));
 
       // 检查聚合产品是否有任意size有whereToBuyLink，有就共享这个链接
       let sharedWhereToBuyLink = g.variants.find((variant) => variant && variant.whereToBuyLink)?.whereToBuyLink;
