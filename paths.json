@@ -6,6 +6,7 @@
   ],
   "includes": [
     "/content/hisensesitedev/",
-    "/content/dam/dev-only"
+    "/content/dam/hisensesitedev",
+    "/content/dam/hisense"
   ]
 }
