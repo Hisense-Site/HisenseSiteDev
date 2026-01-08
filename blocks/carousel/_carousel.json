@@ -122,7 +122,6 @@
           "component": "container",
           "label": "",
           "name": "container_icon",
-          "id": "icon_container",
           "valueType": "string",
           "condition": { "===": [{"var" : "content_type"}, true] },
           "fields": [
@@ -136,50 +135,90 @@
           ]
         },
         {
-          "component": "multifield",
-          "name": "ctaGroup",
-          "label": "CTA Group",
-          "field": {
-            "component": "container",
-            "name": "ctaItem",
-            "fields": [
-              {
-                "component": "select",
-                "name": "button_classes",
-                "value": "",
-                "label": "Button Classes",
-                "valueType": "string",
-                "options": [
-                  {
-                    "name": "Default",
-                    "value": ""
-                  },
-                  {
-                    "name": "hisense-green",
-                    "value": "hisense-green"
-                  },
-                  {
-                    "name": "hisense-black",
-                    "value": "hisense-black"
-                  }
-                ]
-              },
-              {
-                "component": "aem-content",
-                "name": "carousel_ctaPrimary",
-                "label": "Primary CTA",
-                "valueType": "string",
-                "value": "/"
-              },
-              {
-                "component": "text",
-                "name": "carousel_ctaPrimaryText",
-                "label": "Primary CTA Label",
-                "valueType": "string",
-                "value": "Required when Primary CTA content is provided"
-              }
-            ]
-          }
+          "component": "container",
+          "label": "",
+          "name": "container_button1",
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "select",
+              "name": "button_classes",
+              "value": "",
+              "label": "Button Classes",
+              "valueType": "string",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "hisense-green",
+                  "value": "hisense-green"
+                },
+                {
+                  "name": "hisense-black",
+                  "value": "hisense-black"
+                }
+              ]
+            },
+            {
+              "component": "aem-content",
+              "name": "carousel_ctaPrimary",
+              "label": "Primary CTA",
+              "valueType": "string",
+              "value": "/"
+            },
+            {
+              "component": "text",
+              "name": "carousel_ctaPrimaryText",
+              "label": "Primary CTA Label",
+              "valueType": "string",
+              "value": "Required when Primary CTA content is provided"
+            }
+          ]
+        },
+        {
+          "component": "container",
+          "label": "",
+          "name": "container_button2",
+          "valueType": "string",
+          "fields": [
+            {
+              "component": "select",
+              "name": "button2_classes",
+              "value": "",
+              "label": "Button Classes",
+              "valueType": "string",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "hisense-green",
+                  "value": "hisense-green"
+                },
+                {
+                  "name": "hisense-black",
+                  "value": "hisense-black"
+                }
+              ]
+            },
+            {
+              "component": "aem-content",
+              "name": "carousel_ctaSecondary",
+              "label": "Secondary CTA",
+              "valueType": "string",
+              "value": "/"
+            },
+            {
+              "component": "text",
+              "name": "carousel_ctaSecondaryText",
+              "label": "Secondary CTA Label",
+              "valueType": "string",
+              "value": "Required when Secondary CTA content is provided"
+            }
+          ]
         }
       ]
     }

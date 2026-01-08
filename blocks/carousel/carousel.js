@@ -143,7 +143,7 @@ function createSlide(block, row, slideIndex) {
       case 3:
         column.classList.add('carousel-item-button-theme');
         buttonTheme = column.querySelector('p')?.innerHTML || '';
-        if (buttonTheme) column.parentElement.querySelector('.button-container').classList.add(buttonTheme);
+        if (buttonTheme) column.parentElement.querySelector('.button-container')?.classList.add(buttonTheme);
         column.innerHTML = '';
         break;
       default:
