@@ -78,11 +78,6 @@ main > .section:first-of-type {
     align-items: flex-start;
   }
 
-  /* .carousel-item-content,
-  .carousel-item-cta {
-    width: 322px;
-  } */
-
   .carousel-item-content {
     top: -50%;
     display: flex;
@@ -120,7 +115,7 @@ main > .section:first-of-type {
     gap: 10px;
 
     .button-container {
-      font-size: 14px;
+      font-size: var(--body-font-size-l);
       font-weight: 500;
       text-align: center;
 
@@ -133,17 +128,6 @@ main > .section:first-of-type {
         color: var(--color-hisense-black);
         padding: 0;
         margin: 24px 0 0;
-
-        &.active {
-          background-color: #00AAA6;
-          border-color: #00AAA6;
-          color: #fff;
-
-          &:hover {
-            background-color: #00B5B1;
-            border-color: #00B5B1;
-          }
-        }
 
         &:hover {
           background-color: var(--color-hisense-grey-01);
@@ -172,19 +156,33 @@ main > .section:first-of-type {
             border-color: white;
             color: black;
           }
-
-          &.active {
-            color: white;
-            border-color: #00AAA6;
-
-            &:hover {
-              background-color: #00B5B1;
-              border-color: #00B5B1;
-            }
-          }
         }
       }
     }
+  }
+}
+
+.carousel .carousel-item carousel-item-cta.hisense-black .button-container .button {
+  background-color: var(--color-hisense-black);
+  border-color: var(--color-hisense-black);
+  color: #fff;
+
+  &:hover {
+    background-color: var(--color-hisense-grey-01);
+    border-color: var(--color-hisense-grey-01);
+    color: #fff;
+  }
+}
+
+.carousel .carousel-item .carousel-item-cta.hisense-green .button-container .button{
+  background-color: var(--color-hisense-teal) !important;
+  border-color: var(--color-hisense-teal) !important;
+  color: #fff !important;
+
+  &:hover {
+    background-color: var(--color-hisense-green-01) !important;
+    border-color: var(--color-hisense-green-01) !important;
+    color: #fff !important;
   }
 }
 
@@ -275,7 +273,7 @@ main > .section:first-of-type {
 
 @media (width <= 860px) {
   .carousel  .carousel-items-container {
-    height: 640px;
+    /* height: 640px; */
     overflow: scroll;
 
     &::-webkit-scrollbar{
@@ -286,6 +284,7 @@ main > .section:first-of-type {
       .carousel-content {
         width: 100%;
         top: 70%;
+        left: calc(50% - min(var(--container-max-width), calc(100vw - 16*2)) / 2);
 
         .button {
           width: 113px;
@@ -298,6 +297,18 @@ main > .section:first-of-type {
       .carousel-item-image {
         height: 640px;
         aspect-ratio: 1;
+      }
+
+      &.dark {
+        background-color: var(--color-hisense-black);
+
+        .carousel-item-image {
+          height: auto;
+
+          .button-container {
+            display: none;
+          }
+        }
       }
     }
   }
