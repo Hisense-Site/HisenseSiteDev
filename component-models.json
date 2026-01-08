@@ -636,10 +636,25 @@
         ]
       },
       {
+        "component": "boolean",
+        "name": "content_type",
+        "label": "Content Type is SVG Mode?",
+        "valueType": "boolean",
+        "description": "Switch OFF: Text Mode | Switch ON: SVG Mode"
+      },
+      {
         "component": "container",
         "label": "",
         "name": "container_text",
         "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "content_type"
+            },
+            false
+          ]
+        },
         "fields": [
           {
             "component": "text",
@@ -663,7 +678,14 @@
         "name": "container_icon",
         "id": "icon_container",
         "valueType": "string",
-        "collapsible": true,
+        "condition": {
+          "===": [
+            {
+              "var": "content_type"
+            },
+            true
+          ]
+        },
         "fields": [
           {
             "component": "reference",
@@ -675,46 +697,50 @@
         ]
       },
       {
-        "component": "object-list",
-        "name": "ctaButtons",
-        "label": "CTA Buttons",
-        "fields": [
-          {
-            "component": "select",
-            "name": "button_classes",
-            "value": "",
-            "label": "Button Classes",
-            "valueType": "string",
-            "options": [
-              {
-                "name": "Default",
-                "value": ""
-              },
-              {
-                "name": "hisense-green",
-                "value": "hisense-green"
-              },
-              {
-                "name": "hisense-black",
-                "value": "hisense-black"
-              }
-            ]
-          },
-          {
-            "component": "aem-content",
-            "name": "carousel_ctaPrimary",
-            "label": "Primary CTA",
-            "valueType": "string",
-            "value": "/"
-          },
-          {
-            "component": "text",
-            "name": "carousel_ctaPrimaryText",
-            "label": "Primary CTA Label",
-            "valueType": "string",
-            "value": "Required when Primary CTA content is provided"
-          }
-        ]
+        "component": "multifield",
+        "name": "ctaGroup",
+        "label": "CTA Group",
+        "field": {
+          "component": "container",
+          "name": "ctaItem",
+          "fields": [
+            {
+              "component": "select",
+              "name": "button_classes",
+              "value": "",
+              "label": "Button Classes",
+              "valueType": "string",
+              "options": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "hisense-green",
+                  "value": "hisense-green"
+                },
+                {
+                  "name": "hisense-black",
+                  "value": "hisense-black"
+                }
+              ]
+            },
+            {
+              "component": "aem-content",
+              "name": "carousel_ctaPrimary",
+              "label": "Primary CTA",
+              "valueType": "string",
+              "value": "/"
+            },
+            {
+              "component": "text",
+              "name": "carousel_ctaPrimaryText",
+              "label": "Primary CTA Label",
+              "valueType": "string",
+              "value": "Required when Primary CTA content is provided"
+            }
+          ]
+        }
       }
     ]
   },

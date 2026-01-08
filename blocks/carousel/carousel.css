@@ -162,7 +162,7 @@ main > .section:first-of-type {
   }
 }
 
-.carousel .carousel-item carousel-item-cta.hisense-black .button-container .button {
+.carousel .carousel-item .carousel-item-cta.hisense-black .button-container .button {
   background-color: var(--color-hisense-black);
   border-color: var(--color-hisense-black);
   color: #fff;
