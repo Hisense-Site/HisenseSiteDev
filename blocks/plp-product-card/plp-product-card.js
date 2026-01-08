@@ -1,15 +1,30 @@
 function applyAggregatedSort(sortProperty, direction = -1) {
   try {
     // 每次排序都使用原始数据而不是上一次排序的结果
-    let listToSort;
+    const filterGroups = [...document.querySelectorAll('.plp-filter-group')];
+    const selectedByGroup = filterGroups.map((group) => [...group.querySelectorAll('input[type="checkbox"][data-option-value]:checked')]
+      .map((checkbox) => checkbox.getAttribute('data-option-value'))
+      .filter(Boolean)).filter((arr) => arr && arr.length);
+    let productData;
     if (Array.isArray(window.productData)) {
-      listToSort = window.productData.slice();
+      productData = window.productData.slice();
     } else {
-      listToSort = [];
+      productData = [];
     }
-    if (!listToSort || !listToSort.length) {
+    if (!productData || !productData.length) {
       return;
     }
+    const listToSort = productData.filter((item) => {
+      const tagsRaw = Array.isArray(item.tags) ? item.tags : [];
+      const itemTags = tagsRaw.map((t) => String(t).toLowerCase());
+      if (!itemTags.length) return false;
+
+      return selectedByGroup.every((groupSelected) => groupSelected.some((selectedTag) => {
+        const selectedLower = String(selectedTag).toLowerCase();
+        // 完全匹配标签路径
+        return itemTags.includes(selectedLower);
+      }));
+    });
 
     // 通过 key 获取 product model 的属性
     const getPropertyByKey = (item, propKey) => {
@@ -47,6 +62,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
 
       // 计算该 factoryModel 在指定属性上的最大值
       const value = normalizeValueForSort(getPropertyByKey(item, sortProperty));
+      console.log(item, sortProperty, getPropertyByKey(item, sortProperty), value);
       if (value !== null && value !== undefined) {
         if (!factoryModelMaxValues[factoryModel]
             || (typeof value === 'number' && typeof factoryModelMaxValues[factoryModel] === 'number' && value > factoryModelMaxValues[factoryModel])
@@ -85,6 +101,18 @@ function applyAggregatedSort(sortProperty, direction = -1) {
     console.warn('Aggregated sort error:', e);
   }
 }
+
+function sortByseries(groupedArray) {
+  return groupedArray.sort((a, b) => {
+    // 1. 先比较series：降序（Z→A）
+    const seriesCompare = b.series.localeCompare(a.series);
+    if (seriesCompare !== 0) {
+      return seriesCompare;
+    }
+    // 2. 若series相同，比较key：降序（9→0）
+    return b.key.localeCompare(a.key);
+  });
+};
 
 export default function decorate(block) {
   const isEditMode = block && block.hasAttribute && block.hasAttribute('data-aue-resource');
@@ -226,6 +254,7 @@ export default function decorate(block) {
       const sortValue = selectedSortOption.dataset.value
                        || selectedSortOption.getAttribute('data-value')
                        || '';
+      console.log(sortValue)
       if (sortValue && sortValue.trim()) {
         if (window.applyPlpSort) {
           window.applyPlpSort(sortValue);
@@ -313,7 +342,7 @@ export default function decorate(block) {
       if (sz) groups[key].sizes.add(sz);
     });
 
-    const groupedArray = Object.keys(groups).map((k) => {
+    let groupedArray = Object.keys(groups).map((k) => {
       const g = groups[k];
       const sizes = Array.from(g.sizes).filter(Boolean).sort((a, b) => Number(b) - Number(a));
 
@@ -337,11 +366,21 @@ export default function decorate(block) {
         key: k,
         factoryModel: g.factoryModel,
         representative: g.representative,
+        series: g.representative.series,
         variants: g.variants,
         sizes,
         sharedWhereToBuyLink,
       };
     });
+    const selectedSortOption = document.querySelector('.plp-sort-option.selected');
+    const sortValue = selectedSortOption.dataset.value
+        || selectedSortOption.getAttribute('data-value')
+        || '';
+    if (sortValue === 'series') {
+      groupedArray = sortByseries(groupedArray);
+    }
+
+    console.log('groupedArray', groupedArray);
 
     // 渲染每个聚合后的产品卡片
     groupedArray.forEach((group) => {
@@ -1781,6 +1820,7 @@ window.renderPlpProducts = function renderPlpProductsWrapper(items) {
 // 排序
 // eslint-disable-next-line consistent-return
 window.applyPlpSort = function applyPlpSort(sortKey) {
+  console.trace('applyPlpSort', sortKey);
   try {
     const sortProperty = String(sortKey || '').trim();
 
@@ -1841,7 +1881,7 @@ window.applyPlpFilters = function applyPlpFilters() {
         return itemTags.includes(selectedLower);
       }));
     });
-
+    console.log('filtered', filtered);
     window.renderPlpProducts(filtered);
   } catch (err) {
     /* eslint-disable-next-line no-console */

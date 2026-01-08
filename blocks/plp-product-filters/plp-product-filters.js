@@ -354,15 +354,15 @@ export default function decorate(block) {
       option.classList.add('selected');
 
       // 重置所有筛选
-      const activeContainer = document.querySelector('.plp-active-filters');
-      if (activeContainer) {
-        activeContainer.querySelectorAll('.plp-filter-tag').forEach((tag) => tag.remove());
-      }
-      document.querySelectorAll('.plp-filter-item input[type="checkbox"]').forEach((checkbox) => {
-        if (checkbox.checked !== false) {
-          checkbox.checked = false;
-        }
-      });
+      // const activeContainer = document.querySelector('.plp-active-filters');
+      // if (activeContainer) {
+      //   activeContainer.querySelectorAll('.plp-filter-tag').forEach((tag) => tag.remove());
+      // }
+      // document.querySelectorAll('.plp-filter-item input[type="checkbox"]').forEach((checkbox) => {
+      //   if (checkbox.checked !== false) {
+      //     checkbox.checked = false;
+      //   }
+      // });
       // "sort by <option>"
       const prefix = (typeof sortBy === 'string' && sortBy.trim()) ? sortBy : 'Sort By';
       const splitText = option.textContent.split(':')[0].trim();
@@ -374,10 +374,12 @@ export default function decorate(block) {
         originalSortByBoxEl.classList.remove('mobile-sort-by-box');
         document.body.style.overflow = 'auto';
       }
+      console.log(option.dataset)
       try {
         const sortKey = (option.dataset && Object.prototype.hasOwnProperty.call(option.dataset, 'value'))
           ? option.dataset.value
           : (option.getAttribute && option.getAttribute('data-value'));
+        console.log('sortKey', sortKey);
         try {
           if (window && typeof window.applyPlpSort === 'function') {
             // 如果 sortKey 为 undefined/null，则传空字符串以触发默认排序

@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 
 export default async function decorate(block) {
+  const pdpId = new URLSearchParams(window.location.search).get('id');
+  console.log(pdpId);
   const rows = [...(block.children || [])];
   let fields = [];
   rows.forEach((row) => {
