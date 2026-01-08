@@ -517,7 +517,7 @@
   display: none;
 }
 
-@media (width <= 600px) {
+@media (width <= 1180px) {
   #navigation.show-menu {
     background: #fff;
   }
@@ -570,5 +570,11 @@
 
   #navigation.show-menu .nav-container .nav-actions .nav-action-btn.mobile-close-icon {
     display: block;
+  }
+
+  @media (width <= 860px) {
+    #navigation .nav-container {
+      padding: 0 18px;
+    }
   }
 }
