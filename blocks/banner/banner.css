@@ -95,7 +95,8 @@
     color: #fff;
     margin-top: 20px;
     width: 319px;
-    height: 89px;
+
+    /* height: 89px; */
     position: relative;
     z-index: 6;
     margin-bottom: 0;
@@ -138,8 +139,51 @@
   }
 }
 
-@media (width <=768px) {
+@media (width <=860px) {
   .block.banner {
-    padding-left: 36px;
+    min-height: 500px;
+    padding: 32px 24px 0;
+    align-items: self-start;
+    border-radius: 16px;
+
+    &::after {
+      width: 100%;
+      height: 56%;
+      background: linear-gradient(to bottom, rgb(0 0 0 / 60%), rgb(0 0 0 / 0%));
+    }
+    
+    h1+p,
+    h2+p,
+    h3+p,
+    h4+p,
+    h5+p,
+    h6+p {
+      margin-top: 16px;
+      width: 100%;
+      height: auto;
+    }
+
+    p:first-child {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      max-width: none;
+    }
+
+    .button-container {
+      .button {
+        width: 113px;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 24px;
+      }
+    }
   }
+  
 }
