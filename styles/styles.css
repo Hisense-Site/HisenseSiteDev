@@ -94,6 +94,13 @@ html {
 	--header-dark-color: #fff;
 	--header-active-color: var(--header-light-color);
 	--header-backgroundcolor: rgb(244 248 247 / 100%);
+
+  /* common */
+  --common-padding: 18px;
+
+  /* proportion */
+  --content-area: calc(100vw - 2 * var(--common-padding));
+  --content-fontsize1: calc(.1 * var(--content-area));
 }
 
 .header-dark-mode {
@@ -124,6 +131,13 @@ html {
 		--row-gap: 24px;
 		--gap: 24px;
 	}
+}
+
+@media (width >= 860px) {
+  :root {
+    /* common */
+    --common-padding: 30px;
+  }
 }
 
 body {
@@ -370,14 +384,7 @@ main > .section > div,
 .h-grid-container {
 	max-width: var(--container-max-width);
 	margin: auto;
-	padding: 0 24px;
-}
-
-@media (width >= 900px) {
-	main > .section > div,
-	.h-grid-container {
-		padding: 0 30px;
-	}
+	padding: 0 var(--common-padding);
 }
 
 /* ========== section metadata ========== */
