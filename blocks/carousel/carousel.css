@@ -70,6 +70,7 @@ main > .section:first-of-type {
 
   .carousel-content {
     position: absolute;
+    height: 319px;
     top: 50%;
     left: calc(50% - min(var(--container-max-width), 100vw) / 2);
     transform: translate(0, -50%);
@@ -83,13 +84,9 @@ main > .section:first-of-type {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    .focus-wrap {
-      opacity: 0;
-    }
   }
 
-  .carousel-item-content .teal-text {
+  .teal-text {
     color: var(--color-hisense-teal);
     font-weight: 500;
     line-height: 28px;
@@ -103,16 +100,34 @@ main > .section:first-of-type {
     display: inline-block;
   }
 
-  .carousel .carousel-item-theme {
-    display: none;
+  .carousel-item-content.icon-svg {
+    width: 364px;
+    height: 166px;
+
+    picture {
+      inset: 0;
+      height: 100%;
+    }
+
+    picture > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .carousel-item-cta {
+  .carousel-cta-container {
+    position: absolute;
+    bottom: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
     gap: 10px;
+  }
+
+  .carousel-item-cta {
+    display: inline-block;
 
     .button-container {
       font-size: var(--body-font-size-l);
@@ -120,21 +135,44 @@ main > .section:first-of-type {
       text-align: center;
 
       .button {
-        width: 144px;
+        width: auto;
+        padding: 4px 32px;
         line-height: 52px;
         text-align: center;
         background-color: transparent;
         border: 1px solid var(--color-hisense-black);
         color: var(--color-hisense-black);
-        padding: 0;
         margin: 24px 0 0;
+      }
 
-        &:hover {
-          background-color: var(--color-hisense-grey-01);
-          border-color: var(--color-hisense-grey-02);
-          color: white;
-        }
+      .button.hisense-green {
+        background-color: var(--color-hisense-teal) !important;
+        border-color: var(--color-hisense-teal) !important;
+        color: #fff !important;
+      }
 
+      .button.hisense-black {
+        background-color: var(--color-hisense-black);
+        border-color: var(--color-hisense-black);
+        color: #fff;
+      }
+
+      .button:hover {
+        background-color: var(--color-hisense-grey-01);
+        border-color: var(--color-hisense-grey-02);
+        color: white;
+      }
+
+      .button.hisense-green:hover {
+        background-color: var(--color-hisense-green-01) !important;
+        border-color: var(--color-hisense-green-01) !important;
+        color: #fff !important;
+      }
+
+      .button.hisense-black:hover {
+        background-color: var(--color-hisense-grey-01);
+        border-color: var(--color-hisense-grey-01);
+        color: #fff;
       }
     }
   }
@@ -162,51 +200,21 @@ main > .section:first-of-type {
   }
 }
 
-.carousel .carousel-item .carousel-item-cta.hisense-black .button-container .button {
-  background-color: var(--color-hisense-black);
-  border-color: var(--color-hisense-black);
-  color: #fff;
-
-  &:hover {
-    background-color: var(--color-hisense-grey-01);
-    border-color: var(--color-hisense-grey-01);
-    color: #fff;
-  }
-}
-
-.carousel .carousel-item .carousel-item-cta.hisense-green .button-container .button{
-  background-color: var(--color-hisense-teal) !important;
-  border-color: var(--color-hisense-teal) !important;
-  color: #fff !important;
-
-  &:hover {
-    background-color: var(--color-hisense-green-01) !important;
-    border-color: var(--color-hisense-green-01) !important;
-    color: #fff !important;
-  }
-}
-
 .carousel .carousel-item-indicators {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    height: 60px;
-    width: 100%;
-    list-style: none;
-
-  &.active {
-    width: 68px;
-    height: 8px;
-    border-radius: 100%;
-  }
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  height: 60px;
+  width: 100%;
+  list-style: none;
 
   button {
     width: 8px;
@@ -232,15 +240,9 @@ main > .section:first-of-type {
 .carousel.dark .carousel-item-indicators {
   button {
     background-color: var(--background-light);
-    opacity: 0.42;
 
     &:disabled {
-      opacity: 1;
       background-color: var(--background-light);
-    }
-
-    &:hover {
-      opacity: 1;
     }
   }
 }
@@ -283,14 +285,17 @@ main > .section:first-of-type {
     .carousel-item {
       .carousel-content {
         width: 100%;
-        top: 70%;
-        left: calc(50% - min(var(--container-max-width), calc(100vw - 16*2)) / 2);
+        top: auto;
+        transform: none;
+        bottom: 52px;
+        height: 237px;
 
         .button {
-          width: 113px;
-          line-height: 40px;
-          font-size: 14px;
+          font-size: var(--content-fontsize1);
+          font-weight: 500;
+          line-height: 1;
           text-align: center;
+          padding: 12px 20px;
         }
       }
 

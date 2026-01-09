@@ -1,8 +1,9 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 
-// let carouselTimer;
+let carouselTimer;
 let carouselInterval;
+let prevActiveIndex = 0;
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -25,13 +26,12 @@ function showSlide(block, slideIndex, init = false) {
   const activeSlide = slides[realSlideIndex];
   const nav = document.querySelector('#navigation');
   const carouselHeight = block.offsetHeight;
-  if (block.attributes['data-aue-resource'] === undefined) {
+  // 处理homepage高度为100dvh，不影响author，不影响PLP
+  if (block.attributes['data-aue-resource'] === undefined && !block.classList.value.includes('only-picture')) {
     const specialDiv = block.querySelector('.carousel-items-container');
     specialDiv.style.setProperty('height', '100dvh');
   }
-  if (document.body.getBoundingClientRect().width <= 600) {
-    block.querySelector('img').style.setProperty('height', 'auto');
-  }
+  // 处理和navigation的联动
   if ([...activeSlide.classList].includes('dark')) {
     block.classList.add('dark');
     if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.add('header-dark-mode');
@@ -39,8 +39,10 @@ function showSlide(block, slideIndex, init = false) {
     block.classList.remove('dark');
     if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.remove('header-dark-mode');
   }
+  // 首次加载时不滑动也要处理和navigation的联动
   if (init) return;
-  if (realSlideIndex === 0 && block.attributes['data-aue-resource'] === undefined) {
+  // 最后一张划到第一张，不影响author,不影响从第二张回到第一张
+  if (realSlideIndex === 0 && block.attributes['data-aue-resource'] === undefined && prevActiveIndex === slides.length - 2) {
     // 1. 先平滑滚动到“克隆的第一张”
     block.querySelector('.carousel-items-container').scrollTo({
       left: slides[slides.length - 1].offsetLeft,
@@ -48,7 +50,7 @@ function showSlide(block, slideIndex, init = false) {
     });
 
     // 2. 监听滚动结束（或者估算动画时间）
-    setTimeout(() => {
+    carouselTimer = setTimeout(() => {
       // 3. 瞬间切换回真正的第一张，关闭动画！
       block.querySelector('.carousel-items-container').scrollTo({
         left: activeSlide.offsetLeft,
@@ -61,7 +63,9 @@ function showSlide(block, slideIndex, init = false) {
       left: activeSlide.offsetLeft,
       behavior: 'smooth',
     });
+    if (carouselTimer) carouselTimer = null;
   }
+  prevActiveIndex = realSlideIndex;
 }
 function stopAutoPlay() {
   clearInterval(carouselInterval);
@@ -120,11 +124,14 @@ function createSlide(block, row, slideIndex) {
   const div = document.createElement('div');
   div.setAttribute('class', 'carousel-content h-grid-container');
   moveInstrumentation(row, slide);
+  const button_div = document.createElement('div');
+  button_div.setAttribute('class', 'carousel-cta-container');
+  moveInstrumentation(row, slide);
   slide.classList.add('carousel-item');
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
-    let content_type;
+    let content_type; //true is svg mode; false is text mode
     let mobileImg;
     let buttonTheme;
     switch (colIdx) {
@@ -167,9 +174,24 @@ function createSlide(block, row, slideIndex) {
         column.querySelector('a')?.classList.add(buttonTheme);
         column.firstElementChild?.remove();
     }
+    // 处理aem author 复制item过来后切换的
+    if (content_type === 'true') {
+      if ([...row.children][2].innerHTML || [...row.children][3].innerHTML) {
+        [...row.children][2].innerHTML = '';
+        [...row.children][3].innerHTML = '';
+      }
+    }
+
     if (column.innerHTML === '') return;
-    slide.append(column);
+    if([2,3,4].includes(colIdx)) {
+      // 处理文字和icon是一个container
+      div.append(column);
+    } else if([5,6].includes(colIdx)) {
+      button_div.append(column);
+    } else slide.append(column);
   });
+  div.append(button_div);
+  slide.append(div);
   return slide;
 }
 
