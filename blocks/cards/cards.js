@@ -63,7 +63,7 @@ export default function decorate(block) {
       const endX = e.changedTouches[0].clientX;
       if (Math.abs(endX - startX) < 10 ) {
           console.log('aa', Math.abs(endX - startX))
-        window.location.href = url;
+        // window.location.href = url;
       }
 
     })
