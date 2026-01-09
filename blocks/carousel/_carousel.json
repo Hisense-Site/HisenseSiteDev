@@ -73,18 +73,18 @@
               "multi": false
             },
             {
-              "component": "boolean",
-              "name": "image_theme",
-              "label": "Image Dark Theme",
-              "valueType": "boolean"
-            },
-            {
               "component": "reference",
               "valueType": "string",
               "name": "image_mobile",
               "label": "Image For Mobile",
               "required": true,
               "multi": false
+            },
+            {
+              "component": "boolean",
+              "name": "image_theme",
+              "label": "Image Dark Theme",
+              "valueType": "boolean"
             }
           ]
         },
@@ -119,20 +119,12 @@
           ]
         },
         {
-          "component": "container",
-          "label": "",
-          "name": "container_icon",
+          "component": "reference",
           "valueType": "string",
-          "condition": { "===": [{"var" : "content_type"}, true] },
-          "fields": [
-            {
-              "component": "reference",
-              "valueType": "string",
-              "name": "text_icon",
-              "label": "Icon SVG",
-              "multi": false
-            }
-          ]
+          "name": "text_icon",
+          "label": "Icon SVG",
+          "multi": false,
+          "condition": { "===": [{"var" : "content_type"}, true] }
         },
         {
           "component": "container",
@@ -144,12 +136,12 @@
               "component": "select",
               "name": "cta_classes1",
               "value": "",
-              "label": "Button Classes",
+              "label": "Button Background Color",
               "valueType": "string",
               "options": [
                 {
-                  "name": "Default",
-                  "value": ""
+                  "name": "transparent",
+                  "value": "transparent"
                 },
                 {
                   "name": "hisense-green",
@@ -187,12 +179,12 @@
               "component": "select",
               "name": "cta_classes2",
               "value": "",
-              "label": "Button Classes",
+              "label": "Button Background Color",
               "valueType": "string",
               "options": [
                 {
-                  "name": "Default",
-                  "value": ""
+                  "name": "transparent",
+                  "value": "transparent"
                 },
                 {
                   "name": "hisense-green",
