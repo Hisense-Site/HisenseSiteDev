@@ -147,7 +147,7 @@ function createSlide(block, row, slideIndex) {
             const source = document.createElement('source');
             source.setAttribute('srcset', mobileImg.src);
             source.setAttribute('media', '(min-width: 860px)');
-            column.firstElementChild.prepend(source);
+            column.querySelector('picture').prepend(source);
           }
           const realSource = [...column.querySelectorAll('source')].filter((item) => !item.hasAttribute('media'))[0];
           realSource?.setAttribute('srcset', mobileImg.src);
