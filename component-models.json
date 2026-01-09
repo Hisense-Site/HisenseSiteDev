@@ -1437,26 +1437,26 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "scrollImage",
+        "name": "scroll_image",
         "label": "Scroll Image",
         "multi": false
       },
       {
         "component": "richtext",
-        "name": "scrollText",
+        "name": "scroll_text",
         "label": "Scroll Text",
         "valueType": "string"
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "subImage",
+        "name": "sub_image",
         "label": "Image",
         "multi": false
       },
       {
         "component": "richtext",
-        "name": "subText",
+        "name": "sub_text",
         "label": "Description",
         "valueType": "string"
       }
