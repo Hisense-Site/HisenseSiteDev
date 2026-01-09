@@ -73,15 +73,11 @@
   width: 100%;
   color: white;
   font-family:'Hisense Sans Alfabet', sans-serif;
-  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;
   z-index: 1;
-   @media (width < 860px) {
-    font-size: 20px ;
-  }
 
 }
 
@@ -100,7 +96,6 @@
   display: none;
 
 }
-
 
 .center-style > ul {
   list-style: none;
@@ -131,7 +126,6 @@
   width: 100%;
   text-align: center;
   color: #000;
-  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -140,6 +134,17 @@
   @media (width < 860px) {
     font-size: 20px ;
   }
+}
+
+.cards-card-body {
+   --font-size-small: 20px; /* 390时的宽度 */
+  --font-size-normal: 24px; /* 860时的宽度 */
+  --font-size-large: 24px;
+   font-size: clamp(
+    var(--font-size-small),
+    max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
+    var(--font-size-large)
+  );
 }
 
 .center-style p{
@@ -153,6 +158,10 @@
   @media (width < 860px) {
     width: 67%;
   }
+}
+
+.center-style > ul > li img {
+  width: 100%;
 }
 
 .center-style > ul > li img {
@@ -180,10 +189,8 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-
     /* -webkit-transform: translateX(-50%); */
     transform: translateX(-50%);
-
     /* -webkit-transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s; */
     transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s;
 
