@@ -39,7 +39,7 @@ export default function decorate(block) {
     const link = item.querySelector('a');
     const url = link?.href;
     let startX
-    item.addEventListener('touchstart', (e) => {
+    item.addEventListener('mousedown', (e) => {
        console.log('start')
       item.classList.add('touch-start');
       item.classList.remove('touch-end', 'touch-cancel');
@@ -56,14 +56,14 @@ export default function decorate(block) {
     //        console.log('m',isScrolling)
     //     }
     //   });
-     item.addEventListener('touchend', (e) => {
-      console.log('end')
+     item.addEventListener('mouseup', (e) => {
+     
       item.classList.add('touch-end');
       item.classList.remove('touch-start', 'touch-cancel');
       const endX = e.changedTouches[0].clientX;
       if (Math.abs(endX - startX) < 10 ) {
           console.log('aa', Math.abs(endX - startX))
-        // window.location.href = url;
+         window.location.href = url;
       }
 
     })
