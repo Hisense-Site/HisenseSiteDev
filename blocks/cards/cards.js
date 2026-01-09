@@ -44,25 +44,26 @@ export default function decorate(block) {
       touchStartTime = Date.now();
       startX = e.touches[0].clientX;
       isScrolling = false;
+       card.classList.remove('touch-end');
       card.classList.add('touch-start');
      
     });
 
     // 触摸移动
-    card.addEventListener('touchmove', (e) => {
-      const currentX = e.touches[0].clientX;
-      // 如果水平移动超过10px，认为是滑动
-      if (Math.abs(currentX - startX) > 10) {
-        isScrolling = true;
-         card.classList.remove('touch-start');
-         card.classList.add('touch-end');
-      }
-    });
+    // card.addEventListener('touchmove', (e) => {
+    //   const currentX = e.touches[0].clientX;
+    //   // 如果水平移动超过10px，认为是滑动
+    //   if (Math.abs(currentX - startX) > 10) {
+    //     isScrolling = true;
+    //      card.classList.remove('touch-start');
+    //      card.classList.add('touch-end');
+    //   }
+    // });
 
     // 触摸结束
     card.addEventListener('touchend', (e) => {
        card.classList.remove('touch-start');
-         card.classList.add('touch-end');
+        card.classList.add('touch-end');
       const touchDuration = Date.now() - touchStartTime;
       
       // 如果不是滑动，且按压时间小于500ms，执行跳转

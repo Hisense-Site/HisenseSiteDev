@@ -19,7 +19,7 @@
   @media (width < 860px) {
 		overflow-x: auto;
     scroll-snap-type: x mandatory;
-    display: flex !important;
+    /* display: flex !important; */
     /* 触摸优化 */
     -webkit-overflow-scrolling: touch; /* iOS 弹性滚动 */
     scroll-behavior: smooth; /* 平滑滚动 */
@@ -28,17 +28,19 @@
     -ms-overflow-style: none; /* IE/Edge */
     touch-action: pan-x pinch-zoom; /* 允许水平滑动和捏合缩放 */
     overscroll-behavior-x: contain; /* 防止滚动链 */
+    grid-auto-flow: column;
+
 	}
 }
 .cards > ul > li {
    @media (width < 860px) {
-    flex: 0 0 auto; 
+    /* flex: 0 0 auto;  */
     position: relative;
 		width: 70.7vw !important;
     aspect-ratio: 276 / 240;
     height: auto !important;
     transition: transform 0.3s;
-     pointer-events: auto; /* 允许事件穿透到容器 */
+    pointer-events: auto; /* 允许事件穿透到容器 */
     -webkit-user-select: none;
     user-select: none;
   }
@@ -110,8 +112,7 @@
 }
 
 .center-style > ul > li {
-  background: lightblue;
-  /* linear-gradient(135deg, #EEF9F9, #F5FCFC); */
+  background: linear-gradient(135deg, #EEF9F9, #F5FCFC); 
   position: relative;
   border-radius: var(--border-radius-l);
   overflow: hidden;
