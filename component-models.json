@@ -637,7 +637,7 @@
       },
       {
         "component": "boolean",
-        "name": "text_type",
+        "name": "mode_type",
         "label": "Content Type is SVG Mode?",
         "valueType": "boolean",
         "description": "Switch OFF: Text Mode | Switch ON: SVG Mode"
@@ -645,7 +645,7 @@
       {
         "component": "container",
         "label": "",
-        "name": "container_text",
+        "name": "mode_text",
         "valueType": "string",
         "condition": {
           "===": [
@@ -658,14 +658,14 @@
         "fields": [
           {
             "component": "text",
-            "name": "text_special",
+            "name": "special_text",
             "value": "",
             "label": "Colorful Text(teal)",
             "valueType": "string"
           },
           {
             "component": "richtext",
-            "name": "text_normal",
+            "name": "normal_text",
             "value": "",
             "label": "Content",
             "valueType": "string"
@@ -675,7 +675,7 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "text_icon",
+        "name": "icon_text",
         "label": "Icon SVG",
         "multi": false,
         "condition": {
