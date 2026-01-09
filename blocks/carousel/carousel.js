@@ -142,6 +142,13 @@ function createSlide(block, row, slideIndex) {
         if (column.querySelectorAll('img').length > 1) mobileImg = column.querySelectorAll('img')[1];
         if (mobileImg) {
           mobileImg.closest('p').style.display = 'none';
+          // author 没有source
+          if (block.attributes['data-aue-resource']) {
+            const source = document.createElement('source');
+            source.setAttribute('srcset',mobileImg);
+            source.setAttribute('media','(min-width: 860px)');
+            column.prepend(source);
+          }
           const realSource = [...column.querySelectorAll('source')].filter(item => !item.hasAttribute('media'))[0];
           realSource?.setAttribute('srcset', mobileImg.src);
           mobileImg.closest('p').remove();
