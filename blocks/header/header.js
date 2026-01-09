@@ -344,7 +344,7 @@ export default async function decorate(block) {
     linksEl.append(link);
 
     const mobileLink = document.createElement('div');
-    mobileLink.className = 'mobile-link';
+    mobileLink.className = 'mobile-link hide';
     const mobileLinkTitle = document.createElement('span');
     mobileLinkTitle.textContent = item.title;
     const arrow = document.createElement('img');
