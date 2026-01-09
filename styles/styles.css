@@ -15,6 +15,7 @@ html {
 }
 
 :root {
+  --breakpoint-large: 1180px;
   --breakpoint-normal: 860px;
   --breakpoint-small: 390px;
 
@@ -104,18 +105,20 @@ html {
   /* proportion */
   --content-area: calc(100vw - 2 * var(--common-padding));
   --font-size-small: 12px;
-  --font-size-normal: 24px;
+  --font-size-normal: 18px;
+  --font-size-large: 24px;
 }
 
 /* 这个是为了大家方便理解和复制用的，需要把class里的变量和clamp,cv到自己的css中，然后修改这俩变量即可 */
 .test-demo {
-  --font-size-small: 24px; /* 390时的宽度 */
-  --font-size-normal: 48px; /* 860时的宽度 */
+  --font-size-small: 24px; /* 390时的 */
+  --font-size-normal: 48px; /* 860时的 */
+  --font-size-large: 96px; /* 1180时的 */
 
   font-size: clamp(
-    var(--font-size-small, 12px),
-    calc((var(--font-size-normal, 24px) - var(--font-size-small, 12px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
-    var(--font-size-normal, 24px)
+          var(--font-size-small),
+          max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
+          var(--font-size-large)
   );
 }
 
