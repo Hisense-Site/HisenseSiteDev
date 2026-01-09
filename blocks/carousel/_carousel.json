@@ -100,7 +100,7 @@
           "label": "",
           "name": "mode_text",
           "valueType": "string",
-          "condition": { "===": [{"var" : "text_type"}, false] },
+          "condition": { "===": [{"var" : "mode_type"}, false] },
           "fields": [
             {
               "component": "text",
@@ -124,7 +124,7 @@
           "name": "icon_text",
           "label": "Icon SVG",
           "multi": false,
-          "condition": { "===": [{"var" : "text_type"}, true] }
+          "condition": { "===": [{"var" : "mode_type"}, true] }
         },
         {
           "component": "container",

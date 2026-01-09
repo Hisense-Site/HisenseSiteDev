@@ -650,7 +650,7 @@
         "condition": {
           "===": [
             {
-              "var": "text_type"
+              "var": "mode_type"
             },
             false
           ]
@@ -681,7 +681,7 @@
         "condition": {
           "===": [
             {
-              "var": "text_type"
+              "var": "mode_type"
             },
             true
           ]
