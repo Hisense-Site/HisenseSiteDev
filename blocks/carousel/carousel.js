@@ -140,14 +140,14 @@ function createSlide(block, row, slideIndex) {
           mobileImg.closest('p').remove();
         }
         // 处理image-theme联动nav
-        theme = column.querySelector('p')?.innerHTML || 'false';
+        theme = [...column.children][1]?.innerHTML || 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        column.lastElementChild.remove(); //清除不必要的DOM结构
+        if ([...column.children][1]) [...column.children][1].remove(); //清除不必要的DOM结构
         break;
       case 1:
         // container-text or svg switch div
-        content_type = column.querySelector('p')?.innerHTML || false;
-        // column.remove();
+        content_type = column.querySelector('p')?.innerHTML || 'false';
+        column.innerHTML = '';
         break;
       case 2:
         // colorful text div
@@ -159,12 +159,13 @@ function createSlide(block, row, slideIndex) {
         break;
       case 4:
         // icon-svg div
+        column.setAttribute('class', 'carousel-item-content icon-svg');
         break;
       default:
         column.classList.add('carousel-item-cta');
         buttonTheme = column.firstElementChild?.innerHTML || 'transparent';
         column.querySelector('a')?.classList.add(buttonTheme);
-        
+        column.firstElementChild?.remove();
     }
     if (column.innerHTML === '') return;
     slide.append(column);
