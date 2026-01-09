@@ -160,11 +160,17 @@
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link {
-  height: 28px;
   line-height: 28px;
   font-weight: 400;
   font-size: 20px;
   color: #000;
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link .mobile-link-title-line {
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #navigation .mobile-menu .dividing-line {
@@ -435,6 +441,46 @@
 
 #navigation:has(.nav-container:hover) .nav-action-btn img {
   transition: none;
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link img {
+  width: 20px;
+  height: 20px;
+  transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link.hide img {
+  transform: rotate(180deg);
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #747474;
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height .4s cubic-bezier(0.35,0,0.36,1), padding .4s cubic-bezier(0.35,0,0.36,1);
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list:empty {
+  padding: 0
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link:has(.mobile-link-second-list:empty) .mobile-link-title-line img {
+  display: none;
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link.hide .mobile-link-second-list {
+  max-height: 0;
+  padding: 0;
+}
+
+#navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list .mobile-product-item {
+  height: 18px;
+  line-height: 20px;
+  font-size: 20px;
 }
 
 .dropdown-product-text {
