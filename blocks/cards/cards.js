@@ -55,11 +55,14 @@ export default function decorate(block) {
       if (Math.abs(currentX - startX) > 10) {
         isScrolling = true;
          card.classList.remove('touch-start');
+         card.classList.add('touch-end');
       }
     });
 
     // 触摸结束
     card.addEventListener('touchend', (e) => {
+       card.classList.remove('touch-start');
+         card.classList.add('touch-end');
       const touchDuration = Date.now() - touchStartTime;
       
       // 如果不是滑动，且按压时间小于500ms，执行跳转
@@ -73,6 +76,7 @@ export default function decorate(block) {
     });
     card.addEventListener('touchcancel', () => {
         card.classList.remove('touch-start');
+        card.classList.add('touch-end');
     });
     card.addEventListener('click', () => {
     const link = card.dataset.link;
