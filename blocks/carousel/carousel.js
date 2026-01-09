@@ -180,13 +180,6 @@ function createSlide(block, row, slideIndex) {
         column.querySelector('a')?.classList.add(buttonTheme);
         column.firstElementChild?.remove();
     }
-    // 处理aem author 复制item过来后切换的
-    if (contentType === 'true') {
-      if ([...row.children][2].innerHTML || [...row.children][3].innerHTML) {
-        [...row.children][2].innerHTML = '';
-        [...row.children][3].innerHTML = '';
-      }
-    }
 
     if (column.innerHTML === '') return;
     if ([2, 3, 4].includes(colIdx)) {
