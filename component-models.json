@@ -614,14 +614,14 @@
           {
             "component": "reference",
             "valueType": "string",
-            "name": "image",
+            "name": "image_pc",
             "label": "Image",
             "required": true,
             "multi": false
           },
           {
             "component": "boolean",
-            "name": "boolean",
+            "name": "image_theme",
             "label": "Image Dark Theme",
             "valueType": "boolean"
           },
@@ -637,7 +637,7 @@
       },
       {
         "component": "boolean",
-        "name": "content_type",
+        "name": "text_type",
         "label": "Content Type is SVG Mode?",
         "valueType": "boolean",
         "description": "Switch OFF: Text Mode | Switch ON: SVG Mode"
@@ -689,7 +689,7 @@
           {
             "component": "reference",
             "valueType": "string",
-            "name": "image_icon",
+            "name": "text_icon",
             "label": "Icon SVG",
             "multi": false
           }
@@ -703,7 +703,7 @@
         "fields": [
           {
             "component": "select",
-            "name": "button_classes",
+            "name": "cta_classes1",
             "value": "",
             "label": "Button Classes",
             "valueType": "string",
@@ -724,14 +724,14 @@
           },
           {
             "component": "aem-content",
-            "name": "carousel_ctaPrimary",
+            "name": "cta_primary",
             "label": "Primary CTA",
             "valueType": "string",
             "value": "/"
           },
           {
             "component": "text",
-            "name": "carousel_ctaPrimaryText",
+            "name": "cta_primaryText",
             "label": "Primary CTA Label",
             "valueType": "string",
             "value": "Required when Primary CTA content is provided"
@@ -746,7 +746,7 @@
         "fields": [
           {
             "component": "select",
-            "name": "button2_classes",
+            "name": "cta_classes2",
             "value": "",
             "label": "Button Classes",
             "valueType": "string",
@@ -767,14 +767,14 @@
           },
           {
             "component": "aem-content",
-            "name": "carousel_ctaSecondary",
+            "name": "cta_secondary",
             "label": "Secondary CTA",
             "valueType": "string",
             "value": "/"
           },
           {
             "component": "text",
-            "name": "carousel_ctaSecondaryText",
+            "name": "cta_secondaryText",
             "label": "Secondary CTA Label",
             "valueType": "string",
             "value": "Required when Secondary CTA content is provided"
