@@ -20,13 +20,39 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
-  const coverLi = document.querySelectorAll('.cover-style > ul > li');
-  coverLi.forEach((item) => {
+  const viewportWidth = window.innerWidth;
+ 
+  if(viewportWidth >= 900){
+      const coverLi = document.querySelectorAll('.cover-style > ul > li');
+      coverLi.forEach((item) => {
+      const link = item.querySelector('a');
+      const url = link?.href;
+       item.addEventListener('click', () => {
+        if (url) window.location.href = url;
+      });
+      
+    });
+  }else{
+    console.log('work')
+    const cardsLi = document.querySelectorAll('.cards > ul > li');
+    cardsLi.forEach((item) => {
     const link = item.querySelector('a');
     const url = link?.href;
-    item.addEventListener('click', () => {
+    
+    item.addEventListener('touchstart', (e) => {
+       console.log('start')
+      item.classList.add('touch-start');
+      item.classList.remove('touch-end', 'touch-cancel');
+    })
+     item.addEventListener('touchend', (e) => {
+      console.log('end')
+      item.classList.add('touch-end');
+      item.classList.remove('touch-start', 'touch-cancel');
       if (url) window.location.href = url;
-    });
+
+    })
   });
+  }
+
   block.replaceChildren(ul);
 }
