@@ -102,14 +102,14 @@ function bindEvents(block) {
   block.querySelectorAll('.carousel-item').forEach((slide) => {
     slideObserver.observe(slide);
   });
-// -----未定版
+  // -----未定版
   // block.querySelector('.slide-prev').addEventListener('click', () => {
   //   showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
   // });
   // block.querySelector('.slide-next').addEventListener('click', () => {
   //   showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
   // });
-// ------
+  // ------
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', throttle((e) => {
       const slideIndicator = e.currentTarget.parentElement;
@@ -124,14 +124,14 @@ function createSlide(block, row, slideIndex) {
   const div = document.createElement('div');
   div.setAttribute('class', 'carousel-content h-grid-container');
   moveInstrumentation(row, slide);
-  const button_div = document.createElement('div');
-  button_div.setAttribute('class', 'carousel-cta-container');
+  const buttonDiv = document.createElement('div');
+  buttonDiv.setAttribute('class', 'carousel-cta-container');
   moveInstrumentation(row, slide);
   slide.classList.add('carousel-item');
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
-    let content_type; //true is svg mode; false is text mode
+    let contentType; // true is svg mode; false is text mode
     let mobileImg;
     let buttonTheme;
     switch (colIdx) {
@@ -139,28 +139,28 @@ function createSlide(block, row, slideIndex) {
         // container-reference div
         column.classList.add('carousel-item-image');
         // 处理mobile图片
-        if (column.querySelectorAll('img').length > 1) mobileImg = column.querySelectorAll('img')[1];
+        if ([...column.querySelectorAll('img')].length > 1) mobileImg = [...column.querySelectorAll('img')][1];
         if (mobileImg) {
           mobileImg.closest('p').style.display = 'none';
           // author 没有source
           if (block.attributes['data-aue-resource']) {
             const source = document.createElement('source');
-            source.setAttribute('srcset',mobileImg);
-            source.setAttribute('media','(min-width: 860px)');
-            column.prepend(source);
+            source.setAttribute('srcset', mobileImg.src);
+            source.setAttribute('media', '(min-width: 860px)');
+            column.firstElementChild.prepend(source);
           }
-          const realSource = [...column.querySelectorAll('source')].filter(item => !item.hasAttribute('media'))[0];
+          const realSource = [...column.querySelectorAll('source')].filter((item) => !item.hasAttribute('media'))[0];
           realSource?.setAttribute('srcset', mobileImg.src);
           mobileImg.closest('p').remove();
         }
         // 处理image-theme联动nav
         theme = [...column.children][1]?.innerHTML || 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        if ([...column.children][1]) [...column.children][1].remove(); //清除不必要的DOM结构
+        if ([...column.children][1]) [...column.children][1].remove(); // 清除不必要的DOM结构
         break;
       case 1:
         // container-text or svg switch div
-        content_type = column.querySelector('p')?.innerHTML || 'false';
+        contentType = column.querySelector('p')?.innerHTML || 'false';
         column.innerHTML = '';
         break;
       case 2:
@@ -182,7 +182,7 @@ function createSlide(block, row, slideIndex) {
         column.firstElementChild?.remove();
     }
     // 处理aem author 复制item过来后切换的
-    if (content_type === 'true') {
+    if (contentType === 'true') {
       if ([...row.children][2].innerHTML || [...row.children][3].innerHTML) {
         [...row.children][2].innerHTML = '';
         [...row.children][3].innerHTML = '';
@@ -190,14 +190,14 @@ function createSlide(block, row, slideIndex) {
     }
 
     if (column.innerHTML === '') return;
-    if([2,3,4].includes(colIdx)) {
+    if ([2, 3, 4].includes(colIdx)) {
       // 处理文字和icon是一个container
       div.append(column);
-    } else if([5,6].includes(colIdx)) {
-      button_div.append(column);
+    } else if ([5, 6].includes(colIdx)) {
+      buttonDiv.append(column);
     } else slide.append(column);
   });
-  div.append(button_div);
+  div.append(buttonDiv);
   slide.append(div);
   return slide;
 }
