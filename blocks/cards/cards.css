@@ -131,6 +131,9 @@
   line-height: normal;
   text-transform: capitalize;
   font-family:'Hisense Sans Alfabet', sans-serif;
+  @media (width < 860px) {
+    font-size: 20px ;
+  }
 }
 
 .cards-card-body {
@@ -161,6 +164,9 @@
   width: 100%;
 }
 
+.center-style > ul > li img {
+  width: 100%;
+}
 .center-style > ul > li:hover img {
   @media (width >= 860px) {
     transform: scale(1.1) translateY(-5px);
