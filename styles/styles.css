@@ -70,7 +70,7 @@ html {
 	--line-height-l: 1.4;
 
 	/* container */
-	--container-max-width: 1184px;
+	--container-max-width: 1180px;
 	--container-padding: 16px;
 	--gutter: 16px;
 	--column-gap: 16px;
@@ -376,7 +376,7 @@ main > .section > div,
 @media (width >= 900px) {
 	main > .section > div,
 	.h-grid-container {
-		padding: 0 32px;
+		padding: 0 30px;
 	}
 }
 
