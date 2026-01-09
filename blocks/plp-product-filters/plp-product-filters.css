@@ -95,11 +95,12 @@
 }
 
 .plp-product-filters .plp-sort img {
-  transform: scaleY(-1);
+  transform: rotate(180deg);
+  transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
 }
 
 .plp-product-filters .plp-sort-box.show img {
-  transform: initial;
+  transform: rotate(0);
 }
 
 .plp-product-filters .plp-sort-options {
@@ -174,7 +175,7 @@
   display: none;
 }
 
-@media (width <= 600px) {
+@media (width <= 860px) {
   .plp-mobile-filters {
     display: block;
   }
