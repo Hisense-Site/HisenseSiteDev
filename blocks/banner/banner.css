@@ -152,7 +152,7 @@
     min-height: unset;
     padding: 0;
     align-items: self-start;
-    border-radius: 16px;
+    border-radius: 4.1vw;
 
     &::after {
       width: 100%;
@@ -166,9 +166,10 @@
     h4+p,
     h5+p,
     h6+p {
-      margin-top: 16px;
+      margin-top: 4.1vw;
       width: 100%;
       height: auto;
+      font-size: 3.6vw;
     }
 
     p:first-child {
@@ -182,20 +183,24 @@
     h5,
     h6 {
       max-width: none;
+      font-size: 7.7vw;
     }
 
     .button-container {
       .button {
-        width: 113px;
-        height: 40px;
-        line-height: 40px;
-        margin-top: 24px;
+        width: 28.2vw;
+        height: 10.3vw;
+        line-height: 10.3vw;
+        margin-top: 6.2vw;
+        border-radius: calc(10.3vw / 2);
+        font-size: 3.1vw;
       }
     }
 
     .pc-box-img {
       position: absolute;
-      padding: 32px 24px 0;
+      width: 100%;
+      padding: 8.2vw 6.2vw 0;
 
       img {
         display: none;
