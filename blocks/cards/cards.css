@@ -16,7 +16,7 @@
 }
 
 .cards > ul {
-  @media (width < 900px) {
+  @media (width < 860px) {
     grid-auto-flow: column;
 		overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -30,7 +30,7 @@
 	}
 }
 .cards > ul > li {
-   @media (width < 900px) {
+   @media (width < 860px) {
 		width: 70.7vw !important;
     aspect-ratio: 276 / 240;
     height: auto !important;
@@ -73,6 +73,10 @@
   line-height: normal;
   text-transform: capitalize;
   z-index: 1;
+   @media (width < 860px) {
+    font-size: 20px ;
+  }
+
 }
 
 .cover-style .cards-card-image {
@@ -127,6 +131,9 @@
   line-height: normal;
   text-transform: capitalize;
   font-family:'Hisense Sans Alfabet', sans-serif;
+  @media (width < 860px) {
+    font-size: 20px ;
+  }
 }
 
 .center-style p{
@@ -137,7 +144,7 @@
   width: 174px;
   object-fit: contain;
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
-  @media (width < 900px) {
+  @media (width < 860px) {
     width: 67%;
   }
 }
@@ -146,7 +153,7 @@
   width: 100%;
 }
 .center-style > ul > li:hover img {
-  @media (width >= 900px) {
+  @media (width >= 860px) {
     transform: scale(1.1) translateY(-5px);
   }
 }
@@ -178,7 +185,7 @@
 
 .center-style > ul > li:hover .cards-card-cta a.button:any-link,
 .center-style button{
-  @media (width >= 900px) {
+  @media (width >= 860px) {
     opacity: 1;
     visibility: visible;
     bottom: 16px;
@@ -186,7 +193,7 @@
 }
 
 .cover-style > ul > li:hover img {
-  @media (width >= 900px) {
+  @media (width >= 860px) {
     transform: scale(1.1);
   }
 }

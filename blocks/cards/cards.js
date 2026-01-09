@@ -22,7 +22,7 @@ export default function decorate(block) {
   });
   const viewportWidth = window.innerWidth;
  
-  if(viewportWidth >= 900){
+  if(viewportWidth >= 860){
       const coverLi = document.querySelectorAll('.cover-style > ul > li');
       coverLi.forEach((item) => {
       const link = item.querySelector('a');
@@ -33,22 +33,38 @@ export default function decorate(block) {
       
     });
   }else{
-    console.log('work')
+    let isScrolling = false;
     const cardsLi = document.querySelectorAll('.cards > ul > li');
     cardsLi.forEach((item) => {
     const link = item.querySelector('a');
     const url = link?.href;
-    
+    let startX
     item.addEventListener('touchstart', (e) => {
        console.log('start')
       item.classList.add('touch-start');
       item.classList.remove('touch-end', 'touch-cancel');
+       startX = e.touches[0].clientX;
+      isScrolling = false;
+      console.log('s',isScrolling)
     })
+    // item.addEventListener('touchmove', (e) => {
+    //     const currentX = e.touches[0].clientX;
+    //     console.log('currentX',currentX)
+    //     // 如果水平移动超过10px，认为是滑动
+    //     if (Math.abs(currentX - startX) > 10) {
+    //       isScrolling = true;
+    //        console.log('m',isScrolling)
+    //     }
+    //   });
      item.addEventListener('touchend', (e) => {
       console.log('end')
       item.classList.add('touch-end');
       item.classList.remove('touch-start', 'touch-cancel');
-      if (url) window.location.href = url;
+      const endX = e.changedTouches[0].clientX;
+      if (Math.abs(endX - startX) < 10 ) {
+          console.log('aa', Math.abs(endX - startX))
+        window.location.href = url;
+      }
 
     })
   });
