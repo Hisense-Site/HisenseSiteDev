@@ -17,20 +17,22 @@
 
 .cards > ul {
   @media (width < 860px) {
-    grid-auto-flow: column;
 		overflow-x: auto;
     scroll-snap-type: x mandatory;
-    display: flex;
+    display: flex !important;
     /* 触摸优化 */
     -webkit-overflow-scrolling: touch; /* iOS 弹性滚动 */
     scroll-behavior: smooth; /* 平滑滚动 */
     /* 隐藏滚动条但保持可滚动 */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
+    touch-action: pan-x pinch-zoom; /* 允许水平滑动和捏合缩放 */
+    overscroll-behavior-x: contain; /* 防止滚动链 */
 	}
 }
 .cards > ul > li {
    @media (width < 860px) {
+    flex: 0 0 auto; 
 		width: 70.7vw !important;
     aspect-ratio: 276 / 240;
     height: auto !important;
@@ -106,7 +108,8 @@
 }
 
 .center-style > ul > li {
-  background: linear-gradient(135deg, #EEF9F9, #F5FCFC);
+  background: burlywood;
+  /* linear-gradient(135deg, #EEF9F9, #F5FCFC); */
   position: relative;
   border-radius: var(--border-radius-l);
   overflow: hidden;

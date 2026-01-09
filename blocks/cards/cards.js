@@ -33,20 +33,62 @@ export default function decorate(block) {
       
     });
   }else{
-    let isScrolling = false;
     const cardsLi = document.querySelectorAll('.cards > ul > li');
-    cardsLi.forEach((item) => {
-    const link = item.querySelector('a');
-    const url = link?.href;
-    let startX
-    item.addEventListener('mousedown', (e) => {
-       console.log('start')
-      item.classList.add('touch-start');
-      item.classList.remove('touch-end', 'touch-cancel');
-       startX = e.touches[0].clientX;
+    cardsLi.forEach((card) => {
+    let touchStartTime;
+    let isScrolling = false;
+    let startX = 0;
+
+    // 触摸开始
+    card.addEventListener('touchstart', (e) => {
+      touchStartTime = Date.now();
+      startX = e.touches[0].clientX;
       isScrolling = false;
-      console.log('s',isScrolling)
-    })
+      card.classList.add('touch-start');
+     
+    });
+
+    // 触摸移动
+    card.addEventListener('touchmove', (e) => {
+      const currentX = e.touches[0].clientX;
+      // 如果水平移动超过10px，认为是滑动
+      if (Math.abs(currentX - startX) > 10) {
+        isScrolling = true;
+         card.classList.remove('touch-start');
+      }
+    });
+
+    // 触摸结束
+    card.addEventListener('touchend', (e) => {
+      const touchDuration = Date.now() - touchStartTime;
+      
+      // 如果不是滑动，且按压时间小于500ms，执行跳转
+      if (!isScrolling && touchDuration < 500) {
+        const link = card.querySelector('a');
+        const url = link?.href;
+        if (url) {
+          window.location.href = url;
+        }
+      }
+    });
+    card.addEventListener('touchcancel', () => {
+        card.classList.remove('touch-start');
+    });
+    card.addEventListener('click', () => {
+    const link = card.dataset.link;
+    if (link) {
+      window.location.href = link;
+    }
+  });
+  
+    // item.addEventListener('mousedown', (e) => {
+    //    console.log('start')
+    //   item.classList.add('touch-start');
+    //   item.classList.remove('touch-end', 'touch-cancel');
+    //    startX = e.touches[0].clientX;
+    //   isScrolling = false;
+    //   console.log('s',isScrolling)
+    // })
     // item.addEventListener('touchmove', (e) => {
     //     const currentX = e.touches[0].clientX;
     //     console.log('currentX',currentX)
@@ -56,17 +98,17 @@ export default function decorate(block) {
     //        console.log('m',isScrolling)
     //     }
     //   });
-     item.addEventListener('mouseup', (e) => {
+    //  item.addEventListener('mouseup', (e) => {
      
-      item.classList.add('touch-end');
-      item.classList.remove('touch-start', 'touch-cancel');
-      const endX = e.changedTouches[0].clientX;
-      if (Math.abs(endX - startX) < 10 ) {
-          console.log('aa', Math.abs(endX - startX))
-         window.location.href = url;
-      }
+    //   item.classList.add('touch-end');
+    //   item.classList.remove('touch-start', 'touch-cancel');
+    //   const endX = e.changedTouches[0].clientX;
+    //   if (Math.abs(endX - startX) < 10 ) {
+    //       console.log('aa', Math.abs(endX - startX))
+    //      window.location.href = url;
+    //   }
 
-    })
+    // })
   });
   }
 
