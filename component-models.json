@@ -695,7 +695,7 @@
         "fields": [
           {
             "component": "select",
-            "name": "cta_classes1",
+            "name": "cta1_classes",
             "value": "",
             "label": "Button Background Color",
             "valueType": "string",
@@ -716,14 +716,14 @@
           },
           {
             "component": "aem-content",
-            "name": "cta_primary",
+            "name": "cta1_primary",
             "label": "Primary CTA",
             "valueType": "string",
             "value": "/"
           },
           {
             "component": "text",
-            "name": "cta_primaryText",
+            "name": "cta1_primaryText",
             "label": "Primary CTA Label",
             "valueType": "string",
             "value": "Required when Primary CTA content is provided"
@@ -738,7 +738,7 @@
         "fields": [
           {
             "component": "select",
-            "name": "cta_classes2",
+            "name": "cta2_classes",
             "value": "",
             "label": "Button Background Color",
             "valueType": "string",
@@ -759,14 +759,14 @@
           },
           {
             "component": "aem-content",
-            "name": "cta_secondary",
+            "name": "cta2_secondary",
             "label": "Secondary CTA",
             "valueType": "string",
             "value": "/"
           },
           {
             "component": "text",
-            "name": "cta_secondaryText",
+            "name": "cta2_secondaryText",
             "label": "Secondary CTA Label",
             "valueType": "string",
             "value": "Required when Secondary CTA content is provided"

@@ -98,6 +98,14 @@ function bindEvents(block) {
   block.querySelectorAll('.carousel-item').forEach((slide) => {
     slideObserver.observe(slide);
   });
+// -----未定版
+  // block.querySelector('.slide-prev').addEventListener('click', () => {
+  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+  // });
+  // block.querySelector('.slide-next').addEventListener('click', () => {
+  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+  // });
+// ------
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', throttle((e) => {
       const slideIndicator = e.currentTarget.parentElement;
@@ -106,6 +114,7 @@ function bindEvents(block) {
   });
   observeMouse(block);
 }
+
 function createSlide(block, row, slideIndex) {
   const slide = document.createElement('li');
   const div = document.createElement('div');
@@ -115,48 +124,51 @@ function createSlide(block, row, slideIndex) {
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
+    let content_type;
     let mobileImg;
     let buttonTheme;
     switch (colIdx) {
       case 0:
+        // container-reference div
         column.classList.add('carousel-item-image');
-        // eslint-disable-next-line prefer-destructuring
-        mobileImg = column.querySelectorAll('img')[1];
+        // 处理mobile图片
+        if (column.querySelectorAll('img').length > 1) mobileImg = column.querySelectorAll('img')[1];
         if (mobileImg) {
-          mobileImg.style.display = 'none';
-          column.firstElementChild.querySelectorAll('source')[1]?.setAttribute('srcset', mobileImg.src);
+          mobileImg.closest('p').style.display = 'none';
+          const realSource = [...column.querySelectorAll('source')].filter(item => !item.hasAttribute('media'))[0];
+          realSource?.setAttribute('srcset', mobileImg.src);
+          mobileImg.closest('p').remove();
         }
-        break;
-      case 1:
-        column.classList.add('carousel-item-theme');
+        // 处理image-theme联动nav
         theme = column.querySelector('p')?.innerHTML || 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        column.innerHTML = '';
+        column.lastElementChild.remove(); //清除不必要的DOM结构
+        break;
+      case 1:
+        // container-text or svg switch div
+        content_type = column.querySelector('p')?.innerHTML || false;
+        // column.remove();
         break;
       case 2:
-        column.classList.add('carousel-item-content');
-        if ([...column.children].length > 1) {
-          if ([...column.children][0].nodeName === 'P') column.firstElementChild.classList.add('teal-text');
-          column.lastElementChild.classList.add('change-text');
-        }
+        // colorful text div
+        column.classList.add('teal-text');
         break;
       case 3:
-        column.classList.add('carousel-item-button-theme');
-        buttonTheme = column.querySelector('p')?.innerHTML || '';
-        if (buttonTheme) column.parentElement.querySelector('.button-container')?.classList.add(buttonTheme);
-        column.innerHTML = '';
+        // richtext div
+        column.classList.add('carousel-item-content');
+        break;
+      case 4:
+        // icon-svg div
         break;
       default:
         column.classList.add('carousel-item-cta');
+        buttonTheme = column.firstElementChild?.innerHTML || 'transparent';
+        column.querySelector('a')?.classList.add(buttonTheme);
+        
     }
     if (column.innerHTML === '') return;
-    if ([2, 3, 4].includes(colIdx)) {
-      div.appendChild(column);
-    } else {
-      slide.append(column);
-    }
+    slide.append(column);
   });
-  slide.append(div);
   return slide;
 }
 
@@ -183,11 +195,22 @@ export default async function decorate(block) {
     row.remove();
   });
   block.prepend(wholeContainer);
-  if (slideIndicators && block.attributes['data-aue-resource'] === undefined) {
+  // 处理轮播无缝衔接；不影响author
+  if (!isSingleSlide && block.attributes['data-aue-resource'] === undefined) {
     const cloneFirstNode = wholeContainer.firstElementChild.cloneNode(true);
     wholeContainer.appendChild(cloneFirstNode);
   }
-  if (slideIndicators) block.append(slideIndicators);
+  if (slideIndicators) {
+    block.append(slideIndicators);
+    // 处理左右箭头---未定版
+    // const slideNavButtons = document.createElement('div');
+    // slideNavButtons.classList.add('carousel-navigation-buttons');
+    // slideNavButtons.innerHTML = `
+    //   <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
+    //   <button type="button" class="slide-next" aria-label="Next Slide"></button>
+    // `;
+    // block.append(slideNavButtons);
+  }
   if (!isSingleSlide) {
     bindEvents(block);
   }
