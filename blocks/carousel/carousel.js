@@ -143,14 +143,13 @@ function createSlide(block, row, slideIndex) {
         if (mobileImg) {
           mobileImg.closest('p').style.display = 'none';
           // author 没有source
-          if (block.attributes['data-aue-resource']) {
-            const source = document.createElement('source');
-            source.setAttribute('srcset', mobileImg.src);
-            source.setAttribute('media', '(min-width: 860px)');
-            column.querySelector('picture').prepend(source);
-          }
-          const realSource = [...column.querySelectorAll('source')].filter((item) => !item.hasAttribute('media'))[0];
-          realSource?.setAttribute('srcset', mobileImg.src);
+          const source = document.createElement('source');
+          source.setAttribute('srcset', mobileImg.src);
+          source.setAttribute('media', '(max-width: 860px)');
+          column.querySelector('picture').prepend(source);
+          // localhost有4个source
+          // const realSource = [...column.querySelectorAll('source')].filter((item) => !item.hasAttribute('media'))[0];
+          // realSource?.setAttribute('srcset', mobileImg.src);
           mobileImg.closest('p').remove();
         }
         // 处理image-theme联动nav
