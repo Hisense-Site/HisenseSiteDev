@@ -81,6 +81,22 @@ export default async function decorate(block) {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Store references for cleanup
+  let matchMediaContext = null;
+  let scrollTriggerInstance = null;
+
+  // Clean up existing animations
+  const cleanup = () => {
+    if (scrollTriggerInstance) {
+      scrollTriggerInstance.kill();
+      scrollTriggerInstance = null;
+    }
+    if (matchMediaContext) {
+      matchMediaContext.revert();
+      matchMediaContext = null;
+    }
+  };
+
   const resizeHandler = () => {
     if (!img.complete) {
       return;
@@ -88,13 +104,20 @@ export default async function decorate(block) {
     const shouldAnimate = window.innerHeight >= CONFIG.MIN_VIEWPORT_HEIGHT;
     scrollContainer.classList.toggle('animate', shouldAnimate);
     scrollTextContainer.classList.toggle('animate', shouldAnimate);
-    ScrollTrigger.refresh();
   };
 
   const animate = () => {
+    if (!img.complete) {
+      return;
+    }
+
+    // Clean up existing animations before creating new ones
+    cleanup();
+
     resizeHandler();
 
     const matchMedia = gsap.matchMedia();
+    matchMediaContext = matchMedia;
 
     matchMedia.add({
       aboveMinHeight: `(min-height: ${CONFIG.MIN_VIEWPORT_HEIGHT}px)`,
@@ -156,8 +179,9 @@ export default async function decorate(block) {
           end: calculateScrollEnd,
           scrub: 1,
           pin: true,
-          markers: true,
+          // markers: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
           onLeave: () => {
             gsap.set(scrollContainer, { height: 'auto' });
           },
@@ -169,6 +193,9 @@ export default async function decorate(block) {
           },
         },
       });
+
+      // Store ScrollTrigger instance for cleanup
+      scrollTriggerInstance = tl.scrollTrigger;
 
       // Scale the image up to fill viewport
       tl.set(img, {
@@ -250,10 +277,57 @@ export default async function decorate(block) {
     });
   };
 
+  // Initial setup
   resizeHandler();
-  const debounceResize = debounce(animate, 500);
 
-  window.addEventListener('resize', debounceResize);
+  // Handle viewport resize - recalculate and recreate animation
+  const handleResize = debounce(() => {
+    animate();
+    // Refresh ScrollTrigger after a brief delay to ensure DOM has updated
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+  }, 500);
 
-  img.addEventListener('load', animate);
+  // Handle content height changes (e.g., other content above/below changes)
+  const handleContentChange = debounce(() => {
+    if (scrollTriggerInstance) {
+      ScrollTrigger.refresh();
+    }
+  }, 300);
+
+  // Observe viewport resize
+  window.addEventListener('resize', handleResize);
+
+  // Observe content changes that might affect layout
+  if (typeof ResizeObserver !== 'undefined') {
+    const resizeObserver = new ResizeObserver((entries) => {
+      // Check if image size changed - if so, recreate animation
+      const imageEntry = entries.find((entry) => entry.target === img);
+      if (imageEntry) {
+        handleResize();
+      } else {
+        // Other content changed - just refresh
+        handleContentChange();
+      }
+    });
+
+    // Observe the block, containers, and image for size changes
+    resizeObserver.observe(block);
+    resizeObserver.observe(scrollContainer);
+    resizeObserver.observe(img);
+    if (subContainer) {
+      resizeObserver.observe(subContainer);
+    }
+  }
+
+  // Initialize animation when image loads
+  if (img.complete) {
+    animate();
+  } else {
+    img.addEventListener('load', animate, { once: true });
+  }
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', cleanup);
 }
