@@ -363,7 +363,7 @@ footer footer {
 .footer-legal-links {
   display: flex;
 	justify-content: space-between;
-	gap: 24px 64px;
+	gap: 20px 64px;
 	flex-wrap: wrap;
 }
 
@@ -374,7 +374,7 @@ footer footer {
   font-weight: 400;
   white-space: nowrap;
 
-	@media (width < 600px) {
+	@media (width <= 860px) {
 		width: 100%;
 	}
 }
