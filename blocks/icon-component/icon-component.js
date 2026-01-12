@@ -52,6 +52,7 @@ export default async function decorate(block) {
     
     const iconBlock = document.createElement('li');
     child.classList.add('item');
+    let ctaDiv;
     [...child.children].forEach((item, index) => {
       let buttonClasses = 'transparent'; //默认透明底
       switch (index) {
@@ -63,21 +64,27 @@ export default async function decorate(block) {
           break;
         case 2:
           item.classList.add('item-cta');
-          if (block.classList.contains('text-left')) item.classList.add('show');          
-          if (!item.firstElementChild.querySelector('button-container')) {
-            // 排除第一个元素是cta（class没选的情况下）
+          if (block.classList.contains('text-left')) item.classList.add('show');
+          // cta 和label不能自动组合 
+          if([...item.children].length === 3) {
+            item.querySelector('a').innerHTML = item.lastElementChild.innerHTML;
+            item.lastElementChild.remove();
+          }         
+          if (!item.firstElementChild.querySelector('a')) {
+            // 排除第一个元素是cta（排除class没选的情况下）
             buttonClasses = item.firstElementChild.innerHTML;
             item.firstElementChild.remove();
           }
-          if (item.querySelector('a')) item.querySelector('a').classList.add(buttonClasses);
+          if (item.querySelector('a')) {
+            item.querySelector('a').classList.add(buttonClasses);
+          }
+          ctaDiv = item;
           break;
-      }
-      if (item.querySelector('a')) {
-        item.querySelector('a').closest('div').classList.add('item-cta');
       }
       if (!item.innerHTML) item.remove();
     });
     iconBlock.appendChild(child);
+    iconBlock.appendChild(ctaDiv);
     iconBlocks.appendChild(iconBlock);
   });
   iconContainer.appendChild(iconBlocks);
@@ -92,9 +99,6 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  // whenElementReady('.icon-component', () => {
-  //   bindEvent(block);
-  // });
   resizeObserver('.icon-component', () => {
     bindEvent(block);
   });
