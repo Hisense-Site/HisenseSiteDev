@@ -344,8 +344,39 @@ export default async function decorate(block) {
     linksEl.append(link);
 
     const mobileLink = document.createElement('div');
-    mobileLink.className = 'mobile-link';
-    mobileLink.textContent = item.title;
+    mobileLink.className = 'mobile-link hide';
+    const mobileLinkTitle = document.createElement('span');
+    mobileLinkTitle.textContent = item.title;
+    const arrow = document.createElement('img');
+    arrow.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
+    arrow.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const grandParent = e.target.parentNode?.parentNode;
+      if (!grandParent) { return; }
+      grandParent.classList.toggle('hide');
+    });
+    // 这个是手机端二级菜单的title，相当于pc的nav的item
+    const mobileLinkTitleLine = document.createElement('div');
+    mobileLinkTitleLine.className = 'mobile-link-title-line';
+    mobileLinkTitleLine.append(mobileLinkTitle, arrow);
+
+    // 这个是手机端二级菜单的title展开的内容，相当于pc的nav的二级菜单的图片区的titlegroup
+    const mobileSecondLinkList = document.createElement('div');
+    mobileSecondLinkList.className = 'mobile-link-second-list';
+    if (dropdownData?.products?.length) {
+      dropdownData.products.forEach((p) => {
+        const mobileProduct = document.createElement('div');
+        mobileProduct.className = 'mobile-product-item';
+        mobileProduct.textContent = p.text;
+        mobileProduct.addEventListener('click', (e) => {
+          e.stopPropagation();
+          window.location.href = p.href;
+        });
+        mobileSecondLinkList.append(mobileProduct);
+      });
+    }
+
+    mobileLink.append(mobileLinkTitleLine, mobileSecondLinkList);
     if (item.href && item.href !== '#') {
       mobileLink.dataset.href = item.href;
       mobileLink.addEventListener('click', (e) => {

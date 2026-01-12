@@ -15,17 +15,45 @@
   padding: 0;
 }
 
+.cards > ul {
+  @media (width < 860px) {
+		overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* display: flex !important; */
+    /* 触摸优化 */
+    -webkit-overflow-scrolling: touch; /* iOS 弹性滚动 */
+    scroll-behavior: smooth; /* 平滑滚动 */
+    /* 隐藏滚动条但保持可滚动 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    touch-action: pan-x pinch-zoom; /* 允许水平滑动和捏合缩放 */
+    overscroll-behavior-x: contain; /* 防止滚动链 */
+    grid-auto-flow: column;
+
+	}
+}
+.cards > ul > li {
+   @media (width < 860px) {
+    /* flex: 0 0 auto;  */
+    position: relative;
+		width: 70.7vw !important;
+    aspect-ratio: 276 / 240;
+    height: auto !important;
+    transition: transform 0.3s;
+    pointer-events: auto; /* 允许事件穿透到容器 */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
 .cover-style > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   gap: var(--gap);
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 
-	@media (width >= 900px) {
-		grid-template-columns: repeat(4, 1fr);
-	}
 }
 
 .cover-style > ul > li {
@@ -34,7 +62,6 @@
   overflow: hidden;
   background-color: var(--background-color);
   position: relative;
-
 }
 
 .cover-style .cards-card-body {
@@ -46,12 +73,12 @@
   width: 100%;
   color: white;
   font-family:'Hisense Sans Alfabet', sans-serif;
-  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;
   z-index: 1;
+
 }
 
 .cover-style .cards-card-image {
@@ -70,30 +97,22 @@
 
 }
 
-
 .center-style > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: repeat(3, 1fr);
   gap: var(--gap);
-
-	@media (width >= 600px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@media (width >= 900px) {
-		grid-template-columns: repeat(3, 1fr);
-	}
 }
 
 .center-style > ul > li {
-  background: linear-gradient(135deg, #EEF9F9, #F5FCFC);
+  background: linear-gradient(135deg, #EEF9F9, #F5FCFC); 
   position: relative;
   border-radius: var(--border-radius-l);
   overflow: hidden;
   display: flex;
+  justify-content: center;
   padding-block: 36px;
 	height: 300px;
   flex-direction: column;
@@ -107,26 +126,51 @@
   width: 100%;
   text-align: center;
   color: #000;
-  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: capitalize;
   font-family:'Hisense Sans Alfabet', sans-serif;
+  @media (width < 860px) {
+    font-size: 20px ;
+  }
+}
+
+.cards-card-body {
+   --font-size-small: 20px; /* 390时的宽度 */
+  --font-size-normal: 24px; /* 860时的宽度 */
+  --font-size-large: 24px;
+   font-size: clamp(
+    var(--font-size-small),
+    max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
+    var(--font-size-large)
+  );
 }
 
 .center-style p{
   margin: 0;
 }
 
-.center-style > ul > li img {
+.center-style > ul > li .cards-card-image {
   width: 174px;
   object-fit: contain;
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
+  @media (width < 860px) {
+    width: 67%;
+  }
 }
 
+.center-style > ul > li img {
+  width: 100%;
+}
+
+.center-style > ul > li img {
+  width: 100%;
+}
 .center-style > ul > li:hover img {
-  transform: scale(1.1) translateY(-5px);
+  @media (width >= 860px) {
+    transform: scale(1.1) translateY(-5px);
+  }
 }
 
 .center-style > ul > li .cards-card-cta a.button:any-link,
@@ -145,10 +189,8 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-
     /* -webkit-transform: translateX(-50%); */
     transform: translateX(-50%);
-
     /* -webkit-transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s; */
     transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s;
 
@@ -156,11 +198,21 @@
 
 .center-style > ul > li:hover .cards-card-cta a.button:any-link,
 .center-style button{
-  opacity: 1;
-  visibility: visible;
-  bottom: 16px;
+  @media (width >= 860px) {
+    opacity: 1;
+    visibility: visible;
+    bottom: 16px;
+  }
 }
 
 .cover-style > ul > li:hover img {
-  transform: scale(1.1);
+  @media (width >= 860px) {
+    transform: scale(1.1);
+  }
+}
+.touch-start img {
+   transform: scale(1.1);
+}
+.touch-end img {
+   transform: scale(1);
 }
