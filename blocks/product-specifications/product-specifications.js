@@ -14,9 +14,15 @@ export default async function decorate(block) {
   try {
     const product = await waitForProductData();
 
-    // 创建容器
+    // 创建包装器容器
+    const wrapper = document.createElement('div');
+    wrapper.className = 'product-specifications-wrapper';
+
+    // 创建block容器
     const container = document.createElement('div');
-    container.className = 'properties-container';
+    container.className = 'product-specifications block';
+    container.setAttribute('data-block-name', 'product-specifications');
+    container.setAttribute('data-block-status', 'loaded');
 
     // 解析spec数据,创建分层结构
     const specHierarchy = {};
@@ -81,8 +87,8 @@ export default async function decorate(block) {
         const attributes = level2Groups[level2];
 
         if (attributes.length > 0) {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'properties-wrapper';
+          const propertiesWrapper = document.createElement('div');
+          propertiesWrapper.className = 'properties-wrapper';
 
           const propertiesBlock = document.createElement('div');
           propertiesBlock.className = 'properties block';
@@ -98,8 +104,6 @@ export default async function decorate(block) {
           if (globalIndex === totalGroupCount - 1) {
             propertiesBlock.classList.add('last');
           }
-
-          propertiesBlock.classList.add('expanded');
 
           // 创建header
           const headerButton = document.createElement('button');
@@ -151,8 +155,8 @@ export default async function decorate(block) {
 
           propertiesBlock.appendChild(headerButton);
           propertiesBlock.appendChild(content);
-          wrapper.appendChild(propertiesBlock);
-          container.appendChild(wrapper);
+          propertiesWrapper.appendChild(propertiesBlock);
+          container.appendChild(propertiesWrapper);
 
           // 添加点击事件
           headerButton.addEventListener('click', () => {
@@ -164,7 +168,8 @@ export default async function decorate(block) {
       });
     });
 
-    block.replaceChildren(container);
+    wrapper.appendChild(container);
+    block.replaceChildren(wrapper);
   } catch (error) {
     // 加载失败，显示错误信息
     const errorDiv = document.createElement('div');
