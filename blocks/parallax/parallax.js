@@ -1,13 +1,29 @@
 import { loadScript } from '../../scripts/aem.js';
 import { isUniversalEditor } from '../../utils/ue-helper.js';
 import { createElement, debounce } from '../../utils/dom-helper.js';
-import { ANIMATION_DURATION, CONFIG } from './_constants.js';
+
+const ANIMATION_DURATION = {
+  IMAGE_BRIGHTNESS: 0.3,
+  IMAGE_SCALE: 2,
+  TEXT_SCROLL: 3,
+  TEXT_FADE_IN: 0.1,
+  TEXT_FADE_IN_DELAY: 0.1,
+  CONTAINER_HEIGHT: 0.3,
+};
+
+const CONFIG = {
+  SMALL_VIEWPORT_MAX_WIDTH: 860,
+  MIN_VIEWPORT_HEIGHT: 600,
+  MAX_VIEWPORT_WIDTH: 1920,
+  SCALE_MULTIPLIER: 1.2,
+  MIN_SCALE: 2,
+  SCROLL_MULTIPLIER: 2,
+};
 
 export default async function decorate(block) {
   const scrollContainer = block.querySelector('div:first-child');
   scrollContainer.className = 'scroll-container';
   const subContainer = block.querySelector('div:nth-child(2)');
-  subContainer.className = 'sub-container h-grid-container';
 
   const img = scrollContainer.querySelector('img');
   if (!img) return;
@@ -23,14 +39,17 @@ export default async function decorate(block) {
   stickyContainer.appendChild(scrollImageContainer);
   stickyContainer.appendChild(scrollTextContainer);
 
-  const subTextContainer = subContainer.querySelector('div');
-  subTextContainer.classList.add('sub-text-container');
-  const subImage = subTextContainer.children[0];
+  if (subContainer) {
+    subContainer.className = 'sub-container h-grid-container';
+    const subTextContainer = subContainer.querySelector('div');
+    subTextContainer.classList.add('sub-text-container');
+    const subImage = subTextContainer.children[0];
 
-  const subImageContainer = createElement('div', 'sub-image-container');
-  subImageContainer.appendChild(subImage);
-  subContainer.appendChild(subImageContainer);
-  subContainer.appendChild(subTextContainer);
+    const subImageContainer = createElement('div', 'sub-image-container');
+    subImageContainer.appendChild(subImage);
+    subContainer.appendChild(subImageContainer);
+    subContainer.appendChild(subTextContainer);
+  }
 
   if (isUniversalEditor()) {
     return;
