@@ -36,12 +36,10 @@ export default function decorate(block) {
     cardsLi.forEach((card) => {
       let touchStartTime;
       let isScrolling = false;
-      let startX = 0;
 
       // 触摸开始
-      card.addEventListener('touchstart', (e) => {
+      card.addEventListener('touchstart', () => {
         touchStartTime = Date.now();
-        startX = e.touches[0].clientX;
         isScrolling = false;
         card.classList.remove('touch-end');
         card.classList.add('touch-start');
@@ -59,7 +57,7 @@ export default function decorate(block) {
       // });
 
       // 触摸结束
-      card.addEventListener('touchend', (e) => {
+      card.addEventListener('touchend', () => {
         card.classList.remove('touch-start');
         card.classList.add('touch-end');
         const touchDuration = Date.now() - touchStartTime;
