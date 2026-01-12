@@ -1,8 +1,7 @@
 export default function decorate(block) {
   /* change to ul, li */
-  console.log('Decorating video block');
   let videourl;
-  let imgUrl;
+  // let imgUrl;
   [...block.children].forEach((row) => {
     const link = row.querySelector('a');
     if (link) {
@@ -10,7 +9,7 @@ export default function decorate(block) {
     }
     const img = row.querySelector('img');
     if (img) {
-      imgUrl = img.src;
+      // imgUrl = img.src;
     }
   });
   const newDiv = document.createElement('div');
@@ -44,8 +43,7 @@ export default function decorate(block) {
   //   console.log('视频开始播放');
   // });
 
-   block.replaceChildren(newDiv);
-   
+  block.replaceChildren(newDiv);
   const videoAutoplay = {
     init() {
       this.videos = document.querySelectorAll('[data-video-autoplay]');
@@ -53,7 +51,7 @@ export default function decorate(block) {
       this.setupObserver();
       this.addVolumeControls();
     },
-    
+
     setupVideos() {
       this.videos.forEach((v) => {
         v.muted = true;
@@ -62,7 +60,7 @@ export default function decorate(block) {
         v.setAttribute('data-was-playing', 'false');
       });
     },
-    
+
     setupObserver() {
       this.observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -74,21 +72,19 @@ export default function decorate(block) {
           }
         });
       }, { threshold: 0.3 });
-      
+
       this.videos.forEach((v) => this.observer.observe(v));
     },
-    
+
     async playVideo(v) {
       if (!v.paused) return;
 
       try {
         await v.play();
         v.setAttribute('data-was-playing', 'true');
-      } catch (error) {
-        console.log('播放失败:', error);
-      }
+      } catch (error) { /* empty */ }
     },
-    
+
     pauseVideo(v) {
       if (!v.paused) {
         v.setAttribute('data-was-playing', 'true');
@@ -97,13 +93,10 @@ export default function decorate(block) {
         v.setAttribute('data-was-playing', 'false');
       }
     },
-    
+
     addVolumeControls() {
       // 添加音量控制按钮等...
-    }
+    },
   };
-
-// 初始化
   video.addEventListener('loadeddata', () => videoAutoplay.init());
 }
-
