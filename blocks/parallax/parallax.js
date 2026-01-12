@@ -35,8 +35,8 @@ export default async function decorate(block) {
     media: '(min-width: 860px)',
     width: '3000',
   }, { width: '1920' }]);
-
   scaleTarget = optimizedPicture.querySelector('img');
+  scrollTextContainer.children[0].remove();
 
   const stickyContainer = createElement('div', 'sticky-container h-grid-container');
   scrollContainer.appendChild(stickyContainer);
@@ -44,8 +44,6 @@ export default async function decorate(block) {
   scrollImageContainer.appendChild(optimizedPicture);
   stickyContainer.appendChild(scrollImageContainer);
   stickyContainer.appendChild(scrollTextContainer);
-
-  scrollTextContainer.children[0].remove();
 
   if (subContainer) {
     subContainer.className = 'sub-container h-grid-container';
@@ -93,10 +91,7 @@ export default async function decorate(block) {
     ScrollTrigger,
   } = window;
 
-  ScrollTrigger.config({
-    autoRefreshEvents: 'DOMContentLoaded,load',
-    ignoreMobileResize: true,
-  });
+  ScrollTrigger.config({ autoRefreshEvents: 'DOMContentLoaded,load' });
 
   gsap.registerPlugin(ScrollTrigger);
 
