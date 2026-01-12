@@ -1279,60 +1279,6 @@
         "label": "After Image",
         "multi": false,
         "required": true
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Display Variant",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "Framed",
-            "value": "framed"
-          }
-        ],
-        "defaultValue": "",
-        "required": false
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "frame_left",
-        "label": "Frame Left Position (%)",
-        "description": "Left position of the frame area as percentage (0-100)",
-        "defaultValue": 10,
-        "required": false
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "frame_top",
-        "label": "Frame Top Position (%)",
-        "description": "Top position of the frame area as percentage (0-100)",
-        "defaultValue": 10,
-        "required": false
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "frame_width",
-        "label": "Frame Width (%)",
-        "description": "Width of the frame area as percentage (0-100)",
-        "defaultValue": 80,
-        "required": false
-      },
-      {
-        "component": "number",
-        "valueType": "number",
-        "name": "frame_height",
-        "label": "Frame Height (%)",
-        "description": "Height of the frame area as percentage (0-100)",
-        "defaultValue": 80,
-        "required": false
       }
     ]
   },
