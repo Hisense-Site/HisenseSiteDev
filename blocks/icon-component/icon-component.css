@@ -39,7 +39,7 @@
 
 .icon-viewport ul{
   display: flex;
-  gap: 24px;
+  gap: var(--gap);
   margin: 0;
   padding: 0;
   transition: transform 0.5s ease-in-out;
@@ -55,10 +55,6 @@
   flex-shrink: 0;
   cursor: pointer;
   background-color: white;
-
-  /* &:hover {
-    width: 279px;
-  } */
 
   .item {
     display: flex;
@@ -93,7 +89,8 @@
       display: flex;
       padding: 0;
       align-items: flex-start;
-      gap: 4px;
+      justify-content: flex-start;
+      gap: 8px;
       text-align: left;
 
       .item-picture {
@@ -104,6 +101,8 @@
       .item-text {
         p:nth-child(2) {
           font-size: 14px;
+          margin: 0;
+          padding: 0;
         }
       }
 
