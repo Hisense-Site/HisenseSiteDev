@@ -40,8 +40,8 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "orientation",
-          "label": "Orientation",
+          "name": "classes",
+          "label": "Display Variant",
           "options": [
             {
               "name": "Default",
