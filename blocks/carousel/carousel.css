@@ -314,6 +314,10 @@ main > .section:first-of-type {
         height: 640px;
       }
     }
+
+    .carousel-item-content.icon-svg {
+      max-height: 178px;
+    }
   }
 
   .carousel.only-picture .carousel-items-container{
