@@ -76,6 +76,7 @@ function extractLogoData(container) {
     imgBox.className = 'footer-social-imgbox';
     if (socialPicture) {
       const socialImg = socialPicture.querySelector('img');
+      socialImg.className = 'footer-social-width';
       const socialLink = div.querySelector('a');
       if (socialImg) {
         imgBox.appendChild(socialImg);
@@ -86,6 +87,7 @@ function extractLogoData(container) {
       }
     } else {
       const socialImg = innerDiv.querySelector('img');
+      socialImg.className = 'footer-social-width';
       const socialLink = innerDiv.querySelector('a');
       if (socialImg) {
         imgBox.appendChild(socialImg);
@@ -281,7 +283,9 @@ export default function decorate(block) {
         if (data.logo.alt) {
           logoLink.setAttribute('aria-label', data.logo.alt);
         }
-        logoLink.appendChild(data.logo.image);
+        const logoImg = data.logo.image;
+        logoImg.className = 'footer-logo-width';
+        logoLink.appendChild(logoImg);
         logoDiv.appendChild(logoLink);
       } else {
         logoDiv.appendChild(data.logo.image);
@@ -310,13 +314,24 @@ export default function decorate(block) {
 
     data.navColumns.forEach((columnData) => {
       const columnDiv = document.createElement('div');
-      columnDiv.className = 'footer-nav-column';
+      columnDiv.className = 'footer-nav-column footer-context-hide';
 
       if (columnData.title) {
-        const title = document.createElement('h4');
-        title.className = 'footer-nav-column-title';
-        title.textContent = columnData.title;
-        columnDiv.appendChild(title);
+        const mobileFooterTitle = document.createElement('div');
+        mobileFooterTitle.className = 'footer-nav-column-title';
+        mobileFooterTitle.textContent = columnData.title;
+        const arrow = document.createElement('img');
+        arrow.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
+        arrow.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const grandParent = e.target.parentNode?.parentNode;
+          if (!grandParent) { return; }
+          grandParent.classList.toggle('footer-context-hide');
+        });
+        const mobileFooterTitleLine = document.createElement('div');
+        mobileFooterTitleLine.className = 'mobile-footer-title-line';
+        mobileFooterTitleLine.append(mobileFooterTitle, arrow);
+        columnDiv.appendChild(mobileFooterTitleLine);
       }
 
       if (columnData.items.length > 0) {

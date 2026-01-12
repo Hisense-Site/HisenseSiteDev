@@ -19,11 +19,8 @@
   @media (width < 860px) {
 		overflow-x: auto;
     scroll-snap-type: x mandatory;
-    /* display: flex !important; */
-    /* 触摸优化 */
     -webkit-overflow-scrolling: touch; /* iOS 弹性滚动 */
     scroll-behavior: smooth; /* 平滑滚动 */
-    /* 隐藏滚动条但保持可滚动 */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
     touch-action: pan-x pinch-zoom; /* 允许水平滑动和捏合缩放 */
@@ -32,6 +29,7 @@
 
 	}
 }
+
 .cards > ul > li {
    @media (width < 860px) {
     /* flex: 0 0 auto;  */
@@ -41,7 +39,8 @@
     height: auto !important;
     transition: transform 0.3s;
     pointer-events: auto; /* 允许事件穿透到容器 */
-    -webkit-user-select: none;
+
+    /* -webkit-user-select: none; */
     user-select: none;
   }
 }
@@ -64,6 +63,18 @@
   position: relative;
 }
 
+.cards-card-body {
+  --font-size-small: 20px; /* 390时的宽度 */
+  --font-size-normal: 24px; /* 860时的宽度 */
+  --font-size-large: 24px;
+
+   font-size: clamp(
+    var(--font-size-small),
+    max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
+    var(--font-size-large)
+  );
+}
+
 .cover-style .cards-card-body {
   position: absolute;
   top: 24px;
@@ -78,7 +89,14 @@
   line-height: normal;
   text-transform: capitalize;
   z-index: 1;
+}
 
+.touch-start img {
+   transform: scale(1.1);
+}
+
+.touch-end img {
+   transform: scale(1);
 }
 
 .cover-style .cards-card-image {
@@ -122,7 +140,7 @@
 	gap: 30px;
 }
 
-.center-style .cards-card-body {
+.center-style .cards-card-bodymagrite {
   width: 100%;
   text-align: center;
   color: #000;
@@ -131,23 +149,15 @@
   line-height: normal;
   text-transform: capitalize;
   font-family:'Hisense Sans Alfabet', sans-serif;
+
   @media (width < 860px) {
     font-size: 20px ;
   }
 }
 
-.cards-card-body {
-   --font-size-small: 20px; /* 390时的宽度 */
-  --font-size-normal: 24px; /* 860时的宽度 */
-  --font-size-large: 24px;
-   font-size: clamp(
-    var(--font-size-small),
-    max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
-    var(--font-size-large)
-  );
-}
 
-.center-style p{
+
+.center-style p {
   margin: 0;
 }
 
@@ -155,6 +165,7 @@
   width: 174px;
   object-fit: contain;
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
+  
   @media (width < 860px) {
     width: 67%;
   }
@@ -164,9 +175,6 @@
   width: 100%;
 }
 
-.center-style > ul > li img {
-  width: 100%;
-}
 .center-style > ul > li:hover img {
   @media (width >= 860px) {
     transform: scale(1.1) translateY(-5px);
@@ -189,11 +197,12 @@
     position: absolute;
     bottom: 0;
     left: 50%;
+
     /* -webkit-transform: translateX(-50%); */
     transform: translateX(-50%);
+    
     /* -webkit-transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s; */
     transition: bottom cubic-bezier(0.35, 0, 0.36, 1) .5s, opacity linear .5s, visibility linear .5s;
-
 }
 
 .center-style > ul > li:hover .cards-card-cta a.button:any-link,
@@ -209,10 +218,4 @@
   @media (width >= 860px) {
     transform: scale(1.1);
   }
-}
-.touch-start img {
-   transform: scale(1.1);
-}
-.touch-end img {
-   transform: scale(1);
 }

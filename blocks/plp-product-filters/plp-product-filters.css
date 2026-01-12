@@ -272,6 +272,7 @@
 
     .mobile-sort-by-box {
       background: #fff;
+      border-radius: 0;
       padding: 14px;
       &.plp-sort-box {
         top: 0;

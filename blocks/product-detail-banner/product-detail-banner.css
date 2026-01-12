@@ -141,14 +141,22 @@
   height: 100%;
 }
 
-@media (width <=600px) {
-  .pdp-media .scroll-tabs {
-    width: 100vw;
-    margin-left: 18px;
-  }
-
+@media (width < 860px) {
   .pdp-media {
     width: 100%;
+    
+    .scroll-tabs {
+      width: calc(100vw - 18px);
+      margin-left: 18px;
+
+      .product-filters {
+        width: calc(100vw - 18px);
+
+        .product-filter-item:last-child {
+          margin-right: 18px;
+        }
+      }
+    }
   }
 
   .pdp-media .pdp-main-img {
