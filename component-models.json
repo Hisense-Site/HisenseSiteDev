@@ -1155,7 +1155,7 @@
       },
       {
         "component": "select",
-        "name": "icon_classes",
+        "name": "cta_classes",
         "value": "",
         "label": "Button Background Color",
         "valueType": "string",
@@ -1176,7 +1176,7 @@
       },
       {
         "component": "aem-content",
-        "name": "icon_cta",
+        "name": "cta_icon",
         "label": "CTA",
         "valueType": "string",
         "required": true,
@@ -1184,7 +1184,7 @@
       },
       {
         "component": "text",
-        "name": "icon_ctaLabel",
+        "name": "cta_iconLabel",
         "label": "CTA Label",
         "valueType": "string",
         "required": true,
