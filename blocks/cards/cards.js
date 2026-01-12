@@ -20,6 +20,7 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
+  ul.classList.add('card-title-font')
   const viewportWidth = window.innerWidth;
  
   if(viewportWidth >= 860){

@@ -32,6 +32,7 @@
 
 	}
 }
+
 .cards > ul > li {
    @media (width < 860px) {
     /* flex: 0 0 auto;  */
@@ -122,7 +123,7 @@
 	gap: 30px;
 }
 
-.center-style .cards-card-body {
+.center-style .cards-card-bodymagrite {
   width: 100%;
   text-align: center;
   color: #000;
@@ -137,7 +138,7 @@
 }
 
 .cards-card-body {
-   --font-size-small: 20px; /* 390时的宽度 */
+  --font-size-small: 20px; /* 390时的宽度 */
   --font-size-normal: 24px; /* 860时的宽度 */
   --font-size-large: 24px;
    font-size: clamp(
@@ -147,7 +148,7 @@
   );
 }
 
-.center-style p{
+.center-style p {
   margin: 0;
 }
 
