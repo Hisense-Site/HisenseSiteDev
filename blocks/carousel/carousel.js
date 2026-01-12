@@ -1,8 +1,9 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 
-// let carouselTimer;
+let carouselTimer;
 let carouselInterval;
+let prevActiveIndex = 0;
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -25,10 +26,12 @@ function showSlide(block, slideIndex, init = false) {
   const activeSlide = slides[realSlideIndex];
   const nav = document.querySelector('#navigation');
   const carouselHeight = block.offsetHeight;
-  if (block.attributes['data-aue-resource'] === undefined) {
+  // 处理homepage高度为100dvh，不影响author，不影响PLP
+  if (block.attributes['data-aue-resource'] === undefined && !block.classList.value.includes('only-picture')) {
     const specialDiv = block.querySelector('.carousel-items-container');
-    specialDiv.style.setProperty('height', '100dvh', 'important');
+    specialDiv.style.setProperty('height', '100dvh');
   }
+  // 处理和navigation的联动
   if ([...activeSlide.classList].includes('dark')) {
     block.classList.add('dark');
     if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.add('header-dark-mode');
@@ -36,8 +39,10 @@ function showSlide(block, slideIndex, init = false) {
     block.classList.remove('dark');
     if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.remove('header-dark-mode');
   }
+  // 首次加载时不滑动也要处理和navigation的联动
   if (init) return;
-  if (realSlideIndex === 0 && block.attributes['data-aue-resource'] === undefined) {
+  // 最后一张划到第一张，不影响author,不影响从第二张回到第一张
+  if (realSlideIndex === 0 && block.attributes['data-aue-resource'] === undefined && prevActiveIndex === slides.length - 2) {
     // 1. 先平滑滚动到“克隆的第一张”
     block.querySelector('.carousel-items-container').scrollTo({
       left: slides[slides.length - 1].offsetLeft,
@@ -45,7 +50,7 @@ function showSlide(block, slideIndex, init = false) {
     });
 
     // 2. 监听滚动结束（或者估算动画时间）
-    setTimeout(() => {
+    carouselTimer = setTimeout(() => {
       // 3. 瞬间切换回真正的第一张，关闭动画！
       block.querySelector('.carousel-items-container').scrollTo({
         left: activeSlide.offsetLeft,
@@ -58,7 +63,9 @@ function showSlide(block, slideIndex, init = false) {
       left: activeSlide.offsetLeft,
       behavior: 'smooth',
     });
+    if (carouselTimer) carouselTimer = null;
   }
+  prevActiveIndex = realSlideIndex;
 }
 function stopAutoPlay() {
   clearInterval(carouselInterval);
@@ -95,6 +102,14 @@ function bindEvents(block) {
   block.querySelectorAll('.carousel-item').forEach((slide) => {
     slideObserver.observe(slide);
   });
+  // -----未定版
+  // block.querySelector('.slide-prev').addEventListener('click', () => {
+  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+  // });
+  // block.querySelector('.slide-next').addEventListener('click', () => {
+  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+  // });
+  // ------
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', throttle((e) => {
       const slideIndicator = e.currentTarget.parentElement;
@@ -103,52 +118,86 @@ function bindEvents(block) {
   });
   observeMouse(block);
 }
+
 function createSlide(block, row, slideIndex) {
   const slide = document.createElement('li');
   const div = document.createElement('div');
   div.setAttribute('class', 'carousel-content h-grid-container');
   moveInstrumentation(row, slide);
+  const buttonDiv = document.createElement('div');
+  buttonDiv.setAttribute('class', 'carousel-cta-container');
+  moveInstrumentation(row, slide);
   slide.classList.add('carousel-item');
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
-    let imageLinkHref;
+    let contentType; // true is svg mode; false is text mode
+    let pcImg;
+    let mobileImg;
+    let buttonTheme;
     switch (colIdx) {
       case 0:
+        // container-reference div
         column.classList.add('carousel-item-image');
-        imageLinkHref = column.querySelector('a')?.href || column.querySelectorAll('p')[1]?.textContent;
-        if (imageLinkHref) {
-          column.addEventListener('click', () => {
-            window.location.href = imageLinkHref;
-          });
+        // 处理mobile图片
+        if ([...column.querySelectorAll('img')].length > 1) {
+          [pcImg, mobileImg] = [...column.querySelectorAll('img')];
         }
+        if (mobileImg) {
+          mobileImg.closest('p').style.display = 'none';
+          // author 没有source
+          const source = document.createElement('source');
+          source.setAttribute('srcset', mobileImg.src);
+          source.setAttribute('media', '(max-width: 860px)');
+          pcImg.closest('picture').prepend(source);
+          mobileImg.closest('p').remove();
+        }
+        // 处理image-theme联动nav
+        theme = [...column.children][1]?.innerHTML || 'false';
+        slide.classList.add(theme === 'true' ? 'dark' : 'light');
+        if ([...column.children][1]) [...column.children][1].remove(); // 清除不必要的DOM结构
         break;
       case 1:
-        column.classList.add('carousel-item-theme');
-        theme = column.querySelector('p')?.innerHTML || 'false';
-        slide.classList.add(theme === 'true' ? 'dark' : 'light');
+        // container-text or svg switch div
+        contentType = column.querySelector('p')?.innerHTML || 'false';
         column.innerHTML = '';
         break;
       case 2:
-        column.classList.add('carousel-item-content');
-        if ([...column.children].length > 1) {
-          if ([...column.children][0].nodeName === 'P') column.firstElementChild.classList.add('teal-text');
-          column.lastElementChild.classList.add('change-text');
-        }
-        [...column.children].forEach((children) => {
-          if (children.innerHTML.includes('/n')) children.classList.add('focus-wrap');
-        });
+        // colorful text div
+        column.classList.add('teal-text');
+        break;
+      case 3:
+        // richtext div
+        column.setAttribute('class', 'carousel-item-content text-content');
+        break;
+      case 4:
+        // icon-svg div
+        column.setAttribute('class', 'carousel-item-content icon-svg');
         break;
       default:
         column.classList.add('carousel-item-cta');
+        buttonTheme = column.firstElementChild?.innerHTML || 'transparent';
+        column.querySelector('a')?.classList.add(buttonTheme);
+        column.firstElementChild?.remove();
     }
+
     if (column.innerHTML === '') return;
-    if ([2, 3].includes(colIdx)) {
-      div.appendChild(column);
-    } else {
-      slide.append(column);
-    }
+    if ([2, 3, 4].includes(colIdx)) {
+      // 处理svg模式下没有清除文字的情况 ---- 若两者都要再处理
+      if (contentType === 'true' && column.querySelector('teal-text')) {
+        column.style.display = 'none';
+      }
+      if (contentType === 'true' && column.querySelector('text-content')) {
+        column.style.display = 'none';
+      }
+      // 处理文字和icon是一个container
+      div.append(column);
+    } else if ([5, 6].includes(colIdx)) {
+      // 处理button
+      buttonDiv.append(column);
+    } else slide.append(column);
   });
+  div.append(buttonDiv);
   slide.append(div);
   return slide;
 }
@@ -164,10 +213,6 @@ export default async function decorate(block) {
   }
   [...block.children].forEach((row, idx) => {
     const slide = createSlide(block, row, idx);
-    const ctaContent = slide.querySelector('.button');
-    if (ctaContent) {
-      ctaContent.classList.add('active');
-    }
     wholeContainer.append(slide);
     if (slideIndicators) {
       const indicator = document.createElement('li');
@@ -180,11 +225,22 @@ export default async function decorate(block) {
     row.remove();
   });
   block.prepend(wholeContainer);
-  if (slideIndicators && block.attributes['data-aue-resource'] === undefined) {
+  // 处理轮播无缝衔接；不影响author
+  if (!isSingleSlide && block.attributes['data-aue-resource'] === undefined) {
     const cloneFirstNode = wholeContainer.firstElementChild.cloneNode(true);
     wholeContainer.appendChild(cloneFirstNode);
   }
-  if (slideIndicators) block.append(slideIndicators);
+  if (slideIndicators) {
+    block.append(slideIndicators);
+    // 处理左右箭头---未定版(mobile不要)
+    // const slideNavButtons = document.createElement('div');
+    // slideNavButtons.classList.add('carousel-navigation-buttons');
+    // slideNavButtons.innerHTML = `
+    //   <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
+    //   <button type="button" class="slide-next" aria-label="Next Slide"></button>
+    // `;
+    // block.append(slideNavButtons);
+  }
   if (!isSingleSlide) {
     bindEvents(block);
   }
