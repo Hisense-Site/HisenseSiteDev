@@ -146,7 +146,7 @@
   }
 }
 
-@media (width <=860px) {
+@media (width < 860px) {
   .block.banner {
     height: auto;
     min-height: unset;
