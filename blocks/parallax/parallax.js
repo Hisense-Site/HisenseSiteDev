@@ -1,22 +1,7 @@
 import { loadScript } from '../../scripts/aem.js';
 import { isUniversalEditor } from '../../utils/ue-helper.js';
 import { createElement, debounce } from '../../utils/dom-helper.js';
-
-const ANIMATION_DURATION = {
-  IMAGE_BRIGHTNESS: 0.3,
-  IMAGE_SCALE: 2,
-  TEXT_SCROLL: 3,
-  TEXT_FADE_IN: 0.1,
-  TEXT_FADE_IN_DELAY: 0.1,
-  CONTAINER_HEIGHT: 0.3,
-};
-
-const CONFIG = {
-  MIN_VIEWPORT_HEIGHT: 600,
-  SCALE_MULTIPLIER: 1.2,
-  MIN_SCALE: 2,
-  SCROLL_MULTIPLIER: 2,
-};
+import { ANIMATION_DURATION, CONFIG } from './_constants.js';
 
 export default async function decorate(block) {
   const scrollContainer = block.querySelector('div:first-child');
@@ -121,9 +106,11 @@ export default async function decorate(block) {
 
     matchMedia.add({
       aboveMinHeight: `(min-height: ${CONFIG.MIN_VIEWPORT_HEIGHT}px)`,
+      smallViewport: `(max-width: ${CONFIG.SMALL_VIEWPORT_MAX_WIDTH}px)`,
+      belowMaxWidth: `(max-width: ${CONFIG.MAX_VIEWPORT_WIDTH}px)`,
     }, (context) => {
-      const { aboveMinHeight } = context.conditions;
-      if (!aboveMinHeight) {
+      const { smallViewport, aboveMinHeight, belowMaxWidth } = context.conditions;
+      if ((!smallViewport && !aboveMinHeight) || !belowMaxWidth) {
         return;
       }
 
