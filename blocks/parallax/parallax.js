@@ -1,4 +1,4 @@
-import { loadScript } from '../../scripts/aem.js';
+import { createOptimizedPicture, loadScript } from '../../scripts/aem.js';
 import { isUniversalEditor } from '../../utils/ue-helper.js';
 import { createElement, debounce } from '../../utils/dom-helper.js';
 
@@ -25,19 +25,27 @@ export default async function decorate(block) {
   scrollContainer.className = 'scroll-container';
   const subContainer = block.querySelector('div:nth-child(2)');
 
-  const img = scrollContainer.querySelector('img');
-  if (!img) return;
+  let scaleTarget = scrollContainer.querySelector('img');
+  if (!scaleTarget) return;
 
   const scrollTextContainer = scrollContainer.querySelector('div');
   scrollTextContainer.classList.add('scroll-text-container');
-  const picture = scrollTextContainer.children[0];
+
+  const optimizedPicture = createOptimizedPicture(scaleTarget.src, scaleTarget.alt, false, [{
+    media: '(min-width: 860px)',
+    width: '3000',
+  }, { width: '1920' }]);
+
+  scaleTarget = optimizedPicture.querySelector('img');
 
   const stickyContainer = createElement('div', 'sticky-container h-grid-container');
   scrollContainer.appendChild(stickyContainer);
   const scrollImageContainer = createElement('div', 'scroll-image-container');
-  scrollImageContainer.appendChild(picture);
+  scrollImageContainer.appendChild(optimizedPicture);
   stickyContainer.appendChild(scrollImageContainer);
   stickyContainer.appendChild(scrollTextContainer);
+
+  scrollTextContainer.children[0].remove();
 
   if (subContainer) {
     subContainer.className = 'sub-container h-grid-container';
@@ -45,10 +53,12 @@ export default async function decorate(block) {
     subTextContainer.classList.add('sub-text-container');
     const subImage = subTextContainer.children[0];
 
-    const subImageContainer = createElement('div', 'sub-image-container');
-    subImageContainer.appendChild(subImage);
-    subContainer.appendChild(subImageContainer);
-    subContainer.appendChild(subTextContainer);
+    if (subImage) {
+      const subImageContainer = createElement('div', 'sub-image-container');
+      subImageContainer.appendChild(subImage);
+      subContainer.appendChild(subImageContainer);
+      subContainer.appendChild(subTextContainer);
+    }
   }
 
   if (isUniversalEditor()) {
@@ -83,6 +93,11 @@ export default async function decorate(block) {
     ScrollTrigger,
   } = window;
 
+  ScrollTrigger.config({
+    autoRefreshEvents: 'DOMContentLoaded,load',
+    ignoreMobileResize: true,
+  });
+
   gsap.registerPlugin(ScrollTrigger);
 
   // Store references for cleanup
@@ -102,7 +117,7 @@ export default async function decorate(block) {
   };
 
   const resizeHandler = () => {
-    if (!img.complete) {
+    if (!scaleTarget.complete) {
       return;
     }
     const shouldAnimate = window.innerHeight >= CONFIG.MIN_VIEWPORT_HEIGHT;
@@ -111,7 +126,7 @@ export default async function decorate(block) {
   };
 
   const animate = () => {
-    if (!img.complete) {
+    if (!scaleTarget.complete) {
       return;
     }
 
@@ -137,8 +152,8 @@ export default async function decorate(block) {
       scrollContainer.classList.add('animate');
 
       // Calculate image dimensions and viewport
-      const initialImageWidth = img.clientWidth;
-      const initialImageHeight = img.clientHeight;
+      const initialImageWidth = scaleTarget.clientWidth;
+      const initialImageHeight = scaleTarget.clientHeight;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
@@ -161,7 +176,7 @@ export default async function decorate(block) {
 
       // Calculate scroll trigger start position (when image center aligns with viewport center)
       const calculateScrollStart = () => {
-        const imageRect = img.getBoundingClientRect();
+        const imageRect = scaleTarget.getBoundingClientRect();
         const { scrollY } = window;
         const imageTopAbsolute = imageRect.top + scrollY;
         const imageCenterAbsolute = imageTopAbsolute + (imageRect.height / 2);
@@ -173,7 +188,7 @@ export default async function decorate(block) {
 
       // Calculate scroll trigger end position
       const calculateScrollEnd = () => {
-        const additionalScroll = (window.innerHeight * CONFIG.SCROLL_MULTIPLIER) + img.clientHeight;
+        const additionalScroll = (window.innerHeight * CONFIG.SCROLL_MULTIPLIER) + scaleTarget.clientHeight;
         return `+=${additionalScroll}`;
       };
 
@@ -204,14 +219,14 @@ export default async function decorate(block) {
       scrollTriggerInstance = tl.scrollTrigger;
 
       // Scale the image up to fill viewport
-      tl.set(img, {
+      tl.set(scaleTarget, {
         scale,
         transformOrigin: 'center center',
       });
 
       // Animation step 1: Dim the image brightness
       tl.fromTo(
-        img,
+        scaleTarget,
         { filter: 'brightness(1)' },
         {
           filter: 'brightness(0.3)',
@@ -252,7 +267,7 @@ export default async function decorate(block) {
 
       // Animation step 4: Restore image brightness
       tl.to(
-        img,
+        scaleTarget,
         {
           filter: 'brightness(1)',
           duration: ANIMATION_DURATION.IMAGE_BRIGHTNESS,
@@ -262,7 +277,7 @@ export default async function decorate(block) {
 
       // Animation step 5: Scale image back to original size
       tl.to(
-        img,
+        scaleTarget,
         {
           scale: 1,
           ease: 'power1.inOut',
@@ -309,7 +324,7 @@ export default async function decorate(block) {
   if (typeof ResizeObserver !== 'undefined') {
     const resizeObserver = new ResizeObserver((entries) => {
       // Check if image size changed - if so, recreate animation
-      const imageEntry = entries.find((entry) => entry.target === img);
+      const imageEntry = entries.find((entry) => entry.target === scaleTarget);
       if (imageEntry) {
         handleResize();
       } else {
@@ -321,17 +336,17 @@ export default async function decorate(block) {
     // Observe the block, containers, and image for size changes
     resizeObserver.observe(block);
     resizeObserver.observe(scrollContainer);
-    resizeObserver.observe(img);
+    resizeObserver.observe(scaleTarget);
     if (subContainer) {
       resizeObserver.observe(subContainer);
     }
   }
 
   // Initialize animation when image loads
-  if (img.complete) {
+  if (scaleTarget.complete) {
     animate();
   } else {
-    img.addEventListener('load', animate, { once: true });
+    scaleTarget.addEventListener('load', animate, { once: true });
   }
 
   // Cleanup on page unload
