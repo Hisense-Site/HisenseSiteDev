@@ -1185,7 +1185,6 @@
             "name": "cta_icon",
             "label": "CTA",
             "valueType": "string",
-            "required": true,
             "value": "/"
           },
           {
@@ -1193,7 +1192,6 @@
             "name": "cta_iconLabel",
             "label": "CTA Label",
             "valueType": "string",
-            "required": true,
             "value": "label text"
           }
         ]
