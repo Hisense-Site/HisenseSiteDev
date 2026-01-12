@@ -132,6 +132,7 @@ function createSlide(block, row, slideIndex) {
   [...row.children].forEach((column, colIdx) => {
     let theme;
     let contentType; // true is svg mode; false is text mode
+    let pcImg;
     let mobileImg;
     let buttonTheme;
     switch (colIdx) {
@@ -139,17 +140,16 @@ function createSlide(block, row, slideIndex) {
         // container-reference div
         column.classList.add('carousel-item-image');
         // 处理mobile图片
-        if ([...column.querySelectorAll('img')].length > 1) mobileImg = [...column.querySelectorAll('img')][1];
+        if ([...column.querySelectorAll('img')].length > 1) {
+          [pcImg, mobileImg] = [...column.querySelectorAll('img')];
+        }
         if (mobileImg) {
           mobileImg.closest('p').style.display = 'none';
           // author 没有source
           const source = document.createElement('source');
           source.setAttribute('srcset', mobileImg.src);
           source.setAttribute('media', '(max-width: 860px)');
-          column.querySelector('picture').prepend(source);
-          // localhost有4个source
-          // const realSource = [...column.querySelectorAll('source')].filter((item) => !item.hasAttribute('media'))[0];
-          // realSource?.setAttribute('srcset', mobileImg.src);
+          pcImg.closest('picture').prepend(source);
           mobileImg.closest('p').remove();
         }
         // 处理image-theme联动nav
@@ -184,10 +184,10 @@ function createSlide(block, row, slideIndex) {
     if (column.innerHTML === '') return;
     if ([2, 3, 4].includes(colIdx)) {
       // 处理svg模式下没有清除文字的情况 ---- 若两者都要再处理
-      if(contentType === 'true' && column.querySelector('teal-text')) {
+      if (contentType === 'true' && column.querySelector('teal-text')) {
         column.style.display = 'none';
       }
-      if(contentType === 'true' && column.querySelector('text-content')) {
+      if (contentType === 'true' && column.querySelector('text-content')) {
         column.style.display = 'none';
       }
       // 处理文字和icon是一个container

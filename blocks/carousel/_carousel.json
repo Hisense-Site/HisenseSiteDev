@@ -63,7 +63,6 @@
           "label": "",
           "name": "container_reference",
           "valueType": "string",
-          "backgroundColor": "grey",
           "fields": [
             {
               "component": "reference",
@@ -129,7 +128,7 @@
         },
         {
           "component": "container",
-          "label": "",
+          "label": "Primary Button Container",
           "name": "container_button1",
           "valueType": "string",
           "collapsible": true,
@@ -173,7 +172,7 @@
         },
         {
           "component": "container",
-          "label": "",
+          "label": "Secondary Button Container",
           "name": "container_button2",
           "valueType": "string",
           "collapsible": true,
