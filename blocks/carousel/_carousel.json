@@ -63,6 +63,7 @@
           "label": "",
           "name": "container_reference",
           "valueType": "string",
+          "backgroundColor": "grey",
           "fields": [
             {
               "component": "reference",
@@ -131,6 +132,7 @@
           "label": "",
           "name": "container_button1",
           "valueType": "string",
+          "collapsible": true,
           "fields": [
             {
               "component": "select",
@@ -174,6 +176,7 @@
           "label": "",
           "name": "container_button2",
           "valueType": "string",
+          "collapsible": true,
           "fields": [
             {
               "component": "select",

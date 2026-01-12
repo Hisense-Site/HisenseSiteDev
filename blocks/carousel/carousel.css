@@ -133,16 +133,18 @@ main > .section:first-of-type {
       font-size: var(--body-font-size-l);
       font-weight: 500;
       text-align: center;
+      margin: 0 auto;
 
       .button {
         width: auto;
+        display: block;
         padding: 4px 32px;
         line-height: 52px;
         text-align: center;
         background-color: transparent;
         border: 1px solid var(--color-hisense-black);
         color: var(--color-hisense-black);
-        margin: 24px 0 0;
+        margin: 0;
       }
 
       .button.hisense-green {
@@ -183,17 +185,17 @@ main > .section:first-of-type {
     .carousel-item-content,
     .carousel-item-cta {
       color: var(--background-light);
+    }
 
-      .button-container {
-        .button {
-          color: var(--background-light);
-          border-color: var(--background-light);
+    .button-container {
+      .button {
+        color: var(--background-light);
+        border-color: var(--background-light);
 
-          &:hover {
-            background-color: white;
-            border-color: white;
-            color: black;
-          }
+        &:hover {
+          background-color: white;
+          border-color: white;
+          color: black;
         }
       }
     }
@@ -292,6 +294,7 @@ main > .section:first-of-type {
 
         .button {
           font-size: var(--content-fontsize1);
+          /* font-size: clamp(1.1rem, calc(1.8rem - 1vw), 1.6rem); */
           font-weight: 500;
           line-height: 1;
           text-align: center;

@@ -168,7 +168,7 @@ function createSlide(block, row, slideIndex) {
         break;
       case 3:
         // richtext div
-        column.classList.add('carousel-item-content');
+        column.setAttribute('class', 'carousel-item-content text-content');
         break;
       case 4:
         // icon-svg div
@@ -183,9 +183,17 @@ function createSlide(block, row, slideIndex) {
 
     if (column.innerHTML === '') return;
     if ([2, 3, 4].includes(colIdx)) {
+      // 处理svg模式下没有清除文字的情况 ---- 若两者都要再处理
+      if(contentType === 'true' && column.querySelector('teal-text')) {
+        column.style.display = 'none';
+      }
+      if(contentType === 'true' && column.querySelector('text-content')) {
+        column.style.display = 'none';
+      }
       // 处理文字和icon是一个container
       div.append(column);
     } else if ([5, 6].includes(colIdx)) {
+      // 处理button
       buttonDiv.append(column);
     } else slide.append(column);
   });
@@ -224,7 +232,7 @@ export default async function decorate(block) {
   }
   if (slideIndicators) {
     block.append(slideIndicators);
-    // 处理左右箭头---未定版
+    // 处理左右箭头---未定版(mobile不要)
     // const slideNavButtons = document.createElement('div');
     // slideNavButtons.classList.add('carousel-navigation-buttons');
     // slideNavButtons.innerHTML = `
