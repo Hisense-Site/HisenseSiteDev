@@ -253,7 +253,7 @@ main > .plp-product-card-container.plp-product-filters-container * {
 }
 
 /* mobile */
-@media (width <= 860px) {
+@media (width < 860px) {
   main > .section.plp-product-filters-container, main > .plp-product-card-container {
     width: 100%;
     overflow: hidden;

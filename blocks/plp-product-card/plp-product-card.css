@@ -148,7 +148,7 @@
   height: 100%;
 }
 
-@media (width <= 860px) {
+@media (width < 860px) {
   main > .section > div.plp-product-card-wrapper {
     padding: 0 !important;
     grid-column: 1 / -1;
