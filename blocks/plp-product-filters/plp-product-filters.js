@@ -245,9 +245,11 @@ export default function decorate(block) {
   closeImg.alt = 'mobile-close-sort-by';
   closeImg.className = 'mobile-sort-by-close';
   //移动端, sort by close 点击事件
-  closeImg.addEventListener('click', function () {
+  closeImg.addEventListener('click', function (e) {
+    e.stopPropagation(); // 阻止事件冒泡
     console.log(sortBox, 'sort-close')
-    sortBox.classList.remove('mobile-sort-by-box');
+    const sortBoxEl = document.querySelector('.plp-sort-box');
+    sortBoxEl.classList.remove('mobile-sort-by-box');
     document.body.style.overflow = 'auto';
   })
   sort.append(sortSpan, sortImg, closeImg);
