@@ -1154,41 +1154,49 @@
         "valueType": "string"
       },
       {
-        "component": "select",
-        "name": "cta_classes",
-        "value": "",
-        "label": "Button Background Color",
+        "component": "container",
+        "label": "",
+        "name": "container_cta",
         "valueType": "string",
-        "options": [
+        "fields": [
           {
-            "name": "transparent",
-            "value": "transparent"
+            "component": "select",
+            "name": "cta_classes",
+            "value": "",
+            "label": "Button Background Color",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "transparent",
+                "value": "transparent"
+              },
+              {
+                "name": "hisense-green",
+                "value": "hisense-green"
+              },
+              {
+                "name": "hisense-black",
+                "value": "hisense-black"
+              }
+            ]
           },
           {
-            "name": "hisense-green",
-            "value": "hisense-green"
+            "component": "aem-content",
+            "name": "cta_icon",
+            "label": "CTA",
+            "valueType": "string",
+            "required": true,
+            "value": "/"
           },
           {
-            "name": "hisense-black",
-            "value": "hisense-black"
+            "component": "text",
+            "name": "cta_iconLabel",
+            "label": "CTA Label",
+            "valueType": "string",
+            "required": true,
+            "value": "label text"
           }
         ]
-      },
-      {
-        "component": "aem-content",
-        "name": "cta_icon",
-        "label": "CTA",
-        "valueType": "string",
-        "required": true,
-        "value": "/"
-      },
-      {
-        "component": "text",
-        "name": "cta_iconLabel",
-        "label": "CTA Label",
-        "valueType": "string",
-        "required": true,
-        "value": "label text"
       }
     ]
   },
