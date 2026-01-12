@@ -5,7 +5,7 @@
 .icon-component {
   position: relative;
 
-  p {
+  p:nth-child(1) {
     margin: 0;
     font-weight: 500;
   }
@@ -71,23 +71,11 @@
     box-sizing: border-box;
     text-align: center;
 
-    /* > p {
-      margin: 0;
-    } */
-
-    div:nth-child(2) {
-      font-weight: 400;
-    }
-
     .item-picture {
       height: auto;
     }
 
     .item-cta{
-      display: none;
-    }
-
-    .item-cta.show{
       display: none;
     }
   }
@@ -96,14 +84,39 @@
 .text-left {
   .icon-viewport ul>li {
     border: none;
+    height: 220px;
+    width: 214px;
     background-color: var(--color-hisense-grey-04);
-    padding: 20px;
+    padding: 16px 24px 24px;
 
     .item {
-      align-items: center;
-      justify-content: flex-start;
+      display: flex;
+      padding: 0;
+      align-items: flex-start;
       gap: 4px;
       text-align: left;
+
+      .item-picture {
+        width: 70px;
+        height: 70px;
+      }
+
+      .item-text {
+        p:nth-child(2) {
+          font-size: 14px;
+        }
+      }
+
+      .item-cta.show {
+        display: block;
+
+        .button {
+          display: block;
+          padding: 0 16px;
+          line-height: 30px;
+          margin: 0;
+        }
+      }
     }
 
     .item-picture {

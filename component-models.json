@@ -1180,7 +1180,7 @@
         "label": "CTA",
         "valueType": "string",
         "required": true,
-        "value": "/"
+        "value": ""
       },
       {
         "component": "text",
@@ -1188,7 +1188,7 @@
         "label": "CTA Label",
         "valueType": "string",
         "required": true,
-        "value": "required"
+        "value": ""
       }
     ]
   },

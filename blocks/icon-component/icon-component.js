@@ -10,7 +10,7 @@ let index = 0;
 function bindEvent(block) {
   const cards = block.querySelectorAll('.item');
   const ul = block.querySelector('ul');
-  const bodyWidth = document.body.getBoundingClientRect().width;
+  const containerWidth = block.querySelector('.icon-viewport').offsetWidth;
   cards.forEach((card) => {
     const link = card.querySelector('a');
     const url = link?.href;
@@ -19,7 +19,7 @@ function bindEvent(block) {
     });
   });
   const firstCardLeft = cards[0].getBoundingClientRect().left;
-  if (cards.length * getSlideWidth(block) + firstCardLeft >= bodyWidth) {
+  if (cards.length * getSlideWidth(block) + firstCardLeft >= containerWidth) {
     block.querySelector('.pagination').classList.add('show');
   }
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
@@ -48,17 +48,29 @@ export default async function decorate(block) {
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
     if (idx <= 1) return;
+    console.log(child);
+    
     const iconBlock = document.createElement('li');
     child.classList.add('item');
-    [...child.children].forEach((item) => {
-      if (item.querySelector('picture')) {
-        item.querySelector('picture').closest('div').classList.add('item-picture');
-      }
-      if (item.querySelector('.button-container')) {
-        item.querySelector('.button-container').closest('div').classList.add('item-cta');
-        if (block.classList.contains('text-left')) {
-          item.querySelector('.button-container').closest('div').classList.add('show');
-        }
+    [...child.children].forEach((item, index) => {
+      let buttonClasses = 'transparent'; //默认透明底
+      switch (index) {
+        case 0:
+          item.classList.add('item-picture');
+          break;
+        case 1:
+          item.classList.add('item-text');
+          break;
+        case 2:
+          item.classList.add('item-cta');
+          if (block.classList.contains('text-left')) item.classList.add('show');          
+          if (!item.firstElementChild.querySelector('button-container')) {
+            // 排除第一个元素是cta（class没选的情况下）
+            buttonClasses = item.firstElementChild.innerHTML;
+            item.firstElementChild.remove();
+          }
+          if (item.querySelector('a')) item.querySelector('a').classList.add(buttonClasses);
+          break;
       }
       if (item.querySelector('a')) {
         item.querySelector('a').closest('div').classList.add('item-cta');
