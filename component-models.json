@@ -1587,6 +1587,10 @@
     ]
   },
   {
+    "id": "product-spec",
+    "fields": []
+  },
+  {
     "id": "properties",
     "fields": [
       {

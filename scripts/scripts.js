@@ -146,7 +146,7 @@ async function loadLazy(doc) {
 function loadDelayedImages() {
   const currentHostname = window.location.hostname;
 
-  if (currentHostname.includes('hisensesitedev')) {
+  if (currentHostname.includes('hisensesitedev') || currentHostname.includes('localhost')) {
     const images = document.querySelectorAll('img');
     const domainPrefix = 'https://publish-p174152-e1855821.adobeaemcloud.com';
 
