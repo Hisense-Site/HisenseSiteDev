@@ -260,8 +260,9 @@ footer footer {
 }
 /* stylelint-disable-next-line no-descending-specificity */
 .footer-logo .footer-social img {
-  /*height: 34px;*/
-  /*width: auto;*/
+  /* height: 34px; */
+
+  /* width: auto; */
   cursor: pointer;
 }
 
