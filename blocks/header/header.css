@@ -627,7 +627,7 @@
     display: block;
   }
 
-  @media (width <= 860px) {
+  @media (width < 860px) {
     #navigation .nav-container {
       padding: 0 18px;
     }

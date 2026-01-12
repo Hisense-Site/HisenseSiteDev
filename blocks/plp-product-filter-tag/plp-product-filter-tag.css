@@ -141,7 +141,7 @@
   display: none;
 }
 
-@media (width <= 860px) {
+@media (width < 860px) {
   .plp-product-filter-tag-wrapper {
     position: fixed;
     inset: 0;

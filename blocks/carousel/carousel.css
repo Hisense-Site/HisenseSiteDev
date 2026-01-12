@@ -273,7 +273,7 @@ main > .section:first-of-type {
   }
 }
 
-@media (width <= 860px) {
+@media (width < 860px) {
   .carousel  .carousel-items-container {
     height: 640px;
     overflow: scroll;
