@@ -38,8 +38,15 @@
 
   .dragger-line {
     width: 100%;
-    background-color: var(--color-white);
     height: 50%;
+  }
+
+  .dragger-line-top {
+    background: linear-gradient(to bottom, transparent 55%, var(--color-white));
+  }
+
+  .dragger-line-bottom {
+    background: linear-gradient(to top, transparent 55%, var(--color-white));
   }
 
   .dragger-inner {
