@@ -278,8 +278,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "noResultText",
-          "label": "No Result Text",
+          "name": "noResultMessage",
+          "label": "No Result Message",
           "description": "Text to display when no result search"
         }
       ]
