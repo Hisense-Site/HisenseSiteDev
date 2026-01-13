@@ -84,6 +84,12 @@ export default async function decorate(block) {
   const imageWrapperBefore = createElement('div', 'image-wrapper is-before');
   const imageWrapperAfter = createElement('div', 'image-wrapper is-after');
 
+  const imageRounded = block.closest('.section')?.classList.contains('img-rounded');
+  if (imageRounded) {
+    imageWrapperBefore.classList.add('img-rounded');
+    imageWrapperAfter.classList.add('img-rounded');
+  }
+
   imageWrapperBefore.append(beforePicture);
   imageWrapperAfter.append(afterPicture);
 
