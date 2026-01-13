@@ -894,6 +894,18 @@
     ]
   },
   {
+    "id": "featureDisclaimer",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Feature disclaimer",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "disclaimer",
     "fields": [
       {
