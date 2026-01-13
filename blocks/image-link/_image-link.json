@@ -50,10 +50,9 @@
         {
           "component": "aem-tag",
           "valueType": "string",
-          "name": "searchTag",
-          "label": "Search Tag",
-          "rootPath": "/content/cq:tags/hisense/product",
-          "multi": true
+          "name": "searchTags",
+          "label": "Search Tags",
+          "rootPath": "/content/cq:tags/hisense/product"
         }
       ]
     }
