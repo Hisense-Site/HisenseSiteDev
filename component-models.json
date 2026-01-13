@@ -1596,6 +1596,13 @@
         "name": "loadMoreLink",
         "label": "Load More Link",
         "description": "Link for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "noResultText",
+        "label": "No Result Text",
+        "description": "Text to display when no result search"
       }
     ]
   },
