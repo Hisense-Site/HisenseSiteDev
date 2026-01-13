@@ -63,6 +63,12 @@
           "name": "description_text",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "description_tips",
+          "label": "Description tips"
         }
       ]
     }
