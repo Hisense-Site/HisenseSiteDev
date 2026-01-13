@@ -1692,12 +1692,13 @@
         "required": true
       },
       {
-        "component": "tag",
+        "component": "aem-tag",
         "valueType": "string",
         "name": "tag",
         "label": "Tag",
         "multi": false,
-        "required": true
+        "required": true,
+        "rootPath": "/content/cq:tags/hisense/product"
       }
     ]
   },
