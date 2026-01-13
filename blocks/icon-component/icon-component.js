@@ -47,28 +47,27 @@ export default async function decorate(block) {
   iconBlocks.classList.add('icon-track');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
-    if (idx <= 1) return;  
+    if (idx <= 1) return;
     const iconBlock = document.createElement('li');
     child.classList.add('item');
     let ctaDiv;
-    [...child.children].forEach((item, index) => {
-      switch (index) {
+    [...child.children].forEach((item, _i) => {
+      switch (_i) {
         case 0:
           item.classList.add('item-picture');
-          break;
-        case 1:
-          item.classList.add('item-text');
           break;
         case 2:
           item.classList.add('item-cta');
           if (block.classList.contains('text-left')) item.classList.add('show');
-          // cta 和label不能自动组合 
-          if([...item.children].length === 3) {
+          // cta 和label不能自动组合
+          if ([...item.children].length === 3) {
             item.querySelector('a').innerHTML = item.lastElementChild.innerHTML;
             item.lastElementChild.remove();
-          }         
+          }
           ctaDiv = item;
           break;
+        default:
+          item.classList.add('item-text');
       }
       if (!item.innerHTML) item.remove();
     });
