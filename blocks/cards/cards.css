@@ -103,14 +103,6 @@
   line-height: 0;
 }
 
-.touch-start img {
-  transform: scale(1.1);
-}
-
-.touch-end img {
-  transform: scale(1);
-}
-
 .cover-style > ul > li img {
   width: 100%;
   aspect-ratio: 1;
