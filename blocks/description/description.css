@@ -30,7 +30,7 @@
     margin: 0;
   }
 
-  .description-gray-tips {
+  .description-gray-tips, div[data-aue-model="featureDisclaimer"] {
     p {
       font-size: 12px;
       color: #747474;
