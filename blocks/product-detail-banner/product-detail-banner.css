@@ -27,6 +27,10 @@
   /* height: 360px; */
   margin-bottom: 34px;
   position: relative;
+
+  @media (width < 860px) {
+    display: none;
+  }
 }
 
 .pdp-specs-btn img {
@@ -150,14 +154,27 @@
     width: 100%;
     
     .scroll-tabs {
-      width: calc(100vw - 18px);
-      margin-left: 18px;
+      /* width: calc(100vw - 18px); */
+      
+      .tabs-container {
+        height: auto;
+        overflow: inherit;
 
-      .product-filters {
-        width: calc(100vw - 18px);
-
-        .product-filter-item:last-child {
-          margin-right: 18px;
+        .product-filters {
+          /* width: calc(100vw - 18px); */
+          width: 100vw;
+          gap: 10px;
+          
+          .product-filter-item {
+            width: 100%;
+            height: auto;
+            border: initial;
+            border-radius: 0;
+          }
+  
+          .product-filter-item:last-child {
+            /* margin-right: 18px; */
+          }
         }
       }
     }

@@ -76,6 +76,59 @@ function buildTab(itemElement) {
   return li;
 }
 
+function buildTabDot(itemElement) {
+  const li = document.createElement('li');
+  li.className = 'product-indicators';
+  moveInstrumentation(itemElement, li);
+
+  const cells = [...itemElement.children];
+
+  const imageCell = cells.find((cell) => cell.querySelector('picture')) || cells[0];
+
+  const textCells = cells.filter((cell) => {
+    const text = cell.textContent.trim();
+    return text && !cell.querySelector('picture') && !cell.querySelector('a');
+  });
+  const textCell = textCells[1] || textCells[0] || cells[1] || cells[0];
+
+  const imgBox = document.createElement('div');
+  imgBox.className = 'product-filter-img-box';
+  if (imageCell) {
+    const picture = imageCell.querySelector('picture');
+    if (picture) {
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'product-filter-img';
+      moveInstrumentation(imageCell, imgWrapper);
+      imgWrapper.appendChild(picture);
+      imgBox.append(imgWrapper);
+    } else {
+      const placeholder = document.createElement('div');
+      placeholder.className = 'product-filter-img placeholder';
+      imgBox.append(placeholder);
+    }
+  }
+
+  const textSpan = document.createElement('span');
+  textSpan.className = 'product-filter-text';
+  if (textCell) {
+    const text = textCell.textContent.trim();
+    if (text) {
+      textSpan.textContent = text;
+    }
+    moveInstrumentation(textCell, textSpan);
+  }
+  li.addEventListener('click', (e) => {
+    const imgUrl = e.target?.src;
+    const mainImg = document.querySelector('.pdp-main-img img');
+    if (mainImg) {
+      mainImg.src = imgUrl;
+    }
+  });
+
+  li.append(imgBox, textSpan);
+  return li;
+}
+
 function updateButtons(tabsList, leftBtn, rightBtn) {
   leftBtn.disabled = tabsList.scrollLeft <= 0;
   rightBtn.disabled = tabsList.scrollLeft + tabsList.clientWidth >= tabsList.scrollWidth;
@@ -112,6 +165,8 @@ export default function decorate(block) {
 
   const tabs = document.createElement('ul');
   tabs.className = 'product-filters';
+  const dots = document.createElement('ul');
+  dots.className = 'product-carousel';
 
   let itemElements = [...block.children];
   if (isEditMode) {
@@ -120,18 +175,23 @@ export default function decorate(block) {
   }
 
   itemElements.forEach((item) => {
-    const li = buildTab(item);
-    const resource = item.getAttribute && item.getAttribute('data-aue-resource');
+    const itemClone1 = item.cloneNode(true);
+    const itemClone2 = item.cloneNode(true);
+    const li = buildTab(itemClone1);
+    const resource = itemClone1.getAttribute && itemClone1.getAttribute('data-aue-resource');
     if (resource) {
       // 保留 data-aue-resource，用于编辑
       li.setAttribute('data-aue-resource', resource);
     }
     tabs.append(li);
+
+    const dotLi = buildTabDot(itemClone2);
+    dots.append(dotLi);
   });
 
   const tabsContainer = document.createElement('div');
   tabsContainer.className = 'tabs-container';
-  tabsContainer.append(tabs);
+  tabsContainer.append(tabs, dots);
 
   const leftBtn = createScrollButton('left');
   const rightBtn = createScrollButton('right');
