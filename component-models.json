@@ -889,7 +889,7 @@
         "component": "text",
         "valueType": "string",
         "name": "description_tips",
-        "label": "Description tips"
+        "label": "Feature disclaimer"
       }
     ]
   },
