@@ -59,6 +59,13 @@
           "required": true
         },
         {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "Link",
+          "required": false
+        },
+        {
           "component": "aem-tag",
           "valueType": "string",
           "name": "tag",

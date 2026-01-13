@@ -65,6 +65,15 @@ function buildTab(itemElement) {
     moveInstrumentation(textCell, textSpan);
   }
 
+  // 处理link点击事件
+  const linkCells = cells.map((cell) => cell.querySelector('a')).filter((c) => !!c);
+  if (linkCells && linkCells.length) {
+    li.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = linkCells[0].href;
+    });
+  }
+
   // 获取tag数据
   const tagCells = cells.filter((cell) => {
     const text = cell.textContent.trim();
