@@ -1275,14 +1275,16 @@
         "valueType": "string",
         "name": "image_before",
         "label": "Before Image",
-        "multi": false
+        "multi": false,
+        "required": true
       },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image_after",
         "label": "After Image",
-        "multi": false
+        "multi": false,
+        "required": true
       }
     ]
   },
@@ -1443,9 +1445,28 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
+        "name": "scroll_image",
+        "label": "Scroll Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "scroll_text",
+        "label": "Scroll Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "sub_image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "sub_text",
+        "label": "Description",
+        "valueType": "string"
       }
     ]
   },

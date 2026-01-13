@@ -74,10 +74,8 @@ export default async function decorate(block) {
   const draggerLineBottom = createElement('div', 'dragger-line dragger-line-bottom');
 
   const draggerInner = createElement('div', 'dragger-inner');
-  const draggerIconLeft = createElement('div', 'dragger-icon-left');
-  draggerIconLeft.textContent = '<';
-  const draggerIconRight = createElement('div', 'dragger-icon-right');
-  draggerIconRight.textContent = '>';
+  const draggerIconLeft = createElement('div', 'dragger-icon dragger-icon-left');
+  const draggerIconRight = createElement('div', 'dragger-icon dragger-icon-right');
 
   draggerInner.append(draggerIconLeft, draggerIconRight);
   dragger.append(draggerLineTop, draggerLineBottom, draggerInner);
