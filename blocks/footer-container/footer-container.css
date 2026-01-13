@@ -91,7 +91,7 @@
   color: #475569;
 }
 
-.footer-nav-column img {
+.footer-nav-column .mobile-footer-title-line img {
   display: none;
   transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
 
@@ -100,7 +100,7 @@
   }
 }
 
-.footer-nav-column.footer-context-hide img {
+.footer-nav-column.footer-context-hide .mobile-footer-title-line img {
   transform: rotate(180deg);
 }
 

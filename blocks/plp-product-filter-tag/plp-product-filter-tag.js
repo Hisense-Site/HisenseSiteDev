@@ -208,7 +208,7 @@ export default function decorate(block) {
       if (existing) existing.remove();
     }
 
-    rows.forEach((row) => {
+    rows.forEach((row, index) => {
       const resource = row.getAttribute('data-aue-resource') || null;
       const cells = [...row.children];
       if (cells.length < 2) return;
@@ -218,7 +218,7 @@ export default function decorate(block) {
       if (!titleText || !tagsCsv) return;
 
       const group = document.createElement('div');
-      group.className = 'plp-filter-group';
+      group.className = index === 0 ? 'plp-filter-group' : 'plp-filter-group hide';
       if (isEditMode && resource) {
         group.setAttribute('data-aue-resource', resource);
       }

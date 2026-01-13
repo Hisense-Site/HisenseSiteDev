@@ -356,7 +356,6 @@
         "description",
         "disclaimer",
         "featurebanner",
-        "videoinfo",
         "iconComponent",
         "parallax",
         "properties",
@@ -367,7 +366,8 @@
         "plp-product-card",
         "plp-product-tag",
         "plp-product-filters",
-        "product-filters-carousel"
+        "product-filters-carousel",
+        "product-spec"
       ]
     }
   ]
