@@ -36,6 +36,21 @@
           "label": "After Image",
           "multi": false,
           "required": true
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "slider_icon",
+          "label": "Icon",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "slider_text",
+          "label": "Text",
+          "required": false
         }
       ]
     }
