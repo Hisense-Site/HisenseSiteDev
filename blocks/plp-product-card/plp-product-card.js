@@ -249,6 +249,36 @@ export default function decorate(block) {
     }
   }
 
+  function applyUrlFilters() {
+    try {
+      // 检查URL参数
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // 遍历所有URL参数
+      urlParams.forEach((paramValue, paramName) => {
+        if (paramValue) {
+          // 直接使用参数名和值组合成筛选条件
+          const targetValue = `${paramName}/${paramValue}`;
+          const targetCheckbox = document.querySelector(`.plp-filter-item input[type="checkbox"][value$="${targetValue}"]`);
+
+          if (targetCheckbox) {
+            // 触发checkbox的点击事件
+            targetCheckbox.click();
+
+            // 展开对应的筛选组
+            const filterGroup = targetCheckbox.closest('.plp-filter-group');
+            if (filterGroup && filterGroup.classList.contains('hide')) {
+              filterGroup.classList.remove('hide');
+            }
+          }
+        }
+      });
+    } catch (e) {
+      /* eslint-disable-next-line no-console */
+      console.warn('URL filter error:', e);
+    }
+  }
+
   function renderItems(items) {
     // 处理所有产品数据的 productDetailPageLink
     items.forEach((item) => {
@@ -3790,6 +3820,8 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
+      // 检查URL参数并应用筛选
+      applyUrlFilters();
     })
     .catch(() => {
       const items = (mockData && mockData.data) || [];
@@ -3801,6 +3833,8 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
+      // 检查URL参数并应用筛选
+      applyUrlFilters();
     });
   /* eslint-disable-next-line no-underscore-dangle */
   window.renderItems = renderItems;
