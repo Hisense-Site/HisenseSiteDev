@@ -147,16 +147,56 @@ function loadDelayedImages() {
   const currentHostname = window.location.hostname;
 
   if (currentHostname.includes('hisensesitedev') || currentHostname.includes('localhost')) {
-    const images = document.querySelectorAll('img');
     const domainPrefix = 'https://publish-p174152-e1855821.adobeaemcloud.com';
 
-    images.forEach((img) => {
+    const processImage = (img) => {
       const src = img.getAttribute('src');
       if (src && src.startsWith('/content/dam')) {
         if (!src.startsWith(domainPrefix)) {
           img.setAttribute('src', domainPrefix + src);
         }
       }
+    };
+
+    const addImageLoadListener = (img) => {
+      if (img.hasAttribute('data-processed')) return;
+
+      img.addEventListener('error', () => {
+        const src = img.getAttribute('src');
+        if (src && src.startsWith('/content/dam') && !src.startsWith(domainPrefix)) {
+          img.setAttribute('src', domainPrefix + src);
+        }
+      });
+
+      img.addEventListener('load', () => {
+        processImage(img);
+        img.setAttribute('data-processed', 'true');
+      });
+
+      if (img.complete) {
+        processImage(img);
+        img.setAttribute('data-processed', 'true');
+      }
+    };
+
+    document.querySelectorAll('img').forEach(addImageLoadListener);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.tagName === 'img') {
+            addImageLoadListener(node);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const images = node.querySelectorAll('img');
+            images.forEach(addImageLoadListener);
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
   }
 }
