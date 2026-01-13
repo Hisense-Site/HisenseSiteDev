@@ -76,6 +76,7 @@ function extractLogoData(container) {
     imgBox.className = 'footer-social-imgbox';
     if (socialPicture) {
       const socialImg = socialPicture.querySelector('img');
+      socialImg.className = 'footer-social-width';
       const socialLink = div.querySelector('a');
       if (socialImg) {
         imgBox.appendChild(socialImg);
@@ -86,6 +87,7 @@ function extractLogoData(container) {
       }
     } else {
       const socialImg = innerDiv.querySelector('img');
+      socialImg.className = 'footer-social-width';
       const socialLink = innerDiv.querySelector('a');
       if (socialImg) {
         imgBox.appendChild(socialImg);
@@ -281,7 +283,9 @@ export default function decorate(block) {
         if (data.logo.alt) {
           logoLink.setAttribute('aria-label', data.logo.alt);
         }
-        logoLink.appendChild(data.logo.image);
+        const logoImg = data.logo.image;
+        logoImg.className = 'footer-logo-width';
+        logoLink.appendChild(logoImg);
         logoDiv.appendChild(logoLink);
       } else {
         logoDiv.appendChild(data.logo.image);

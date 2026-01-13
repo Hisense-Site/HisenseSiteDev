@@ -20,8 +20,8 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
+  ul.classList.add('card-title-font');
   const viewportWidth = window.innerWidth;
-
   if (viewportWidth >= 860) {
     const coverLi = document.querySelectorAll('.cover-style > ul > li');
     coverLi.forEach((item) => {
@@ -36,10 +36,12 @@ export default function decorate(block) {
     cardsLi.forEach((card) => {
       let touchStartTime;
       let isScrolling = false;
+      // let startX;
 
       // 触摸开始
       card.addEventListener('touchstart', () => {
         touchStartTime = Date.now();
+        // startX = e.touches[0].clientX;
         isScrolling = false;
         card.classList.remove('touch-end');
         card.classList.add('touch-start');
@@ -61,7 +63,6 @@ export default function decorate(block) {
         card.classList.remove('touch-start');
         card.classList.add('touch-end');
         const touchDuration = Date.now() - touchStartTime;
-
         // 如果不是滑动，且按压时间小于500ms，执行跳转
         if (!isScrolling && touchDuration < 500) {
           const link = card.querySelector('a');
@@ -81,7 +82,6 @@ export default function decorate(block) {
           window.location.href = link;
         }
       });
-
       // item.addEventListener('mousedown', (e) => {
       //    console.log('start')
       //   item.classList.add('touch-start');
@@ -100,7 +100,6 @@ export default function decorate(block) {
       //     }
       //   });
       //  item.addEventListener('mouseup', (e) => {
-
       //   item.classList.add('touch-end');
       //   item.classList.remove('touch-start', 'touch-cancel');
       //   const endX = e.changedTouches[0].clientX;

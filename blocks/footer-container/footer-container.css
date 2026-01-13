@@ -50,7 +50,7 @@
 }
 
 .footer-nav-column {
-  @media (width <= 860px) {
+  @media (width < 860px) {
     padding-bottom: 24px;
     border-bottom: 1px solid #009E9B;
   }
@@ -92,7 +92,12 @@
 }
 
 .footer-nav-column img {
+  display: none;
   transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
+
+  @media (width < 860px) {
+    display: block;
+  }
 }
 
 .footer-nav-column.footer-context-hide img {
@@ -229,10 +234,14 @@ footer footer {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.footer-logo img {
-  height: 26.6px;
-  width: auto;
-}
+
+/* .footer-logo img { */
+
+/*  height: 26.6px; */
+
+/*  width: auto; */
+
+/* } */
 
 .footer-social {
   display: flex;
@@ -251,8 +260,9 @@ footer footer {
 }
 /* stylelint-disable-next-line no-descending-specificity */
 .footer-logo .footer-social img {
-  height: 34px;
-  width: auto;
+  /* height: 34px; */
+
+  /* width: auto; */
   cursor: pointer;
 }
 
@@ -263,7 +273,7 @@ footer footer {
 	margin-bottom: 32px;
   z-index: 11;
 
-	@media (width <= 860px) {
+	@media (width < 860px) {
 		grid-template-columns: repeat(1, 1fr);
 		gap: 30px;
 	}
@@ -273,6 +283,10 @@ footer footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (width < 860px) {
+    display: flex;
+  }
 }
 
 .footer-nav-column .footer-nav-column-list {
@@ -280,7 +294,7 @@ footer footer {
   padding: 0;
   margin: 0;
 
-  @media (width <= 860px) {
+  @media (width < 860px) {
     padding-top: 24px;
     overflow: hidden;
     max-height: 500px;
@@ -289,7 +303,7 @@ footer footer {
 }
 
 .footer-nav-column.footer-context-hide .footer-nav-column-list {  
-  @media (width <= 860px) {
+  @media (width < 860px) {
     max-height: 0;
     padding: 0;
   }
@@ -302,7 +316,7 @@ footer footer {
   line-height: 20px;
   color: rgb(0 0 0 / 100%);
   
-  @media (width <= 860px) {
+  @media (width < 860px) {
     margin: 0;
   }
 }
@@ -312,7 +326,7 @@ footer footer {
   margin-bottom: 6px;
   display: flex;
 
-  @media (width <= 860px) {
+  @media (width < 860px) {
     margin-bottom: 16px;
 
     &:last-child {
@@ -328,7 +342,7 @@ footer footer {
   text-decoration: none;
   margin-left: 6px;
 
-  @media (width <= 860px) {
+  @media (width < 860px) {
     color: #747474;
     margin: 0;
   }
@@ -374,7 +388,7 @@ footer footer {
   font-weight: 400;
   white-space: nowrap;
 
-	@media (width <= 860px) {
+	@media (width < 860px) {
 		width: 100%;
 	}
 }
