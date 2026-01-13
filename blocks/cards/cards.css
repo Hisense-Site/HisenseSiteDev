@@ -63,16 +63,36 @@
   position: relative;
 }
 
-.cards-card-body {
-  --font-size-small: 20px; /* 390时的宽度 */
-  --font-size-normal: 24px; /* 860时的宽度 */
-  --font-size-large: 24px;
 
-   font-size: clamp(
-    var(--font-size-small),
-    max(min(calc(var(--font-size-small) + (100vw - var(--breakpoint-small)) * (var(--font-size-normal) - var(--font-size-small)) / (var(--breakpoint-normal) - var(--breakpoint-small))), var(--font-size-normal)), min(calc(var(--font-size-normal) + (100vw - var(--breakpoint-normal)) * (var(--font-size-large) - var(--font-size-normal)) / (var(--breakpoint-large) - var(--breakpoint-normal))), var(--font-size-large))),
-    var(--font-size-large)
+.cards-card-body > p, .cards-card-body > h6{
+ --font-size-small: 20px; /* 390时的 */
+  --font-size-normal-mobile: 47px; /* 860时的手机 */
+  --font-size-normal: 24px; /* 860时的 */
+  --font-size-large: 24px; /* 1180时的 */
+
+  font-size: clamp(
+          var(--font-size-normal),
+          calc(
+                  var(--font-size-normal) +
+                  (100vw - var(--breakpoint-normal))
+                  * (var(--font-size-large) - var(--font-size-normal))
+                  / (var(--breakpoint-large) - var(--breakpoint-normal))
+          ),
+          var(--font-size-large)
   );
+
+  @media (width < 860px) {
+    font-size: clamp(
+            var(--font-size-small),
+            calc(
+                    var(--font-size-small) +
+                    (100vw - var(--breakpoint-small))
+                    * (var(--font-size-normal-mobile) - var(--font-size-small))
+                    / (var(--breakpoint-normal) - var(--breakpoint-small))
+            ),
+            var(--font-size-normal-mobile)
+    );
+  }
 }
 
 .cover-style .cards-card-body {
@@ -140,7 +160,7 @@
 	gap: 30px;
 }
 
-.center-style .cards-card-bodymagrite {
+.center-style .cards-card-body{
   width: 100%;
   text-align: center;
   color: #000;
@@ -150,9 +170,6 @@
   text-transform: capitalize;
   font-family:'Hisense Sans Alfabet', sans-serif;
 
-  @media (width < 860px) {
-    font-size: 20px ;
-  }
 }
 
 
