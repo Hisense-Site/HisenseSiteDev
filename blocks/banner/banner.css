@@ -146,14 +146,16 @@
   }
 }
 
-@media (width <=860px) {
+@media (width < 860px) {
   .block.banner {
     height: auto;
     min-height: unset;
     padding: 0;
     align-items: self-start;
+
     --border-radius-small: 16px; /* 390时的宽度 */
     --border-radius-normal: 38.147px; /* 860时的宽度 */
+
     border-radius: clamp(
       var(--border-radius-small, 16px),
       calc((var(--border-radius-normal, 24px) - var(--border-radius-small, 16px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
@@ -240,8 +242,10 @@
           calc((var(--btn-h-normal, 94.68px) - var(--btn-h-small, 40px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
           var(--btn-h-normal, 94.68px)
         ) / 2);
+
         --margin-top-small: 24px;
         --margin-top-normal: 57.22px;
+
         margin-top: clamp(
           var(--margin-top-small, 24px),
           calc((var(--margin-top-normal, 57.22px) - var(--margin-top-small, 24px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
