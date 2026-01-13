@@ -73,5 +73,12 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "description",
+      "components": [
+        "featureDisclaimer"
+      ]
+    }
+  ]
 }

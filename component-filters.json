@@ -69,6 +69,12 @@
     ]
   },
   {
+    "id": "description",
+    "components": [
+      "featureDisclaimer"
+    ]
+  },
+  {
     "id": "footerContainer",
     "components": [
       "footerLogo",
