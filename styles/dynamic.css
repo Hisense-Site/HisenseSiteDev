@@ -44,6 +44,28 @@
   }
 }
 
+.pdp-width {
+  --var-normal: 490px; /* 860时的 */
+  --var-large: 640px; /* 1180时的 */
+  --result: clamp(
+          var(--var-normal),
+          calc(
+                  var(--var-normal) +
+                  (100vw - var(--breakpoint-normal))
+                  * (var(--var-large) - var(--var-normal))
+                  / (var(--breakpoint-large) - var(--breakpoint-normal))
+          ),
+          var(--var-large)
+  );
+
+  width: var(--result);
+
+  .pdp-main-img {
+    width: var(--result);
+    height: calc(var(--result) * 0.5625);
+  }
+}
+
 .footer-logo-width {
   --var-small: 132px; /* 390时的 */
   --var-normal-mobile: 271px; /* 860时的手机 */
