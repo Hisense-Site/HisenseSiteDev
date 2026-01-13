@@ -653,7 +653,14 @@
                 "template": {
                   "name": "PLP Product Card",
                   "model": "plp-product-card",
-                  "classes": "plp-product-card"
+                  "classes": "plp-product-card",
+                  "modelFields": [
+                    "graphql",
+                    "fields",
+                    "loadMoreTextContent",
+                    "loadMoreLink",
+                    "noResultMessage"
+                  ]
                 }
               }
             }

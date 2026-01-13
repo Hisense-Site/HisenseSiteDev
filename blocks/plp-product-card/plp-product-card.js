@@ -96,8 +96,10 @@ export default function decorate(block) {
   let fieldsResource = null;
   let loadMoreTextContent = null;
   let loadMoreLink = null;
+  let noResultMessage = null;
 
   let anchorCount = 0;
+  let textCount = 0;
 
   rows.forEach((row) => {
     const resource = row.getAttribute && row.getAttribute('data-aue-resource');
@@ -117,6 +119,8 @@ export default function decorate(block) {
       if (isEditMode) {
         if (row.querySelector('p').getAttribute('data-aue-prop') === 'loadMoreTextContent') {
           loadMoreTextContent = text || row.textContent;
+        } else if (row.querySelector('p').getAttribute('data-aue-prop') === 'noResultMessage') {
+          noResultMessage = text || row.textContent;
         } else if (anchor && anchorCount === 1) {
           loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
           anchorCount = anchorCount + 1;
@@ -128,7 +132,12 @@ export default function decorate(block) {
           loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
           anchorCount = anchorCount + 1;
         } else if (text && !text.includes(',') && text !== graphqlUrl && !anchor) {
-          loadMoreTextContent = text;
+          if (textCount === 0) {
+            loadMoreTextContent = text;
+          } else if (textCount === 1) {
+            noResultMessage = text;
+          }
+          textCount = textCount + 1;
         }
       }
     }
@@ -153,7 +162,7 @@ export default function decorate(block) {
 
   const productsNoResult = document.createElement('div');
   productsNoResult.className = 'plp-products-no-result';
-  productsNoResult.textContent = 'no result';
+  productsNoResult.textContent = noResultMessage || 'no result';
   productsNoResult.style.display = 'none';
 
   productsLoadMore.append(span);
