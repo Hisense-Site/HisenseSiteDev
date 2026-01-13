@@ -166,7 +166,7 @@
 
     .plp-sidebar {
       height: calc(100vh - 70px);
-      overflow-y: scroll;
+      overflow-y: auto;
       scroll-behavior: smooth;
     }
   }
