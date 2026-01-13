@@ -60,7 +60,7 @@ export default async function decorate(block) {
           item.classList.add('item-cta');
           if (block.classList.contains('text-left')) item.classList.add('show');
           // cta 和label不能自动组合
-          if ([...item.children].length === 3) {
+          if ([...item.children].length === 2) {
             item.querySelector('a').innerHTML = item.lastElementChild.innerHTML;
             item.lastElementChild.remove();
           }
