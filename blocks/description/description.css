@@ -30,6 +30,15 @@
     margin: 0;
   }
 
+  .description-gray-tips {
+    p {
+      font-size: 12px;
+      color: #747474;
+      margin-bottom: 0;
+      line-height: 16.8px;
+      font-weight: 400;
+    }
+  }
 }
 
 .block.description.text-align-left {
@@ -47,3 +56,4 @@
 .block.description.pb-80 {
   padding-bottom: 80px;
 }
+
