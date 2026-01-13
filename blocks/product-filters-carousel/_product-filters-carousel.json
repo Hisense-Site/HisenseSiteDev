@@ -62,8 +62,7 @@
           "component": "aem-content",
           "valueType": "string",
           "name": "link",
-          "label": "Link",
-          "required": false
+          "label": "Link"
         },
         {
           "component": "aem-tag",
@@ -71,7 +70,6 @@
           "name": "tag",
           "label": "Tag",
           "multi": false,
-          "required": true,
           "rootPath": "/content/cq:tags/hisense/product"
         }
       ]

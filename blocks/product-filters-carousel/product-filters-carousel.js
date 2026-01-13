@@ -65,23 +65,35 @@ function buildTab(itemElement) {
     moveInstrumentation(textCell, textSpan);
   }
 
-  // 处理link点击事件
-  const linkCells = cells.map((cell) => cell.querySelector('a')).filter((c) => !!c);
-  if (linkCells && linkCells.length) {
+  // 获取link和tag数据
+  const linkCell = cells[3];
+  const tagCell = cells[4];
+
+  const hasLink = linkCell && linkCell.querySelector('a');
+  const tagValue = tagCell && tagCell.textContent ? tagCell.textContent.trim() : '';
+
+  if (tagValue) {
+    li.setAttribute('data-tag', tagValue);
     li.addEventListener('click', (e) => {
       e.stopPropagation();
-      window.location.href = linkCells[0].href;
+
+      const resetFiltersBtn = document.querySelector('.plp-reset-filters');
+      if (resetFiltersBtn) {
+        resetFiltersBtn.click();
+      }
+
+      const filterItem = document.querySelector(`[data-option-value="${tagValue}"]`);
+      if (filterItem) {
+        filterItem.click();
+      }
     });
   }
-
-  // 获取tag数据
-  const tagCells = cells.filter((cell) => {
-    const text = cell.textContent.trim();
-    return text && !cell.querySelector('picture') && !cell.querySelector('a') && cell !== textCell;
-  });
-  if (tagCells.length > 0) {
-    const tagValue = tagCells[0].textContent.trim();
-    li.setAttribute('data-tag', tagValue);
+  // 如果只有链接没有标签，设置点击跳转
+  else if (hasLink) {
+    li.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = hasLink.href;
+    });
   }
 
   li.append(imgBox, textSpan);
