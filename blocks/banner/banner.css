@@ -146,7 +146,7 @@
   }
 }
 
-@media (width <=860px) {
+@media (width < 860px) {
   .block.banner {
     height: auto;
     min-height: unset;
@@ -184,7 +184,6 @@
       );
       width: 100%;
       height: auto;
-
       --font-size-small: 14px; /* 390时的宽度 */
       --font-size-normal: 33.379px; /* 860时的宽度 */
 
@@ -206,7 +205,6 @@
     h5,
     h6 {
       max-width: none;
-
       --font-size-small: 30px; /* 390时的宽度 */
       --font-size-normal: 71.525px; /* 860时的宽度 */
 
@@ -221,7 +219,6 @@
       .button {
         --btn-w-small: 113px; /* 390时的宽度 */
         --btn-w-normal: 269.29px; /* 860时的宽度 */
-
         width: clamp(
           var(--btn-w-small, 113px),
           calc((var(--btn-w-normal, 269.29px) - var(--btn-w-small, 113px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
@@ -230,7 +227,6 @@
 
         --btn-h-small: 40px; /* 390时的宽度 */
         --btn-h-normal: 94.68px; /* 860时的宽度 */
-
         height: clamp(
           var(--btn-h-small, 40px),
           calc((var(--btn-h-normal, 94.68px) - var(--btn-h-small, 40px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
@@ -255,7 +251,6 @@
           calc((var(--margin-top-normal, 57.22px) - var(--margin-top-small, 24px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
           var(--margin-top-normal, 57.22x)
         );
-
         --font-size-small: 14px; /* 390时的宽度 */
         --font-size-normal: 33.379px; /* 860时的宽度 */
 
@@ -264,7 +259,6 @@
           calc((var(--font-size-normal, 33.379px) - var(--font-size-small, 14px)) / (var(--breakpoint-normal) - var(--breakpoint-small)) * var(--content-area)),
           var(--font-size-normal, 33.379px)
         );
-
         /* width: 28.2vw;
         height: 10.3vw;
         line-height: 10.3vw;
