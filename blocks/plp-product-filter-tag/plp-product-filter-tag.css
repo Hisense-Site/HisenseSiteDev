@@ -160,16 +160,16 @@
     }
   }
 
-    .mobile-filter-show {
-      /* padding-top: 14px !important; */
-      top:0;
+  .mobile-filter-show {
+    /* padding-top: 14px !important; */
+    top:0;
 
-      .plp-sidebar {
-        height: calc(100vh - 70px);
-        overflow-y: scroll;
-        scroll-behavior: smooth;
-      }
+    .plp-sidebar {
+      height: calc(100vh - 70px);
+      overflow-y: scroll;
+      scroll-behavior: smooth;
     }
+  }
 
   .plp-mobile-filters-tit-box {
     display: flex;

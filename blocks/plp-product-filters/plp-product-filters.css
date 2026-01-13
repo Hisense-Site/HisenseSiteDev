@@ -173,15 +173,12 @@
   flex-shrink: 0;
 }
 
-.plp-mobile-filters, .mobile-plp-sort, .mobile-sort-by-close {
+
+.mobile-plp-filters-bar, .mobile-sort-by-close {
   display: none;
 }
 
 @media (width <= 860px) {
-  .plp-mobile-filters {
-    display: block;
-  }
-
   .mobile-filter-title {
     display: flex;
     align-items: center;
@@ -209,6 +206,14 @@
       display: none;
     }
 
+    .mobile-plp-filters-bar {
+      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
     /* PC端的 sort by 带arrow 箭头dom, 在移动端展示为全屏中的标题 */
     .plp-sort-box {
       position: fixed;
@@ -216,12 +221,15 @@
       height: 100vh;
       left: 0;
       top: -100vh;
-      transition: top .5s ease;
+      transition: top .5s cubic-bezier(0, 0.18, 0.07, 1);
       z-index: 1000;
+      overflow: hidden;
+
       .plp-sort {
         box-shadow: none;
         margin-bottom: 16px;
         height: 40px;
+
         .sort-arrow {
           display: none;
         }
@@ -261,10 +269,12 @@
       padding-right: 20px;
       font-size: 14px;
       cursor: pointer;
+
       span {
         white-space: nowrap;
         margin-right: 8px;
       }
+
       img {
         transform: rotate(180deg);
       }
@@ -274,9 +284,7 @@
       background: #fff;
       border-radius: 0;
       padding: 14px;
-      &.plp-sort-box {
-        top: 0;
-      }
+      top: 0;
     }
   }
 

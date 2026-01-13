@@ -30,25 +30,6 @@ function buildFilterTag(row, resource, isEditMode) {
   return tag;
 }
 
-// function closeSortByCLickFn() {
-//   const originalSortByBoxEl = document.querySelector('.plp-sort-box');
-//   const sortByCloseEl = document.querySelector('.mobile-sort-by-close');
-//   sortByCloseEl.addEventListener('click', () => {
-//     originalSortByBoxEl.classList.remove('mobile-sort-by-box');
-//     document.body.style.overflow = 'auto';
-//   });
-// }
-
-// function appendCloseBtnDom() {
-//   const plpSortBoxEl = document.querySelector('.plp-sort-box');
-//   const closeImg = document.createElement('img');
-//   closeImg.src = '/content/dam/hisense/us/common-icons/close.svg';
-//   closeImg.alt = 'mobile-close-sort-by';
-//   closeImg.className = 'mobile-sort-by-close';
-//   plpSortBoxEl.append(closeImg);
-//   closeSortByCLickFn();
-// }
-
 function mobileSortByDom() {
   document.body.style.overflow = 'hidden';
   const originalSortByBoxEl = document.querySelector('.plp-sort-box');
@@ -60,6 +41,9 @@ export default function decorate(block) {
 
   const filtersBar = document.createElement('div');
   filtersBar.className = 'plp-filters-bar';
+
+  const mobileFilterBar = document.createElement('div');
+  mobileFilterBar.className = 'mobile-plp-filters-bar';
 
   const filtersLeft = document.createElement('div');
   filtersLeft.className = 'plp-filters-left';
@@ -244,14 +228,13 @@ export default function decorate(block) {
   closeImg.src = '/content/dam/hisense/us/common-icons/close.svg';
   closeImg.alt = 'mobile-close-sort-by';
   closeImg.className = 'mobile-sort-by-close';
-  //移动端, sort by close 点击事件
-  closeImg.addEventListener('click', function (e) {
+  // 移动端, sort by close 点击事件
+  closeImg.addEventListener('click', (e) => {
     e.stopPropagation(); // 阻止事件冒泡
-    console.log(sortBox, 'sort-close')
     const sortBoxEl = document.querySelector('.plp-sort-box');
     sortBoxEl.classList.remove('mobile-sort-by-box');
     document.body.style.overflow = 'auto';
-  })
+  });
   sort.append(sortSpan, sortImg, closeImg);
 
   // 移动端 sort by
@@ -271,6 +254,8 @@ export default function decorate(block) {
     const originalSortByBoxEl = document.querySelector('.plp-sort-box');
     originalSortByBoxEl.classList.add('mobile-sort-by-box');
   });
+  // 为mobileFilters, mobileSort 创建独立类名为mobile-plp-filters-bar 的 div 元素
+  mobileFilterBar.append(mobileFilters, mobileSort);
 
   const sortOptions = document.createElement('div');
   sortOptions.className = 'plp-sort-options';
@@ -435,7 +420,6 @@ export default function decorate(block) {
     }
   });
 
-  filtersBar.append(filtersLeft, mobileFilters, sortBox, mobileSort);
+  filtersBar.append(filtersLeft, sortBox, mobileFilterBar);
   block.replaceChildren(filtersBar);
-  // appendCloseBtnDom();
 }
