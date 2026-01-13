@@ -47,14 +47,11 @@ export default async function decorate(block) {
   iconBlocks.classList.add('icon-track');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
-    if (idx <= 1) return;
-    console.log(child);
-    
+    if (idx <= 1) return;  
     const iconBlock = document.createElement('li');
     child.classList.add('item');
     let ctaDiv;
     [...child.children].forEach((item, index) => {
-      let buttonClasses = 'transparent'; //默认透明底
       switch (index) {
         case 0:
           item.classList.add('item-picture');
@@ -70,14 +67,6 @@ export default async function decorate(block) {
             item.querySelector('a').innerHTML = item.lastElementChild.innerHTML;
             item.lastElementChild.remove();
           }         
-          if (!item.firstElementChild.querySelector('a')) {
-            // 排除第一个元素是cta（排除class没选的情况下）
-            buttonClasses = item.firstElementChild.innerHTML;
-            item.firstElementChild.remove();
-          }
-          if (item.querySelector('a')) {
-            item.querySelector('a').classList.add(buttonClasses);
-          }
           ctaDiv = item;
           break;
       }
