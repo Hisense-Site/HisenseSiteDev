@@ -137,6 +137,7 @@
         color: #fff;
         background-color: var(--color-hisense-teal);
         font-size: var(--body-font-size-s);
+        text-decoration: none;
         box-sizing: border-box;
         border-radius: 100px;
       }
