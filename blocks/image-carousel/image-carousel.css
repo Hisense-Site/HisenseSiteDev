@@ -445,9 +445,10 @@
       -ms-overflow-style: none;
       scroll-snap-type: x mandatory; /* 强制水平吸附 */
       scroll-behavior: smooth;
+      scroll-padding: 24px;
 
       li {
-        scroll-snap-align: center;
+        scroll-snap-align: start;
         scroll-snap-stop: always;
       }
     }
