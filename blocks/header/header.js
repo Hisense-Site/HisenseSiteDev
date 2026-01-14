@@ -524,6 +524,7 @@ export default async function decorate(block) {
   imgDark.className = 'dark-img';
   btn.append(imgDark);
   btn.addEventListener('click', () => {
+    document.body.style.overflow = 'hidden';
     navigation.classList.add('show-menu');
   });
   actionsEl.append(btn);
@@ -534,6 +535,7 @@ export default async function decorate(block) {
   closeImg.src = '/content/dam/hisense/us/common-icons/close.svg';
   closeImg.alt = 'menu';
   closeBtn.addEventListener('click', () => {
+    document.body.style.overflow = 'auto';
     navigation.classList.remove('show-menu');
   });
   closeBtn.append(closeImg);

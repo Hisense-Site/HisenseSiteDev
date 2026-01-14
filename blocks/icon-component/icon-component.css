@@ -128,7 +128,7 @@
       display: block;
       width: fit-content;
 
-      .button {
+      a {
         display: block;
         padding: 0 16px;
         line-height: 30px;
@@ -137,10 +137,12 @@
         color: #fff;
         background-color: var(--color-hisense-teal);
         font-size: var(--body-font-size-s);
+        text-decoration: none;
         box-sizing: border-box;
+        border-radius: 100px;
       }
 
-      .button:hover {
+      a:hover {
         background-color: var(--color-hisense-green-01);
         color: white;
       }
