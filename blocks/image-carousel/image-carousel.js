@@ -9,10 +9,10 @@ let carouselId = 0;
 
 function bindEvent(block) {
   const cards = block.querySelectorAll('.item');
-  const bodyWidth = document.body.getBoundingClientRect().width;
+  // const bodyWidth = document.body.getBoundingClientRect().width;
   let index = 0;
-  const firstCardLeft = cards[0].getBoundingClientRect().left;
-  if (cards.length * getSlideWidth(block) + firstCardLeft >= bodyWidth) {
+  // const firstCardLeft = cards[0].getBoundingClientRect().left;
+  if (block.querySelector('.image-track').offsetWidth > block.querySelector('.image-viewport').offsetWidth) {
     block.querySelector('.image-pagination').classList.add('show');
   }
   // 按钮处理
