@@ -41,7 +41,7 @@ function bindEvent(block) {
       }
     });
     if (e.target.tagName === 'IMG') {
-      e.target.closest('div').style.display = 'none';
+      e.target.style.display = 'none';
     }
   });
 }
