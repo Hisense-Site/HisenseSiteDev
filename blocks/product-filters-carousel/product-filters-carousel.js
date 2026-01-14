@@ -91,7 +91,7 @@ function buildTab(itemElement) {
       } else {
         // 移除其他 product-filter-item 的选中状态
         const allFilterItems = document.querySelectorAll('.product-filter-item');
-        allFilterItems.forEach(item => item.classList.remove('selected'));
+        allFilterItems.forEach((item) => item.classList.remove('selected'));
 
         // 添加当前元素的选中状态
         li.classList.add('selected');
