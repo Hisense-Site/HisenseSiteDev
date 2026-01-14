@@ -19,7 +19,7 @@ function bindEvent(block) {
     });
   });
   const { gap } = window.getComputedStyle(ul);
-  if (cards.length * getSlideWidth(block) - gap > containerWidth) {
+  if (cards.length * getSlideWidth(block) - parseFloat(gap) > containerWidth) {
     block.querySelector('.pagination').classList.add('show');
   }
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
