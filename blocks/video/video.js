@@ -87,6 +87,7 @@ export default function decorate(block) {
     },
 
     pauseVideo(v) {
+      coverImg.style.display = 'none';
       if (!v.paused) {
         v.setAttribute('data-was-playing', 'true');
         v.pause();
