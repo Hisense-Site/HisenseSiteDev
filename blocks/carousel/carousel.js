@@ -3,7 +3,7 @@ import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 
 let carouselTimer;
 let carouselInterval;
-let isInitialiting = true; // 初始化锁
+let isInitializing = true; // 初始化锁
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
@@ -60,13 +60,10 @@ function showSlide(block, targetLogicalIndex, init = false) {
     if (nav && (block.getBoundingClientRect().top > -carouselHeight)) nav.classList.remove('header-dark-mode');
   }
   // 3. 执行平滑滚动
-  console.log(slides[0].offsetLeft, slides[1].offsetLeft, slides[2].offsetLeft, 'offset');
-
   carouselContainer.scrollTo({
     left: targetSlide.offsetLeft,
     behavior: init ? 'instant' : 'smooth',
   });
-  console.log(physicalIndex, targetSlide.offsetLeft, 'target');
 
   if (init) {
     updateActiveSlide(targetSlide);
@@ -97,24 +94,23 @@ function autoPlay(block) {
     const currentIndex = parseInt(block.dataset.slideIndex, 10) || 0;
     const nextIndex = currentIndex + 1;
     showSlide(block, nextIndex);
-    isInitialiting = false;
-  }, 5000);
+    isInitializing = false;
+  }, 3000);
 }
 
 function observeMouse(block) {
   if (block.attributes['data-aue-resource']) return;
-  // if (carouselTimer) { stopAutoPlay(); return; }
   autoPlay(block);
   block.addEventListener('mouseenter', stopAutoPlay);
   block.addEventListener('mouseleave', () => {
-    // autoPlay(block);
+    autoPlay(block);
   });
 }
 function bindEvents(block) {
   const slideIndicators = block.querySelector('.carousel-item-indicators');
   if (!slideIndicators) return;
   const slideObserver = new IntersectionObserver((entries) => {
-    if (isInitialiting) return;
+    if (isInitializing) return;
     entries.forEach((entry) => {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
     });
@@ -125,16 +121,16 @@ function bindEvents(block) {
   // -----arrow function
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
     showSlide(block, parseInt(block.dataset.slideIndex, 10) - 1);
-    isInitialiting = false;
+    isInitializing = false;
   }, 1000));
   block.querySelector('.slide-next').addEventListener('click', throttle(() => {
     showSlide(block, parseInt(block.dataset.slideIndex, 10) + 1);
-    isInitialiting = false;
+    isInitializing = false;
   }, 1000));
   // ----- indicator function
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', throttle((e) => {
-      isInitialiting = false;
+      isInitializing = false;
       const slideIndicator = e.currentTarget.parentElement;
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     }, 500));
