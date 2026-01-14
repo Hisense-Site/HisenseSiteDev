@@ -10,7 +10,7 @@ let index = 0;
 function bindEvent(block) {
   const cards = block.querySelectorAll('.item');
   const ul = block.querySelector('ul');
-  const bodyWidth = document.body.getBoundingClientRect().width;
+  const containerWidth = block.querySelector('.icon-viewport').offsetWidth;
   cards.forEach((card) => {
     const link = card.querySelector('a');
     const url = link?.href;
@@ -18,8 +18,8 @@ function bindEvent(block) {
       if (url) window.location.href = url;
     });
   });
-  const firstCardLeft = cards[0].getBoundingClientRect().left;
-  if (cards.length * getSlideWidth(block) + firstCardLeft >= bodyWidth) {
+  const { gap } = window.getComputedStyle(ul);
+  if (cards.length * getSlideWidth(block) - parseFloat(gap) > containerWidth) {
     block.querySelector('.pagination').classList.add('show');
   }
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
@@ -50,22 +50,29 @@ export default async function decorate(block) {
     if (idx <= 1) return;
     const iconBlock = document.createElement('li');
     child.classList.add('item');
-    [...child.children].forEach((item) => {
-      if (item.querySelector('picture')) {
-        item.querySelector('picture').closest('div').classList.add('item-picture');
-      }
-      if (item.querySelector('.button-container')) {
-        item.querySelector('.button-container').closest('div').classList.add('item-cta');
-        if (block.classList.contains('text-left')) {
-          item.querySelector('.button-container').closest('div').classList.add('show');
-        }
-      }
-      if (item.querySelector('a')) {
-        item.querySelector('a').closest('div').classList.add('item-cta');
+    let ctaDiv;
+    [...child.children].forEach((item, _i) => {
+      switch (_i) {
+        case 0:
+          item.classList.add('item-picture');
+          break;
+        case 2:
+          item.classList.add('item-cta');
+          if (block.classList.contains('text-left')) item.classList.add('show');
+          // cta 和label不能自动组合
+          if ([...item.children].length === 2) {
+            item.querySelector('a').innerHTML = item.lastElementChild.innerHTML;
+            item.lastElementChild.remove();
+          }
+          ctaDiv = item;
+          break;
+        default:
+          item.classList.add('item-text');
       }
       if (!item.innerHTML) item.remove();
     });
     iconBlock.appendChild(child);
+    iconBlock.appendChild(ctaDiv);
     iconBlocks.appendChild(iconBlock);
   });
   iconContainer.appendChild(iconBlocks);
@@ -80,9 +87,6 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  // whenElementReady('.icon-component', () => {
-  //   bindEvent(block);
-  // });
   resizeObserver('.icon-component', () => {
     bindEvent(block);
   });
