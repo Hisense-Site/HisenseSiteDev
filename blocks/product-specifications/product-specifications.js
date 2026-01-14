@@ -76,7 +76,7 @@ export default async function decorate(block) {
       const titleWrapper = document.createElement('div');
       titleWrapper.className = 'default-content-wrapper';
       const title = document.createElement('h3');
-      title.id = `specifications-${level1.toLowerCase().replace(/\s+/g, '-')}`;
+      title.id = 'specifications';
       title.textContent = level1;
       titleWrapper.appendChild(title);
       container.appendChild(titleWrapper);

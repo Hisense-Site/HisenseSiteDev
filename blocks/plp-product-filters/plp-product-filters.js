@@ -381,6 +381,15 @@ export default function decorate(block) {
           checkbox.checked = false;
         }
       });
+
+      // 变更排序的时候重置filter tag，并让第一个plp-filter-group展开，其余隐藏
+      document.querySelectorAll('.plp-filter-group').forEach((group, index) => {
+        if (index === 0) {
+          group.classList.remove('hide');
+        } else {
+          group.classList.add('hide');
+        }
+      });
       // "sort by <option>"
       const prefix = (typeof sortBy === 'string' && sortBy.trim()) ? sortBy : 'Sort By';
       const splitText = option.textContent.split(':')[0].trim();

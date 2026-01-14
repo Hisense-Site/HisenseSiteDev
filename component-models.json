@@ -402,6 +402,27 @@
             "value": "mediaGallery_image"
           }
         ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "loadMoreTextContent",
+        "label": "Load More Text Content",
+        "description": "Text content for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "loadMoreLink",
+        "label": "Load More Link",
+        "description": "Link for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "noResultMessage",
+        "label": "No Result Message",
+        "description": "Text to display when no result search"
       }
     ]
   },
@@ -1343,6 +1364,13 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "searchTags",
+        "label": "Search Tags",
+        "rootPath": "/content/cq:tags/hisense/product"
       }
     ]
   },
@@ -1596,6 +1624,13 @@
         "name": "loadMoreLink",
         "label": "Load More Link",
         "description": "Link for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "noResultMessage",
+        "label": "No Result Message",
+        "description": "Text to display when no result search"
       }
     ]
   },

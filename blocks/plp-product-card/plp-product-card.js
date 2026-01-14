@@ -96,8 +96,10 @@ export default function decorate(block) {
   let fieldsResource = null;
   let loadMoreTextContent = null;
   let loadMoreLink = null;
+  let noResultMessage = null;
 
   let anchorCount = 0;
+  let textCount = 0;
 
   rows.forEach((row) => {
     const resource = row.getAttribute && row.getAttribute('data-aue-resource');
@@ -117,6 +119,8 @@ export default function decorate(block) {
       if (isEditMode) {
         if (row.querySelector('p').getAttribute('data-aue-prop') === 'loadMoreTextContent') {
           loadMoreTextContent = text || row.textContent;
+        } else if (row.querySelector('p').getAttribute('data-aue-prop') === 'noResultMessage') {
+          noResultMessage = text || row.textContent;
         } else if (anchor && anchorCount === 1) {
           loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
           anchorCount = anchorCount + 1;
@@ -128,7 +132,12 @@ export default function decorate(block) {
           loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
           anchorCount = anchorCount + 1;
         } else if (text && !text.includes(',') && text !== graphqlUrl && !anchor) {
-          loadMoreTextContent = text;
+          if (textCount === 0) {
+            loadMoreTextContent = text;
+          } else if (textCount === 1) {
+            noResultMessage = text;
+          }
+          textCount = textCount + 1;
         }
       }
     }
@@ -153,7 +162,7 @@ export default function decorate(block) {
 
   const productsNoResult = document.createElement('div');
   productsNoResult.className = 'plp-products-no-result';
-  productsNoResult.textContent = 'no result';
+  productsNoResult.textContent = noResultMessage || 'no result';
   productsNoResult.style.display = 'none';
 
   productsLoadMore.append(span);
@@ -237,6 +246,36 @@ export default function decorate(block) {
       }
     } else {
       applyAggregatedSort('size', -1);
+    }
+  }
+
+  function applyUrlFilters() {
+    try {
+      // 检查URL参数
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // 遍历所有URL参数
+      urlParams.forEach((paramValue, paramName) => {
+        if (paramValue) {
+          // 直接使用参数名和值组合成筛选条件
+          const targetValue = `${paramName}/${paramValue}`;
+          const targetCheckbox = document.querySelector(`.plp-filter-item input[type="checkbox"][value$="${targetValue}"]`);
+
+          if (targetCheckbox) {
+            // 触发checkbox的点击事件
+            targetCheckbox.click();
+
+            // 展开对应的筛选组
+            const filterGroup = targetCheckbox.closest('.plp-filter-group');
+            if (filterGroup && filterGroup.classList.contains('hide')) {
+              filterGroup.classList.remove('hide');
+            }
+          }
+        }
+      });
+    } catch (e) {
+      /* eslint-disable-next-line no-console */
+      console.warn('URL filter error:', e);
     }
   }
 
@@ -3781,6 +3820,8 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
+      // 检查URL参数并应用筛选
+      applyUrlFilters();
     })
     .catch(() => {
       const items = (mockData && mockData.data) || [];
@@ -3792,6 +3833,8 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
+      // 检查URL参数并应用筛选
+      applyUrlFilters();
     });
   /* eslint-disable-next-line no-underscore-dangle */
   window.renderItems = renderItems;
