@@ -33,7 +33,7 @@
   .description-gray-tips, div[data-aue-model="featureDisclaimer"] {
     p {
       font-size: 12px;
-      color: #747474;
+      color: var(--color-primary-grey-50);
       margin-bottom: 0;
       line-height: 16.8px;
       font-weight: 400;
