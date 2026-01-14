@@ -13,7 +13,7 @@
 }
 
 .featurebanner {
-  padding-left: 160px;
+  padding-left: 30px;
   height: 100%;
   color: #fff;
 
@@ -23,15 +23,15 @@
     width: 50%;
     height: 100%;
     position: absolute;
-    z-index: -1;
+    z-index: 5;
     top: 0;
     left: 0;
-    background: linear-gradient(to right, rgb(0 0 0 / 60%), rgb(0 0 0 / 0%));
+    /* background: linear-gradient(to right, rgb(0 0 0 / 60%), rgb(0 0 0 / 0%)); */
  }
 
   picture {
     position: absolute;
-    z-index: -2;
+    z-index: 2;
     inset: 0;
     object-fit: cover;
     box-sizing: border-box;
@@ -51,6 +51,8 @@
   h6+p {
     width: 402px;
     margin: 0;
+    position: relative;
+    z-index: 6;
   }
 
   h1,
@@ -63,6 +65,8 @@
     font-size: 42px;
     margin: 0 0 10px;
     line-height: 110%;
+    position: relative;
+    z-index: 6;
   }
 
   [data-aue-prop="featurebanner_text"] h6, p:first-child + h6 {
@@ -70,6 +74,8 @@
     color: #00aaa6;
     margin: 0;
     font-size: 20px;
+    position: relative;
+    z-index: 6;
   }
 
   [data-aue-prop="featurebanner_tips"] {
@@ -78,6 +84,7 @@
     left: 160px;
     font-size: 10px;
     color: #666;
+    z-index: 6;
   }
 
 }
