@@ -1,0 +1,88 @@
+{
+  "definitions": [
+    {
+      "title": "Icon Display",
+      "id": "icon-display",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Icon Display",
+              "model": "icon-display",
+              "filter": "icon-display"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Icon Item",
+      "id": "icon-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Icon Item",
+              "model": "icon-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+     {
+      "id": "icon-display",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Card options",
+          "description": "",
+          "valueType": "string",
+          "options": [
+              {
+                  "name": "Cover Style",
+                  "value": "cover-style"
+              },
+              {
+                  "name": "Center Style",
+                  "value": "center-style"
+              }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "icon-item",
+      "fields": [
+         {
+          "component": "richtext",
+          "name": "title",
+          "value": "",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        }
+       
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "icon-display",
+      "components": [
+        "icon-item"
+      ]
+    }
+  ]
+}
