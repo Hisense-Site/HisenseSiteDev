@@ -343,14 +343,14 @@ export default function decorate(block) {
         mobileFooterTitle.textContent = columnData.title;
         const arrow = document.createElement('img');
         arrow.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
-        arrow.addEventListener('click', (e) => {
+        const mobileFooterTitleLine = document.createElement('div');
+        mobileFooterTitleLine.className = 'mobile-footer-title-line';
+        mobileFooterTitleLine.addEventListener('click', (e) => {
           e.stopPropagation();
-          const grandParent = e.target.parentNode?.parentNode;
+          const grandParent = e.target.parentNode;
           if (!grandParent) { return; }
           grandParent.classList.toggle('footer-context-hide');
         });
-        const mobileFooterTitleLine = document.createElement('div');
-        mobileFooterTitleLine.className = 'mobile-footer-title-line';
         mobileFooterTitleLine.append(mobileFooterTitle, arrow);
         columnDiv.appendChild(mobileFooterTitleLine);
       }
