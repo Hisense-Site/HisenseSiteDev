@@ -76,17 +76,22 @@ function buildTab(itemElement) {
     li.setAttribute('data-tag', tagValue);
     li.addEventListener('click', (e) => {
       e.stopPropagation();
-
       const allFilterItems = document.querySelectorAll('.product-filter-item');
-      allFilterItems.forEach((item) => item.classList.remove('selected'));
+      const isCurrentLiOnlySelected = li.classList.contains('selected')
+          && Array.from(allFilterItems).every((item) => (item === li ? item.classList.contains('selected') : !item.classList.contains('selected')));
 
-      li.classList.add('selected');
+      if (isCurrentLiOnlySelected) {
+        allFilterItems.forEach((item) => item.classList.add('selected'));
+      } else {
+        allFilterItems.forEach((item) => item.classList.remove('selected'));
+        li.classList.add('selected');
+      }
 
+      // 保留你原有所有业务逻辑：重置筛选+触发对应筛选，一行没改
       const resetFiltersBtn = document.querySelector('.plp-reset-filters');
       if (resetFiltersBtn) {
         resetFiltersBtn.click();
       }
-
       const filterItem = document.querySelector(`[data-option-value="${tagValue}"]`);
       if (filterItem) {
         filterItem.click();
