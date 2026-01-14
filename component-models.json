@@ -1178,17 +1178,43 @@
         "component": "select",
         "name": "classes",
         "value": "",
-        "label": "Card options",
+        "label": "Container Position",
         "description": "",
         "valueType": "string",
         "options": [
           {
-            "name": "Cover Style",
-            "value": "cover-style"
+            "name": "Left",
+            "value": "left"
           },
           {
-            "name": "Center Style",
-            "value": "center-style"
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Dispaly Style",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Image Only",
+            "value": "left"
+          },
+          {
+            "name": "Icon Text Vertical",
+            "value": "icon-text-vertical"
+          },
+          {
+            "name": "Icon Text Horizontal",
+            "value": "icon-text-horizontal"
           }
         ]
       }
