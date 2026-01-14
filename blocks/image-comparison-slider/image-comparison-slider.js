@@ -56,7 +56,10 @@ function initializeDraggableSlider(wrapper, dragger, imageWrapperAfter) {
 
 export default async function decorate(block) {
   // Early return if block doesn't have exactly 2 pictures
-  const pictures = block.querySelectorAll('picture');
+  const imagesGroup = block.querySelector('div:first-of-type');
+  const iconGroup = block.querySelector('div:nth-of-type(2)');
+  iconGroup.classList.add('guide-container');
+  const pictures = imagesGroup?.querySelectorAll('picture');
   if (pictures.length !== 2) {
     return;
   }
@@ -84,13 +87,21 @@ export default async function decorate(block) {
   const imageWrapperBefore = createElement('div', 'image-wrapper is-before');
   const imageWrapperAfter = createElement('div', 'image-wrapper is-after');
 
+  const imageRounded = block.closest('.section')?.classList.contains('img-rounded');
+  if (imageRounded) {
+    imageWrapperBefore.classList.add('img-rounded');
+    imageWrapperAfter.classList.add('img-rounded');
+  }
+
   imageWrapperBefore.append(beforePicture);
   imageWrapperAfter.append(afterPicture);
 
   // Assemble the structure
   wrapper.append(dragger, imageWrapperBefore, imageWrapperAfter);
 
-  block.replaceChildren(wrapper);
+  block.appendChild(wrapper);
+  block.appendChild(iconGroup);
+  imagesGroup.remove();
 
   if (isUniversalEditor()) return;
 
