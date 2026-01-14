@@ -1,7 +1,7 @@
 export default function decorate(block) {
   /* change to ul, li */
   let videourl;
-  // let imgUrl;
+  let imgUrl;
   [...block.children].forEach((row) => {
     const link = row.querySelector('a');
     if (link) {
@@ -9,7 +9,7 @@ export default function decorate(block) {
     }
     const img = row.querySelector('img');
     if (img) {
-      // imgUrl = img.src;
+      imgUrl = img.src;
     }
   });
   const newDiv = document.createElement('div');
@@ -17,9 +17,9 @@ export default function decorate(block) {
   const video = document.createElement('video');
   video.classList.add('autoplay-video');
   video.setAttribute('data-video-autoplay', 'true');
-  // const coverImg = document.createElement('img');
-  // coverImg.src = imgUrl;
-  // coverImg.classList.add('video-cover-image');
+  const coverImg = document.createElement('img');
+  coverImg.src = imgUrl;
+  coverImg.classList.add('video-cover-image');
   video.id = 'myVideo';
   video.controls = true;
   video.width = 1120;
@@ -33,15 +33,15 @@ export default function decorate(block) {
   video.appendChild(source);
   newDiv.appendChild(video);
 
-  // newDiv.appendChild(coverImg);
-  // coverImg.addEventListener('click', () => {
-  //   video.play();
-  //   coverImg.style.display = 'none';
-  // });
+  newDiv.appendChild(coverImg);
+  coverImg.addEventListener('click', () => {
+    video.play();
+    coverImg.style.display = 'none';
+  });
 
-  // video.addEventListener('play', () => {
-  //   console.log('视频开始播放');
-  // });
+  video.addEventListener('play', () => {
+    // console.log('视频开始播放');
+  });
 
   block.replaceChildren(newDiv);
   const videoAutoplay = {
@@ -82,6 +82,7 @@ export default function decorate(block) {
       try {
         await v.play();
         v.setAttribute('data-was-playing', 'true');
+        coverImg.style.display = 'none';
       } catch (error) { /* empty */ }
     },
 
