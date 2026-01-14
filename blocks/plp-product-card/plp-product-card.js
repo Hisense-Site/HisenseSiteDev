@@ -1,8 +1,12 @@
 function applyAggregatedSort(sortProperty, direction = -1) {
   try {
-    // 每次排序都使用原始数据而不是上一次排序的结果
+    // 如果有筛选结果，就在筛选结果基础上排序，否则使用原始数据进行排序
     let listToSort;
-    if (Array.isArray(window.productData)) {
+    if (Array.isArray(window.filteredProducts) && window.filteredProducts.length > 0) {
+      // 使用当前筛选结果进行排序
+      listToSort = window.filteredProducts.slice();
+    } else if (Array.isArray(window.productData)) {
+      // 使用全部产品数据进行排序
       listToSort = window.productData.slice();
     } else {
       listToSort = [];
@@ -98,47 +102,42 @@ export default function decorate(block) {
   let loadMoreLink = null;
   let noResultMessage = null;
 
-  let anchorCount = 0;
-  let textCount = 0;
-
-  rows.forEach((row) => {
+  rows.forEach((row, index) => {
     const resource = row.getAttribute && row.getAttribute('data-aue-resource');
     const anchor = row.querySelector && row.querySelector('a');
     const text = row.textContent && row.textContent.trim();
 
-    if (anchor && anchorCount === 0) {
-      graphqlUrl = anchor.getAttribute('href') || anchor.textContent.trim();
-      graphqlResource = resource || anchor.getAttribute('data-aue-resource') || null;
-      anchorCount = anchorCount + 1;
-    }
-    else if (text && text.indexOf(',') >= 0) {
-      fields = text.split(',').map((s) => s.trim()).filter(Boolean);
-      fieldsResource = resource;
-    }
-    else {
-      if (isEditMode) {
-        if (row.querySelector('p').getAttribute('data-aue-prop') === 'loadMoreTextContent') {
-          loadMoreTextContent = text || row.textContent;
-        } else if (row.querySelector('p').getAttribute('data-aue-prop') === 'noResultMessage') {
-          noResultMessage = text || row.textContent;
-        } else if (anchor && anchorCount === 1) {
-          loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
-          anchorCount = anchorCount + 1;
-        }
+    if (index === 0) {
+      // 第一行：graphqlUrl
+      if (anchor) {
+        graphqlUrl = anchor.getAttribute('href') || anchor.textContent.trim();
+        graphqlResource = resource || anchor.getAttribute('data-aue-resource') || null;
+      } else if (text) {
+        graphqlUrl = text;
+        graphqlResource = resource;
       }
-
-      if (!isEditMode) {
-        if (anchor && anchorCount === 1) {
-          loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
-          anchorCount = anchorCount + 1;
-        } else if (text && !text.includes(',') && text !== graphqlUrl && !anchor) {
-          if (textCount === 0) {
-            loadMoreTextContent = text;
-          } else if (textCount === 1) {
-            noResultMessage = text;
-          }
-          textCount = textCount + 1;
-        }
+    } else if (index === 1) {
+      // 第二行：fields
+      if (text && text.indexOf(',') >= 0) {
+        fields = text.split(',').map((s) => s.trim()).filter(Boolean);
+        fieldsResource = resource;
+      }
+    } else if (index === 2) {
+      // 第三行：loadMoreTextContent
+      if (text) {
+        loadMoreTextContent = text;
+      }
+    } else if (index === 3) {
+      // 第四行：loadMoreLink
+      if (anchor) {
+        loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
+      } else if (text) {
+        loadMoreLink = text;
+      }
+    } else if (index === 4) {
+      // 第五行：noResultMessage
+      if (text) {
+        noResultMessage = text;
       }
     }
   });
@@ -3904,7 +3903,8 @@ window.applyPlpFilters = function applyPlpFilters() {
       .filter(Boolean)).filter((arr) => arr && arr.length);
 
     if (!selectedByGroup.length) {
-      // 无过滤时恢复全部
+      // 无过滤时恢复全部，清空筛选结果
+      window.filteredProducts = null;
       window.renderPlpProducts(allProducts);
       return;
     }
@@ -3922,6 +3922,8 @@ window.applyPlpFilters = function applyPlpFilters() {
       }));
     });
 
+    // 保存筛选结果，用于后续排序
+    window.filteredProducts = filtered;
     window.renderPlpProducts(filtered);
   } catch (err) {
     /* eslint-disable-next-line no-console */

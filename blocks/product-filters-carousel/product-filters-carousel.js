@@ -25,7 +25,7 @@ function createScrollButton(direction) {
 
 function buildTab(itemElement) {
   const li = document.createElement('li');
-  li.className = 'product-filter-item';
+  li.className = 'product-filter-item selected';
   moveInstrumentation(itemElement, li);
 
   const cells = [...itemElement.children];
@@ -76,6 +76,11 @@ function buildTab(itemElement) {
     li.setAttribute('data-tag', tagValue);
     li.addEventListener('click', (e) => {
       e.stopPropagation();
+
+      const allFilterItems = document.querySelectorAll('.product-filter-item');
+      allFilterItems.forEach((item) => item.classList.remove('selected'));
+
+      li.classList.add('selected');
 
       const resetFiltersBtn = document.querySelector('.plp-reset-filters');
       if (resetFiltersBtn) {
