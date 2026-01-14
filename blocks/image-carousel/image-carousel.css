@@ -232,24 +232,24 @@
     padding: 56px 0 0 40px;
     color: white;
 
-     p {
-       &:first-child {
-         font-family: 'Hisense Sans Alfabet', sans-serif;
-         font-weight: 500;
-         font-size: 30px;
-       }
+    p {
+      &:first-child {
+        font-family: 'Hisense Sans Alfabet', sans-serif;
+        font-weight: 500;
+        font-size: 30px;
+      }
 
-       &:nth-child(2) {
-         height: 89px;
-         font-size: 12px;
-       }
+      &:nth-child(2) {
+        height: 89px;
+        font-size: 12px;
+      }
 
-       &.button-container {
+      &.button-container {
         position: absolute;
-         bottom: 48px;
-         font-weight: 500;
-       }
-     }
+        bottom: 48px;
+        font-weight: 500;
+      }
+    }
   }
 }
 
