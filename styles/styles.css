@@ -29,19 +29,40 @@ html {
 	--link-color: #3b63fb;
 	--link-hover-color: #1d3ecf;
 
-	/* color system */
-	--color-white: white;
-	--color-hisense-teal: #00aaa6;
+  /* color system - v2 */
+  --color-primary-green-80: #003033;
+  --color-primary-green-70: #005a5c;
+  --color-primary-green-60: #007e7c;
+  --color-primary-green-50: #009e9b;
+  --color-primary-green-40: #47c2c0;
+  --color-primary-green-30: #86d5d3;
+  --color-primary-green-20: #c3eae9;
+  --color-primary-green-10: #e9f7f7;
+  --color-primary-grey-100: #000;
+  --color-primary-grey-90: #141414;
+  --color-primary-grey-80: #242424;
+  --color-primary-grey-70: #333;
+  --color-primary-grey-50: #747474;
+  --color-primary-grey-40: #bbb;
+  --color-primary-grey-30: #e0e0e0;
+  --color-primary-grey-20: #f4f4f4;
+  --color-primary-grey-10: #fff;
+  --color-accent-red: #fe4b4b;
+  --color-accent-orange: #f5933d;
+  --color-hisense-teal: #00aaa6;
+  --color-hisense-black: var(--color-primary-grey-100);
+
+  /* color system */
+  --color-white: var(--color-primary-grey-10);
 	--color-hisense-green-01: #50c3c3;
 	--color-hisense-green-02: #a5e1e1;
 	--color-hisense-green-03: #c8efef;
 	--color-hisense-green-04: #e6fafa;
-	--color-hisense-black: #000;
-	--color-hisense-grey-01: #333;
+	--color-hisense-grey-01: var(--color-primary-grey-70);
 	--color-hisense-grey-02: #666;
 	--color-hisense-grey-03: #ccc;
 	--color-hisense-grey-04: #f7f7f7;
-	--color-hisense-grey-05: #f4f4ff4;
+	--color-hisense-grey-05: var(--color-primary-grey-20);
 
 	/* background colors */
 	--background-light: var(--color-white);
@@ -419,7 +440,7 @@ main {
 		background: #1D1D1F;
 		color: var(--text-dark);
 	}
-	
+
 	.section.gradient-gray {
 		background: linear-gradient(to bottom, #000, rgb(29 29 31), rgb(29 29 31));
 		color: var(--text-dark);

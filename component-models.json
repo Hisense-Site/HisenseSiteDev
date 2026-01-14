@@ -402,6 +402,27 @@
             "value": "mediaGallery_image"
           }
         ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "loadMoreTextContent",
+        "label": "Load More Text Content",
+        "description": "Text content for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "loadMoreLink",
+        "label": "Load More Link",
+        "description": "Link for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "noResultMessage",
+        "label": "No Result Message",
+        "description": "Text to display when no result search"
       }
     ]
   },
@@ -888,6 +909,18 @@
     ]
   },
   {
+    "id": "featureDisclaimer",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Feature disclaimer",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "disclaimer",
     "fields": [
       {
@@ -1285,6 +1318,21 @@
         "label": "After Image",
         "multi": false,
         "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "slider_icon",
+        "label": "Icon",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "slider_text",
+        "label": "Text",
+        "required": false
       }
     ]
   },
@@ -1296,7 +1344,8 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "required": true
       },
       {
         "component": "text",
@@ -1316,6 +1365,13 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "searchTags",
+        "label": "Search Tags",
+        "rootPath": "/content/cq:tags/hisense/product"
       }
     ]
   },
@@ -1569,6 +1625,13 @@
         "name": "loadMoreLink",
         "label": "Load More Link",
         "description": "Link for load more button"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "noResultMessage",
+        "label": "No Result Message",
+        "description": "Text to display when no result search"
       }
     ]
   },
@@ -1701,10 +1764,21 @@
         "component": "aem-content",
         "valueType": "string",
         "name": "link",
-        "label": "Link",
-        "required": true
+        "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag",
+        "multi": false,
+        "rootPath": "/content/cq:tags/hisense/product"
       }
     ]
+  },
+  {
+    "id": "product-spec",
+    "fields": []
   },
   {
     "id": "properties",
