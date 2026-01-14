@@ -65,11 +65,34 @@ function buildTab(itemElement) {
     moveInstrumentation(textCell, textSpan);
   }
 
-  const linkCells = cells.map((cell) => cell.querySelector('a')).filter((c) => !!c);
-  if (linkCells && linkCells.length) {
+  // 获取link和tag数据
+  const linkCell = cells[3];
+  const tagCell = cells[4];
+
+  const hasLink = linkCell && linkCell.querySelector('a');
+  const tagValue = tagCell && tagCell.textContent ? tagCell.textContent.trim() : '';
+
+  if (tagValue) {
+    li.setAttribute('data-tag', tagValue);
     li.addEventListener('click', (e) => {
       e.stopPropagation();
-      window.location.href = linkCells[0].href;
+
+      const resetFiltersBtn = document.querySelector('.plp-reset-filters');
+      if (resetFiltersBtn) {
+        resetFiltersBtn.click();
+      }
+
+      const filterItem = document.querySelector(`[data-option-value="${tagValue}"]`);
+      if (filterItem) {
+        filterItem.click();
+      }
+    });
+  }
+  // 如果只有链接没有标签，设置点击跳转
+  else if (hasLink) {
+    li.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = hasLink.href;
     });
   }
 

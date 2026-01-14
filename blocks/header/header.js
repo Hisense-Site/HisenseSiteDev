@@ -65,7 +65,7 @@ function parseDropdownProducts(col) {
   if (imageLinkItems.length) {
     return imageLinkItems.map((item) => {
       const img = item.querySelector('img')?.src || '';
-      const href = item.querySelector('a')?.href || '#';
+      let href = item.querySelector('a')?.href || '#';
       const directChildren = Array.from(item.children);
       let text = '';
       let altText = '';
@@ -78,6 +78,29 @@ function parseDropdownProducts(col) {
         text = item.textContent.trim();
       }
 
+      // 检查是否有第4个元素作为标签配置
+      if (directChildren[3] && directChildren[3].textContent.trim()) {
+        const tagsText = directChildren[3].textContent.trim();
+        const tagParams = tagsText.split(',')
+          .map((tag) => {
+            // 取最后两节并替换 / 为 =, type/xxxx = type=xxxx 链接参数
+            const parts = tag.trim().split('/');
+            if (parts.length >= 2) {
+              const key = parts[parts.length - 2];
+              const value = parts[parts.length - 1];
+              return `${key}=${value}`;
+            }
+            return '';
+          })
+          .filter((param) => param)
+          .join('&');
+
+        if (href !== '#' && tagParams) {
+          const separator = href.includes('?') ? '&' : '?';
+          href = `${href}${separator}${tagParams}`;
+        }
+      }
+
       return {
         img, text, href, altText,
       };
@@ -86,11 +109,50 @@ function parseDropdownProducts(col) {
 
   const products = [];
   const children = Array.from(col.children);
-  for (let i = 0; i < children.length; i += 4) {
-    const img = children[i].querySelector('img')?.src || '';
-    const altText = children[i + 1].textContent.trim() || '';
-    const text = children[i + 2].textContent.trim() || '';
-    const href = children[i + 3].textContent.trim() || '#';
+
+  // 找到所有的picture元素作为分组标识
+  const pictures = children.filter((child) => child.tagName === 'P' && child.querySelector('picture'));
+  const pictureIndices = pictures.map((pic) => children.indexOf(pic));
+
+  // 为每个分组创建数据
+  for (let i = 0; i < pictureIndices.length; i += 1) {
+    const startIdx = pictureIndices[i];
+    const endIdx = i < pictureIndices.length - 1 ? pictureIndices[i + 1] : children.length;
+
+    // 获取当前分组的所有元素
+    const groupElements = children.slice(startIdx, endIdx);
+
+    // 解析分组数据
+    const img = groupElements[0].querySelector('img')?.src || '';
+    const altText = groupElements[1]?.textContent.trim() || '';
+    const text = groupElements[2]?.textContent.trim() || '';
+    const linkElement = groupElements[3]?.querySelector('a');
+    let href = linkElement?.href || linkElement?.textContent.trim() || '#';
+
+    // 检查是否有第5个元素作为标签配置
+    if (groupElements[4] && groupElements[4].textContent.trim()) {
+      const tagsText = groupElements[4].textContent.trim();
+      const tagParams = tagsText.split(',')
+        .map((tag) => {
+          // 取最后两节并替换 / 为 = type/xxxx = type=xxxx 链接参数
+          const parts = tag.trim().split('/');
+          if (parts.length >= 2) {
+            const key = parts[parts.length - 2];
+            const value = parts[parts.length - 1];
+            return `${key}=${value}`;
+          }
+          return '';
+        })
+        .filter((param) => param)
+        .join('&');
+
+      // 如果有基础链接且有标签参数，则添加查询参数
+      if (href !== '#' && tagParams) {
+        const separator = href.includes('?') ? '&' : '?';
+        href = `${href}${separator}${tagParams}`;
+      }
+    }
+
     products.push({
       img, text, href, altText,
     });
