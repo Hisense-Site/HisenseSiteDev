@@ -3,7 +3,8 @@ import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 
 let carouselTimer;
 let carouselInterval;
-let prevActiveIndex = 0;
+let isInitializing = true; // 初始化锁
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -19,72 +20,86 @@ function updateActiveSlide(slide) {
   });
 }
 
-function showSlide(block, slideIndex, init = false) {
-  const slides = block.querySelectorAll('.carousel-item');
-  let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
-  if (slideIndex >= slides.length) realSlideIndex = 0;
-  const activeSlide = slides[realSlideIndex];
+function showSlide(block, targetLogicalIndex, init = false) {
   const nav = document.querySelector('#navigation');
   const carouselHeight = block.offsetHeight;
+  const carouselContainer = block.querySelector('.carousel-items-container');
+  const slides = block.querySelectorAll('.carousel-item');
+
   // 处理homepage高度为100dvh，不影响author，不影响PLP
   if (block.attributes['data-aue-resource'] === undefined && !block.classList.value.includes('only-picture')) {
-    const specialDiv = block.querySelector('.carousel-items-container');
-    specialDiv.style.setProperty('height', '100dvh');
+    carouselContainer.style.setProperty('height', '100dvh');
   }
+
+  // 1. 核心映射：逻辑索引 0 (第一张图) 在 DOM 中的物理位置是 slides[1]
+  // 所以物理索引 = 逻辑索引 + 1
+  let physicalIndex = targetLogicalIndex + 1;
+
+  // 2. 处理边界：如果是从第一张往前拨，或者最后一张往后拨
+  let isBoundary = false;
+  let jumpIndex = -1;
+
+  if (targetLogicalIndex < 0) {
+    // 用户想看“上一张”，且当前已是第一张 -> 移动到物理索引 0 (克隆的最后一张)
+    physicalIndex = 0;
+    isBoundary = true;
+    jumpIndex = slides.length - 2; // 动画结束后瞬移回物理索引 3
+  } else if (targetLogicalIndex >= slides.length - 2) {
+    // 用户想看“下一张”，且当前已是最后一张 -> 移动到物理索引 4 (克隆的第一张)
+    physicalIndex = slides.length - 1;
+    isBoundary = true;
+    jumpIndex = 1; // 动画结束后瞬移回物理索引 1
+  }
+  const targetSlide = slides[physicalIndex];
   // 处理和navigation的联动
-  if ([...activeSlide.classList].includes('dark')) {
+  if (targetSlide.classList.contains('dark')) {
     block.classList.add('dark');
-    if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.add('header-dark-mode');
+    if (nav && (block.getBoundingClientRect().top > -carouselHeight)) nav.classList.add('header-dark-mode');
   } else {
     block.classList.remove('dark');
-    if (nav && (block.getBoundingClientRect().top > -carouselHeight)) document.querySelector('#navigation').classList.remove('header-dark-mode');
+    if (nav && (block.getBoundingClientRect().top > -carouselHeight)) nav.classList.remove('header-dark-mode');
   }
-  // 首次加载时不滑动也要处理和navigation的联动
-  if (init) return;
-  // 最后一张划到第一张，不影响author,不影响从第二张回到第一张
-  if (realSlideIndex === 0 && block.attributes['data-aue-resource'] === undefined && prevActiveIndex === slides.length - 2) {
-    // 1. 先平滑滚动到“克隆的第一张”
-    block.querySelector('.carousel-items-container').scrollTo({
-      left: slides[slides.length - 1].offsetLeft,
-      behavior: 'smooth',
-    });
+  // 3. 执行平滑滚动
+  carouselContainer.scrollTo({
+    left: targetSlide.offsetLeft,
+    behavior: init ? 'instant' : 'smooth',
+  });
 
-    // 2. 监听滚动结束（或者估算动画时间）
-    carouselTimer = setTimeout(() => {
-      // 3. 瞬间切换回真正的第一张，关闭动画！
-      block.querySelector('.carousel-items-container').scrollTo({
-        left: activeSlide.offsetLeft,
-        behavior: 'instant', // 关键：无感知跳转
-      });
-    }, 1000);
-  } else {
-    block.querySelector('.carousel-items-container').scrollTo({
-      top: 0,
-      left: activeSlide.offsetLeft,
-      behavior: 'smooth',
-    });
-    if (carouselTimer) carouselTimer = null;
+  if (init) {
+    updateActiveSlide(targetSlide);
+    return;
   }
-  prevActiveIndex = realSlideIndex;
+  // 4. 如果触碰了边界，等动画结束后“瞬移”回真实位置
+  if (isBoundary) {
+    // 清除之前的定时器防止冲突
+    if (carouselTimer) clearTimeout(carouselTimer);
+
+    carouselTimer = setTimeout(() => {
+      carouselContainer.scrollTo({
+        left: slides[jumpIndex].offsetLeft,
+        behavior: 'instant', // 瞬间跳转，用户无感知
+      });
+    }, 800);
+  }
 }
 function stopAutoPlay() {
   clearInterval(carouselInterval);
   carouselInterval = null;
-  // carouselTimer = null;
 }
 
 function autoPlay(block) {
-  let currentIndex = block.dataset.slideIndex || 0;
-  const images = block.querySelectorAll('.carousel-item');
+  // 清除可能存在的旧定时器，避免叠加
+  if (carouselInterval) clearInterval(carouselInterval);
   carouselInterval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % (images.length - 1);
-    showSlide(block, currentIndex);
+    const currentIndex = parseInt(block.dataset.slideIndex, 10) || 0;
+    const nextIndex = currentIndex + 1;
+    showSlide(block, nextIndex);
+    isInitializing = false;
   }, 3000);
 }
 
 function observeMouse(block) {
   if (block.attributes['data-aue-resource']) return;
-  // if (carouselTimer) { stopAutoPlay(); return; }
   autoPlay(block);
   block.addEventListener('mouseenter', stopAutoPlay);
   block.addEventListener('mouseleave', () => {
@@ -95,6 +110,7 @@ function bindEvents(block) {
   const slideIndicators = block.querySelector('.carousel-item-indicators');
   if (!slideIndicators) return;
   const slideObserver = new IntersectionObserver((entries) => {
+    if (isInitializing) return;
     entries.forEach((entry) => {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
     });
@@ -102,16 +118,19 @@ function bindEvents(block) {
   block.querySelectorAll('.carousel-item').forEach((slide) => {
     slideObserver.observe(slide);
   });
-  // -----未定版
-  // block.querySelector('.slide-prev').addEventListener('click', () => {
-  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
-  // });
-  // block.querySelector('.slide-next').addEventListener('click', () => {
-  //   showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  // });
-  // ------
+  // -----arrow function
+  block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
+    showSlide(block, parseInt(block.dataset.slideIndex, 10) - 1);
+    isInitializing = false;
+  }, 1000));
+  block.querySelector('.slide-next').addEventListener('click', throttle(() => {
+    showSlide(block, parseInt(block.dataset.slideIndex, 10) + 1);
+    isInitializing = false;
+  }, 1000));
+  // ----- indicator function
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', throttle((e) => {
+      isInitializing = false;
       const slideIndicator = e.currentTarget.parentElement;
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     }, 500));
@@ -228,24 +247,26 @@ export default async function decorate(block) {
   // 处理轮播无缝衔接；不影响author
   if (!isSingleSlide && block.attributes['data-aue-resource'] === undefined) {
     const cloneFirstNode = wholeContainer.firstElementChild.cloneNode(true);
+    const cloneLastNode = wholeContainer.lastElementChild.cloneNode(true);
+    wholeContainer.prepend(cloneLastNode);
     wholeContainer.appendChild(cloneFirstNode);
   }
   if (slideIndicators) {
     block.append(slideIndicators);
     // 处理左右箭头---未定版(mobile不要)
-    // const slideNavButtons = document.createElement('div');
-    // slideNavButtons.classList.add('carousel-navigation-buttons');
-    // slideNavButtons.innerHTML = `
-    //   <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
-    //   <button type="button" class="slide-next" aria-label="Next Slide"></button>
-    // `;
-    // block.append(slideNavButtons);
+    const slideNavButtons = document.createElement('div');
+    slideNavButtons.classList.add('carousel-navigation-buttons');
+    slideNavButtons.innerHTML = `
+      <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
+      <button type="button" class="slide-next" aria-label="Next Slide"></button>
+    `;
+    block.append(slideNavButtons);
   }
   if (!isSingleSlide) {
     bindEvents(block);
   }
   // 初始化加载主题色
-  whenElementReady('.carousel', () => {
+  whenElementReady('.carousel-items-container', () => {
     showSlide(block, 0, true);
   });
 }
