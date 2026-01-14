@@ -77,14 +77,34 @@ function buildTab(itemElement) {
     li.addEventListener('click', (e) => {
       e.stopPropagation();
 
-      const resetFiltersBtn = document.querySelector('.plp-reset-filters');
-      if (resetFiltersBtn) {
-        resetFiltersBtn.click();
-      }
+      // 检查当前是否已选中
+      const isCurrentlySelected = li.classList.contains('selected');
 
-      const filterItem = document.querySelector(`[data-option-value="${tagValue}"]`);
-      if (filterItem) {
-        filterItem.click();
+      if (isCurrentlySelected) {
+        // 如果已选中，则取消选中并重置过滤器
+        li.classList.remove('selected');
+
+        const resetFiltersBtn = document.querySelector('.plp-reset-filters');
+        if (resetFiltersBtn) {
+          resetFiltersBtn.click();
+        }
+      } else {
+        // 移除其他 product-filter-item 的选中状态
+        const allFilterItems = document.querySelectorAll('.product-filter-item');
+        allFilterItems.forEach(item => item.classList.remove('selected'));
+
+        // 添加当前元素的选中状态
+        li.classList.add('selected');
+
+        const resetFiltersBtn = document.querySelector('.plp-reset-filters');
+        if (resetFiltersBtn) {
+          resetFiltersBtn.click();
+        }
+
+        const filterItem = document.querySelector(`[data-option-value="${tagValue}"]`);
+        if (filterItem) {
+          filterItem.click();
+        }
       }
     });
   }
