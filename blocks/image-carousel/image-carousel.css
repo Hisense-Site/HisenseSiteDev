@@ -260,7 +260,7 @@
     align-items: flex-start;
     gap: 30px;
     padding: 0;
-    height: 484px;
+    height: auto;
     width: 652px;
     background: transparent;
     border-radius: 20px;
