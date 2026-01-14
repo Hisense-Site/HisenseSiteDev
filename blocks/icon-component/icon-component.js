@@ -18,7 +18,8 @@ function bindEvent(block) {
       if (url) window.location.href = url;
     });
   });
-  if (block.querySelector('.icon-track').offsetWidth > containerWidth) {
+  const { gap } = window.getComputedStyle(ul);
+  if (cards.length * getSlideWidth(block) - gap > containerWidth) {
     block.querySelector('.pagination').classList.add('show');
   }
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
