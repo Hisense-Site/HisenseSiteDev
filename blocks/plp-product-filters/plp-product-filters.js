@@ -371,25 +371,6 @@ export default function decorate(block) {
       });
       option.classList.add('selected');
 
-      // 重置所有筛选
-      const activeContainer = document.querySelector('.plp-active-filters');
-      if (activeContainer) {
-        activeContainer.querySelectorAll('.plp-filter-tag').forEach((tag) => tag.remove());
-      }
-      document.querySelectorAll('.plp-filter-item input[type="checkbox"]').forEach((checkbox) => {
-        if (checkbox.checked !== false) {
-          checkbox.checked = false;
-        }
-      });
-
-      // 变更排序的时候重置filter tag，并让第一个plp-filter-group展开，其余隐藏
-      document.querySelectorAll('.plp-filter-group').forEach((group, index) => {
-        if (index === 0) {
-          group.classList.remove('hide');
-        } else {
-          group.classList.add('hide');
-        }
-      });
       // "sort by <option>"
       const prefix = (typeof sortBy === 'string' && sortBy.trim()) ? sortBy : 'Sort By';
       const splitText = option.textContent.split(':')[0].trim();
