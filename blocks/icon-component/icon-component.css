@@ -210,7 +210,7 @@
   }
 }
 
-@media (width <= 860px) {
+@media (width < 860px) {
   .pagination.show {
     display: none;
   }
