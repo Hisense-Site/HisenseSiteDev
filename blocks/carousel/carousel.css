@@ -12,12 +12,6 @@ main > .section:first-of-type {
   padding: 0 !important;
 }
 
-.carousel-wrapper,
-.carousel-items-container.full-screen {
-  height: 100vh;
-  max-height: 1080px;
-}
-
 .carousel {
   position: relative;
 
