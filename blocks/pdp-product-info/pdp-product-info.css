@@ -34,6 +34,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   flex: 1;
   min-width: 300px;
   align-self: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .pdp-favorite {
@@ -91,6 +93,29 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   margin-bottom: 40px;
 }
 
+.pdp-badges-mobile-group {
+  display: none;
+  flex-direction: column;
+  margin-top: 32px;
+  
+  .pdp-badges-mobile-title {
+    text-transform: uppercase;
+  }
+
+  .pdp-badges-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    
+    .badges-mobile-item {
+      flex: 1;
+      display: flex;
+      padding: 16px;
+    }
+  }
+}
+
 .pdp-badge {
   width: auto;
   min-width: 5px;
@@ -102,6 +127,12 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   display: block;
 }
 
+.pdp-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .pdp-buy-btn {
   height: 42px;
   padding: 0 24px;
@@ -111,9 +142,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   font-weight: 400;
   cursor: pointer;
   border-radius: 21px;
-  margin-bottom: 16px;
   color: #000;
-  display: none;
+  margin: 0;
 }
 
 .pdp-buy-btn:hover {
@@ -173,6 +203,16 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 
   .pdp-badges {
     margin-bottom: 10px;
+    display: none;
+  }
+
+  .pdp-badges-mobile-group {
+    display: flex;
+
+
+    .pdp-badges-mobile {
+      display: flex;
+    }
   }
 
   .pdp-sizes{

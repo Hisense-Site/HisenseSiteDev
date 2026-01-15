@@ -142,7 +142,7 @@ function updateActiveDot() {
 
     if (isActive) {
       // 先移除所有dot的active，再给当前项加，保证只有一个激活态
-      dots.forEach(d => d.classList.remove('active'));
+      dots.forEach((d) => d.classList.remove('active'));
       dots[index].classList.add('active');
     }
   });
