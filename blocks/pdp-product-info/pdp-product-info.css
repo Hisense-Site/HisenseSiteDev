@@ -39,12 +39,11 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 .pdp-favorite {
   margin-bottom: 20px;
   cursor: pointer;
-  display: none;
 }
 
 .pdp-favorite img {
-  height: 20px;
-  width: auto;
+  height: 18px;
+  width: 18px;
 }
 
 .pdp-series {
@@ -167,6 +166,10 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     gap: 0;
     padding: 64px 0;
   }
+  
+  .pdp-favorite {
+    margin-bottom: 8px;
+  }
 
   .pdp-badges {
     margin-bottom: 10px;
@@ -177,7 +180,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   }
   
   .pdp-info {
-    padding: 24px 18px 0;
+    padding: 0 var(--common-padding);
   }
 
   .pdp-info > * {
