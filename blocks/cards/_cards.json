@@ -45,8 +45,12 @@
           "valueType": "string",
           "options": [
               {
-                  "name": "Cover Style",
-                  "value": "cover-style"
+                  "name": "Cover Light Style",
+                  "value": "cover-style cover-light"
+              },
+               {
+                  "name": "Cover Dark Style",
+                  "value": "cover-style cover-dark"
               },
               {
                   "name": "Center Style",
