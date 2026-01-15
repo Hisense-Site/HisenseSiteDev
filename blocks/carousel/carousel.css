@@ -424,7 +424,7 @@ main > .section:first-of-type {
   }
 }
 
-@media (width > 860) {
+@media (width >= 860px) {
   .carousel-wrapper,
   .carousel-items-container.full-screen {
     height: 100vh;
