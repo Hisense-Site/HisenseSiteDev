@@ -338,7 +338,6 @@ main > .section:first-of-type {
 @media (width < 860px) {
   .carousel  .carousel-items-container {
     overflow: scroll;
-    overscroll-behavior-y: contain;
     aspect-ratio: 2/3;
     max-height: 1024px;
 
