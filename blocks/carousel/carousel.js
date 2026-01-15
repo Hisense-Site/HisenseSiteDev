@@ -11,7 +11,7 @@ function updateActiveSlide(slide) {
   const indicators = block.querySelectorAll('.carousel-item-indicator');
   block.dataset.slideIndex = slideIndex;
   indicators.forEach((indicator, idx) => {
-  const button = indicator.querySelector('button');
+    const button = indicator.querySelector('button');
     if (idx !== slideIndex) {
       button.removeAttribute('disabled');
     } else {
