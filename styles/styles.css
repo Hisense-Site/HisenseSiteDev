@@ -131,7 +131,31 @@ html {
   --font-size-normal-mobile: 18px;
   --font-size-normal: 24px;
   --font-size-large: 32px;
+
+  /* basic size in mobile  */
+  --size-4: 1.02564103vw;
+  --size-6: 1.53846154vw;
+  --size-8: 2.05128205vw;
+  --size-10: 2.56410256vw;
+  --size-12: 3.07692308vw;
+  --size-14: 3.58974359vw;
+  --size-16: 4.10256410vw;
+  --size-18: 4.61538462vw;
+  --size-20: 5.12820513vw;
+  --size-24: 6.15384615vw;
+  --size-28: 7.17948718vw;
+  --size-30: 7.69230769vw;
+  --size-32: 8.20512821vw;
+  --size-34: 8.71794872vw;
+  --size-36: 9.23076923vw;
+  --size-38: 9.74358974vw;
+  --size-39: 10.00000000vw;
+  --size-40: 10.25641026vw;
+  --size-42: 10.76923077vw;
+  --size-46: 11.79487179vw;
 }
+
+
 
 .header-dark-mode {
 	--header-active-color: var(--header-dark-color);
@@ -167,6 +191,28 @@ html {
   :root {
     /* common */
     --common-padding: 30px;
+
+	/* basic size in desktop */
+	--size-4: 0.33898305vw;
+	--size-6: 0.50847458vw;
+	--size-8: 0.67796610vw;
+	--size-10: 0.84745763vw;
+	--size-12: 1.01694915vw;
+	--size-14: 1.18644068vw;
+	--size-16: 1.35593220vw;
+	--size-18: 1.52542373vw;
+	--size-20: 1.69491525vw;
+	--size-24: 2.03389831vw;
+	--size-28: 2.37288136vw;
+	--size-30: 2.54237288vw;
+	--size-32: 2.71186441vw;
+	--size-34: 2.88135593vw;
+	--size-36: 3.05084746vw;
+	--size-38: 3.22033898vw;
+	--size-39: 3.27118644vw;
+	--size-40: 3.38983051vw;
+	--size-42: 3.55932203vw;
+	--size-46: 3.89830508vw;
   }
 }
 
