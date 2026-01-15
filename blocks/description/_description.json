@@ -42,12 +42,12 @@
         {
           "component": "multiselect",
           "name": "classes",
-          "value": "",
+          "value": "text-align-center",
           "label": "Description Alignment Class Name Options",
           "valueType": "string",
           "options": [
             {
-              "name": "Default",
+              "name": "text-align-center",
               "value": "text-align-center"
             },
             {
