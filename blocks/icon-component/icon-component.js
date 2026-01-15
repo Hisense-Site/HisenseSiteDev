@@ -8,16 +8,19 @@ import {
 let index = 0;
 
 function bindEvent(block) {
-  const cards = block.querySelectorAll('.item');
+  const cards = block.querySelectorAll('li');
   const ul = block.querySelector('ul');
   const containerWidth = block.querySelector('.icon-viewport').offsetWidth;
-  cards.forEach((card) => {
-    const link = card.querySelector('a');
-    const url = link?.href;
-    card.addEventListener('click', () => {
-      if (url) window.location.href = url;
+    if (!block.classList.contains('text-left')) {
+    // 展示button组件，卡片不需要点击，通过button跳转
+    cards.forEach((card) => {
+      const link = card.querySelector('a');
+      const url = link?.href;
+      card.addEventListener('click', () => {
+        if (url) window.location.href = url;
+      });
     });
-  });
+  }
   const { gap } = window.getComputedStyle(ul);
   if (cards.length * getSlideWidth(block) - parseFloat(gap) > containerWidth) {
     block.querySelector('.pagination').classList.add('show');
