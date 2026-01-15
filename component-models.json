@@ -564,12 +564,12 @@
         "valueType": "string",
         "options": [
           {
-            "name": "Cover Light Style",
-            "value": "cover-style cover-light"
+            "name": "Cover Style",
+            "value": "cover-style"
           },
           {
-            "name": "Cover Dark Style",
-            "value": "cover-style cover-dark"
+            "name": "Cover Style Width Dark Font",
+            "value": "cover-dark"
           },
           {
             "name": "Center Style",
