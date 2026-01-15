@@ -86,6 +86,9 @@ function buildTabDot(itemElement, index) {
   div.className = 'indicator-button';
 
   li.addEventListener('click', () => {
+    // 需求变更，点击功能注释掉
+    return;
+    // eslint-disable-next-line no-unreachable
     const filterItems = document.querySelectorAll('.product-filter-item');
     // 滚动到对应图片的位置
     filterItems[index].scrollIntoView({
@@ -129,26 +132,18 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
 }
 
 function updateActiveDot() {
-  const filterItemsContainer = document.querySelector('.product-filters');
   const filterItems = document.querySelectorAll('.product-filter-item');
   const dots = document.querySelectorAll('.product-indicator');
   // 计算每个图片在视口中的可见比例
   filterItems.forEach((item, index) => {
     const rect = item.getBoundingClientRect();
-    const containerRect = filterItemsContainer.getBoundingClientRect();
-    // 当图片至少一半在视口中时，视为“激活”
-    const isVisible = rect.left + index * containerRect.width <= 0
-        && rect.right <= containerRect.right;
+    // ✅ 关键判定条件：当前图片li的左侧距离视口左边界的值 ≤ 0
+    const isActive = rect.left <= 0;
 
-    if (isVisible) {
-      console.log(rect.left, containerRect.left, rect.right, containerRect.right);
-      console.log(isVisible, index);
-    }
-
-    if (isVisible) {
+    if (isActive) {
+      // 先移除所有dot的active，再给当前项加，保证只有一个激活态
+      dots.forEach(d => d.classList.remove('active'));
       dots[index].classList.add('active');
-    } else {
-      dots[index].classList.remove('active');
     }
   });
 }
