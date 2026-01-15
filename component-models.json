@@ -874,7 +874,7 @@
         "options": [
           {
             "name": "Default",
-            "value": ""
+            "value": "text-align-center"
           },
           {
             "name": "text-align-left",
