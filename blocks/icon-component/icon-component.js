@@ -11,7 +11,7 @@ function bindEvent(block) {
   const cards = block.querySelectorAll('li');
   const ul = block.querySelector('ul');
   const containerWidth = block.querySelector('.icon-viewport').offsetWidth;
-    if (!block.classList.contains('text-left')) {
+  if (!block.classList.contains('text-left')) {
     // 展示button组件，卡片不需要点击，通过button跳转
     cards.forEach((card) => {
       const link = card.querySelector('a');

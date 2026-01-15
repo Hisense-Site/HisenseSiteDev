@@ -25,7 +25,10 @@ function showSlide(block, targetLogicalIndex, init = false) {
   const carouselHeight = block.offsetHeight;
   const carouselContainer = block.querySelector('.carousel-items-container');
   const slides = block.querySelectorAll('.carousel-item');
-
+  // 处理homepage高度为100dvh，不影响author，不影响PLP
+  if (block.attributes['data-aue-resource'] === undefined && !block.classList.value.includes('only-picture')) {
+    carouselContainer.classList.add('full-screen');
+  }
   // 1. 核心映射：逻辑索引 0 (第一张图) 在 DOM 中的物理位置是 slides[1]
   // 所以物理索引 = 逻辑索引 + 1
   let physicalIndex = targetLogicalIndex + 1;
@@ -146,8 +149,8 @@ function createSlide(block, row, slideIndex) {
   [...row.children].forEach((column, colIdx) => {
     let theme;
     let contentType; // true is svg mode; false is text mode
-    let pcImg;
-    let mobileImg;
+    // let pcImg;
+    // let mobileImg;
     let buttonTheme;
     switch (colIdx) {
       case 0:

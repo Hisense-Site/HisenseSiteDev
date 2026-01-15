@@ -2,7 +2,7 @@ main > .section:first-of-type {
   margin: 0;
 }
 
-.carousel-container .carousel-wrapper,
+.carousel-wrapper,
 .carousel-items-container {
   width: 100vw;
   aspect-ratio: 16/9;
@@ -10,6 +10,12 @@ main > .section:first-of-type {
   list-style: none;
   margin: 0;
   padding: 0 !important;
+}
+
+.carousel-wrapper,
+.carousel-items-container.full-screen {
+  height: 100vh;
+  max-height: 1080px;
 }
 
 .carousel {
@@ -98,7 +104,7 @@ main > .section:first-of-type {
 
   .carousel-item-content h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-size: 4.77vw;
+    font-size: clamp(30px, 2.77vw, 46px);
   }
 
   .carousel-item-content.icon-svg {
