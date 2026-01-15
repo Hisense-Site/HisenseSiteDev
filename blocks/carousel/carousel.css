@@ -1,5 +1,6 @@
 main > .section:first-of-type {
   margin: 0;
+  background: transparent !important;
 }
 
 .carousel-wrapper,
@@ -432,5 +433,6 @@ main > .section:first-of-type {
   .carousel-wrapper,
   .carousel-items-container.full-screen {
     max-height: 100dvh;
+    max-width: 2560px !important;
   }
 }
