@@ -346,8 +346,8 @@ export default function decorate(block) {
         const mobileFooterTitleLine = document.createElement('div');
         mobileFooterTitleLine.className = 'mobile-footer-title-line';
         mobileFooterTitleLine.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const grandParent = e.target.parentNode;
+          // e.stopPropagation();
+          const grandParent = e.target.closest('.footer-nav-column');
           if (!grandParent) { return; }
           grandParent.classList.toggle('footer-context-hide');
         });
