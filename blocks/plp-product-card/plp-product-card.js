@@ -102,47 +102,42 @@ export default function decorate(block) {
   let loadMoreLink = null;
   let noResultMessage = null;
 
-  let anchorCount = 0;
-  let textCount = 0;
-
-  rows.forEach((row) => {
+  rows.forEach((row, index) => {
     const resource = row.getAttribute && row.getAttribute('data-aue-resource');
     const anchor = row.querySelector && row.querySelector('a');
     const text = row.textContent && row.textContent.trim();
 
-    if (anchor && anchorCount === 0) {
-      graphqlUrl = anchor.getAttribute('href') || anchor.textContent.trim();
-      graphqlResource = resource || anchor.getAttribute('data-aue-resource') || null;
-      anchorCount = anchorCount + 1;
-    }
-    else if (text && text.indexOf(',') >= 0) {
-      fields = text.split(',').map((s) => s.trim()).filter(Boolean);
-      fieldsResource = resource;
-    }
-    else {
-      if (isEditMode) {
-        if (row.querySelector('p').getAttribute('data-aue-prop') === 'loadMoreTextContent') {
-          loadMoreTextContent = text || row.textContent;
-        } else if (row.querySelector('p').getAttribute('data-aue-prop') === 'noResultMessage') {
-          noResultMessage = text || row.textContent;
-        } else if (anchor && anchorCount === 1) {
-          loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
-          anchorCount = anchorCount + 1;
-        }
+    if (index === 0) {
+      // 第一行：graphqlUrl
+      if (anchor) {
+        graphqlUrl = anchor.getAttribute('href') || anchor.textContent.trim();
+        graphqlResource = resource || anchor.getAttribute('data-aue-resource') || null;
+      } else if (text) {
+        graphqlUrl = text;
+        graphqlResource = resource;
       }
-
-      if (!isEditMode) {
-        if (anchor && anchorCount === 1) {
-          loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
-          anchorCount = anchorCount + 1;
-        } else if (text && !text.includes(',') && text !== graphqlUrl && !anchor) {
-          if (textCount === 0) {
-            loadMoreTextContent = text;
-          } else if (textCount === 1) {
-            noResultMessage = text;
-          }
-          textCount = textCount + 1;
-        }
+    } else if (index === 1) {
+      // 第二行：fields
+      if (text && text.indexOf(',') >= 0) {
+        fields = text.split(',').map((s) => s.trim()).filter(Boolean);
+        fieldsResource = resource;
+      }
+    } else if (index === 2) {
+      // 第三行：loadMoreTextContent
+      if (text) {
+        loadMoreTextContent = text;
+      }
+    } else if (index === 3) {
+      // 第四行：loadMoreLink
+      if (anchor) {
+        loadMoreLink = anchor.getAttribute('href') || anchor.textContent.trim();
+      } else if (text) {
+        loadMoreLink = text;
+      }
+    } else if (index === 4) {
+      // 第五行：noResultMessage
+      if (text) {
+        noResultMessage = row.innerHTML;
       }
     }
   });
@@ -166,7 +161,7 @@ export default function decorate(block) {
 
   const productsNoResult = document.createElement('div');
   productsNoResult.className = 'plp-products-no-result';
-  productsNoResult.textContent = noResultMessage || 'no result';
+  productsNoResult.innerHTML = noResultMessage || '<p>no result</p>';
   productsNoResult.style.display = 'none';
 
   productsLoadMore.append(span);
