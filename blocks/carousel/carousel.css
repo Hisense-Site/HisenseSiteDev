@@ -98,7 +98,7 @@ main > .section:first-of-type {
 
   .carousel-item-content h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-size: 4.77vw;
+    font-size: clamp(32px, 2.77vw, 48px);
   }
 
   .carousel-item-content.icon-svg {
