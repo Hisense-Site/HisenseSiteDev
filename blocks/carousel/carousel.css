@@ -12,12 +12,6 @@ main > .section:first-of-type {
   padding: 0 !important;
 }
 
-.carousel-wrapper,
-.carousel-items-container.full-screen {
-  height: 100vh;
-  max-height: 1080px;
-}
-
 .carousel {
   position: relative;
 
@@ -345,7 +339,7 @@ main > .section:first-of-type {
   .carousel  .carousel-items-container {
     overflow: scroll;
     aspect-ratio: 2/3;
-    max-height: 1024px;
+    max-height: 820px;
 
     &::-webkit-scrollbar{
       display:none
@@ -434,6 +428,6 @@ main > .section:first-of-type {
   .carousel-wrapper,
   .carousel-items-container.full-screen {
     height: 100vh;
-    max-height: 1080px;
+    max-height: 845px;
   }
 }
