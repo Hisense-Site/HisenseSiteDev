@@ -868,14 +868,10 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "value": "",
+        "value": [],
         "label": "Description Alignment Class Name Options",
-        "valueType": "string",
+        "valueType": "array",
         "options": [
-          {
-            "name": "text-align-center",
-            "value": "text-align-center"
-          },
           {
             "name": "text-align-left",
             "value": "text-align-left"
