@@ -137,7 +137,7 @@ export default function decorate(block) {
     } else if (index === 4) {
       // 第五行：noResultMessage
       if (text) {
-        noResultMessage = text;
+        noResultMessage = row.innerHTML;
       }
     }
   });
@@ -161,7 +161,7 @@ export default function decorate(block) {
 
   const productsNoResult = document.createElement('div');
   productsNoResult.className = 'plp-products-no-result';
-  productsNoResult.textContent = noResultMessage || 'no result';
+  productsNoResult.innerHTML = noResultMessage || '<p>no result</p>';
   productsNoResult.style.display = 'none';
 
   productsLoadMore.append(span);

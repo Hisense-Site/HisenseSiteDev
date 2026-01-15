@@ -1626,7 +1626,7 @@
         "description": "Link for load more button"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "noResultMessage",
         "label": "No Result Message",
