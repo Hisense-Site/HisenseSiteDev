@@ -78,7 +78,6 @@ export default function decorate(block) {
 
     async playVideo(v) {
       if (!v.paused) return;
-
       try {
         await v.play();
         v.setAttribute('data-was-playing', 'true');
