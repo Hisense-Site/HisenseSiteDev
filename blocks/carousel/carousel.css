@@ -354,7 +354,7 @@ main > .section:first-of-type {
         font-weight: 500;
         bottom: 13.33vw;
         height: clamp(250px, 64vw, 330px);
-        left: calc(50% - min(var(--container-max-width), 100vw - 18px) / 2);
+        left: calc(50% - min(var(--container-max-width), 100vw) / 2);
 
         .carousel-cta-container {
           gap: 16px;
