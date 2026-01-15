@@ -210,6 +210,7 @@
                 "template": {
                   "name": "Description",
                   "model": "description",
+                  "classes": "text-align-center",
                   "description_smallTit": "This is subheading",
                   "description_text": "<h1>This is headline</h1><p>This is description.</p>",
                   "filter": "description"
