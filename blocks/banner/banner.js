@@ -1,9 +1,48 @@
+function getIsButtonEl (columnElArr,subEl, subIndex) {
+  // if (subIndex === columnElArr.length - 2 && subEl.classList.contains('button-container')) {
+  //   return true
+  // }
+  if ((subIndex === columnElArr.length - 1 || subIndex === columnElArr.length - 2) && subEl.classList.contains('button-container')) {
+    console.log(subIndex, 'subIndex')
+    return true
+  }
+  return false
+}
 export default function decorate(block) {
   console.log(block, 'block');
   [...block.children].forEach((row, idx) => {
     console.log(row, 'row---block')
     if (idx === 0) {
       row.className = 'pc-box-img';
+      const ctaContainerEl = document.createElement('div');
+      ctaContainerEl.className = 'cta-container';
+      [...row.children].forEach((column, colIndex) => {
+        console.log(column, 'column');
+        column.append(ctaContainerEl);
+        [...column.children].forEach((subEl, subIndex) => {
+          // console.log(subEl,subIndex, 'subel')
+          switch(subIndex) {
+            case [...column.children].length - 2:
+              // console.log(subEl, subIndex,'column.lengh - 2')
+              if (subEl.classList.contains('button-container')) {
+                subEl.classList.add('green-btn')
+              }
+              break;
+          }
+          console.log(getIsButtonEl([...column.children], subEl, subIndex), '5555555555555')
+          if (getIsButtonEl([...column.children], subEl, subIndex)) {
+            ctaContainerEl.appendChild(subEl)
+            
+          }
+          // if ((subIndex === [...column.children].length - 1) && subEl.classList.contains('button-container')) {
+          //   ctaContainerEl.appendChild(subEl)
+          //   console.log(ctaContainerEl, 'ctaContainerEl')
+          // }
+          // console.log(getIsButtonEl([...column.children], subEl, subIndex), 'kkkkkkkk')
+        })
+        console.log(ctaContainerEl, 'ctaContainerEl')
+        
+      })
       // 找到所有 .pc-box 元素中的 div 子元素
       // const pcBoxChildDivEl = document.querySelector('.pc-box-img > div');
       // const ctaContainerEl = document.createElement('div')
