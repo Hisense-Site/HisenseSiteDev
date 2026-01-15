@@ -868,9 +868,9 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "value": [],
+        "value": "",
         "label": "Description Alignment Class Name Options",
-        "valueType": "array",
+        "valueType": "string",
         "options": [
           {
             "name": "text-align-center",
