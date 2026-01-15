@@ -6,8 +6,7 @@
   width: 100%;
   min-height: 810px;
   display: flex;
-  align-items: center;
-  padding: 0;
+  padding: 183px 0 0;
   margin: 0 auto;
   position: relative;
 }
@@ -49,7 +48,7 @@
   h3+p,
   h4+p,
   h5+p,
-  h6+p {
+  h6+p, h1~ p, h2 ~p, h3~p, h4~p, h5~p, h6~p {
     width: 402px;
     margin: 0;
     position: relative;
