@@ -232,6 +232,7 @@ export default function decorate(block) {
       arrow.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
 
       const toggleExpand = (e) => {
+        e.stopPropagation();
         const grandParent = e.target.closest('.plp-filter-group');
         if (!grandParent) { return; }
         grandParent.classList.toggle('hide');
