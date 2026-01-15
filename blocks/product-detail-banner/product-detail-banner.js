@@ -79,7 +79,7 @@ function buildTab(itemElement, index) {
 
 function buildTabDot(itemElement, index) {
   const li = document.createElement('li');
-  li.className = 'product-indicators';
+  li.className = 'product-indicator';
   li['data-index'] = index;
 
   const div = document.createElement('div');
@@ -131,7 +131,7 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
 function updateActiveDot() {
   const filterItemsContainer = document.querySelector('.product-filters');
   const filterItems = document.querySelectorAll('.product-filter-item');
-  const dots = document.querySelectorAll('.product-indicators');
+  const dots = document.querySelectorAll('.product-indicator');
   // 计算每个图片在视口中的可见比例
   filterItems.forEach((item, index) => {
     const rect = item.getBoundingClientRect();
@@ -139,10 +139,10 @@ function updateActiveDot() {
     // 当图片至少一半在视口中时，视为“激活”
     const isVisible = rect.left + index * containerRect.width <= 0
         && rect.right <= containerRect.right;
-    
+
     if (isVisible) {
-    console.log(rect.left, containerRect.left, rect.right, containerRect.right)
-    console.log(isVisible, index)
+      console.log(rect.left, containerRect.left, rect.right, containerRect.right);
+      console.log(isVisible, index);
     }
 
     if (isVisible) {
