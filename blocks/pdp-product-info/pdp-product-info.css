@@ -75,8 +75,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 }
 
 .rating-star {
-  width:  calc(13.33 / 390 * 100vw);
-  height:  calc(13.33 / 390 * 100vw);
+  width:  calc(13.33 / var(--breakpoint-small) * 100vw);
+  height:  calc(13.33 / var(--breakpoint-small) * 100vw);
   object-fit: contain;
 }
 
@@ -143,8 +143,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     justify-content: center;
     
     .badges-mobile-item {
-      width: calc(104 / 390 * 100vw);
-      height: calc(104 / 390 * 100vw);
+      width: calc(104 / var(--breakpoint-small) * 100vw);
+      height: calc(104 / var(--breakpoint-small) * 100vw);
       border-radius: var(--size-12);
       display: flex;
       padding: var(--size-16);
@@ -275,8 +275,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     flex-wrap: wrap;
     
     .pdp-size {
-      width: calc(54 / 390 * 100vw);
-      height: calc(54 / 390 * 100vw);
+      width: calc(54 / var(--breakpoint-small) * 100vw);
+      height: calc(54 / var(--breakpoint-small) * 100vw);
       border-radius: var(--size-12);
       flex-shrink: 0;
       display: flex;
@@ -297,8 +297,8 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   
   .pdp-btn-group {
     .pdp-buy-btn {
-      height: calc(60 / 390 * 100vw);
-      border-radius: calc(100 / 390 * 100vw);
+      height: calc(60 / var(--breakpoint-small) * 100vw);
+      border-radius: calc(100 / var(--breakpoint-small) * 100vw);
       font-size: var(--size-16);
       line-height: 1.5;
     }
