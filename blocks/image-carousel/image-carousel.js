@@ -40,8 +40,8 @@ function bindEvent(block) {
         el.querySelector('video')?.pause();
       }
     });
-    if (e.target.tagName === 'IMG') {
-      e.target.closest('div').style.display = 'none';
+    if (e.target.tagName === 'IMG' && e.target.closest('li').querySelector('video')) {
+      e.target.style.display = 'none';
     }
   });
 }

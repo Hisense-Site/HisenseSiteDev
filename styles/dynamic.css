@@ -67,7 +67,7 @@
 }
 
 .footer-logo-width {
-  --var-small: 132px; /* 390时的 */
+  --var-small: 123px; /* 390时的 */
   --var-normal-mobile: 271px; /* 860时的手机 */
   --var-normal: 97px; /* 860时的 */
   --var-large: 164px; /* 1180时的 */
