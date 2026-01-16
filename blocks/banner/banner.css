@@ -30,16 +30,18 @@
     padding: 0;
 
     .button {
-      width: 128px;
-      height: 48px;
-      border-radius: 24px;
+      /* width: 128px; */
+      padding: 0 32px;
+      height: 50px;
+      border-radius: 25px;
       background-color: transparent;
       color: #fff;
       font-size: 12px;
       line-height: 48px;
       text-align: center;
       border: 1px solid #fff;
-      padding: 0;
+
+      /* padding: 0; */
       margin-top: 20px;
       position: relative;
       z-index: 6;
@@ -111,6 +113,23 @@
     img {
       display: none;
       aspect-ratio: 354 / 500;
+    }
+  }
+
+  .cta-container {
+    display: flex;
+    gap: 16px;
+
+    .green-btn {
+      .button {
+        border: none;
+        background-color: var(--color-primary-green-50);
+
+        &:hover, &:active {
+          background-color: var(--color-primary-green-40);
+          color: #fff;
+        }
+      }
     }
   }
 }
