@@ -64,6 +64,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   font-weight: 500;
 	line-height: 1.3;
   margin: 4px 0 0;
+  text-transform: uppercase;
 }
 
 .pdp-sizes {
@@ -223,6 +224,10 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     margin-bottom: var(--size-8);
   }
 
+  .pdp-title {
+    font-size: var(--size-30);
+  }
+
   .pdp-badges {
     margin-bottom: var(--size-10);
     display: none;
@@ -239,7 +244,21 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   }
 
   .pdp-sizes{
-     margin-bottom: var(--size-32);
+    margin-bottom: var(--size-32);
+    gap: var(--size-12);
+    flex-wrap: wrap;
+    
+    .pdp-size {
+      width: calc(54 / 390 * 100vw);
+      height: calc(54 / 390 * 100vw);
+      border-radius: var(--size-12);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--size-20);
+      line-height: 1.2;
+    }
   }
   
   .pdp-info {
