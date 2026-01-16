@@ -41,6 +41,10 @@
   }
 }
 
+.block.description.text-align-center {
+  text-align: center;
+}
+
 .block.description.text-align-left {
   text-align: left;
 }

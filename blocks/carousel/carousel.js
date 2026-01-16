@@ -25,12 +25,10 @@ function showSlide(block, targetLogicalIndex, init = false) {
   const carouselHeight = block.offsetHeight;
   const carouselContainer = block.querySelector('.carousel-items-container');
   const slides = block.querySelectorAll('.carousel-item');
-
   // 处理homepage高度为100dvh，不影响author，不影响PLP
   if (block.attributes['data-aue-resource'] === undefined && !block.classList.value.includes('only-picture')) {
-    carouselContainer.style.setProperty('height', '100dvh');
+    carouselContainer.classList.add('full-screen');
   }
-
   // 1. 核心映射：逻辑索引 0 (第一张图) 在 DOM 中的物理位置是 slides[1]
   // 所以物理索引 = 逻辑索引 + 1
   let physicalIndex = targetLogicalIndex + 1;
@@ -95,7 +93,7 @@ function autoPlay(block) {
     const nextIndex = currentIndex + 1;
     showSlide(block, nextIndex);
     isInitializing = false;
-  }, 3000);
+  }, 5000);
 }
 
 function observeMouse(block) {
@@ -151,30 +149,17 @@ function createSlide(block, row, slideIndex) {
   [...row.children].forEach((column, colIdx) => {
     let theme;
     let contentType; // true is svg mode; false is text mode
-    let pcImg;
-    let mobileImg;
+    // let pcImg;
+    // let mobileImg;
     let buttonTheme;
     switch (colIdx) {
       case 0:
         // container-reference div
         column.classList.add('carousel-item-image');
-        // 处理mobile图片
-        if ([...column.querySelectorAll('img')].length > 1) {
-          [pcImg, mobileImg] = [...column.querySelectorAll('img')];
-        }
-        if (mobileImg) {
-          mobileImg.closest('p').style.display = 'none';
-          // author 没有source
-          const source = document.createElement('source');
-          source.setAttribute('srcset', mobileImg.src);
-          source.setAttribute('media', '(max-width: 860px)');
-          pcImg.closest('picture').prepend(source);
-          mobileImg.closest('p').remove();
-        }
         // 处理image-theme联动nav
-        theme = [...column.children][1]?.innerHTML || 'false';
+        theme = [...column.children][2]?.innerHTML || 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        if ([...column.children][1]) [...column.children][1].remove(); // 清除不必要的DOM结构
+        column.lastElementChild.remove();
         break;
       case 1:
         // container-text or svg switch div
