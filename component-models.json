@@ -1263,6 +1263,13 @@
     "id": "icon-item",
     "fields": [
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
         "component": "richtext",
         "name": "title",
         "value": "",
@@ -1270,11 +1277,11 @@
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
+        "component": "richtext",
+        "name": "sub-title",
+        "value": "",
+        "label": "Sub Title",
+        "valueType": "string"
       }
     ]
   },
