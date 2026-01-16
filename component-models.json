@@ -1217,7 +1217,7 @@
         "component": "select",
         "name": "classes",
         "value": "",
-        "label": "Container Position",
+        "label": "Content Position",
         "description": "",
         "valueType": "string",
         "options": [
@@ -1232,6 +1232,10 @@
           {
             "name": "Right",
             "value": "right"
+          },
+          {
+            "name": "Full",
+            "value": "full"
           }
         ]
       },
