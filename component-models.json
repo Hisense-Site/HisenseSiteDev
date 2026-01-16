@@ -872,14 +872,10 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "value": "",
+        "value": [],
         "label": "Description Alignment Class Name Options",
-        "valueType": "string",
+        "valueType": "array",
         "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
           {
             "name": "text-align-left",
             "value": "text-align-left"
@@ -1630,7 +1626,7 @@
         "description": "Link for load more button"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "noResultMessage",
         "label": "No Result Message",

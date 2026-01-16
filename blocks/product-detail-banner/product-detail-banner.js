@@ -23,9 +23,10 @@ function createScrollButton(direction) {
   return button;
 }
 
-function buildTab(itemElement) {
+function buildTab(itemElement, index) {
   const li = document.createElement('li');
   li.className = 'product-filter-item';
+  li['data-index'] = index;
   moveInstrumentation(itemElement, li);
 
   const cells = [...itemElement.children];
@@ -76,6 +77,30 @@ function buildTab(itemElement) {
   return li;
 }
 
+function buildTabDot(itemElement, index) {
+  const li = document.createElement('li');
+  li.className = 'product-indicator';
+  li['data-index'] = index;
+
+  const div = document.createElement('div');
+  div.className = 'indicator-button';
+
+  li.addEventListener('click', () => {
+    // 需求变更，点击功能注释掉
+    return;
+    // eslint-disable-next-line no-unreachable
+    const filterItems = document.querySelectorAll('.product-filter-item');
+    // 滚动到对应图片的位置
+    filterItems[index].scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+    });
+  });
+
+  li.append(div);
+  return li;
+}
+
 function updateButtons(tabsList, leftBtn, rightBtn) {
   leftBtn.disabled = tabsList.scrollLeft <= 0;
   rightBtn.disabled = tabsList.scrollLeft + tabsList.clientWidth >= tabsList.scrollWidth;
@@ -106,12 +131,31 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
   updateButtons(tabsList, leftBtn, rightBtn);
 }
 
+function updateActiveDot() {
+  const filterItems = document.querySelectorAll('.product-filter-item');
+  const dots = document.querySelectorAll('.product-indicator');
+  // 计算每个图片在视口中的可见比例
+  filterItems.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    // ✅ 关键判定条件：当前图片li的左侧距离视口左边界的值 ≤ 0
+    const isActive = rect.left <= 0;
+
+    if (isActive) {
+      // 先移除所有dot的active，再给当前项加，保证只有一个激活态
+      dots.forEach((d) => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+  });
+}
+
 export default function decorate(block) {
   // 编辑模式,如果有 data-aue-resource 属性，说明现在浏览的是编辑模式
   const isEditMode = block.hasAttribute('data-aue-resource');
 
   const tabs = document.createElement('ul');
   tabs.className = 'product-filters';
+  const dots = document.createElement('ul');
+  dots.className = 'product-carousel';
 
   let itemElements = [...block.children];
   if (isEditMode) {
@@ -119,19 +163,26 @@ export default function decorate(block) {
     itemElements = [...nodeList];
   }
 
-  itemElements.forEach((item) => {
-    const li = buildTab(item);
-    const resource = item.getAttribute && item.getAttribute('data-aue-resource');
+  itemElements.forEach((item, index) => {
+    const itemClone1 = item.cloneNode(true);
+    const itemClone2 = item.cloneNode(true);
+    const li = buildTab(itemClone1, index);
+    const resource = itemClone1.getAttribute && itemClone1.getAttribute('data-aue-resource');
     if (resource) {
       // 保留 data-aue-resource，用于编辑
       li.setAttribute('data-aue-resource', resource);
     }
     tabs.append(li);
+
+    const dotLi = buildTabDot(itemClone2, index);
+    dots.append(dotLi);
   });
+
+  tabs.addEventListener('scroll', updateActiveDot);
 
   const tabsContainer = document.createElement('div');
   tabsContainer.className = 'tabs-container';
-  tabsContainer.append(tabs);
+  tabsContainer.append(tabs, dots);
 
   const leftBtn = createScrollButton('left');
   const rightBtn = createScrollButton('right');

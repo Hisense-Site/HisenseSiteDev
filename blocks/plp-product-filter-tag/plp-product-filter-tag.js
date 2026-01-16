@@ -230,11 +230,16 @@ export default function decorate(block) {
       titleSpan.textContent = titleText;
       const arrow = document.createElement('img');
       arrow.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
-      arrow.addEventListener('click', (e) => {
-        const grandParent = e.target.parentNode?.parentNode;
+
+      const toggleExpand = (e) => {
+        e.stopPropagation();
+        const grandParent = e.target.closest('.plp-filter-group');
         if (!grandParent) { return; }
         grandParent.classList.toggle('hide');
-      });
+      };
+
+      arrow.addEventListener('click', toggleExpand);
+      title.addEventListener('click', toggleExpand);
       title.append(titleSpan, arrow);
 
       const list = document.createElement('ul');

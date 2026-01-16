@@ -10,7 +10,6 @@
             "template": {
               "name": "Description",
               "model": "description",
-              "classes": "description-box",
               "description_smallTit": "This is subheading",
               "description_text": "<h1>This is headline</h1><p>This is description.</p>",
               "filter": "description"
@@ -43,14 +42,10 @@
         {
           "component": "multiselect",
           "name": "classes",
-          "value": "",
+          "value": [],
           "label": "Description Alignment Class Name Options",
-          "valueType": "string",
+          "valueType": "array",
           "options": [
-            {
-              "name": "Default",
-              "value": ""
-            },
             {
               "name": "text-align-left",
               "value": "text-align-left"
