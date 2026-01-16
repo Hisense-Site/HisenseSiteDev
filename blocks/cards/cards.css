@@ -26,7 +26,6 @@
     touch-action: pan-x pinch-zoom; /* 允许水平滑动和捏合缩放 */
     overscroll-behavior-x: contain; /* 防止滚动链 */
     grid-auto-flow: column;
-
 	}
 }
 
@@ -45,57 +44,45 @@
   }
 }
 
-.cover-style > ul {
+.cover-style > ul,
+.cover-dark > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   gap: var(--gap);
 	grid-template-columns: repeat(4, 1fr);
-
 }
 
-.cover-style > ul > li {
+.cover-style > ul > li,
+.cover-dark > ul >li{
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-  background-color: var(--background-color);
   position: relative;
+  height: 100%;
 }
 
+.cover-style > ul > li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(180deg, rgb(116 116 116 / 60%) 0%, rgb(255 255 255 / 0%) 100%);
+}
 
 .cards-card-body > p, .cards-card-body > h6{
- --font-size-small: 20px; /* 390时的 */
-  --font-size-normal-mobile: 47px; /* 860时的手机 */
-  --font-size-normal: 24px; /* 860时的 */
-  --font-size-large: 24px; /* 1180时的 */
+  font-size: var(--size-20);
 
-  font-size: clamp(
-          var(--font-size-normal),
-          calc(
-                  var(--font-size-normal) +
-                  (100vw - var(--breakpoint-normal))
-                  * (var(--font-size-large) - var(--font-size-normal))
-                  / (var(--breakpoint-large) - var(--breakpoint-normal))
-          ),
-          var(--font-size-large)
-  );
-
-  @media (width < 860px) {
-    font-size: clamp(
-            var(--font-size-small),
-            calc(
-                    var(--font-size-small) +
-                    (100vw - var(--breakpoint-small))
-                    * (var(--font-size-normal-mobile) - var(--font-size-small))
-                    / (var(--breakpoint-normal) - var(--breakpoint-small))
-            ),
-            var(--font-size-normal-mobile)
-    );
+  @media (width >= 860px) {
+    font-size: var(--size-24);
   }
 }
 
-.cover-style .cards-card-body {
+.cover-style .cards-card-body,
+.cover-dark  .cards-card-body {
   position: absolute;
   top: 24px;
   text-align: center;
@@ -111,6 +98,10 @@
   z-index: 1;
 }
 
+.cover-dark  .cards-card-body {
+  color: black;
+}
+
 .touch-start img {
    transform: scale(1.1);
 }
@@ -119,20 +110,17 @@
    transform: scale(1);
 }
 
-.cover-style .cards-card-image {
-  line-height: 0;
-}
-
-.cover-style > ul > li img {
+.cover-style > ul > li img,
+.cover-dark > ul >li img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
 }
 
-.cover-style .cards-card-cta{
+.cover-style .cards-card-cta,
+.cover-dark .cards-card-cta{
   display: none;
-
 }
 
 .center-style > ul {
@@ -231,7 +219,8 @@
   }
 }
 
-.cover-style > ul > li:hover img {
+.cover-style > ul > li:hover img,
+.cover-dark > ul > li:hover img {
   @media (width >= 860px) {
     transform: scale(1.1);
   }
