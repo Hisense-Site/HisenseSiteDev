@@ -1,6 +1,7 @@
 .icon-display-wrapper{
   width: 100%;
 }
+
 .icon-display-container{
   display: flex;
   justify-content: space-between;
