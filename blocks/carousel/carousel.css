@@ -7,6 +7,7 @@ main > .section:first-of-type {
   max-width: 2560px !important;
   padding: 0 !important;
 }
+
 .carousel-items-container {
   width: 100vw;
   aspect-ratio: 1440/860;
