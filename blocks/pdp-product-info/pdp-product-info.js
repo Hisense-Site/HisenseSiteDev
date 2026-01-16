@@ -3186,10 +3186,10 @@ export default async function decorate(block) {
   const fav = document.createElement('div');
   fav.className = 'pdp-favorite';
   const likeEmpty = document.createElement('img');
-  likeEmpty.src = '/content/dam/hisense/image/icon/like-empty.svg';
+  likeEmpty.src = '/content/dam/hisense/us/common-icons/icon-carousel/like-empty.svg';
   fav.appendChild(likeEmpty);
   const like = document.createElement('img');
-  like.src = '/content/dam/hisense/image/icon/like.svg';
+  like.src = '/content/dam/hisense/us/common-icons/icon-carousel/like.svg';
   fav.appendChild(like);
 
   const series = document.createElement('div');
