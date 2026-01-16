@@ -3200,6 +3200,27 @@ export default async function decorate(block) {
   title.className = 'pdp-title';
   title.textContent = (product && product.title) ? product.title : '';
 
+  const ratingWrapper = document.createElement('div');
+  ratingWrapper.classList.add('rating-wrapper');
+
+  for (let i = 1; i <= 5; i += 1) {
+    const starImg = document.createElement('img');
+    starImg.classList.add('rating-star');
+    starImg.src = i <= Math.floor(product.score)
+      ? '/content/dam/hisense/us/common-icons/icon-carousel/star-02.svg'
+      : '/content/dam/hisense/us/common-icons/icon-carousel/star-01.svg';
+    starImg.alt = i <= product.score ? '满星' : '空白星';
+    ratingWrapper.appendChild(starImg);
+  }
+  const ratingText = document.createElement('span');
+  ratingText.classList.add('rating-text');
+  ratingText.textContent = `${product.score} (${product.totalRatings} Ratings)`;
+  ratingWrapper.appendChild(ratingText);
+
+  const price = document.createElement('div');
+  price.className = 'pdp-price';
+  price.textContent = (product && product.price) ? product.price : '$39,999.00';
+
   const sizesWrapper = document.createElement('div');
   sizesWrapper.className = 'pdp-sizes';
   if (similarProducts.length > 0) {
@@ -3322,7 +3343,7 @@ export default async function decorate(block) {
     });
   });
 
-  info.append(fav, series, title, sizesWrapper, badges, btnGroup, specsBtn, badgesMobileGroup);
+  info.append(fav, series, title, ratingWrapper, price, sizesWrapper, badges, btnGroup, specsBtn, badgesMobileGroup);
 
   block.replaceChildren(info);
 }
