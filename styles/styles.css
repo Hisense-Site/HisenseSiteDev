@@ -17,7 +17,7 @@ html {
 }
 
 :root {
-  --breakpoint-large: 1180px;
+  --breakpoint-large: 1440px;
   --breakpoint-normal: 860px;
   --breakpoint-small: 390px;
 
