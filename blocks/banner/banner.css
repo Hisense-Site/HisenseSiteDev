@@ -4,12 +4,12 @@
 }
 
 .block.banner {
-  padding-left: 58px;
+  padding-left: min(3.88888889vw, 56px);
   height: 100%;
-  min-height: 432px;
+  min-height: min(30.55555556vw, 430px);
   display: flex;
   align-items: center;
-  border-radius: 20px;
+  border-radius: min(1.38888889vw, 20px);
   overflow: hidden;
   position: relative;
 
@@ -31,18 +31,18 @@
 
     .button {
       /* width: 128px; */
-      padding: 0 32px;
-      height: 50px;
-      border-radius: 25px;
+      padding: 0 2.22222222vw;
+      height: 3.47222222vw;
+      border-radius: 1.73611111vw;
       background-color: transparent;
       color: #fff;
-      font-size: 12px;
-      line-height: 48px;
+      font-size: var(--size-12);
+      line-height: 3.47222222vw;
       text-align: center;
       border: 1px solid #fff;
 
       /* padding: 0; */
-      margin-top: 20px;
+      margin-top: 2.91666667vw;
       position: relative;
       z-index: 6;
       transition-property: color, background-color, border-color, border-bottom-color;
@@ -77,7 +77,8 @@
   h5,
   h6 {
     color: #fff;
-    max-width: 420px;
+    max-width: 23.61111111vw;
+    font-size: 2.77777778vw;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
@@ -94,9 +95,14 @@
   h4+p,
   h5+p,
   h6+p {
+    --design-width: 1440px;
+
     color: #fff;
-    margin-top: 20px;
-    width: 319px;
+    margin-top: 1.38888889vw;
+    max-width: 23.61111111vw;
+
+    /* font-size: 1.11111111vw; */
+    font-size: calc(100 * 100vw / var(--design-width));
 
     /* height: 89px; */
     position: relative;
@@ -118,7 +124,7 @@
 
   .cta-container {
     display: flex;
-    gap: 16px;
+    gap: 1.11111111vw;
 
     .green-btn {
       .button {
