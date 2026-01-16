@@ -30,6 +30,10 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   }
 }
 
+.pdp-product-info {
+  width: 100%;
+}
+
 .pdp-info {
   flex: 1;
   min-width: 300px;
@@ -50,8 +54,9 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 
 .pdp-series {
   color: rgb(0 132 130 / 100%);
-  font-size: var(--body-font-size-xl);
+  font-size: var(--size-20);
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .pdp-title {
