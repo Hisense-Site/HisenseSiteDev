@@ -37,7 +37,7 @@ html {
   --color-primary-green-40: #50C3C3;
   --color-primary-green-30: #85D6D4;
   --color-primary-green-20: #C8EFEF;
-  --color-primary-green-10: #E6FAFA;
+  --color-primary-green-10: #E6FAFA; /** pc and mobile 不统一 */
   --color-primary-grey-100: #000;
   --color-primary-grey-90: #141414;
   --color-primary-grey-80: #242424;
@@ -48,9 +48,36 @@ html {
   --color-primary-grey-20: #f4f4f4;
   --color-primary-grey-10: #fff;
   --color-accent-red: #fe4b4b;
+  --color-accent-red-40: #B82D28;
+  --color-accent-red-30: #e03f2d;
+  --color-accent-red-20: #f06151;
+  --color-accent-red-10: #fff4f2;
   --color-accent-orange: #f5933d;
+  --color-accent-orange-30: #b97215;
+  --color-accent-orange-20: #fab041;
+  --color-accent-orange-10: #fff8e5;
+  --color-accent-blue-20: #256eb8;
+  --color-accent-blue-10: #eaf7fe;
+  --color-accent-golden-20: #e19e47;
+  --color-accent-golden-10: #e7b974;
   --color-hisense-teal: #00aaa6;
   --color-hisense-black: var(--color-primary-grey-100);
+
+  /* color opacity */
+  --grey-alpha-80: rgb(20 20 20 / 80%);
+  --grey-alpha-60: rgb(20 20 20 / 60%);
+  --grey-alpha-40: rgb(20 20 20 / 40%);
+  --grey-alpha-20: rgb(20 20 20 / 20%);
+  --grey-alpha-10: rgb(20 20 20 / 10%);
+  --grey-alpha-5:  rgb(20 20 20 / 5%);
+  --white-alpha-80: rgb(255 255 255 / 80%);
+  --white-alpha-60: rgb(255 255 255 / 60%);
+  --white-alpha-40: rgb(255 255 255 / 40%);
+  --white-alpha-30: rgb(255 255 255 / 30%);
+  --white-alpha-20: rgb(255 255 255 / 20%);
+  --white-alpha-10: rgb(255 255 255 / 10%);
+  --green10-alpha-50: rgb(233 247 247 / 50%);
+  --green60-alpha-50: rgb(0 158 155 / 50%);
 
   /* color system */
   --color-white: var(--color-primary-grey-10);
@@ -152,6 +179,12 @@ html {
   --fontsize-caption1: var(--size-10);
   --fontsize-caption2: var(--size-8);
   --fontsize-caption3: var(--size-6);
+  --fontsize-pc-h1: var(--size-46);
+  --fontsize-pc-h2: var(--size-40);
+  --fontsize-pc-h3: var(--size-34);
+  --fontsize-pc-h4: var(--size-30);
+  --fontsize-pc-caption1: var(--size-12);
+  --fontsize-pc-caption2: var(--size-10);
 
   /* 间距变量（映射基础尺寸） */
   --spacing-0: 0;
@@ -168,13 +201,18 @@ html {
   --spacing-2xl: var(--size-80);
   --spacing-3xl: var(--size-100);
   --spacing-4xl: var(--size-160);
+  --spacing-pc-s: var(--size-20);
+  --spacing-pc-m: var(--size-30);
+  --spacing-pc-md: var(--size-32);
+  --spacing-pc-xl-2: var(--size-56);
+  --spacing-pc-3xl: var(--size-120);
 
   /* 圆角变量（映射基础尺寸） */
   --radius-s: var(--size-2);
   --radius-sm: var(--size-4);
   --radius-md: var(--size-8);
   --radius-lg: var(--size-12);
-  --radius-xl: var(--size-16);
+  --radius-xl: var(--size-16); /** pc and mobile不统一 */
   --radius-xxl: var(--size-100);
 
   /* basic size in mobile  */
@@ -582,33 +620,37 @@ h6 {
 }
 
 h1 {
-	font-size: var(--heading-font-size-xxl);
+	font-size: var(--fontsize-pc-h1);
 	line-height: var(--line-height-s);
 }
 
 h2 {
-	font-size: var(--heading-font-size-xl);
+	font-size: var(--fontsize-pc-h2);
 	line-height: var(--line-height-s);
 }
 
 h3 {
-	font-size: var(--heading-font-size-l);
+	font-size: var(--fontsize-pc-h3);
 	line-height: var(--line-height-m);
 }
 
 h4 {
-	font-size: var(--heading-font-size-m);
+	font-size: var(--fontsize-pc-h4);
 	line-height: var(--line-height-m);
 }
 
-h5 {
-	font-size: var(--heading-font-size-s);
-	line-height: var(--line-height-m);
-}
+@media (width < 860px) {
+  h1 {
+    font-size: var(--fontsize-h1);
+  }
 
-h6 {
-	font-size: var(--heading-font-size-xs);
-	line-height: var(--line-height-m);
+  h2 {
+    font-size: var(--fontsize-h2);
+  }
+
+  h3 {
+    font-size: var(--fontsize-h3);
+  }
 }
 
 p,
