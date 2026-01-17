@@ -93,15 +93,14 @@ main > .section:first-of-type {
   .teal-text {
     color: var(--color-hisense-teal);
     font-weight: 500;
-    line-height: 28px;
-    margin-bottom: 8px;
-    font-size: 20px;
+    line-height: min(1.94444444vw, 28px);
+    margin-bottom: min(0.5555555556vw, 8px);
+    font-size: var(--fontsize-title2);
     margin-top: 0 ;
   }
 
   .carousel-item-content h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-size: clamp(30px, 2.77vw, 46px);
   }
 
   .carousel-item-content.icon-svg {
@@ -115,7 +114,7 @@ main > .section:first-of-type {
     picture > img {
       display: block;
       width: 100%;
-      aspect-ratio: 16/9;
+      aspect-ratio: 1440/860;
     }
   }
 

@@ -582,32 +582,32 @@ h6 {
 }
 
 h1 {
-	font-size: var(--heading-font-size-xxl);
+	font-size: var(--fontsize-h1);
 	line-height: var(--line-height-s);
 }
 
 h2 {
-	font-size: var(--heading-font-size-xl);
+	font-size: var(--fontsize-h2);
 	line-height: var(--line-height-s);
 }
 
 h3 {
-	font-size: var(--heading-font-size-l);
+	font-size: var(--fontsize-h3);
 	line-height: var(--line-height-m);
 }
 
 h4 {
-	font-size: var(--heading-font-size-m);
+	font-size: var(--fontsize-h4);
 	line-height: var(--line-height-m);
 }
 
 h5 {
-	font-size: var(--heading-font-size-s);
+	font-size: var(--fontsize-h5);
 	line-height: var(--line-height-m);
 }
 
 h6 {
-	font-size: var(--heading-font-size-xs);
+	font-size: var(--fontsize-h6);
 	line-height: var(--line-height-m);
 }
 
