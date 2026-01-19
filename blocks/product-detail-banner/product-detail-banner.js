@@ -134,14 +134,11 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
 function updateActiveDot() {
   const filterItems = document.querySelectorAll('.product-filter-item');
   const dots = document.querySelectorAll('.product-indicator');
-  // 计算每个图片在视口中的可见比例
   filterItems.forEach((item, index) => {
     const rect = item.getBoundingClientRect();
-    // ✅ 关键判定条件：当前图片li的左侧距离视口左边界的值 ≤ 0
     const isActive = rect.left <= 0;
 
     if (isActive) {
-      // 先移除所有dot的active，再给当前项加，保证只有一个激活态
       dots.forEach((d) => d.classList.remove('active'));
       dots[index].classList.add('active');
     }
