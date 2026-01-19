@@ -39,7 +39,7 @@
         {
           "component": "select",
           "name": "classes",
-          "value": "",
+          "value": "position",
           "label": "Content Position",
           "description": "",
           "valueType": "string",
@@ -51,13 +51,17 @@
               {
                   "name": "Center",
                   "value": "center"
+              },
+               {
+                  "name": "Full",
+                  "value": "full"
               }
           ]
         },
          {
           "component": "select",
           "name": "classes",
-          "value": "",
+          "value": "display",
           "label": "Dispaly Style",
           "description": "",
           "valueType": "string",
@@ -75,7 +79,7 @@
         {
           "component": "select",
           "name": "classes",
-          "value": "",
+          "value": "size",
           "label": "Icon Size",
           "description": "",
           "valueType": "string",
@@ -89,6 +93,32 @@
                   "value": "Fixed"
               }
               
+          ]
+        },
+         {
+          "component": "select",
+          "name": "classes",
+          "value": "space",
+          "label": "Vertical Space",
+          "description": "",
+          "valueType": "string",
+          "options": [
+              {
+                  "name": "None",
+                  "value": "none"
+              },
+              {
+                  "name": "Top",
+                  "value": "top"
+              },
+              {
+                  "name": "Bottom",
+                  "value": "bottom"
+              },
+               {
+                  "name": "Both",
+                  "value": "both"
+              }
           ]
         }
       ]
