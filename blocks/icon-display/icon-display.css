@@ -10,21 +10,20 @@
   gap: 30px;
   color: white;
 }
-.center{
+
+.center .icon-display-box{
     justify-content: center;
 }
 
-.full{
+.full .icon-display-box{
     justify-content: space-between;
 }
 
-.left {
+.left .icon-display-box{
     justify-content: flex-start;
 }
 
-.right {
-    justify-content: flex-end;
-}
+
 
 .icon-display-item {
     display: flex;
@@ -35,7 +34,6 @@
 .icon-display-item .icon-text{
     display: flex;
     align-items: center;
-    
 }
 
 .icon-display-item .icon-text:first-child{
@@ -54,6 +52,11 @@
 .icon-display-item .icon-image img{
     height: 40px;
     width: auto;
+}
+
+.Fixed .icon-display-item .icon-image img{
+    height: 40px;
+    width: 60px;
 }
 
 p{
