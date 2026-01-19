@@ -175,6 +175,9 @@ export default function decorate(block) {
     tabs.append(li);
 
     const dotLi = buildTabDot(itemClone2, index);
+    if (index === 0) {
+      dotLi.classList.add('active');
+    }
     dots.append(dotLi);
   });
 
