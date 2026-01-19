@@ -38,11 +38,8 @@
       "fields": [
         {
           "component": "select",
-          "name": "position",
-          "value": "",
+          "name": "style_position",
           "label": "Content Position",
-          "description": "",
-          "valueType": "string",
           "options": [
               {
                   "name": "Left",
@@ -60,11 +57,8 @@
         },
          {
           "component": "select",
-          "name": "style",
-          "value": "",
+          "name": "style_display",
           "label": "Dispaly Style",
-          "description": "",
-          "valueType": "string",
           "options": [
               {
                   "name": "Horizontal",
@@ -78,11 +72,8 @@
         },
         {
           "component": "select",
-          "name": "size",
-          "value": "",
+          "name": "style_size",
           "label": "Icon Size",
-          "description": "",
-          "valueType": "string",
           "options": [
               {
                   "name": "Auto",
@@ -97,11 +88,8 @@
         },
          {
           "component": "select",
-          "name": "space",
-          "value": "",
+          "name": "style_space",
           "label": "Vertical Space",
-          "description": "",
-          "valueType": "string",
           "options": [
               {
                   "name": "None",
