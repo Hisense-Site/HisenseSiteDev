@@ -220,7 +220,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   font-weight: 400;
 }
 
-.pdp-specs-btn.hide {
+.pdp-info > .hide {
   display: none;
 }
 

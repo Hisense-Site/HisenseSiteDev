@@ -3342,6 +3342,15 @@ export default async function decorate(block) {
   if (!fields.includes('position')) {
     specsBtn.classList.add('hide');
   }
+  if (!fields.includes('favorite')) {
+    fav.classList.add('hide');
+  }
+  if (!fields.includes('rating')) {
+    ratingWrapper.classList.add('hide');
+  }
+  if (!fields.includes('buttons')) {
+    btnGroup.classList.add('hide');
+  }
 
   info.append(fav, series, title, ratingWrapper, price, sizesWrapper, badges, btnGroup, specsBtn, badgesMobileGroup);
 
