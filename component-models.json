@@ -1219,40 +1219,32 @@
         "label": "Content Position",
         "options": [
           {
-            "name": "Left",
+            "name": "Horizontal Left",
             "value": "left"
           },
           {
-            "name": "Center",
+            "name": "Horizontal Center",
             "value": "center"
           },
           {
-            "name": "Full",
+            "name": "Horizontal Full",
             "value": "full"
           },
           {
-            "name": "Auto",
-            "value": "auto"
+            "name": "Vertical Display",
+            "value": "vertical-display"
           },
           {
-            "name": "Fixed",
-            "value": "Fixed"
+            "name": "Fixed Width",
+            "value": "fixed-width"
           },
           {
-            "name": "None",
-            "value": "none"
+            "name": "Top Space",
+            "value": "top-space"
           },
           {
-            "name": "Top",
-            "value": "top"
-          },
-          {
-            "name": "Bottom",
-            "value": "bottom"
-          },
-          {
-            "name": "Both",
-            "value": "both"
+            "name": "Bottom Space",
+            "value": "bottom-space"
           }
         ]
       },

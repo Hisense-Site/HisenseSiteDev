@@ -11,6 +11,14 @@
   color: white;
 }
 
+.top-space .icon-display-box{
+    margin-top: 40px;
+}
+
+.bottom-space .icon-display-box{
+    margin-top: 40px;
+}
+
 .center .icon-display-box{
     justify-content: center;
 }
@@ -23,6 +31,10 @@
     justify-content: flex-start;
 }
 
+.vertical-display .icon-display-box{
+    flex-direction: column;
+    gap: 40px;
+}
 
 
 .icon-display-item {
@@ -54,7 +66,7 @@
     width: auto;
 }
 
-.Fixed .icon-display-item .icon-image img{
+.fixed-width .icon-display-item .icon-image img{
     height: 40px;
     width: 60px;
 }
