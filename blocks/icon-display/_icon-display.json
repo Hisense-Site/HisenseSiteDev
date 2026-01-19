@@ -37,8 +37,51 @@
       "id": "icon-display",
       "fields": [
         {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Content Position",
+          "options": [
+              {
+                  "name": "Left",
+                  "value": "left"
+              },
+              {
+                  "name": "Center",
+                  "value": "center"
+              },
+               {
+                  "name": "Full",
+                  "value": "full"
+              },
+               {
+                  "name": "Auto",
+                  "value": "auto"
+              },
+              {
+                  "name": "Fixed",
+                  "value": "Fixed"
+              },
+               {
+                  "name": "None",
+                  "value": "none"
+              },
+              {
+                  "name": "Top",
+                  "value": "top"
+              },
+              {
+                  "name": "Bottom",
+                  "value": "bottom"
+              },
+               {
+                  "name": "Both",
+                  "value": "both"
+              }
+          ]
+        },
+        {
           "component": "select",
-          "name": "style_classes",
+          "name": "classes",
           "label": "Content Position",
           "options": [
               {
@@ -57,7 +100,7 @@
         },
          {
           "component": "select",
-          "name": "display_classes",
+          "name": "classes",
           "label": "Dispaly Style",
           "options": [
               {
@@ -88,7 +131,7 @@
         },
          {
           "component": "select",
-          "name": "style_space",
+          "name": "classes",
           "label": "Vertical Space",
           "options": [
               {
