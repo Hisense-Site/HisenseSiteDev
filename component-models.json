@@ -1215,7 +1215,7 @@
     "fields": [
       {
         "component": "select",
-        "name": "style_position",
+        "name": "classes",
         "label": "Content Position",
         "options": [
           {
@@ -1234,7 +1234,7 @@
       },
       {
         "component": "select",
-        "name": "style_display",
+        "name": "classes",
         "label": "Dispaly Style",
         "options": [
           {
@@ -1249,7 +1249,7 @@
       },
       {
         "component": "select",
-        "name": "style_size",
+        "name": "classes",
         "label": "Icon Size",
         "options": [
           {
