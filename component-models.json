@@ -955,6 +955,13 @@
         "multi": false
       },
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "featureMobile_image",
+        "label": "Mobile Image",
+        "multi": false
+      },
+      {
         "component": "richtext",
         "name": "featurebanner_text",
         "label": "Text",
