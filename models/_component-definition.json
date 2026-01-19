@@ -28,8 +28,8 @@
       ]
     },
     {
-      "title": "Hero & Banners",
-      "id": "hero-banners",
+      "title": "Page Structure",
+      "id": "page-structure",
       "components": [
         {
           "...": "../blocks/hero/_*.json#/definitions"
@@ -39,33 +39,33 @@
         },
         {
           "...": "../blocks/featurebanner/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/collectionsection/_*.json#/definitions"
         }
       ]
     },
     {
-      "title": "Content",
-      "id": "content",
+      "title": "Content Display",
+      "id": "content-display",
       "components": [
-        {
-          "...": "../blocks/description/_*.json#/definitions"
-        },
         {
           "...": "../blocks/cards/_*.json#/definitions"
         },
         {
           "...": "../blocks/recards/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/description/_*.json#/definitions"
         }
       ]
     },
     {
-      "title": "Product",
-      "id": "product",
+      "title": "Product List Page (PLP)",
+      "id": "product-list-page",
       "components": [
         {
           "...": "../blocks/plp-product-card/_*.json#/definitions"
-        },
-        {
-          "...": "../blocks/pdp-product-info/_*.json#/definitions"
         },
         {
           "...": "../blocks/plp-product-filters/_*.json#/definitions"
@@ -75,6 +75,15 @@
         },
         {
           "...": "../blocks/product-filters-carousel/_*.json#/definitions"
+        }
+      ]
+    },
+    {
+      "title": "Product Detail Page (PDP)",
+      "id": "product-detail-page",
+      "components": [
+        {
+          "...": "../blocks/pdp-product-info/_*.json#/definitions"
         },
         {
           "...": "../blocks/product-specifications/_*.json#/definitions"
@@ -88,14 +97,11 @@
       ]
     },
     {
-      "title": "Media",
-      "id": "media",
+      "title": "Media & Carousel",
+      "id": "media-carousel",
       "components": [
         {
-          "...": "../blocks/video/_*.json#/definitions"
-        },
-        {
-          "...": "../blocks/videoinfo/_*.json#/definitions"
+          "...": "../blocks/carousel/_*.json#/definitions"
         },
         {
           "...": "../blocks/image-carousel/_*.json#/definitions"
@@ -107,7 +113,10 @@
           "...": "../blocks/image-link/_*.json#/definitions"
         },
         {
-          "...": "../blocks/carousel/_*.json#/definitions"
+          "...": "../blocks/video/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/videoinfo/_*.json#/definitions"
         },
         {
           "...": "../blocks/slide/_*.json#/definitions"
@@ -115,8 +124,8 @@
       ]
     },
     {
-      "title": "Layout",
-      "id": "layout",
+      "title": "Layout & Structure",
+      "id": "layout-structure",
       "components": [
         {
           "...": "../blocks/columns/_*.json#/definitions"
@@ -130,11 +139,50 @@
       ]
     },
     {
-      "title": "Collections",
-      "id": "collections",
+      "title": "Navigation",
+      "id": "navigation",
       "components": [
         {
-          "...": "../blocks/collectionsection/_*.json#/definitions"
+          "...": "../blocks/navigation/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/navigation-action/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/navigation-item/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/navigation-link/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/navigation-logo/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/navigation-secondary-container/_*.json#/definitions"
+        }
+      ]
+    },
+    {
+      "title": "Footer",
+      "id": "footer",
+      "components": [
+        {
+          "...": "../blocks/footer-container/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-legal-links/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-logo/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-nav-column/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-nav-column-list/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-social/_*.json#/definitions"
         }
       ]
     },
