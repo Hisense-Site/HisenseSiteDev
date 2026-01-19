@@ -60,7 +60,14 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       }
     });
 
-    // 按最大值进行排序
+    // 获取产品标题用于二级排序
+    const getProductTitle = (item) => {
+      if (!item) return '';
+      if (item.title) return item.title;
+      return item.sku || '';
+    };
+
+    // 按最大值进行排序，当最大值相同时按标题Z-A排序
     const sortedProducts = listToSort.slice().sort((a, b) => {
       const maxValueA = factoryModelMaxValues[a.factoryModel];
       const maxValueB = factoryModelMaxValues[b.factoryModel];
@@ -68,12 +75,34 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       // 处理空值情况
       if (maxValueA === null || maxValueA === undefined) return 1 * direction;
       if (maxValueB === null || maxValueB === undefined) return -1 * direction;
-      if (maxValueA === maxValueB) return 0;
 
-      if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
-        return (maxValueA - maxValueB) * direction;
+      // 比较最大值
+      let compareResult = 0;
+      if (maxValueA === maxValueB) {
+        // 先按数字9-0排序，再按字母Z-A排序
+        const titleA = getProductTitle(a);
+        const titleB = getProductTitle(b);
+
+        // 先按数字9-0
+        const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
+        const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
+        const numCompare = numB - numA; // 9-0排序，数字大的在前
+
+        if (numCompare !== 0) {
+          compareResult = numCompare;
+        } else {
+          // 数字相同，按字母Z-A排序
+          compareResult = String(titleB).localeCompare(String(titleA));
+        }
+      } else {
+        if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
+          compareResult = (maxValueA - maxValueB) * direction;
+        } else {
+          compareResult = String(maxValueA).localeCompare(String(maxValueB)) * direction;
+        }
       }
-      return String(maxValueA).localeCompare(String(maxValueB)) * direction;
+
+      return compareResult;
     });
 
     // 如果是按尺寸排序，设置标志表示产品卡片应默认选中最大尺寸
