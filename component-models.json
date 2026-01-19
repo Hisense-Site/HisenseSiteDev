@@ -1215,8 +1215,8 @@
     "fields": [
       {
         "component": "select",
-        "name": "classes",
-        "value": "position",
+        "name": "position",
+        "value": "",
         "label": "Content Position",
         "description": "",
         "valueType": "string",
@@ -1237,8 +1237,8 @@
       },
       {
         "component": "select",
-        "name": "classes",
-        "value": "display",
+        "name": "style",
+        "value": "",
         "label": "Dispaly Style",
         "description": "",
         "valueType": "string",
@@ -1255,8 +1255,8 @@
       },
       {
         "component": "select",
-        "name": "classes",
-        "value": "size",
+        "name": "size",
+        "value": "",
         "label": "Icon Size",
         "description": "",
         "valueType": "string",
@@ -1273,8 +1273,8 @@
       },
       {
         "component": "select",
-        "name": "classes",
-        "value": "space",
+        "name": "space",
+        "value": "",
         "label": "Vertical Space",
         "description": "",
         "valueType": "string",
