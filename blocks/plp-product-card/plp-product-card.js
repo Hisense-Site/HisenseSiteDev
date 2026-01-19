@@ -94,12 +94,10 @@ function applyAggregatedSort(sortProperty, direction = -1) {
           // 数字相同，按字母Z-A排序
           compareResult = String(titleB).localeCompare(String(titleA));
         }
+      } else if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
+        compareResult = (maxValueA - maxValueB) * direction;
       } else {
-        if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
-          compareResult = (maxValueA - maxValueB) * direction;
-        } else {
-          compareResult = String(maxValueA).localeCompare(String(maxValueB)) * direction;
-        }
+        compareResult = String(maxValueA).localeCompare(String(maxValueB)) * direction;
       }
 
       return compareResult;
