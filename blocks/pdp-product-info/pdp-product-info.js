@@ -3186,22 +3186,40 @@ export default async function decorate(block) {
   const fav = document.createElement('div');
   fav.className = 'pdp-favorite';
   const likeEmpty = document.createElement('img');
-  likeEmpty.src = '/content/dam/hisense/image/icon/like-empty.svg';
+  likeEmpty.src = '/content/dam/hisense/us/common-icons/icon-carousel/like-empty.svg';
   fav.appendChild(likeEmpty);
   const like = document.createElement('img');
-  like.src = '/content/dam/hisense/image/icon/like.svg';
+  like.src = '/content/dam/hisense/us/common-icons/icon-carousel/like.svg';
   fav.appendChild(like);
-  info.appendChild(fav);
 
   const series = document.createElement('div');
   series.className = 'pdp-series';
   series.textContent = (product && product.series) ? product.series : '';
-  info.appendChild(series);
 
   const title = document.createElement('h1');
   title.className = 'pdp-title';
   title.textContent = (product && product.title) ? product.title : '';
-  info.appendChild(title);
+
+  const ratingWrapper = document.createElement('div');
+  ratingWrapper.classList.add('rating-wrapper');
+
+  for (let i = 1; i <= 5; i += 1) {
+    const starImg = document.createElement('img');
+    starImg.classList.add('rating-star');
+    starImg.src = i <= Math.floor(product.score)
+      ? '/content/dam/hisense/us/common-icons/icon-carousel/star-02.svg'
+      : '/content/dam/hisense/us/common-icons/icon-carousel/star-01.svg';
+    starImg.alt = i <= product.score ? '满星' : '空白星';
+    ratingWrapper.appendChild(starImg);
+  }
+  const ratingText = document.createElement('span');
+  ratingText.classList.add('rating-text');
+  ratingText.textContent = `${product.score} (${product.totalRatings} Ratings)`;
+  ratingWrapper.appendChild(ratingText);
+
+  const price = document.createElement('div');
+  price.className = 'pdp-price';
+  price.textContent = (product && product.price) ? product.price : '$39,999.00';
 
   const sizesWrapper = document.createElement('div');
   sizesWrapper.className = 'pdp-sizes';
@@ -3246,10 +3264,17 @@ export default async function decorate(block) {
       sizesWrapper.appendChild(el);
     });
   }
-  info.appendChild(sizesWrapper);
 
   const badges = document.createElement('div');
   badges.className = 'pdp-badges';
+  const badgesMobileGroup = document.createElement('div');
+  badgesMobileGroup.className = 'pdp-badges-mobile-group';
+  const badgesMobile = document.createElement('div');
+  badgesMobile.className = 'pdp-badges-mobile';
+  const badgesMobileTitle = document.createElement('div');
+  badgesMobileTitle.className = 'pdp-badges-mobile-title';
+  badgesMobileTitle.textContent = 'award winning';
+  badgesMobileGroup.appendChild(badgesMobileTitle);
   if (product && Array.isArray(product.awards) && product.awards.length) {
     product.awards.forEach((award) => {
       const b = document.createElement('div');
@@ -3261,15 +3286,19 @@ export default async function decorate(block) {
       img.src = awardPath;
       img.loading = 'lazy';
       b.appendChild(img);
-      badges.appendChild(b);
+      badges.appendChild(b.cloneNode(true));
+      const badgesMobileItem = document.createElement('div');
+      badgesMobileItem.className = 'badges-mobile-item';
+      badgesMobileItem.appendChild(b.cloneNode(true));
+      badgesMobile.appendChild(badgesMobileItem);
     });
+    badgesMobileGroup.appendChild(badgesMobile);
   } else if (product && product.badge) {
     const b = document.createElement('div');
     b.className = 'pdp-badge';
     b.textContent = product.badge;
     badges.appendChild(b);
   }
-  info.appendChild(badges);
 
   const buy = document.createElement('button');
   buy.className = 'pdp-buy-btn';
@@ -3278,7 +3307,17 @@ export default async function decorate(block) {
   if (buyLink) {
     buy.addEventListener('click', () => { window.location.href = buyLink; });
   }
-  info.appendChild(buy);
+
+  const cart = document.createElement('button');
+  cart.className = 'pdp-buy-btn';
+  cart.textContent = 'Add to Cart';
+  const cartLink = (product && (product.whereToBuyLink || product.productDetailPageLink)) || '';
+  if (buyLink) {
+    buy.addEventListener('click', () => { window.location.href = cartLink; });
+  }
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'pdp-btn-group';
+  btnGroup.append(buy, cart);
 
   const specsBtn = document.createElement('div');
   specsBtn.className = 'pdp-specs-btn';
@@ -3304,7 +3343,7 @@ export default async function decorate(block) {
     });
   });
 
-  info.appendChild(specsBtn);
+  info.append(fav, series, title, ratingWrapper, price, sizesWrapper, badges, btnGroup, specsBtn, badgesMobileGroup);
 
   block.replaceChildren(info);
 }
