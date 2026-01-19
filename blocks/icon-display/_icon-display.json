@@ -42,16 +42,16 @@
           "label": "Content Position",
           "options": [
               {
-                  "name": "Horizontal Left",
-                  "value": "left"
+                  "name": "Text Align Center",
+                  "value": "Text-left"
               },
               {
                   "name": "Horizontal Center",
-                  "value": "center"
+                  "value": "horizontal-center"
               },
                {
                   "name": "Horizontal Full",
-                  "value": "full"
+                  "value": "horizontal-full"
               },
                {
                   "name": "Vertical Display",
