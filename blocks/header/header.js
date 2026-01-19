@@ -340,10 +340,12 @@ export default async function decorate(block) {
   const pdpEl = document.querySelector('.pdp-product-info-container');
   if (pdpEl) {
     navigation.style.position = 'absolute';
+    navigation.style.transition = 'none';
   }
   let lastScrollTop = 0;
   const scrollThreshold = 10;
   window.addEventListener('scroll', () => {
+    if (pdpEl) return;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold) {
       return;
