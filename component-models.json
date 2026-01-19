@@ -1228,14 +1228,6 @@
           {
             "name": "Center",
             "value": "center"
-          },
-          {
-            "name": "Right",
-            "value": "right"
-          },
-          {
-            "name": "Full",
-            "value": "full"
           }
         ]
       },
@@ -1248,16 +1240,30 @@
         "valueType": "string",
         "options": [
           {
-            "name": "Image Only",
-            "value": "left"
+            "name": "Horizontal",
+            "value": "horizontal"
           },
           {
-            "name": "Icon Text Vertical",
-            "value": "icon-text-vertical"
+            "name": "Vertical",
+            "value": "vertical"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Icon Size",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Auto",
+            "value": "auto"
           },
           {
-            "name": "Icon Text Horizontal",
-            "value": "icon-text-horizontal"
+            "name": "Fixed",
+            "value": "Fixed"
           }
         ]
       }

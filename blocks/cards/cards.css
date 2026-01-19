@@ -199,10 +199,10 @@
     align-items: center;
     justify-content: center;
     font-family:'Hisense Sans Alfabet', sans-serif;
-    font-size: var(--size-14);
-    padding: 0 var(--size-24);
+    font-size: var(--size-12);
+    padding: 0 var(--spacing-xs);
     color: #fff !important;
-    background-color: #00AAA6;
+    background-color: var(--color-hisense-teal);
     visibility: hidden;
     position: absolute;
     bottom: 0;
