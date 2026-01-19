@@ -540,6 +540,18 @@
       },
       {
         "component": "aem-content",
+        "name": "collection_ctaGreen",
+        "label": "Green CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "collection_ctaGreenText",
+        "label": "Green CTA Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
         "name": "collection_ctaPrimary",
         "label": "Primary CTA",
         "valueType": "string"
