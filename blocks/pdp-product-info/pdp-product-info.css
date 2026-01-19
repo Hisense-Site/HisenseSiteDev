@@ -340,6 +340,13 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
       
       .pdp-nav-menu-item {
         height: 21px;
+        color: var(--color-primary-grey-50);
+        font-size: 16px;
+      }
+      
+      .pdp-nav-menu-item:active {
+        color: var(--color-primary-grey-100);
+        font-weight: var(--fontweight-medium);
       }
     }
 
@@ -348,6 +355,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
       padding: 0 0 0 40px !important;
     }
   }
+
   .pdp-nav:has(.pdp-nav-menu.hide) .pdp-nav-content img {
     transform: rotate(180deg);
   }
