@@ -10,7 +10,9 @@
             "template": {
               "name": "Icon Display",
               "model": "icon-display",
-              "filter": "icon-display"
+              "filter": "icon-display",
+              "style_position": "left",
+              "style_display": "horizontal"
             }
           }
         }
@@ -36,45 +38,10 @@
      {
       "id": "icon-display",
       "fields": [
-        {
-          "component": "multiselect",
-          "name": "classes",
-          "label": "Content Position",
-          "options": [
-              {
-                  "name": "Text Align Center",
-                  "value": "Text-left"
-              },
-              {
-                  "name": "Horizontal Center",
-                  "value": "horizontal-center"
-              },
-               {
-                  "name": "Horizontal Full",
-                  "value": "horizontal-full"
-              },
-               {
-                  "name": "Vertical Display",
-                  "value": "vertical-display"
-              },
-              {
-                  "name": "Fixed Width",
-                  "value": "fixed-width"
-              },
-              {
-                  "name": "Top Space",
-                  "value": "top-space"
-              },
-              {
-                  "name": "Bottom Space",
-                  "value": "bottom-space"
-              }
-              
-          ]
-        },
+     
         {
           "component": "select",
-          "name": "classes",
+          "name": "style_position",
           "label": "Content Position",
           "options": [
               {
@@ -93,7 +60,7 @@
         },
          {
           "component": "select",
-          "name": "classes",
+          "name": "style_display",
           "label": "Dispaly Style",
           "options": [
               {

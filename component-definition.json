@@ -459,7 +459,9 @@
                 "template": {
                   "name": "Icon Display",
                   "model": "icon-display",
-                  "filter": "icon-display"
+                  "filter": "icon-display",
+                  "style_position": "left",
+                  "style_display": "horizontal"
                 }
               }
             }
