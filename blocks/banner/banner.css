@@ -110,30 +110,6 @@
     }
   }
 
-  .cta-container {
-    display: flex;
-    gap: min(calc(16 / var(--breakpoint-pc) * 100vw), 16px);
-    position: absolute;
-    bottom: min(calc(56 / var(--breakpoint-pc) * 100vw), 56px);
-
-    .green-btn {
-      .button {
-        border: none;
-        background-color: var(--color-primary-green-50);
-
-        &:hover {
-          background-color: var(--color-primary-green-40);
-          color: #fff;
-        }
-
-        &:active {
-          color: rgb(255 255 255 / 80%);
-          background-color: var(--color-primary-green-60);
-        }
-      }
-    }
-  }
-
   .mobile-box-img {
     img {
       display: none;
@@ -167,6 +143,33 @@
       &:hover, &:active {
         background-color: #000;
         color: #fff;
+      }
+    }
+  }
+}
+
+.banner.block {
+  .cta-container {
+    display: flex;
+    gap: min(calc(16 / var(--breakpoint-pc) * 100vw), 16px);
+    position: absolute;
+    bottom: min(calc(56 / var(--breakpoint-pc) * 100vw), 56px);
+
+    .green-btn {
+      .button {
+        border: none;
+        background-color: var(--color-primary-green-50);
+        color: #fff;
+
+        &:hover {
+          background-color: var(--color-primary-green-40);
+          color: #fff;
+        }
+
+        &:active {
+          color: rgb(255 255 255 / 80%);
+          background-color: var(--color-primary-green-60);
+        }
       }
     }
   }
@@ -234,7 +237,7 @@
     .pc-box-img {
       position: absolute;
       width: 100%;
-      height: calc(244 / var(--breakpoint-mobile) * 100vw);
+      height: calc(276 / var(--breakpoint-mobile) * 100vw);
       padding: calc(30 / var(--breakpoint-mobile) * 100vw) calc(24 / var(--breakpoint-mobile) * 100vw) 0;
 
       img {
