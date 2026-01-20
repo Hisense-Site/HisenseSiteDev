@@ -41,8 +41,11 @@
           "label": "Product Introduction",
           "multi": true,
           "options": [
+            { "name": "Favorite", "value": "favorite" },
             { "name": "Title", "value": "title" },
             { "name": "Series", "value": "series" },
+            { "name": "Rating", "value": "rating" },
+            { "name": "Buttons", "value": "buttons" },
             { "name": "PriceInfo RegularPrice", "value": "priceInfo_regularPrice" },
             { "name": "Awards", "value": "awards" },
             { "name": "Position", "value": "position" }
