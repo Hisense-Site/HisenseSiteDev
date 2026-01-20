@@ -1,7 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-const SCROLL_STEP = 130; // 单个标签宽度 + 间隙
-
 function createScrollButton(direction) {
   const button = document.createElement('button');
   button.type = 'button';
@@ -109,6 +107,8 @@ function updateButtons(tabsList, leftBtn, rightBtn) {
 function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
   // 左箭头点击
   leftBtn.addEventListener('click', () => {
+    // eslint-disable-next-line no-mixed-operators
+    const SCROLL_STEP = 130 * (window.innerWidth || 1440) / 1440; // 单个标签宽度 + 间隙
     tabsList.scrollBy({
       left: -SCROLL_STEP,
       behavior: 'smooth',
@@ -118,6 +118,8 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
 
   // 右箭头点击
   rightBtn.addEventListener('click', () => {
+    // eslint-disable-next-line no-mixed-operators
+    const SCROLL_STEP = 130 * (window.innerWidth || 1440) / 1440; // 单个标签宽度 + 间隙
     tabsList.scrollBy({
       left: SCROLL_STEP,
       behavior: 'smooth',
