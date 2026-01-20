@@ -540,6 +540,18 @@
       },
       {
         "component": "aem-content",
+        "name": "collection_ctaGreen",
+        "label": "Green CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "collection_ctaGreenText",
+        "label": "Green CTA Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
         "name": "collection_ctaPrimary",
         "label": "Primary CTA",
         "valueType": "string"
@@ -940,6 +952,13 @@
         "valueType": "string",
         "name": "featurebanner_image",
         "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "featureMobile_image",
+        "label": "Mobile Image",
         "multi": false
       },
       {
@@ -1671,12 +1690,24 @@
         "multi": true,
         "options": [
           {
+            "name": "Favorite",
+            "value": "favorite"
+          },
+          {
             "name": "Title",
             "value": "title"
           },
           {
             "name": "Series",
             "value": "series"
+          },
+          {
+            "name": "Rating",
+            "value": "rating"
+          },
+          {
+            "name": "Buttons",
+            "value": "buttons"
           },
           {
             "name": "PriceInfo RegularPrice",

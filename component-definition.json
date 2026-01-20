@@ -139,14 +139,14 @@
           }
         },
         {
-          "title": "Carousel",
+          "title": "Hero Banner",
           "id": "carousel",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Carousel",
+                  "name": "Hero Banner",
                   "model": "carousel",
                   "filter": "carousel"
                 }
@@ -155,14 +155,14 @@
           }
         },
         {
-          "title": "Carousel Item",
+          "title": "Hero Banner Item",
           "id": "carouselItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Carousel Item",
+                  "name": "Hero Banner Item",
                   "model": "carouselItem"
                 }
               }
@@ -201,14 +201,14 @@
           }
         },
         {
-          "title": "Description",
+          "title": "Text",
           "id": "description",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Description",
+                  "name": "Text",
                   "model": "description",
                   "description_smallTit": "This is subheading",
                   "description_text": "<h1>This is headline</h1><p>This is description.</p>",
@@ -419,14 +419,14 @@
           }
         },
         {
-          "title": "Icon Component",
+          "title": "Card carousel",
           "id": "iconComponent",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Icon Component",
+                  "name": "Card carousel",
                   "model": "iconComponent",
                   "filter": "iconComponent"
                 }
@@ -435,14 +435,14 @@
           }
         },
         {
-          "title": "Icon Item",
+          "title": "Card carousel - Card item",
           "id": "iconItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Icon Item",
+                  "name": "Card carousel - Card item",
                   "model": "iconItem"
                 }
               }
@@ -483,14 +483,14 @@
           }
         },
         {
-          "title": "Image Carousel",
+          "title": "Media carousel",
           "id": "imageCarousel",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Image Carousel",
+                  "name": "Media carousel",
                   "model": "imageCarousel",
                   "filter": "imageCarousel"
                 }
@@ -499,14 +499,14 @@
           }
         },
         {
-          "title": "Image Carousel Item",
+          "title": "Media carousel - Media carousel item",
           "id": "imageCarouselItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Image Carousel Item",
+                  "name": "Media carousel - Media carousel item",
                   "model": "imageCarouselItem"
                 }
               }
@@ -660,14 +660,14 @@
           }
         },
         {
-          "title": "PdP Product Info",
+          "title": "Product section",
           "id": "pdp-product-info",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "PdP Product Info",
+                  "name": "Product section",
                   "model": "pdp-product-info",
                   "classes": "pdp-product-info"
                 }
@@ -676,14 +676,14 @@
           }
         },
         {
-          "title": "PLP Product Card",
+          "title": "Product card",
           "id": "plp-product-card",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "PLP Product Card",
+                  "name": "Product card",
                   "model": "plp-product-card",
                   "classes": "plp-product-card",
                   "modelFields": [
@@ -699,14 +699,14 @@
           }
         },
         {
-          "title": "PLP Product Filter Tag",
+          "title": "Product filter ",
           "id": "plp-product-tag",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "PLP Product Filter Tag",
+                  "name": "Product filter ",
                   "model": "plp-product-tag",
                   "modelFields": [],
                   "filter": "plp-product-tag"
@@ -735,14 +735,14 @@
           }
         },
         {
-          "title": "PLP Product Filters",
+          "title": "Product Sorting",
           "id": "plp-product-filters",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "PLP Product Filters",
+                  "name": "Product Sorting",
                   "filter": "plp-product-filters",
                   "model": "plp-product-filters",
                   "key-value": true
@@ -752,7 +752,7 @@
           }
         },
         {
-          "title": "PLP Product Filter Sort Item",
+          "title": "Product Sorting - Sort item",
           "id": "plp-product-sort",
           "plugins": {
             "xwalk": {
@@ -772,14 +772,14 @@
           }
         },
         {
-          "title": "Product Detail Banner",
+          "title": "Product gallery",
           "id": "product-detail-banner",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Product Detail Banner",
+                  "name": "Product gallery",
                   "filter": "product-detail-banner",
                   "key-value": true
                 }
@@ -788,14 +788,14 @@
           }
         },
         {
-          "title": "Product Detail Banner Item",
+          "title": "Product gallery - Gallery Item",
           "id": "product-detail-banner-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Product Detail Banner Item",
+                  "name": "Product gallery - Gallery Item",
                   "model": "product-detail-banner-item"
                 }
               }
@@ -803,14 +803,14 @@
           }
         },
         {
-          "title": "Product Filters Carousel",
+          "title": "Category carousel",
           "id": "product-filters-carousel",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Product Filters Carousel",
+                  "name": "Category carousel",
                   "filter": "product-filters-carousel",
                   "key-value": true
                 }
@@ -819,14 +819,14 @@
           }
         },
         {
-          "title": "Product Filters Carousel Item",
+          "title": "Category carousel Item",
           "id": "product-filters-carousel-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Product Filters Carousel Item",
+                  "name": "Category carousel Item",
                   "model": "product-filters-carousel-item"
                 }
               }

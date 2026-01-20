@@ -3328,9 +3328,6 @@ export default async function decorate(block) {
   const specsSpan = document.createElement('span');
   specsSpan.textContent = 'SPECS';
   specsBtn.appendChild(specsSpan);
-  if (!fields.includes('position')) {
-    specsBtn.classList.add('hide');
-  }
   specsBtn.addEventListener('click', () => {
     const targetElement = document.getElementById('specifications');
     if (!targetElement) {
@@ -3342,8 +3339,80 @@ export default async function decorate(block) {
       behavior: 'auto',
     });
   });
+  if (!fields.includes('position')) {
+    specsBtn.classList.add('hide');
+  }
+  if (!fields.includes('favorite')) {
+    fav.classList.add('hide');
+  }
+  if (!fields.includes('rating')) {
+    ratingWrapper.classList.add('hide');
+  }
+  if (!fields.includes('priceInfo_regularPrice')) {
+    price.classList.add('hide');
+  }
+  if (!fields.includes('buttons')) {
+    btnGroup.classList.add('hide');
+  }
 
   info.append(fav, series, title, ratingWrapper, price, sizesWrapper, badges, btnGroup, specsBtn, badgesMobileGroup);
 
   block.replaceChildren(info);
+
+  const pdpNav = document.createElement('div');
+  pdpNav.className = 'pdp-nav';
+  pdpNav.innerHTML = `<div class="pdp-nav-content">
+    <span>${(product && product.title) ? product.title : ''}</span>
+    <img class="pdp-nav-content-btn" src="/content/dam/hisense/us/common-icons/chevron-up.svg"  alt=""/>
+    </div>
+  <div class="pdp-nav-menu hide"></div>`;
+
+  pdpNav.querySelector('.pdp-nav-content-btn').addEventListener('click', () => {
+    document.querySelector('.pdp-nav-menu').classList.toggle('hide');
+  });
+  const overviewMobileBtn = document.createElement('div');
+  overviewMobileBtn.classList.add('pdp-nav-menu-item');
+  overviewMobileBtn.textContent = 'Overview';
+  overviewMobileBtn.addEventListener('click', () => {
+    const targetElement = document.getElementById('overview');
+    if (!targetElement) {
+      return;
+    }
+    const targetPosition = targetElement.getBoundingClientRect().top;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'auto',
+    });
+  });
+  const specsMobileBtn = document.createElement('div');
+  specsMobileBtn.classList.add('pdp-nav-menu-item');
+  specsMobileBtn.textContent = 'Specs';
+  specsMobileBtn.addEventListener('click', () => {
+    const targetElement = document.getElementById('specifications');
+    if (!targetElement) {
+      return;
+    }
+    const targetPosition = targetElement.getBoundingClientRect().top;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'auto',
+    });
+  });
+
+  pdpNav.querySelector('.pdp-nav-menu').append(overviewMobileBtn, specsMobileBtn);
+  pdpNav.querySelector('.pdp-nav-menu').style.height = '106px';
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const blockHeight = block.getBoundingClientRect()?.height || 0;
+    if (scrollTop > blockHeight) {
+      pdpNav.querySelector('.pdp-nav-menu').style.display = 'flex';
+      pdpNav.style.top = 0;
+    } else {
+      pdpNav.querySelector('.pdp-nav-menu').classList.add('hide');
+      pdpNav.querySelector('.pdp-nav-menu').style.display = 'none';
+      pdpNav.style.top = '-78px';
+    }
+  });
+
+  block.appendChild(pdpNav);
 }

@@ -10,22 +10,20 @@
 
 .plp-filter-group {
   padding: 14px 0;
+  overflow: hidden;
 }
 
 .plp-filter-list {
   list-style: none;
   margin: 10px 0 0;
   padding: 0 0 0 14px;
-  transition: all .5s ease;
+  transition: max-height .36s ease-in-out;
   max-height: 200px;
-  visibility: visible;
 }
 
 .plp-filter-group.hide .plp-filter-list {
-  visibility: hidden;
-  max-height: 10px;
+  max-height: 2px;
   overflow: hidden;
-  margin: 0;
 }
 
 .plp-filter-group img {
