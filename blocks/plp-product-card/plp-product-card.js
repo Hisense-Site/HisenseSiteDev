@@ -495,12 +495,7 @@ export default function decorate(block) {
         ? group.sizes
         : Array.from(sizeToVariant.keys());
       // 如果用了默认排序，默认选中最大尺寸，其他排序选中第一个尺寸
-      let selectedSize;
-      if (sizesArray.length) {
-        selectedSize = sizesArray[0];
-      } else {
-        selectedSize = null;
-      }
+      let [selectedSize] = sizesArray;
       let selectedVariant = selectedSize ? (sizeToVariant.get(selectedSize) || item) : item;
 
       // 用来更新卡片显示为指定变体
