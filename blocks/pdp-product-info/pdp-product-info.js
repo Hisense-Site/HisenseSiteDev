@@ -3348,6 +3348,9 @@ export default async function decorate(block) {
   if (!fields.includes('rating')) {
     ratingWrapper.classList.add('hide');
   }
+  if (!fields.includes('priceInfo_regularPrice')) {
+    price.classList.add('hide');
+  }
   if (!fields.includes('buttons')) {
     btnGroup.classList.add('hide');
   }
