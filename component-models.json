@@ -1214,6 +1214,41 @@
     "id": "icon-display",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Content Position",
+        "options": [
+          {
+            "name": "Text Align Center",
+            "value": "Text-left"
+          },
+          {
+            "name": "Horizontal Center",
+            "value": "horizontal-center"
+          },
+          {
+            "name": "Horizontal Full",
+            "value": "horizontal-full"
+          },
+          {
+            "name": "Vertical Display",
+            "value": "vertical-display"
+          },
+          {
+            "name": "Fixed Width",
+            "value": "fixed-width"
+          },
+          {
+            "name": "Top Space",
+            "value": "top-space"
+          },
+          {
+            "name": "Bottom Space",
+            "value": "bottom-space"
+          }
+        ]
+      },
+      {
         "component": "select",
         "name": "style_position",
         "label": "Content Position",
