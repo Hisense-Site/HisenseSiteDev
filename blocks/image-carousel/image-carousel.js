@@ -3,16 +3,19 @@ import {
   updatePosition,
   resizeObserver,
   throttle,
+  setupObserver,
+  whenElementReady,
 } from '../../utils/carousel-common.js';
+import { createElement } from '../../utils/dom-helper.js';
 
 let carouselId = 0;
 
 function bindEvent(block) {
   const cards = block.querySelectorAll('.item');
-  const bodyWidth = document.body.getBoundingClientRect().width;
+  const maxWidth = block.querySelector('.image-viewport').offsetWidth;
   let index = 0;
-  const firstCardLeft = cards[0].getBoundingClientRect().left;
-  if (cards.length * getSlideWidth(block) + firstCardLeft >= bodyWidth) {
+  const gap = parseInt(window.getComputedStyle(block.querySelector('.image-track')).gap, 10) || 0;
+  if (cards.length * getSlideWidth(block) - gap >= maxWidth) {
     block.querySelector('.image-pagination').classList.add('show');
   }
   // 按钮处理
@@ -28,21 +31,34 @@ function bindEvent(block) {
       updatePosition(block, index, true);
     }
   }, 500));
+  if (!block.classList.contains('video-carousel-block')) return;
   // 视频处理
-  block.querySelector('.image-track').addEventListener('click', (e) => {
+  block.querySelector('.video-carousel-block .image-track').addEventListener('click', (e) => {
     const dataIndex = e.target.closest('li').dataset.slideIndex;
     block.querySelectorAll('li').forEach((el, i) => {
       if (String(i) === dataIndex) {
-        el.querySelector('video').muted = true;
         el.querySelector('video')?.play();
       } else {
-        el.querySelector('video').muted = true;
         el.querySelector('video')?.pause();
       }
     });
     if (e.target.tagName === 'IMG' && e.target.closest('li').querySelector('video')) {
       e.target.style.display = 'none';
     }
+  });
+
+  whenElementReady('.video-carousel-block', () => {
+    const videos = block.querySelectorAll('.video-autoPlay');
+    setupObserver(block, videos, (e) => {
+      // resolveCallback
+      e.closest('li').querySelector('img').style.display = 'none';
+      e.click();
+    }, () => {
+      // leaveCallback - leave block viewport
+      videos.forEach((video) => {
+        video.pause();
+      });
+    });
   });
 }
 
@@ -52,14 +68,11 @@ function createVideo(child, idx) {
   if (link) {
     videourl = link.href;
   }
-  const videoDivDom = document.createElement('div');
-  videoDivDom.className = 'video-div-box';
+  const videoDivDom = createElement('div', 'video-div-box');
   const img = child.querySelector('img');
-  const video = document.createElement('video');
-  video.id = `video-${carouselId}-carousel-${idx}`;
+  const video = createElement('video', 'video-autoPlay');
+  video.id = `video-${carouselId}-carousel-${idx - 2}`;
   video.controls = true;
-  // video.width = large ? 800 : 652;
-  // video.height = large ? 452 : 368;
   video.preload = 'auto';
   video.autoplay = false;
   const source = document.createElement('source');
@@ -67,12 +80,9 @@ function createVideo(child, idx) {
   source.type = 'video/mp4';
   // 添加备用文本
   video.innerHTML = '';
-  // video.muted = true;
+  video.muted = true;
+  video.playsinline = true;
   video.appendChild(source);
-  // img.closest('div').addEventListener('click', () => {
-  //   video.play();
-  //   img.closest('div').style.display = 'none';
-  // });
   videoDivDom.appendChild(video);
   videoDivDom.appendChild(img);
   return videoDivDom;
@@ -82,14 +92,16 @@ export default async function decorate(block) {
   carouselId += 1;
   block.setAttribute('id', `image-carousel-${carouselId}`);
   const contentType = block.children[2].innerHTML.includes('video') ? 'video' : 'Image';
-  const iconContainer = document.createElement('div');
-  iconContainer.classList.add('image-viewport');
-  const iconBlocks = document.createElement('ul');
-  iconBlocks.classList.add('image-track');
+  const iconContainer = createElement('div', 'image-viewport');
+  const iconBlocks = createElement('ul', 'image-track');
+  const titleBox = createElement('div', 'carousel-title-box');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
-    if (idx === 2) { child.remove(); }
-    if (idx <= 2) return;
+    if (idx <= 2) {
+      if (idx !== 2) titleBox.appendChild(child);
+      else child.remove();
+      return;
+    }
     const iconBlock = document.createElement('li');
     child.classList.add('item');
     iconBlock.dataset.slideIndex = idx - 3;
@@ -97,7 +109,7 @@ export default async function decorate(block) {
       block.classList.add('video-carousel-block');
       let singleVideo;
       if (block.classList.contains('bottom-center-style')) {
-        child.classList.add('video-type');
+        child.classList.add('video-center-type');
         singleVideo = createVideo(child, idx);
       } else {
         singleVideo = createVideo(child, idx);
@@ -105,8 +117,10 @@ export default async function decorate(block) {
       }
       if (child.querySelector('picture')) {
         child.querySelector('picture').closest('div').classList.add('video-play');
+        child.querySelector('picture').closest('div').remove();
       }
       if (singleVideo) child.replaceChild(singleVideo, child.firstElementChild);
+      child.lastElementChild.classList.add('item-content');
     } else {
       [...child.children].forEach((item) => {
         if (item.querySelector('picture')) {
@@ -123,20 +137,17 @@ export default async function decorate(block) {
     iconBlocks.appendChild(iconBlock);
   });
   iconContainer.appendChild(iconBlocks);
+  block.appendChild(titleBox);
   block.appendChild(iconContainer);
 
   if (iconBlocks.children) {
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('image-pagination');
+    const buttonContainer = createElement('div', 'image-pagination');
     buttonContainer.innerHTML = `
       <button type="button" class="slide-prev" disabled></button>
       <button type="button" class="slide-next"></button>
     `;
     block.appendChild(buttonContainer);
   }
-  // whenElementReady('.image-carousel', () => {
-  //   bindEvent(block);
-  // });
   resizeObserver('.image-carousel', () => {
     bindEvent(block);
   });
