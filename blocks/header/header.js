@@ -329,7 +329,7 @@ const handleChangeNavPosition = (navigation) => {
     navigation.style.position = '';
     navigation.style.transition = '';
   }
-}
+};
 
 /**
  * loads and decorates the header, mainly the nav
