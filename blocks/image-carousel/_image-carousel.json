@@ -1,14 +1,14 @@
 {
   "definitions": [
     {
-      "title": "Image Carousel",
+      "title": "Media carousel",
       "id": "imageCarousel",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Image Carousel",
+              "name": "Media carousel",
               "model": "imageCarousel",
               "filter": "imageCarousel"
             }
@@ -17,14 +17,14 @@
       }
     },
     {
-      "title": "Image Carousel Item",
+      "title": "Media carousel - Media carousel item",
       "id": "imageCarouselItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Image Carousel Item",
+              "name": "Media carousel - Media carousel item",
               "model": "imageCarouselItem"
             }
           }
