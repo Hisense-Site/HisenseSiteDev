@@ -1561,12 +1561,24 @@
         "multi": true,
         "options": [
           {
+            "name": "Favorite",
+            "value": "favorite"
+          },
+          {
             "name": "Title",
             "value": "title"
           },
           {
             "name": "Series",
             "value": "series"
+          },
+          {
+            "name": "Rating",
+            "value": "rating"
+          },
+          {
+            "name": "Buttons",
+            "value": "buttons"
           },
           {
             "name": "PriceInfo RegularPrice",
