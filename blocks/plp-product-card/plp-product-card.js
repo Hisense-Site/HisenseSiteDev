@@ -60,10 +60,9 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       }
     });
 
-    // 获取产品标题用于二级排序
-    const getProductTitle = (item) => {
+    const getProductSeries = (item) => {
       if (!item) return '';
-      if (item.title) return item.title;
+      if (item.series) return item.series;
       return item.sku || '';
     };
 
@@ -80,8 +79,8 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       let compareResult = 0;
       if (maxValueA === maxValueB) {
         // 先按数字9-0排序，再按字母Z-A排序
-        const titleA = getProductTitle(a);
-        const titleB = getProductTitle(b);
+        const titleA = getProductSeries(a);
+        const titleB = getProductSeries(b);
 
         // 先按数字9-0
         const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
