@@ -205,6 +205,14 @@
             height: auto;
             border: initial;
             border-radius: 0;
+            
+            .product-filter-img-box {
+              height: initial;
+            }
+            
+            .product-filter-text {
+              display: none;
+            }
           }
   
           .product-filter-item:last-child {

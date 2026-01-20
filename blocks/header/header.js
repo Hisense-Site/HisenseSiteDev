@@ -338,14 +338,15 @@ export default async function decorate(block) {
   const navigation = document.createElement('div');
   navigation.id = 'navigation';
   const pdpEl = document.querySelector('.pdp-product-info-container');
-  if (pdpEl) {
+  const plpEl = document.querySelector('.plp-product-filters');
+  if (pdpEl || plpEl) {
     navigation.style.position = 'absolute';
     navigation.style.transition = 'none';
   }
   let lastScrollTop = 0;
   const scrollThreshold = 10;
   window.addEventListener('scroll', () => {
-    if (pdpEl) return;
+    if (pdpEl || plpEl) return;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold) {
       return;
