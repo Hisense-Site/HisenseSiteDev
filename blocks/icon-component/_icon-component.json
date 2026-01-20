@@ -1,14 +1,14 @@
 {
   "definitions": [
     {
-      "title": "Icon Component",
+      "title": "Card carousel",
       "id": "iconComponent",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Icon Component",
+              "name": "Card carousel",
               "model": "iconComponent",
               "filter": "iconComponent"
             }
@@ -17,14 +17,14 @@
       }
     },
     {
-      "title": "Icon Item",
+      "title": "Card carousel - Card item",
       "id": "iconItem",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Icon Item",
+              "name": "Card carousel - Card item",
               "model": "iconItem"
             }
           }
