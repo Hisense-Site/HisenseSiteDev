@@ -28,9 +28,12 @@
       ]
     },
     {
-      "title": "Page Structure",
-      "id": "page-structure",
+      "title": "Banner",
+      "id": "banner",
       "components": [
+        {
+          "...": "../blocks/carousel/_*.json#/definitions"
+        },
         {
           "...": "../blocks/hero/_*.json#/definitions"
         },
@@ -89,9 +92,6 @@
           "...": "../blocks/product-specifications/_*.json#/definitions"
         },
         {
-          "...": "../blocks/properties/_*.json#/definitions"
-        },
-        {
           "...": "../blocks/product-detail-banner/_*.json#/definitions"
         }
       ]
@@ -100,9 +100,6 @@
       "title": "Media & Carousel",
       "id": "media-carousel",
       "components": [
-        {
-          "...": "../blocks/carousel/_*.json#/definitions"
-        },
         {
           "...": "../blocks/image-carousel/_*.json#/definitions"
         },
@@ -120,6 +117,9 @@
         },
         {
           "...": "../blocks/slide/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/icon-component/_*.json#/definitions"
         }
       ]
     },
@@ -190,9 +190,6 @@
       "title": "Utility",
       "id": "utility",
       "components": [
-        {
-          "...": "../blocks/icon-component/_*.json#/definitions"
-        },
         {
           "...": "../blocks/disclaimer/_*.json#/definitions"
         }
