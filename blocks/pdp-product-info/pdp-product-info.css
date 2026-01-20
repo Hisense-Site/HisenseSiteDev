@@ -323,6 +323,12 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
       align-items: center;
       justify-content: space-between;
       
+      span {
+        font-size: 16px;
+        font-weight: var(--fontweight-medium);
+        line-height: 1.2;
+      }
+      
       img {
         transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
       }
