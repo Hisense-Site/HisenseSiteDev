@@ -39,7 +39,7 @@ html {
   --color-primary-green-40: #50C3C3;
   --color-primary-green-30: #85D6D4;
   --color-primary-green-20: #C8EFEF;
-  --color-primary-green-10: #E6FAFA; /** pc and mobile 不统一 */
+  --color-primary-green-10: #EDFCFB;
   --color-primary-grey-100: #000;
   --color-primary-grey-90: #141414;
   --color-primary-grey-80: #242424;
@@ -214,7 +214,8 @@ html {
   --radius-sm: var(--size-4);
   --radius-md: var(--size-8);
   --radius-lg: var(--size-12);
-  --radius-xl: var(--size-16); /** pc and mobile不统一 */
+  --radius-xl: var(--size-16);
+  --radius-pc-xl: var(--size-20);
   --radius-xxl: var(--size-100);
 
   /* basic size in mobile  */
@@ -641,9 +642,13 @@ h4 {
 	line-height: var(--line-height-m);
 }
 
+h5 {
+  font-size: var(--fontsize-title1);
+}
+
 @media (width < 860px) {
   h1 {
-    font-size: var(--fontsize-h1);
+    font-size: min(var(--fontsize-h1), 6.25vh);
   }
 
   h2 {
@@ -652,6 +657,10 @@ h4 {
 
   h3 {
     font-size: var(--fontsize-h3);
+  }
+
+  h5 {
+    font-size: var(--fontsize-title3);
   }
 }
 
