@@ -48,19 +48,7 @@
                   "value": "Text-left"
               },
               {
-                  "name": "Horizontal Center",
-                  "value": "horizontal-center"
-              },
-               {
-                  "name": "Horizontal Full",
-                  "value": "horizontal-full"
-              },
-               {
-                  "name": "Vertical Display",
-                  "value": "vertical-display"
-              },
-              {
-                  "name": "Fixed Width",
+                  "name": "Fixed Width Style",
                   "value": "fixed-width"
               },
               {
@@ -71,7 +59,6 @@
                   "name": "Bottom Space",
                   "value": "bottom-space"
               }
-              
           ]
         },
         {
@@ -129,10 +116,6 @@
           "name": "classes",
           "label": "Vertical Space",
           "options": [
-              {
-                  "name": "None",
-                  "value": "none"
-              },
               {
                   "name": "Top",
                   "value": "top"

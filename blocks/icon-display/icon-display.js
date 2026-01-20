@@ -16,12 +16,16 @@ export default function decorate(block) {
         div.remove();
       }
       if (div.querySelector('picture') && div.children.length === 1) { div.className = 'icon-image'; }
-      else if (div.children.length === 1) {
+      else {
         div.className = 'icon-text';
-        text.append(div);
+        if (div.innerHTML.trim() !== '') {
+          text.append(div);
+        }
       }
     });
-    if (text.children.length > 0) item.append(text);
+    if (text.innerHTML.trim() !== '') {
+      item.append(text);
+    }
     // or use div.
     box.append(item);
   });
