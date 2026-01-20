@@ -92,8 +92,8 @@ export default async function decorate(block) {
   carouselId += 1;
   block.setAttribute('id', `image-carousel-${carouselId}`);
   const contentType = block.children[2].innerHTML.includes('video') ? 'video' : 'Image';
-  const iconContainer = createElement('div', 'image-viewport');
-  const iconBlocks = createElement('ul', 'image-track');
+  const imageCarouselContainer = createElement('div', 'image-viewport');
+  const imageCarouselBlocks = createElement('ul', 'image-track');
   const titleBox = createElement('div', 'carousel-title-box');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
@@ -134,13 +134,13 @@ export default async function decorate(block) {
       });
     }
     iconBlock.appendChild(child);
-    iconBlocks.appendChild(iconBlock);
+    imageCarouselBlocks.appendChild(iconBlock);
   });
-  iconContainer.appendChild(iconBlocks);
+  imageCarouselContainer.appendChild(imageCarouselBlocks);
   block.appendChild(titleBox);
-  block.appendChild(iconContainer);
+  block.appendChild(imageCarouselContainer);
 
-  if (iconBlocks.children) {
+  if (imageCarouselBlocks.children) {
     const buttonContainer = createElement('div', 'image-pagination');
     buttonContainer.innerHTML = `
       <button type="button" class="slide-prev" disabled></button>
