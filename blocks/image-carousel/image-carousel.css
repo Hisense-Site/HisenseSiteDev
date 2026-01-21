@@ -148,8 +148,8 @@
       }
 
       &:disabled {
-        border-color: var(--color-hisense-grey-02);
-        color: var(--color-hisense-grey-02);
+        border-color: var(--color-primary-grey-40);
+        color: var(--color-primary-grey-40);
 
         &:hover {background-color: transparent}
       }
@@ -162,10 +162,6 @@
       overflow: hidden;
       position: relative;
     }
-
-    /* .image-pagination {
-      top: -30px;
-    } */
   }
 }
 

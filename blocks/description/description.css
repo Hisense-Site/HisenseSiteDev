@@ -100,4 +100,12 @@
   .block.description.pb-80 {
     padding-bottom:  var(--spacing-sm);
   }
+
+  .block.description.pb-40 {
+    padding-bottom: var(--spacing-sm);
+  }
+
+  .block.description.pb-80 {
+    padding-bottom:  var(--spacing-sm);
+  }
 }

@@ -60,76 +60,8 @@
                   "value": "bottom-space"
               }
           ]
-        },
-        {
-          "component": "select",
-          "name": "style_position",
-          "label": "Content Position",
-          "options": [
-              {
-                  "name": "Left",
-                  "value": "left"
-              },
-              {
-                  "name": "Center",
-                  "value": "center"
-              },
-               {
-                  "name": "Full",
-                  "value": "full"
-              }
-          ]
-        },
-         {
-          "component": "select",
-          "name": "style_display",
-          "label": "Dispaly Style",
-          "options": [
-              {
-                  "name": "Horizontal",
-                  "value": "horizontal"
-              },
-              {
-                  "name": "Vertical",
-                  "value": "vertical"
-              }
-          ]
-        },
-        {
-          "component": "select",
-          "name": "classes",
-          "label": "Icon Size",
-          "options": [
-              {
-                  "name": "Auto",
-                  "value": "auto"
-              },
-              {
-                  "name": "Fixed",
-                  "value": "Fixed"
-              }
-              
-          ]
-        },
-         {
-          "component": "select",
-          "name": "classes",
-          "label": "Vertical Space",
-          "options": [
-              {
-                  "name": "Top",
-                  "value": "top"
-              },
-              {
-                  "name": "Bottom",
-                  "value": "bottom"
-              },
-               {
-                  "name": "Both",
-                  "value": "both"
-              }
-          ]
         }
+        
       ]
     },
     {
