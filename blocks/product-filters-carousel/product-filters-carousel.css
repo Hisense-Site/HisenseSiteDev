@@ -67,7 +67,10 @@ main > .plp-product-card-container.plp-product-filters-container {
 
 main > .section.plp-product-card-container.plp-product-filters-container > .plp-product-filters-wrapper {
   flex-shrink: 0;
-  padding: 0 18px;
+  padding: 16px 18px;
+  background: rgb(244 244 244 / 100%);
+  top: 0;
+  position: sticky;
 }
 
 main > .plp-product-card-container.plp-product-filters-container * {
@@ -261,7 +264,6 @@ main > .plp-product-card-container.plp-product-filters-container * {
 @media (width < 860px) {
   main > .section.plp-product-filters-container, main > .plp-product-card-container {
     width: 100%;
-    overflow: hidden;
     padding: 32px 18px 0 !important;
     margin-bottom: 32px;
     gap: 16px !important; /* 列间距 */
