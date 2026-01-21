@@ -409,6 +409,7 @@ export default function decorate(block) {
 
     // 渲染每个聚合后的产品卡片
     groupedArray.forEach((group) => {
+      console.log(group)
       const item = group.representative;
       const card = document.createElement('div');
       card.className = 'product-card';
