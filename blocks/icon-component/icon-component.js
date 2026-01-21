@@ -25,7 +25,9 @@ function bindEvent(block) {
       });
     };
     cards.forEach((card) => {
-      mobilePressEffect(viewportWidth, card, goToNextPage(card));
+      mobilePressEffect(viewportWidth, card, ()=>{
+        goToNextPage(card);
+      });
     });
   }
   const { gap } = window.getComputedStyle(ul);
@@ -44,10 +46,6 @@ function bindEvent(block) {
       updatePosition(block, index, true);
     }
   }, 500));
-  ul.addEventListener('scroll', () => {
-    const box = block.querySelector('.icon-component-wrapper');
-    box.style.padding = '0 !important';
-  });
 }
 
 export default async function decorate(block) {

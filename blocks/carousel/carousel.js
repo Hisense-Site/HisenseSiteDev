@@ -1,5 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { whenElementReady, throttle } from '../../utils/carousel-common.js';
+import { createElement } from '../../utils/dom-helper.js';
 
 let carouselTimer;
 let carouselInterval;
@@ -137,20 +138,15 @@ function bindEvents(block) {
 }
 
 function createSlide(block, row, slideIndex) {
-  const slide = document.createElement('li');
-  const div = document.createElement('div');
-  div.setAttribute('class', 'carousel-content h-grid-container');
+  const slide = createElement('li','carousel-item');
+  const div = createElement('div', 'carousel-content h-grid-container');
   moveInstrumentation(row, slide);
-  const buttonDiv = document.createElement('div');
-  buttonDiv.setAttribute('class', 'carousel-cta-container');
-  moveInstrumentation(row, slide);
-  slide.classList.add('carousel-item');
+  const buttonDiv = createElement('div','carousel-cta-container');
+  const textContent = createElement('div','text-content');
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
     let contentType; // true is svg mode; false is text mode
-    // let pcImg;
-    // let mobileImg;
     let buttonTheme;
     switch (colIdx) {
       case 0:
@@ -169,10 +165,12 @@ function createSlide(block, row, slideIndex) {
       case 2:
         // colorful text div
         column.classList.add('teal-text');
+        textContent.append(column);
         break;
       case 3:
         // richtext div
-        column.setAttribute('class', 'carousel-item-content text-content');
+        column.setAttribute('class', 'carousel-item-content');
+        textContent.append(column);
         break;
       case 4:
         // icon-svg div
@@ -195,7 +193,7 @@ function createSlide(block, row, slideIndex) {
         column.style.display = 'none';
       }
       // 处理文字和icon是一个container
-      div.append(column);
+      colIdx === 4 ? div.append(column) : div.append(textContent);
     } else if ([5, 6].includes(colIdx)) {
       // 处理button
       buttonDiv.append(column);
@@ -208,19 +206,16 @@ function createSlide(block, row, slideIndex) {
 
 export default async function decorate(block) {
   const isSingleSlide = [...block.children].length < 2;
-  const wholeContainer = document.createElement('ul');
-  wholeContainer.classList.add('carousel-items-container');
+  const wholeContainer = createElement('ul', 'carousel-items-container');
   let slideIndicators;
   if (!isSingleSlide) {
-    slideIndicators = document.createElement('ol');
-    slideIndicators.classList.add('carousel-item-indicators');
+    slideIndicators = createElement('ol', 'carousel-item-indicators');
   }
   [...block.children].forEach((row, idx) => {
     const slide = createSlide(block, row, idx);
     wholeContainer.append(slide);
     if (slideIndicators) {
-      const indicator = document.createElement('li');
-      indicator.classList.add('carousel-item-indicator');
+      const indicator = createElement('li', 'carousel-item-indicator');
       indicator.dataset.targetSlide = String(idx);
       indicator.innerHTML = `
         <button type="button" class="indicator-button"></button>`;
@@ -239,8 +234,7 @@ export default async function decorate(block) {
   if (slideIndicators) {
     block.append(slideIndicators);
     // 处理左右箭头---未定版(mobile不要)
-    const slideNavButtons = document.createElement('div');
-    slideNavButtons.classList.add('carousel-navigation-buttons');
+    const slideNavButtons = createElement('div','carousel-navigation-buttons');
     slideNavButtons.innerHTML = `
       <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
       <button type="button" class="slide-next" aria-label="Next Slide"></button>
