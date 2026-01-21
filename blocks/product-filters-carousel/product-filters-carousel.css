@@ -65,8 +65,9 @@ main > .plp-product-card-container.plp-product-filters-container {
   display: none;
 }
 
-main > .section.plp-product-card-container.plp-product-filters-container > div {
-  /* padding: 0; */
+main > .section.plp-product-card-container.plp-product-filters-container > .plp-product-filters-wrapper {
+  flex-shrink: 0;
+  padding: 0 18px;
 }
 
 main > .plp-product-card-container.plp-product-filters-container * {

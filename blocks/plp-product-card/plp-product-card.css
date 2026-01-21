@@ -26,10 +26,23 @@
 }
 
 .plp-product-card-title {
-    width: 65px;
-    height: 20px;
-    margin-bottom: 8px;
-  display: none;
+  width: 100%;
+  height: var(--size-18);
+  margin-bottom: var(--size-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  .plp-product-card-tag {
+    display: flex;
+    align-items: center;
+    font-size: var(--fontsize-caption1);
+    background: var(--color-primary-green-50);
+    padding: var(--size-2) calc(12.5 / var(--breakpoint-mobile) * 100vw);
+    color: var(--color-primary-grey-10);
+    border-radius: var(--radius-xl);
+    line-height: 1.4;
+  }
 }
 
 .plp-product-img {

@@ -416,6 +416,8 @@ export default function decorate(block) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'plp-product-card-title';
 
+      titleDiv.innerHTML = `<div class="plp-product-card-tag">${'Bestseller'}</div>`;
+
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
       const imgPath = (() => {
