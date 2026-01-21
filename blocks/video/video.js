@@ -80,6 +80,7 @@ export default function decorate(block) {
       if (!v.paused) return;
       try {
         await v.play();
+        coverImg.style.display = 'none';
         v.setAttribute('data-was-playing', 'true');
         coverImg.style.display = 'none';
       } catch (error) { /* empty */ }

@@ -215,6 +215,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 }
 
 .pdp-specs-btn {
+  order: 9;
   display: flex;
   align-items: center;
   gap: var(--size-6);

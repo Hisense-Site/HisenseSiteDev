@@ -15,17 +15,19 @@
 .collectionsection-wrapper > div > div:first-child div h5,
 .collectionsection-wrapper > div > div:first-child div h6{
   color: #00AAA6;
-  font-family: 'Hisense Sans Alfabet', sans-serif;
+  font-family: var(--font-family);
   margin: 0;
 }
 
 .collectionsection-wrapper > div > div:first-child div p{
-  font-size: var(--body-font-size-l);
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  font-size: var(--size-16);
+  line-height: 120%;
   text-transform: uppercase;
   padding: 0;
+
+   @media (width >= 860px) {
+    font-size: var(--size-20);
+  }
 }
 
 .collectionsection-wrapper > div > div:last-child div p,
@@ -37,14 +39,17 @@
 .collectionsection-wrapper > div > div:last-child div h6{
   padding: 0;
   color: #333;
-  margin: 10px 0 0;
-  font-family: 'Hisense Sans Alfabet', sans-serif;
+  margin: var(--size-10) 0 0;
+  font-family: var(--font-family);
 }
 
 .collectionsection-wrapper > div > div:last-child div p{
-  font-size: 34px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: capitalize;
+  font-size: var(--size-24);
+  font-weight: var(--fontweight-medium);
+  line-height: 120%;
+
+   @media (width >= 860px) {
+    font-size: var(--size-34);
+    font-weight: var(--fontweight-book);
+  }
 }
