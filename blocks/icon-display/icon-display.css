@@ -83,7 +83,7 @@
     }
 }
 
-.large-icon.icon-display-item .icon-image img{
+.large-icon .icon-display-item .icon-image img{
    @media (width >= 860px) {
          height: var(--size-88);
     }
