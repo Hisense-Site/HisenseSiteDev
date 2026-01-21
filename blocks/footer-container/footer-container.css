@@ -370,7 +370,11 @@ footer footer {
   justify-content: space-between;
   align-items: flex-start;
 	flex-wrap: wrap;
-	gap: var(--size-30);
+	gap: var(--size-12) var(--size-30);
+
+  @media (width < 860px) {
+    gap: var(--size-30);
+  }
 
   .footer-lan-group {
     display: flex;
@@ -380,7 +384,10 @@ footer footer {
     font-size: var(--size-16);
     line-height: 1.2;
     gap: var(--size-8);
-    width: 100%;
+
+    @media (width < 860px) {
+      width: 100%;
+    }
 
     img {
       width: var(--size-20);
@@ -433,4 +440,11 @@ footer footer {
 	font-size: var(--size-14);
   font-weight: var(--fontweight-book);
   flex-shrink: 0;
+  order: 3;
+  width: 100%;
+
+  @media (width < 860px) {
+    order: inherit;
+    width: auto;
+  }
 }
