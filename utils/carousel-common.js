@@ -117,3 +117,35 @@ export function throttle(fn, delay = 500) {
     }, delay);
   };
 }
+
+export function initCarouselVideo(carouselRoot, selector, resolveCallBack) {
+  const vOptions = {
+    root: carouselRoot,
+    rootMargin: '0px',
+    threshold: 1.0,
+  };
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.intersectionRatio === 1) {
+        resolveCallBack(video);
+      }
+    });
+  }, vOptions);
+  selector.forEach((v) => videoObserver.observe(v));
+}
+
+export function setupObserver(carouselRoot, selector, resolveCallBack, leaveCallBack) {
+  const options = {
+    threshold: 0.8,
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        initCarouselVideo(carouselRoot, selector, resolveCallBack);
+      } else leaveCallBack(v);
+    });
+  }, options);
+  if (carouselRoot) observer.observe(carouselRoot);
+}
