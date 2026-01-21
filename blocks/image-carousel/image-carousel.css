@@ -356,6 +356,11 @@
 }
 
 .image-carousel.bottom-center-style {
+  .image-viewport {
+    max-width: min(55.55555556vw, 800px);
+    margin: 0 auto;
+  }
+
   .item {
     display: flex;
     flex-direction: column;
@@ -529,7 +534,14 @@
     height: min(47.43589744vw, 185px);
   }
 
-  .bottom-center-style .item.video-center-type {
+  .image-carousel.bottom-center-style {
+    .image-viewport {
+      max-width: min(84.61538462vw, 330px);
+      margin: 0 auto;
+    }
+  }
+
+  .image-carousel.bottom-center-style .item.video-center-type {
     width: min(84.61538462vw, 330px);
     height: auto;
     gap: var(--fontsize-title1);

@@ -81,7 +81,7 @@ function createVideo(child, idx) {
   // 添加备用文本
   video.innerHTML = '';
   video.muted = true;
-  video.playsinline = true;
+  video.playsInline = true;
   video.appendChild(source);
   videoDivDom.appendChild(video);
   videoDivDom.appendChild(img);

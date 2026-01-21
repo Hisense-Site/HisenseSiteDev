@@ -249,21 +249,24 @@
 
   .icon-viewport {
     overflow: visible;
-    gap: var(--spacing-xs);
+
+    ul {
+      gap: min(var(--spacing-xs), 16px);
+    }
 
     ul>li {
       width: min(61.53846154vw, 240px);
       height: min(61.53846154vw, 240px);
       box-sizing: border-box;
-      padding: 0 var(--spacing-md);
+      padding: min(var(--spacing-md), 30px) 0;
       border-radius: var( --radius-xl);
 
       .item {
         padding: 0;
-        gap: var(--spacing-sm);
+        gap: min(var(--spacing-sm), 24px);
 
         .item-text {
-          font-size: var(--fontsize-title2);
+          font-size: min(var(--fontsize-title2), 20px);
         }
       }
     }

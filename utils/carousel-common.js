@@ -152,7 +152,7 @@ export function setupObserver(carouselRoot, selector, resolveCallBack, leaveCall
 
 export function mobilePressEffect(viewport, card, callback) {
   if (viewport >= 860) {
-    callback();
+    if (callback) callback();
     return;
   }
   let touchStartTime;

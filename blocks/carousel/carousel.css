@@ -3,6 +3,11 @@ main > .section:first-of-type {
   background: transparent !important;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 .carousel-wrapper {
   max-width: 2560px !important;
   padding: 0 !important;
@@ -76,27 +81,32 @@ main > .section:first-of-type {
 
   .carousel-content {
     position: absolute;
-    height: min(25vw, 327px);
     top: 50%;
     left: calc(50% - min(var(--container-max-width), 90vw) / 2);
     transform: translate(0, -50%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: min(var(--size-48), 48px);
   }
 
   .carousel-item-content {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3xs);
   }
 
   .teal-text {
     color: var(--color-hisense-teal);
     font-weight: var(--fontweight-medium);
     line-height: min(1.94444444vw, 28px);
-    margin-bottom: min(0.55555556vw, 8px);
     font-size: var(--fontsize-title2);
     margin-top: 0 ;
   }
@@ -107,7 +117,6 @@ main > .section:first-of-type {
 
   .carousel-item-content.icon-svg {
     width: min(25.27777778vw, 327px);
-    aspect-ratio: 1440/860;
 
     picture {
       inset: 0;
@@ -257,8 +266,8 @@ main > .section:first-of-type {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: var(--size-30);
-  right: var(--size-30);
+  left: min(var(--size-30), 30px);
+  right: min(var(--size-30), 30px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -267,8 +276,8 @@ main > .section:first-of-type {
 
 .carousel .carousel-navigation-buttons button {
   position: relative;
-  width: var(--size-40);
-  height: var(--size-40);
+  width: min(var(--size-40), 40px);
+  height: min(var(--size-40), 40px);
   margin: 0;
   border-radius: 50%;
   padding: 0;
@@ -287,8 +296,8 @@ main > .section:first-of-type {
   border: 2px solid;
   border-bottom: 0;
   border-left: 0;
-  height: var(--size-12);
-  width: var(--size-12);
+  height: min(var(--size-12), 12px);
+  width: min(var(--size-12), 12px);
   position: absolute;
   top: 50%;
   left: calc(50% + 2px);
@@ -303,7 +312,7 @@ main > .section:first-of-type {
 
 .carousel.only-picture {
   .carousel-items-container {
-    max-height: 44.44444444vw !important;
+    max-height: min(44.44444444vw, 640px) !important;
 
     .carousel-item {
       .carousel-content {
@@ -352,8 +361,8 @@ main > .section:first-of-type {
         transform: none;
         font-weight: var(--fontweight-medium);
         bottom: min(13.33333333vw, 8.125vh);
-        height: min(64.10256410vw, 39.0625vh);
         left: calc(50% - min(var(--container-max-width), 100vw) / 2);
+        gap: min(var(--size-30), 30px);
 
         .carousel-cta-container {
           gap: min(var(--size-16), 16px);
