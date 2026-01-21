@@ -138,11 +138,11 @@ function bindEvents(block) {
 }
 
 function createSlide(block, row, slideIndex) {
-  const slide = createElement('li','carousel-item');
+  const slide = createElement('li', 'carousel-item');
   const div = createElement('div', 'carousel-content h-grid-container');
   moveInstrumentation(row, slide);
-  const buttonDiv = createElement('div','carousel-cta-container');
-  const textContent = createElement('div','text-content');
+  const buttonDiv = createElement('div', 'carousel-cta-container');
+  const textContent = createElement('div', 'text-content');
   slide.dataset.slideIndex = slideIndex;
   [...row.children].forEach((column, colIdx) => {
     let theme;
@@ -193,7 +193,8 @@ function createSlide(block, row, slideIndex) {
         column.style.display = 'none';
       }
       // 处理文字和icon是一个container
-      colIdx === 4 ? div.append(column) : div.append(textContent);
+      if (colIdx === 4) div.append(column);
+      else div.append(textContent);
     } else if ([5, 6].includes(colIdx)) {
       // 处理button
       buttonDiv.append(column);
@@ -234,7 +235,7 @@ export default async function decorate(block) {
   if (slideIndicators) {
     block.append(slideIndicators);
     // 处理左右箭头---未定版(mobile不要)
-    const slideNavButtons = createElement('div','carousel-navigation-buttons');
+    const slideNavButtons = createElement('div', 'carousel-navigation-buttons');
     slideNavButtons.innerHTML = `
       <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
       <button type="button" class="slide-next" aria-label="Next Slide"></button>

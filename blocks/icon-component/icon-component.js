@@ -25,7 +25,7 @@ function bindEvent(block) {
       });
     };
     cards.forEach((card) => {
-      mobilePressEffect(viewportWidth, card, ()=>{
+      mobilePressEffect(viewportWidth, card, () => {
         goToNextPage(card);
       });
     });
