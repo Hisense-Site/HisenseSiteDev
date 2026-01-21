@@ -3,7 +3,9 @@ import {
   getSlideWidth,
   resizeObserver,
   throttle,
+  mobilePressEffect,
 } from '../../utils/carousel-common.js';
+import { createElement } from '../../utils/dom-helper.js';
 
 let index = 0;
 
@@ -11,19 +13,24 @@ function bindEvent(block) {
   const cards = block.querySelectorAll('li');
   const ul = block.querySelector('ul');
   const containerWidth = block.querySelector('.icon-viewport').offsetWidth;
+  const viewportWidth = window.innerWidth;
+  // text-left type展示button组件，卡片不需要点击，通过button跳转
   if (!block.classList.contains('text-left')) {
-    // 展示button组件，卡片不需要点击，通过button跳转
-    cards.forEach((card) => {
+    // mobile 模式需要按压动效
+    const goToNextPage = (card) => {
       const link = card.querySelector('a');
       const url = link?.href;
       card.addEventListener('click', () => {
         if (url) window.location.href = url;
       });
+    };
+    cards.forEach((card) => {
+      mobilePressEffect(viewportWidth, card, goToNextPage(card));
     });
   }
   const { gap } = window.getComputedStyle(ul);
   if (cards.length * getSlideWidth(block) - parseFloat(gap) > containerWidth) {
-    block.querySelector('.pagination').classList.add('show');
+    block.querySelector('.icon-pagination').classList.add('show');
   }
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
     if (index > 0) {
@@ -44,13 +51,15 @@ function bindEvent(block) {
 }
 
 export default async function decorate(block) {
-  const iconContainer = document.createElement('div');
-  iconContainer.classList.add('icon-viewport');
-  const iconBlocks = document.createElement('ul');
-  iconBlocks.classList.add('icon-track');
+  const iconContainer = createElement('div', 'icon-viewport');
+  const iconBlocks = createElement('ul', 'icon-track');
+  const titleBox = createElement('div', 'icon-title-box');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
-    if (idx <= 1) return;
+    if (idx <= 1) {
+      titleBox.appendChild(child);
+      return;
+    }
     const iconBlock = document.createElement('li');
     child.classList.add('item');
     let ctaDiv;
@@ -79,11 +88,11 @@ export default async function decorate(block) {
     iconBlocks.appendChild(iconBlock);
   });
   iconContainer.appendChild(iconBlocks);
+  block.appendChild(titleBox);
   block.appendChild(iconContainer);
 
   if (iconBlocks.children) {
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('pagination');
+    const buttonContainer = createElement('div', 'icon-pagination');
     buttonContainer.innerHTML = `
       <button type="button" class="slide-prev" disabled></button>
       <button type="button" class="slide-next"></button>

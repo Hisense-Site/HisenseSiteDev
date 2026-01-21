@@ -1230,6 +1230,60 @@
     ]
   },
   {
+    "id": "icon-display",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Content Position",
+        "options": [
+          {
+            "name": "Text Align Center",
+            "value": "Text-left"
+          },
+          {
+            "name": "Fixed Width Style",
+            "value": "fixed-width"
+          },
+          {
+            "name": "Top Space",
+            "value": "top-space"
+          },
+          {
+            "name": "Bottom Space",
+            "value": "bottom-space"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "icon-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "sub-title",
+        "value": "",
+        "label": "Sub Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "imageCarousel",
     "fields": [
       {

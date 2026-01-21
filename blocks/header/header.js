@@ -319,6 +319,18 @@ function buildDropdown(data) {
 //   return darkMainPart + suffix;
 // }
 
+const handleChangeNavPosition = (navigation) => {
+  const pdpEl = document.querySelector('.pdp-product-info-container');
+  const plpEl = document.querySelector('.plp-product-filters');
+  if (window.innerWidth < 860 && (pdpEl || plpEl)) {
+    navigation.style.position = 'absolute';
+    navigation.style.transition = 'none';
+  } else {
+    navigation.style.position = '';
+    navigation.style.transition = '';
+  }
+};
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -338,14 +350,15 @@ export default async function decorate(block) {
   const navigation = document.createElement('div');
   navigation.id = 'navigation';
   const pdpEl = document.querySelector('.pdp-product-info-container');
-  if (pdpEl) {
-    navigation.style.position = 'absolute';
-    navigation.style.transition = 'none';
-  }
+  const plpEl = document.querySelector('.plp-product-filters');
+  window.addEventListener('resize', () => {
+    handleChangeNavPosition(navigation);
+  });
+  handleChangeNavPosition(navigation);
   let lastScrollTop = 0;
   const scrollThreshold = 10;
   window.addEventListener('scroll', () => {
-    if (pdpEl) return;
+    if (pdpEl || plpEl) return;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold) {
       return;

@@ -10,11 +10,9 @@
 
 /* 左侧产品图区域 */
 
-/* .pdp-media { */
-
-/*  width: 640px; */
-
-/* } */
+.pdp-media {
+  width: min(calc(640 / var(--breakpoint-pc) * 100vw), 640px);
+} 
 
 .pdp-media * {
   box-sizing: border-box;
@@ -25,7 +23,7 @@
   /* width: 640px; */
 
   /* height: 360px; */
-  margin-bottom: 34px;
+  margin-bottom: var(--size-34);
   position: relative;
 
   @media (width < 860px) {
@@ -34,8 +32,8 @@
 }
 
 .pdp-specs-btn img {
-  width: 18px;
-  height: 18px;
+  width: var(--size-18);
+  height: var(--size-18);
 }
 
 .pdp-media .pdp-main-img img {
@@ -54,8 +52,8 @@
 
 /* 左右箭头按钮 */
 .pdp-media .scroll-btn {
-  width: 28px;
-  height: 28px;
+  width: var(--size-28);
+  height: var(--size-28);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -91,19 +89,19 @@
 /* 滚动容器：溢出隐藏 */
 .pdp-media .tabs-container {
   overflow: hidden;
-  height: 74px;
+  height: var(--size-74);
 }
 
 .pdp-media .product-filters {
   display: flex;
-  gap: 12px;
-  width: 508px;
+  gap: var(--size-12);
+  width: min(calc(508 / var(--breakpoint-pc) * 100vw), 508px);
   scroll-behavior: smooth;
   overflow: scroll hidden;
   list-style: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  margin: 0 0 24px;
+  margin: 0 0 var(--size-24);
   padding: 0;
 }
 
@@ -112,19 +110,19 @@
 }
 
 .pdp-media .product-filter {
-  width: 118px;
-  height: 74px;
+  width: var(--size-118);
+  height: var(--size-74);
   border: 1px solid rgb(102 102 102 / 100%);
-  border-radius: 20px;
+  border-radius: var(--size-20);
   flex-shrink: 0;
   list-style: none;
 }
 
 .pdp-media .product-filter-item {
-  width: 118px;
-  height: 74px;
+  width: var(--size-118);
+  height: var(--size-74);
   border: 1px solid rgb(102 102 102 / 100%);
-  border-radius: 8px;
+  border-radius: var(--size-8);
   flex-shrink: 0;
   list-style: none;
   box-sizing: border-box;
@@ -151,7 +149,7 @@
 
 .pdp-media .product-carousel {
   display: flex;
-  gap: 5px;
+  gap: var(--size-5);
   width: 100%;
   scroll-behavior: smooth;
   overflow: scroll hidden;
@@ -162,12 +160,12 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  height: 70px;
+  height: var(--size-70);
 }
 
 .pdp-media .product-carousel .product-indicator {
-  width: 6px;
-  height: 6px;
+  width: var(--size-6);
+  height: var(--size-6);
   margin: 0;
   padding: 0;
   border-radius: 50%;
@@ -205,6 +203,14 @@
             height: auto;
             border: initial;
             border-radius: 0;
+            
+            .product-filter-img-box {
+              height: initial;
+            }
+            
+            .product-filter-text {
+              display: none;
+            }
           }
   
           .product-filter-item:last-child {
