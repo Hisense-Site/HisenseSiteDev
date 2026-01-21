@@ -151,7 +151,7 @@ export function setupObserver(carouselRoot, selector, resolveCallBack, leaveCall
 }
 
 export function mobilePressEffect(viewport, card, callback) {
-  if(viewport >= 860) {
+  if (viewport >= 860) {
     callback();
     return;
   }
