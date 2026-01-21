@@ -89,7 +89,7 @@
 /* 滚动容器：溢出隐藏 */
 .pdp-media .tabs-container {
   overflow: hidden;
-  height: 74px;
+  height: var(--size-74);
 }
 
 .pdp-media .product-filters {
