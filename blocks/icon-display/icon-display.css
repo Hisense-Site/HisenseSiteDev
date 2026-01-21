@@ -66,6 +66,7 @@
 [data-aue-prop = "sub-title"]{
     font-size:  var(--size-10);
     line-height: var(--size-20);
+
     @media (width >= 860px) {
         font-size: var(--size-16);
     }
@@ -85,9 +86,8 @@
 
     @media (width >= 860px) {
         gap: var(--spacing-xl);
-        flex-direction: row;
+        flex-flow: row nowrap;
         align-items: center;
-        flex-wrap: nowrap;
 
     }
 }
