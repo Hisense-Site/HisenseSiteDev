@@ -77,6 +77,16 @@
 .icon-display-item .icon-image img{
     height: var(--size-40);
     width: auto;
+
+    @media (width >= 860px) {
+         height: var(--size-50);
+    }
+}
+
+.large-icon.icon-display-item .icon-image img{
+   @media (width >= 860px) {
+         height: var(--size-88);
+    }
 }
 
 .fixed-width .icon-display-box{
