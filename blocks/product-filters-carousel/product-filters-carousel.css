@@ -67,7 +67,7 @@ main > .plp-product-card-container.plp-product-filters-container {
 
 main > .section.plp-product-card-container.plp-product-filters-container > .plp-product-filters-wrapper {
   flex-shrink: 0;
-  padding: 16px 18px;
+  padding: 16px 0;
   background: rgb(244 244 244 / 100%);
   top: 0;
   position: sticky;
@@ -189,7 +189,7 @@ main > .plp-product-card-container.plp-product-filters-container * {
 
 .product-filters-carousel .product-filter-item .product-filter-text {
   font-size: min(calc(16 / var(--breakpoint-pc) * 100vw), 16px);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-primary-grey-50);
 }
 
@@ -263,15 +263,19 @@ main > .plp-product-card-container.plp-product-filters-container * {
 
 /* mobile */
 @media (width < 860px) {
+  .plp-product-card-wrapper {
+    width: 100%;
+  }
+ 
   main > .section.plp-product-filters-container, main > .plp-product-card-container {
     width: 100%;
-    padding: 32px 18px 0 !important;
-    margin-bottom: 32px;
-    gap: 16px !important; /* 列间距 */
+    padding: var(--size-24) 18px var(--size-48) !important;
+    gap: var(--size-24) !important; /* 列间距 */
   }
 
   main > .section.plp-product-filters-container > div {
-    width: 100vw !important;
+    /* width: 100vw !important; */
+    padding: 0;
   }
 
   main > .section > .plp-product-filters-wrapper {
@@ -288,18 +292,31 @@ main > .plp-product-card-container.plp-product-filters-container * {
       display: none;
     }
 
+    .tabs-container {
+      overflow: visible;
+      width: 100%;
+    }
+
     .product-filters {
       width: auto;
-      gap: 12px;
+      gap: var(--size-12);
+      padding: 0 18px;
+      margin: 0 -18px;
     }
 
     .product-filter-item {
       flex-direction: column;
-      width: calc(108 / var(--breakpoint-mobile) * 100vw);
-      height: calc(68 / var(--breakpoint-mobile) * 100vw);
+      width: calc(106 / var(--breakpoint-mobile) * 100vw);
+      height: calc(66 / var(--breakpoint-mobile) * 100vw);
       border-radius: calc(8 / var(--breakpoint-mobile) * 100vw);
       padding: calc(6 / var(--breakpoint-mobile) * 100vw) calc(12 / var(--breakpoint-mobile) * 100vw);
       gap: 0;
+
+      .product-filter-text {
+        font-size: calc(10 / var(--breakpoint-mobile) * 100vw);
+        text-align: center;
+        white-space: nowrap;
+      }
     }
 
     .product-filter-img {
@@ -308,11 +325,6 @@ main > .plp-product-card-container.plp-product-filters-container * {
       margin-bottom: calc(4 / var(--breakpoint-mobile) * 100vw);
     }
 
-    .product-filter-text {
-      font-size: calc(10 / var(--breakpoint-mobile) * 100vw);
-      text-align: center;
-      white-space: nowrap;
-    }
   }
 }
 
