@@ -1242,10 +1242,6 @@
             "value": "text-center"
           },
           {
-            "name": "Fixed Width Style",
-            "value": "fixed-width"
-          },
-          {
             "name": "Large Icon",
             "value": "large-icon"
           },
@@ -1256,6 +1252,32 @@
           {
             "name": "Bottom Space",
             "value": "bottom-space"
+          },
+          {
+            "name": "Customize Style -Fixed Width Style",
+            "value": "fixed-width"
+          },
+          {
+            "name": "Customize Style - Feature Banner",
+            "value": "customize-feature-banner"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "style_position",
+        "value": "",
+        "label": "options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Right",
+            "value": "right"
           }
         ]
       }
