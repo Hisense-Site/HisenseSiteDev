@@ -134,7 +134,10 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     }, 500));
   });
+  // ----- mouse observe
+  observeMouse(block);
   // ----- autoplay function
+  if (!block.querySelector('.video-play-icon')) return;
   block.querySelector('.video-play-icon').addEventListener('click', throttle((e) => {
     if (e.target.classList.contains('is-playing')) {
       e.target.classList.remove('is-playing');
@@ -146,8 +149,6 @@ function bindEvents(block) {
       e.target.closest('li').querySelector('video')?.play();
     }
   }, 1000));
-  // ----- mouse observe
-  observeMouse(block);
 }
 
 function initVideo(selector, type) {
