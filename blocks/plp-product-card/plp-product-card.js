@@ -409,15 +409,18 @@ export default function decorate(block) {
 
     // 渲染每个聚合后的产品卡片
     groupedArray.forEach((group) => {
-      // console.log(group)
       const item = group.representative;
       const card = document.createElement('div');
       card.className = 'product-card';
 
       const titleDiv = document.createElement('div');
       titleDiv.className = 'plp-product-card-title';
-
-      titleDiv.innerHTML = `<div class="plp-product-card-tag">${'Bestseller'}</div>`;
+      let tagTitle = '';
+      const badgeList = group.representative.badge || [];
+      const targetStr = badgeList[0] || '';
+      const lastSlashIndex = targetStr.lastIndexOf('/');
+      tagTitle = lastSlashIndex > -1 ? targetStr.slice(lastSlashIndex + 1) : targetStr;
+      titleDiv.innerHTML = `<div class="plp-product-card-tag">${tagTitle}</div>`;
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
