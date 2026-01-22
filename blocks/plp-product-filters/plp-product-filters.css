@@ -96,7 +96,7 @@
 
 .plp-product-filters .plp-sort .sort-arrow {
   transform: rotate(180deg);
-  transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
+  transition: transform .36s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .36s cubic-bezier(0, 0.18, 0.07, 1);
 }
 
 .plp-product-filters .plp-sort-box.show .sort-arrow {
