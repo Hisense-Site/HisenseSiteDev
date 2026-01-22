@@ -499,6 +499,16 @@
     ]
   },
   {
+    "id": "productRegistration",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title text field"
+      }
+    ]
+  },
+  {
     "id": "banner",
     "fields": [
       {
