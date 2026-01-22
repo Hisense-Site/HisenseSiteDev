@@ -13,6 +13,7 @@ const ANIMATION_DURATION = {
 
 const CONFIG = {
   SMALL_VIEWPORT_MAX_WIDTH: 860,
+  MEDIUM_VIEWPORT_MAX_WIDTH: 1180,
   MIN_VIEWPORT_HEIGHT: 600,
   MAX_VIEWPORT_WIDTH: 1920,
   SCALE_MULTIPLIER: 1.2,
@@ -38,9 +39,9 @@ export default async function decorate(block) {
   scaleTarget = optimizedPicture.querySelector('img');
   scrollTextContainer.children[0].remove();
 
-  const stickyContainer = createElement('div', 'sticky-container h-grid-container');
+  const stickyContainer = createElement('div', 'sticky-container');
   scrollContainer.appendChild(stickyContainer);
-  const scrollImageContainer = createElement('div', 'scroll-image-container');
+  const scrollImageContainer = createElement('div', 'scroll-image-container h-grid-container');
   scrollImageContainer.appendChild(optimizedPicture);
   stickyContainer.appendChild(scrollImageContainer);
   stickyContainer.appendChild(scrollTextContainer);
@@ -116,11 +117,12 @@ export default async function decorate(block) {
       return;
     }
     const shouldAnimate = window.innerHeight >= CONFIG.MIN_VIEWPORT_HEIGHT;
-    scrollContainer.classList.toggle('animate', shouldAnimate);
     scrollTextContainer.classList.toggle('animate', shouldAnimate);
 
     const scrollImageContainerHeight = scrollImageContainer.getBoundingClientRect().height;
-    subContainer.style.marginTop = `-${(window.innerHeight - scrollImageContainerHeight) / 2}px`;
+    const stickyContainerHeight = stickyContainer.getBoundingClientRect().height;
+
+    subContainer.style.marginTop = `-${(stickyContainerHeight - scrollImageContainerHeight) / 2}px`;
   };
 
   const animate = () => {
@@ -139,11 +141,21 @@ export default async function decorate(block) {
     matchMedia.add({
       aboveMinHeight: `(min-height: ${CONFIG.MIN_VIEWPORT_HEIGHT}px)`,
       smallViewport: `(max-width: ${CONFIG.SMALL_VIEWPORT_MAX_WIDTH}px)`,
+      mediumViewport: `(max-width: ${CONFIG.MEDIUM_VIEWPORT_MAX_WIDTH}px)`,
       belowMaxWidth: `(max-width: ${CONFIG.MAX_VIEWPORT_WIDTH}px)`,
     }, (context) => {
-      const { smallViewport, aboveMinHeight, belowMaxWidth } = context.conditions;
+      const {
+        smallViewport, mediumViewport, aboveMinHeight, belowMaxWidth,
+      } = context.conditions;
       if ((!smallViewport && !aboveMinHeight) || !belowMaxWidth) {
         return;
+      }
+
+      let containerOffset = 100;
+      if (smallViewport) {
+        containerOffset = 74;
+      } else if (mediumViewport) {
+        containerOffset = 64;
       }
 
       scrollTextContainer.classList.add('animate');
@@ -153,13 +165,18 @@ export default async function decorate(block) {
       const initialImageWidth = scaleTarget.clientWidth;
       const initialImageHeight = scaleTarget.clientHeight;
       const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
+      const viewportHeight = window.innerHeight - containerOffset;
 
       // Calculate scale to fill viewport with margin
       const scaleX = viewportWidth / initialImageWidth;
       const scaleY = viewportHeight / initialImageHeight;
       const fillScale = Math.max(scaleX, scaleY) * CONFIG.SCALE_MULTIPLIER;
       const scale = Math.max(CONFIG.MIN_SCALE, fillScale);
+
+      const scrollImageContainerHeight = scrollImageContainer.getBoundingClientRect().height;
+      const stickyContainerHeight = stickyContainer.getBoundingClientRect().height;
+      const subContainerOffset = -((stickyContainerHeight - scrollImageContainerHeight) / 2);
+      subContainer.style.marginTop = `${subContainerOffset}px`;
 
       // Calculate scroll trigger start position (when image center aligns with viewport center)
       const calculateScrollStart = () => {
@@ -169,13 +186,14 @@ export default async function decorate(block) {
         const imageCenterAbsolute = imageTopAbsolute + (imageRect.height / 2);
         const triggerRect = scrollContainer.getBoundingClientRect();
         const triggerTopAbsolute = triggerRect.top + scrollY;
-        const offsetFromTriggerTop = imageCenterAbsolute - triggerTopAbsolute;
+
+        const offsetFromTriggerTop = imageCenterAbsolute - triggerTopAbsolute - (containerOffset / 2) + 3;
         return `top+=${offsetFromTriggerTop} center`;
       };
 
       // Calculate scroll trigger end position
       const calculateScrollEnd = () => {
-        const additionalScroll = (window.innerHeight * CONFIG.SCROLL_MULTIPLIER) + scaleTarget.clientHeight;
+        const additionalScroll = (viewportHeight * CONFIG.SCROLL_MULTIPLIER) + scaleTarget.clientHeight;
         return `+=${additionalScroll}`;
       };
 
@@ -200,6 +218,10 @@ export default async function decorate(block) {
       tl.set(scaleTarget, {
         scale,
         transformOrigin: 'center center',
+      });
+
+      tl.set(subContainer, {
+        transform: 'translateY(50%)',
       });
 
       // Animation step 1: Dim the image brightness
@@ -262,6 +284,14 @@ export default async function decorate(block) {
           duration: ANIMATION_DURATION.IMAGE_SCALE,
         },
         '>',
+      );
+
+      tl.to(
+        subContainer,
+        {
+          transform: 'translateY(0px)',
+          ease: 'power1.inOut',
+        },
       );
     });
   };
