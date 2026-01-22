@@ -171,7 +171,7 @@ function createSlide(block, row, slideIndex) {
     let theme;
     let contentType; // true is svg mode; false is text mode
     let buttonTheme;
-    let type;
+    let type; // true is video mode; false is image mode
     const reg = /(true|false)/i;
     switch (colIdx) {
       case 0:
@@ -191,7 +191,8 @@ function createSlide(block, row, slideIndex) {
           // video mode
           column.classList.add('video-mode');
           const videoElement = initVideo(column);
-          column.replaceChild(videoElement, column.children[1]);
+          const videoDom = column.querySelector('video')?.closest('p');
+          column.replaceChild(videoElement, videoDom);
         }
         break;
       case 1:
