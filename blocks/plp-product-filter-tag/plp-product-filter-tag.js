@@ -214,9 +214,10 @@ export default function decorate(block) {
       if (cells.length < 2) return;
 
       const titleText = cells[0].textContent.trim();
-      const tagsCsv = cells[1].textContent.trim();
+      const tagsCsv = cells[1].children[0].textContent.trim();
       if (!titleText || !tagsCsv) return;
 
+      const tagType = cells[1].children[1]?.textContent?.trim() || 'checkbox';
       const group = document.createElement('div');
       group.className = index === 0 ? 'plp-filter-group' : 'plp-filter-group hide';
       if (isEditMode && resource) {
@@ -243,7 +244,15 @@ export default function decorate(block) {
       title.append(titleSpan, arrow);
 
       const list = document.createElement('ul');
-      list.className = 'plp-filter-list';
+      list.className = `plp-filter-list plp-tag-${tagType}-group`;
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/checkbox-empty.svg
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/checkbox.svg
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/radio-empty.svg
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/radio.svg
 
       const tags = tagsCsv.split(',').map((t) => t.trim()).filter(Boolean);
       tags.forEach((tagPath) => {
