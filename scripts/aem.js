@@ -589,7 +589,7 @@ async function loadBlock(block) {
       'media-carousel': 'image-carousel',
       'product-section': 'pdp-product-info',
       'product-gallery': 'product-detail-banner',
-      'text': 'description'
+      text: 'description',
     };
 
     const mappedBlockName = blockNameMapping[blockName] || blockName;
