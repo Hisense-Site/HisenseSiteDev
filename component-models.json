@@ -1239,11 +1239,15 @@
         "options": [
           {
             "name": "Text Align Center",
-            "value": "Text-left"
+            "value": "text-center"
           },
           {
             "name": "Fixed Width Style",
             "value": "fixed-width"
+          },
+          {
+            "name": "Large Icon",
+            "value": "large-icon"
           },
           {
             "name": "Top Space",
