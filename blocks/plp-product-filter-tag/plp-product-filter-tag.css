@@ -125,38 +125,6 @@
   font-size: var(--fontsize-body2);
 }
 
-.plp-filter-item label::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  border-radius: 3px;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-
-.plp-filter-item input[type="checkbox"]:checked + label::before {
-  border-color: #009F9C;
-  background-color: #009F9C;
-}
-
-.plp-filter-item input[type="checkbox"]:checked + label::after {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 4px;
-  width: 3.5px;
-  height: 7.5px;
-  border-radius: 1px;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transform: rotate(45deg);
-}
-
 .plp-mobile-filters-tit-box {
   display: none;
 }
