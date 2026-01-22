@@ -2,7 +2,7 @@
   "definitions": [
     {
       "title": "Product Registration",
-      "id": "Product Registration",
+      "id": "3-i-product-registration",
       "plugins": {
         "xwalk": {
           "page": {
@@ -19,7 +19,7 @@
   ],
   "models": [
     {
-      "id": "productRegistration",
+      "id": "3-i-product-registration",
       "fields": [
         {
           "component": "text",

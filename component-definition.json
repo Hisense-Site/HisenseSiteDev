@@ -90,7 +90,7 @@
       "components": [
         {
           "title": "Product Registration",
-          "id": "Product Registration",
+          "id": "3-i-product-registration",
           "plugins": {
             "xwalk": {
               "page": {

@@ -499,7 +499,7 @@
     ]
   },
   {
-    "id": "productRegistration",
+    "id": "3-i-product-registration",
     "fields": [
       {
         "component": "text",
