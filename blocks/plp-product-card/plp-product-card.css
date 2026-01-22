@@ -43,6 +43,10 @@
     border-radius: var(--radius-xl);
     line-height: 1.4;
   }
+
+  .plp-product-card-tag:empty {
+    display: none;
+  }
 }
 
 .plp-product-img {
