@@ -118,6 +118,9 @@ export default async function decorate(block) {
     const shouldAnimate = window.innerHeight >= CONFIG.MIN_VIEWPORT_HEIGHT;
     scrollContainer.classList.toggle('animate', shouldAnimate);
     scrollTextContainer.classList.toggle('animate', shouldAnimate);
+
+    const scrollImageContainerHeight = scrollImageContainer.getBoundingClientRect().height;
+    subContainer.style.marginTop = `-${(window.innerHeight - scrollImageContainerHeight) / 2}px`;
   };
 
   const animate = () => {
@@ -158,17 +161,6 @@ export default async function decorate(block) {
       const fillScale = Math.max(scaleX, scaleY) * CONFIG.SCALE_MULTIPLIER;
       const scale = Math.max(CONFIG.MIN_SCALE, fillScale);
 
-      // Calculate final image height accounting for viewport constraints
-      const imageAspectRatio = initialImageWidth / initialImageHeight;
-      const finalImageHeight = Math.min(
-        initialImageHeight,
-        viewportWidth / imageAspectRatio,
-      );
-
-      // Adjust margin to account for image scaling
-      const scaleOffset = ((scale - 1) * initialImageHeight) / 2;
-      scrollContainer.style.marginTop = `${scaleOffset}px`;
-
       // Calculate scroll trigger start position (when image center aligns with viewport center)
       const calculateScrollStart = () => {
         const imageRect = scaleTarget.getBoundingClientRect();
@@ -198,15 +190,6 @@ export default async function decorate(block) {
           // markers: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-          onLeave: () => {
-            gsap.set(scrollContainer, { height: 'auto' });
-          },
-          onEnterBack: () => {
-            gsap.set(scrollContainer, { height: '100vh' });
-          },
-          onToggle: (self) => {
-            scrollImageContainer.classList.toggle('animating', self.isActive);
-          },
         },
       });
 
@@ -277,16 +260,6 @@ export default async function decorate(block) {
           scale: 1,
           ease: 'power1.inOut',
           duration: ANIMATION_DURATION.IMAGE_SCALE,
-        },
-        '>',
-      );
-
-      // Animation step 6: Set container height to final image height
-      tl.to(
-        scrollContainer,
-        {
-          height: `${finalImageHeight}px`,
-          duration: ANIMATION_DURATION.CONTAINER_HEIGHT,
         },
         '>',
       );
