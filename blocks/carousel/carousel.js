@@ -134,15 +134,29 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     }, 500));
   });
+  // ----- autoplay function
+  block.querySelector('.video-play-icon').addEventListener('click', throttle((e) => {
+    if (e.target.classList.contains('is-playing')) {
+      e.target.classList.remove('is-playing');
+      e.target.classList.add('is-paused');
+      e.target.closest('li').querySelector('video')?.pause();
+    } else {
+      e.target.classList.remove('is-paused');
+      e.target.classList.add('is-playing');
+      e.target.closest('li').querySelector('video')?.play();
+    }
+  }, 1000));
+  // ----- mouse observe
   observeMouse(block);
 }
 
-function initVideo(selector) {
+function initVideo(selector, type) {
   let videoUrl;
-  const link = selector.querySelector('a');
-  if (link) {
-    videoUrl = link.href;
-  }
+  let link;
+  const [videoPC, videoMobile] = [...selector.querySelectorAll('a')];
+  if (type === 'desktop') link = videoPC;
+  else link = videoMobile;
+  if (link) videoUrl = link.href;
   const videoDivDom = createElement('div', 'video-div-box');
   const video = createElement('video', 'video-auto-play');
   const span = createElement('span', 'video-play-icon is-playing');
@@ -171,27 +185,29 @@ function createSlide(block, row, slideIndex) {
     let theme;
     let contentType; // true is svg mode; false is text mode
     let buttonTheme;
-    let type; // true is video mode; false is image mode
+    let videoElement;
+    let videoDom;
     switch (colIdx) {
       case 0:
         // container-reference div
         column.classList.add('carousel-item-image');
-        if (column.firstElementChild.innerHTML.length === 4) {
-          type = column.firstElementChild?.innerHTML || 'false';
-          column.firstElementChild?.remove();
-        } else type = 'false';
         // 处理image-theme联动nav
         if (column.lastElementChild?.innerHTML.length === 4) {
           theme = column.lastElementChild?.innerHTML || 'false';
           column.lastElementChild?.remove();
         } else theme = 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        if (type === 'true') {
+        if (column.querySelector('a')) {
           // video mode
           column.classList.add('video-mode');
-          const videoElement = initVideo(column);
-          const videoDom = column.querySelector('a')?.closest('p');
-          column.replaceChild(videoElement, videoDom);
+          videoElement = initVideo(column, 'desktop');
+          videoDom = column.querySelectorAll('a')[0]?.closest('p');
+          if (window.innerWidth <= 860) {
+            // mobile video
+            videoElement = initVideo(column, 'mobile');
+            videoDom = column.querySelectorAll('a')[1]?.closest('p');
+          }
+          if (videoDom) column.replaceChild(videoElement, videoDom);
         }
         break;
       case 1:

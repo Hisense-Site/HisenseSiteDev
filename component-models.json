@@ -650,56 +650,20 @@
     "id": "carouselItem",
     "fields": [
       {
-        "component": "boolean",
-        "name": "image_type",
-        "label": "Image or Video",
-        "valueType": "boolean",
-        "description": "Switch OFF: Image | Switch ON: Video"
-      },
-      {
         "component": "reference",
         "valueType": "string",
         "name": "image_pc",
-        "label": "Image",
-        "multi": false,
-        "condition": {
-          "===": [
-            {
-              "var": "image_type"
-            },
-            false
-          ]
-        }
+        "label": "Image/Video For PC",
+        "required": true,
+        "multi": false
       },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image_mobile",
-        "label": "Image For Mobile",
-        "multi": false,
-        "condition": {
-          "===": [
-            {
-              "var": "image_type"
-            },
-            false
-          ]
-        }
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image_video",
-        "label": "Video",
-        "multi": false,
-        "condition": {
-          "===": [
-            {
-              "var": "image_type"
-            },
-            true
-          ]
-        }
+        "label": "Image/Video For Mobile",
+        "required": true,
+        "multi": false
       },
       {
         "component": "boolean",
