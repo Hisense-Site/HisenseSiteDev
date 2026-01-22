@@ -1,13 +1,13 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 import { createElement } from '../../utils/dom-helper.js';
+import { isUniversalEditor } from '../../utils/ue-helper.js';
 
 let carouselTimer;
 let carouselInterval;
 let isInitializing = true; // 初始化锁
 
-function updateActiveSlide(slide) {
-  const block = slide.closest('.carousel');
+function updateActiveSlide(block, slide) {
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
   const indicators = block.querySelectorAll('.carousel-item-indicator');
   block.dataset.slideIndex = slideIndex;
@@ -65,7 +65,7 @@ function showSlide(block, targetLogicalIndex, init = false) {
   });
 
   if (init) {
-    updateActiveSlide(targetSlide);
+    updateActiveSlide(block, targetSlide);
     return;
   }
   // 4. 如果触碰了边界，等动画结束后“瞬移”回真实位置
@@ -111,7 +111,7 @@ function bindEvents(block) {
   const slideObserver = new IntersectionObserver((entries) => {
     if (isInitializing) return;
     entries.forEach((entry) => {
-      if (entry.isIntersecting) updateActiveSlide(entry.target);
+      if (entry.isIntersecting) updateActiveSlide(block, entry.target);
     });
   }, { threshold: 0.5 });
   block.querySelectorAll('.carousel-item').forEach((slide) => {
@@ -155,7 +155,7 @@ function createSlide(block, row, slideIndex) {
         // 处理image-theme联动nav
         theme = [...column.children][2]?.innerHTML || 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        column.lastElementChild.remove();
+        column.lastElementChild?.remove();
         break;
       case 1:
         // container-text or svg switch div
@@ -242,11 +242,12 @@ export default async function decorate(block) {
     `;
     block.append(slideNavButtons);
   }
-  if (!isSingleSlide) {
-    bindEvents(block);
-  }
   // 初始化加载主题色
   whenElementReady('.carousel-items-container', () => {
     showSlide(block, 0, true);
   });
+  if (isUniversalEditor()) return;
+  if (!isSingleSlide) {
+    bindEvents(block);
+  }
 }

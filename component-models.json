@@ -656,12 +656,27 @@
         "valueType": "string",
         "fields": [
           {
+            "component": "boolean",
+            "name": "image_type",
+            "label": "Image or Video",
+            "valueType": "boolean",
+            "description": "Switch OFF: Image | Switch ON: Video"
+          },
+          {
             "component": "reference",
             "valueType": "string",
             "name": "image_pc",
             "label": "Image",
             "required": true,
-            "multi": false
+            "multi": false,
+            "condition": {
+              "===": [
+                {
+                  "var": "image_type"
+                },
+                false
+              ]
+            }
           },
           {
             "component": "reference",
@@ -669,12 +684,36 @@
             "name": "image_mobile",
             "label": "Image For Mobile",
             "required": true,
-            "multi": false
+            "multi": false,
+            "condition": {
+              "===": [
+                {
+                  "var": "image_type"
+                },
+                false
+              ]
+            }
+          },
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "image_video",
+            "label": "Video",
+            "required": true,
+            "multi": false,
+            "condition": {
+              "===": [
+                {
+                  "var": "image_type"
+                },
+                true
+              ]
+            }
           },
           {
             "component": "boolean",
             "name": "image_theme",
-            "label": "Image Dark Theme",
+            "label": "Image/Video Dark Theme",
             "valueType": "boolean"
           }
         ]
