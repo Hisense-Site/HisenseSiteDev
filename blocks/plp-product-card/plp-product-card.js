@@ -415,6 +415,12 @@ export default function decorate(block) {
 
       const titleDiv = document.createElement('div');
       titleDiv.className = 'plp-product-card-title';
+      let tagTitle = '';
+      const badgeList = group.representative.badge || [];
+      const targetStr = badgeList[0] || '';
+      const lastSlashIndex = targetStr.lastIndexOf('/');
+      tagTitle = lastSlashIndex > -1 ? targetStr.slice(lastSlashIndex + 1) : targetStr;
+      titleDiv.innerHTML = `<div class="plp-product-card-tag">${tagTitle}</div>`;
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
