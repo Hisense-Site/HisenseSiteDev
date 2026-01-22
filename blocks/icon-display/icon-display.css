@@ -40,14 +40,10 @@
     gap: var(--size-8);
 }
 
-.icon-display-item .icon-text{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
+
 
 .text-center .icon-display-item .icon-text{
-    justify-content: center;
+  text-align: center;
 }
 
 .icon-display-item .icon-text:first-child,
@@ -111,8 +107,7 @@
 
 .fixed-width .icon-display-box .icon-text{
      @media (width >= 860px) {
-        justify-content: center;
-        align-items: center;
+        text-align: center;
     }
    
 }
