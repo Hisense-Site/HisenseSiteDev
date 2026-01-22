@@ -144,7 +144,7 @@ function initVideo(selector) {
     videoUrl = link.href;
   }
   const videoDivDom = createElement('div', 'video-div-box');
-  const video = createElement('video', 'video-autoPlay');
+  const video = createElement('video', 'video-auto-play');
   const span = createElement('span', 'video-play-icon is-playing');
   video.loop = true;
   video.preload = 'auto';
@@ -181,12 +181,12 @@ function createSlide(block, row, slideIndex) {
           column.firstElementChild?.remove();
         } else type = 'false';
         // 处理image-theme联动nav
-        if(column.lastElementChild?.innerHTML.length === 4) {
+        if (column.lastElementChild?.innerHTML.length === 4) {
           theme = column.lastElementChild?.innerHTML || 'false';
           column.lastElementChild?.remove();
         } else theme = 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        if(type === 'true') {
+        if (type === 'true') {
           // video mode
           column.classList.add('video-mode');
           const videoElement = initVideo(column);
@@ -217,7 +217,7 @@ function createSlide(block, row, slideIndex) {
         column.classList.add('carousel-item-cta');
         buttonTheme = column.firstElementChild?.innerHTML || 'transparent';
         column.querySelector('a')?.classList.add(buttonTheme);
-        if (column.firstElementChild.innerHTML.length <= 13) column.firstElementChild.remove();
+        if (column.firstElementChild?.innerHTML.length <= 13) column.firstElementChild?.remove();
     }
 
     if (column.innerHTML === '') return;

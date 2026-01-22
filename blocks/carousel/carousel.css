@@ -221,7 +221,7 @@ p {
   height: 100%;
 }
 
-.video-autoPlay {
+.video-auto-play {
   width: 100%;
   aspect-ratio: 1440 / 860;
 }
@@ -239,12 +239,11 @@ p {
 
   &.is-playing {
     background-image: url('/content/dam/hisense/us/common-icons/pause.svg');
-    -webkit-filter: invert(.665);
     filter: invert(.665);
   }
+
   &.is-paused {
     background-image: url('/content/dam/hisense/us/common-icons/play.svg');
-    -webkit-filter: invert(.665);
     filter: invert(.665);
   }
 }
