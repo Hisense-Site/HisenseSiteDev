@@ -137,6 +137,29 @@ function bindEvents(block) {
   observeMouse(block);
 }
 
+function initVideo(selector) {
+  let videoUrl;
+  const link = selector.querySelector('a');
+  if (link) {
+    videoUrl = link.href;
+  }
+  const videoDivDom = createElement('div', 'video-div-box');
+  const video = createElement('video', 'video-autoPlay');
+  const span = createElement('span', 'video-play-icon is-playing');
+  video.loop = true;
+  video.preload = 'auto';
+  video.autoplay = true;
+  const source = document.createElement('source');
+  source.src = videoUrl;
+  source.type = 'video/mp4';
+  video.muted = true;
+  video.playsInline = true;
+  video.appendChild(source);
+  videoDivDom.appendChild(video);
+  videoDivDom.appendChild(span);
+  return videoDivDom;
+}
+
 function createSlide(block, row, slideIndex) {
   const slide = createElement('li', 'carousel-item');
   const div = createElement('div', 'carousel-content h-grid-container');
@@ -148,14 +171,28 @@ function createSlide(block, row, slideIndex) {
     let theme;
     let contentType; // true is svg mode; false is text mode
     let buttonTheme;
+    let type;
+    const reg = /(true|false)/i;
     switch (colIdx) {
       case 0:
         // container-reference div
         column.classList.add('carousel-item-image');
+        if (column.firstElementChild?.innerHTML.match(reg)) {
+          type = column.firstElementChild?.innerHTML || 'false';
+          column.firstElementChild?.remove();
+        } else type = 'false';
         // 处理image-theme联动nav
-        theme = [...column.children][2]?.innerHTML || 'false';
+        if(column.lastElementChild?.innerHTML.match(reg)) {
+          theme = column.lastElementChild?.innerHTML || 'false';
+          // column.lastElementChild?.remove();
+        } else theme = 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        column.lastElementChild?.remove();
+        if(type === 'true') {
+          // video mode
+          column.classList.add('video-mode');
+          const videoElement = initVideo(column);
+          column.replaceChild(videoElement, column.children[1]);
+        }
         break;
       case 1:
         // container-text or svg switch div

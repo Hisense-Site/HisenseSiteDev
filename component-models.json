@@ -661,7 +661,6 @@
         "valueType": "string",
         "name": "image_pc",
         "label": "Image",
-        "required": true,
         "multi": false,
         "condition": {
           "===": [
@@ -677,7 +676,6 @@
         "valueType": "string",
         "name": "image_mobile",
         "label": "Image For Mobile",
-        "required": true,
         "multi": false,
         "condition": {
           "===": [
@@ -693,7 +691,6 @@
         "valueType": "string",
         "name": "image_video",
         "label": "Video",
-        "required": true,
         "multi": false,
         "condition": {
           "===": [

@@ -215,6 +215,39 @@ p {
   }
 }
 
+.video-div-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-autoPlay {
+  width: 100%;
+}
+
+.video-play-icon {
+  width: min(var(--size-76), 76px);
+  height: min(var(--size-76), 76px);
+  position: absolute;
+  bottom: 0;
+  right: 360px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  &.is-playing {
+    background-image: url('/content/dam/hisense/us/common-icons/pause.svg');
+    -webkit-filter: invert(.665);
+    filter: invert(.665);
+  }
+  &.is-paused {
+    background-image: url('/content/dam/hisense/us/common-icons/play.svg');
+    -webkit-filter: invert(.665);
+    filter: invert(.665);
+  }
+}
+
 .carousel .carousel-item-indicators {
   position: absolute;
   bottom: 0;
