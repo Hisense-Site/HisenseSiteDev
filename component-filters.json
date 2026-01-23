@@ -159,12 +159,6 @@
     ]
   },
   {
-    "id": "properties",
-    "components": [
-      "property"
-    ]
-  },
-  {
     "id": "recards",
     "components": [
       "recard"

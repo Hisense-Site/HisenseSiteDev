@@ -1091,16 +1091,6 @@
     ]
   },
   {
-    "id": "fragment",
-    "fields": [
-      {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference"
-      }
-    ]
-  },
-  {
     "id": "hero",
     "fields": [
       {
@@ -1887,43 +1877,6 @@
   {
     "id": "product-spec",
     "fields": []
-  },
-  {
-    "id": "properties",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Properties Group Title"
-      },
-      {
-        "component": "boolean",
-        "label": "Expand by Default",
-        "name": "expanded",
-        "valueType": "boolean"
-      }
-    ]
-  },
-  {
-    "id": "property",
-    "fields": [
-      {
-        "component": "text",
-        "name": "propName",
-        "value": "",
-        "label": "Property Name",
-        "valueType": "string",
-        "required": true
-      },
-      {
-        "component": "text",
-        "name": "propValue",
-        "value": "",
-        "label": "Property Value",
-        "valueType": "string",
-        "required": true
-      }
-    ]
   },
   {
     "id": "recards",
