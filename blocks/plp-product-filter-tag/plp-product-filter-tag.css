@@ -66,7 +66,6 @@
 .plp-filter-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   margin-bottom: var(--size-8);
   font-size: var(--size-14);
   height: var(--size-24);
@@ -110,11 +109,11 @@
   }
 }
 
-.plp-filter-item input:checked + .input-icon .icon-unchecked {
+.plp-filter-item input:checked + label .input-icon .icon-unchecked {
   display: none;
 }
 
-.plp-filter-item input:not(:checked) + .input-icon .icon-checked {
+.plp-filter-item input:not(:checked) + label .input-icon .icon-checked {
   display: none;
 }
 
@@ -123,6 +122,10 @@
   cursor: pointer;
   color: var(--color-primary-grey-70);
   font-size: var(--fontsize-body2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-8);
 }
 
 .plp-mobile-filters-tit-box {
