@@ -11,16 +11,6 @@
   }
 
   .sticky-container {
-    --container-offset: 78px;
-
-    @media (width >= 860px) {
-      --container-offset: 64px;
-    }
-
-    @media (width >= 1180px) {
-      --container-offset: 100px;
-    }
-
     @supports (height: 100dvh) {
       --container-height: 100dvh;
     }
@@ -33,7 +23,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(var(--container-height) - var(--container-offset));
+    height: var(--container-height);
     width: 100%;
     position: sticky;
     overflow: hidden;

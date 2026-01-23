@@ -141,21 +141,13 @@ export default async function decorate(block) {
     matchMedia.add({
       aboveMinHeight: `(min-height: ${CONFIG.MIN_VIEWPORT_HEIGHT}px)`,
       smallViewport: `(max-width: ${CONFIG.SMALL_VIEWPORT_MAX_WIDTH}px)`,
-      mediumViewport: `(max-width: ${CONFIG.MEDIUM_VIEWPORT_MAX_WIDTH}px)`,
       belowMaxWidth: `(max-width: ${CONFIG.MAX_VIEWPORT_WIDTH}px)`,
     }, (context) => {
       const {
-        smallViewport, mediumViewport, aboveMinHeight, belowMaxWidth,
+        smallViewport, aboveMinHeight, belowMaxWidth,
       } = context.conditions;
       if ((!smallViewport && !aboveMinHeight) || !belowMaxWidth) {
         return;
-      }
-
-      let containerOffset = 100;
-      if (smallViewport) {
-        containerOffset = 74;
-      } else if (mediumViewport) {
-        containerOffset = 64;
       }
 
       scrollTextContainer.classList.add('animate');
@@ -165,7 +157,7 @@ export default async function decorate(block) {
       const initialImageWidth = scaleTarget.clientWidth;
       const initialImageHeight = scaleTarget.clientHeight;
       const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight - containerOffset;
+      const viewportHeight = window.innerHeight;
 
       // Calculate scale to fill viewport with margin
       const scaleX = viewportWidth / initialImageWidth;
@@ -187,7 +179,7 @@ export default async function decorate(block) {
         const triggerRect = scrollContainer.getBoundingClientRect();
         const triggerTopAbsolute = triggerRect.top + scrollY;
 
-        const offsetFromTriggerTop = imageCenterAbsolute - triggerTopAbsolute - (containerOffset / 2) + 3;
+        const offsetFromTriggerTop = imageCenterAbsolute - triggerTopAbsolute;
         return `top+=${offsetFromTriggerTop} center`;
       };
 
