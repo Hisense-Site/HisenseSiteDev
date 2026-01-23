@@ -34,8 +34,8 @@ html {
   /* color system - v2 */
   --color-primary-green-80: #003033;
   --color-primary-green-70: #005A5C;
-  --color-primary-green-60: #007E7C;
-  --color-primary-green-50: #009E9B;
+  --color-primary-green-60: #008482;
+  --color-primary-green-50: #009F9C;
   --color-primary-green-40: #50C3C3;
   --color-primary-green-30: #85D6D4;
   --color-primary-green-20: #C8EFEF;
@@ -44,6 +44,7 @@ html {
   --color-primary-grey-90: #141414;
   --color-primary-grey-80: #242424;
   --color-primary-grey-70: #333;
+  --color-primary-grey-60: #555;
   --color-primary-grey-50: #747474;
   --color-primary-grey-40: #bbb;
   --color-primary-grey-30: #e0e0e0;
