@@ -31,8 +31,8 @@
       "properties",
       "imageCarousel",
       "image-comparison-slider",
-      "product-detail-banner",
-      "pdp-product-info",
+      "product-gallery",
+      "product-section",
       "plp-product-card",
       "plp-product-tag",
       "plp-product-filters",
@@ -147,15 +147,15 @@
     ]
   },
   {
-    "id": "product-detail-banner",
-    "components": [
-      "product-detail-banner-item"
-    ]
-  },
-  {
     "id": "product-filters-carousel",
     "components": [
       "product-filters-carousel-item"
+    ]
+  },
+  {
+    "id": "product-gallery",
+    "components": [
+      "product-gallery-item"
     ]
   },
   {

@@ -587,8 +587,6 @@ async function loadBlock(block) {
       'product-filter': 'plp-product-filter-tag',
       'product-card': 'plp-product-card',
       'media-carousel': 'image-carousel',
-      'product-section': 'pdp-product-info',
-      'product-gallery': 'product-detail-banner',
       text: 'description',
     };
 

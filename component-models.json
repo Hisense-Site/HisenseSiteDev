@@ -298,7 +298,7 @@
     ]
   },
   {
-    "id": "product-detail-banner-item",
+    "id": "product-gallery-item",
     "fields": [
       {
         "component": "reference",
@@ -318,7 +318,7 @@
     ]
   },
   {
-    "id": "pdp-product-info",
+    "id": "product-section",
     "fields": [
       {
         "component": "text",
@@ -1607,65 +1607,6 @@
     ]
   },
   {
-    "id": "pdp-product-info",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "graphql",
-        "label": "GraphQL Endpoint"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "sku",
-        "label": "SKU",
-        "required": true
-      },
-      {
-        "component": "checkbox-group",
-        "valueType": "string[]",
-        "name": "fields",
-        "label": "Product Introduction",
-        "multi": true,
-        "options": [
-          {
-            "name": "Favorite",
-            "value": "favorite"
-          },
-          {
-            "name": "Title",
-            "value": "title"
-          },
-          {
-            "name": "Series",
-            "value": "series"
-          },
-          {
-            "name": "Rating",
-            "value": "rating"
-          },
-          {
-            "name": "Buttons",
-            "value": "buttons"
-          },
-          {
-            "name": "PriceInfo RegularPrice",
-            "value": "priceInfo_regularPrice"
-          },
-          {
-            "name": "Awards",
-            "value": "awards"
-          },
-          {
-            "name": "Position",
-            "value": "position"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "plp-product-card",
     "fields": [
       {
@@ -1824,26 +1765,6 @@
     ]
   },
   {
-    "id": "product-detail-banner-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "alt",
-        "label": "Alt Text",
-        "required": true
-      }
-    ]
-  },
-  {
     "id": "product-filters-carousel-item",
     "fields": [
       {
@@ -1881,6 +1802,85 @@
         "label": "Tag",
         "multi": false,
         "rootPath": "/content/cq:tags/hisense/product"
+      }
+    ]
+  },
+  {
+    "id": "product-gallery-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "product-section",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "graphql",
+        "label": "GraphQL Endpoint"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "sku",
+        "label": "SKU",
+        "required": true
+      },
+      {
+        "component": "checkbox-group",
+        "valueType": "string[]",
+        "name": "fields",
+        "label": "Product Introduction",
+        "multi": true,
+        "options": [
+          {
+            "name": "Favorite",
+            "value": "favorite"
+          },
+          {
+            "name": "Title",
+            "value": "title"
+          },
+          {
+            "name": "Series",
+            "value": "series"
+          },
+          {
+            "name": "Rating",
+            "value": "rating"
+          },
+          {
+            "name": "Buttons",
+            "value": "buttons"
+          },
+          {
+            "name": "PriceInfo RegularPrice",
+            "value": "priceInfo_regularPrice"
+          },
+          {
+            "name": "Awards",
+            "value": "awards"
+          },
+          {
+            "name": "Position",
+            "value": "position"
+          }
+        ]
       }
     ]
   },
