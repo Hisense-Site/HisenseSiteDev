@@ -93,7 +93,7 @@
 
 .footer-nav-column .mobile-footer-title-line img {
   display: none;
-  transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
+  transition: transform .36s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .36s cubic-bezier(0, 0.18, 0.07, 1);
 
   @media (width < 860px) {
     display: block;

@@ -350,7 +350,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
       }
       
       img {
-        transition: transform .5s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .5s cubic-bezier(0, 0.18, 0.07, 1);
+        transition: transform .36s cubic-bezier(0, 0.18, 0.07, 1), -webkit-transform .36s cubic-bezier(0, 0.18, 0.07, 1);
       }
     }
     
