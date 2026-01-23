@@ -101,4 +101,8 @@ export default function decorate(block) {
     },
   };
   video.addEventListener('loadeddata', () => videoAutoplay.init());
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    video.play();
+  });
 }
