@@ -58,6 +58,22 @@
           "name": "tags",
           "label": "Tags",
           "rootPath": "/content/cq:tags/hisense/product"
+        },
+        {
+          "component": "select",
+          "name": "tags_type",
+          "label": "Tags Type",
+          "value": "checkbox",
+          "options": [
+            {
+              "name": "Radio",
+              "value": "radio"
+            },
+            {
+              "name": "Checkbox",
+              "value": "checkbox"
+            }
+          ]
         }
       ]
     }

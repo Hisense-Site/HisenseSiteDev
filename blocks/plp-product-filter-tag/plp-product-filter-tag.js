@@ -214,9 +214,10 @@ export default function decorate(block) {
       if (cells.length < 2) return;
 
       const titleText = cells[0].textContent.trim();
-      const tagsCsv = cells[1].textContent.trim();
+      const tagsCsv = cells[1].children[0].textContent.trim();
       if (!titleText || !tagsCsv) return;
 
+      const tagType = cells[1].children[1]?.textContent?.trim() || 'checkbox';
       const group = document.createElement('div');
       group.className = index === 0 ? 'plp-filter-group' : 'plp-filter-group hide';
       if (isEditMode && resource) {
@@ -243,7 +244,11 @@ export default function decorate(block) {
       title.append(titleSpan, arrow);
 
       const list = document.createElement('ul');
-      list.className = 'plp-filter-list';
+      list.className = `plp-filter-list plp-tag-${tagType}-group`;
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/radio-empty.svg
+
+      // /content/dam/hisense/us/common-icons/icon-carousel/radio.svg
 
       const tags = tagsCsv.split(',').map((t) => t.trim()).filter(Boolean);
       tags.forEach((tagPath) => {
@@ -251,19 +256,33 @@ export default function decorate(block) {
         li.className = 'plp-filter-item';
 
         const input = document.createElement('input');
-        input.type = 'checkbox';
+        input.type = tagType;
         input.value = tagPath;
+        if (tagPath === 'hisense:product/tv/connectlife-enabled/no') {
+          input.setAttribute('checked', 'checked');
+        }
+        input.name = `plp-filter-${titleText}`;
         input.setAttribute('data-option-value', tagPath);
         input.id = `plp-filter-${tagCounter}`;
         tagCounter += 1;
+
+        const InputIcon = document.createElement('span');
+        InputIcon.className = 'input-icon';
+        InputIcon.innerHTML = tagType === 'radio'
+          ? `<img class="icon-unchecked" src="/content/dam/hisense/us/common-icons/icon-carousel/radio-empty.svg" alt="" />
+          <img class="icon-checked" src="/content/dam/hisense/us/common-icons/icon-carousel/radio.svg" alt="" />`
+          : `<img class="icon-unchecked" src="/content/dam/hisense/us/common-icons/icon-carousel/checkbox-empty.svg" alt="" />
+          <img class="icon-checked" src="/content/dam/hisense/us/common-icons/icon-carousel/checkbox.svg" alt="" />`;
 
         const label = document.createElement('label');
         label.htmlFor = input.id;
         const parts = tagPath.split('/');
         const lastPart = (parts[parts.length - 1] || tagPath).trim();
         const matchedTitle = titlesMap[lastPart];
-        label.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart;
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart;
 
+        label.append(InputIcon, labelSpan);
         li.append(input, label);
         list.append(li);
 
@@ -323,7 +342,7 @@ export default function decorate(block) {
       const mobileProdctTagTit = document.createElement('div');
       mobileProdctTagTit.className = 'mobile-filter-title';
       const mobileFiltersSpan = document.createElement('span');
-      mobileFiltersSpan.textContent = 'Filters';
+      mobileFiltersSpan.textContent = 'FILTERS';
       const mobileFiltersImg = document.createElement('img');
       mobileFiltersImg.src = '/content/dam/hisense/us/common-icons/mobile-filters-title.svg';
       mobileFiltersImg.alt = 'Filters title';

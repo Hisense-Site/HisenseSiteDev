@@ -3,14 +3,14 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const box = document.createElement('div');
-  box.classList.add('icon-display-box');
+  box.classList.add('icon-container-box');
   [...block.children].forEach((row) => {
     const item = document.createElement('div');
-    item.classList.add('icon-display-item');
+    item.classList.add('icon-container-item');
     moveInstrumentation(row, item);
     while (row.firstElementChild) item.append(row.firstElementChild);
     const text = document.createElement('div');
-    text.className = 'icon-display-item-text';
+    text.className = 'icon-container-item-text';
     [...item.children].forEach((div) => {
       if (div.innerHTML.trim() === '') {
         div.remove();

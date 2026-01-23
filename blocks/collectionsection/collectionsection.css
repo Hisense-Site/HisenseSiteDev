@@ -14,7 +14,7 @@
 .collectionsection-wrapper > div > div:first-child div h4,
 .collectionsection-wrapper > div > div:first-child div h5,
 .collectionsection-wrapper > div > div:first-child div h6{
-  color: #00AAA6;
+  color: var(--color-primary-green-50);
   font-family: var(--font-family);
   margin: 0;
 }
