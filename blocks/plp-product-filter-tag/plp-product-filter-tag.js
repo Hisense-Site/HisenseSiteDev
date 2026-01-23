@@ -338,7 +338,7 @@ export default function decorate(block) {
       const mobileProdctTagTit = document.createElement('div');
       mobileProdctTagTit.className = 'mobile-filter-title';
       const mobileFiltersSpan = document.createElement('span');
-      mobileFiltersSpan.textContent = 'Filters';
+      mobileFiltersSpan.textContent = 'FILTERS';
       const mobileFiltersImg = document.createElement('img');
       mobileFiltersImg.src = '/content/dam/hisense/us/common-icons/mobile-filters-title.svg';
       mobileFiltersImg.alt = 'Filters title';
