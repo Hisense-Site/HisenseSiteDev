@@ -148,7 +148,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     display: flex;
     flex-wrap: wrap;
     gap: var(--size-8);
-    justify-content: center;
+    justify-content: flex-start;
     
     .badges-mobile-item {
       width: var(--size-104);
@@ -272,6 +272,10 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     margin-bottom: var(--size-10);
     display: none;
   }
+  
+  .pdp-specs-btn {
+    display: none;
+  }
 
   .pdp-badges-mobile-group {
     display: flex;
@@ -342,6 +346,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
       height: 100%;
       align-items: center;
       justify-content: space-between;
+      gap: 100px;
       
       span {
         font-size: 16px;
@@ -356,7 +361,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
     
     .pdp-nav-menu {
       width: 100%;
-      padding: 10px 0 30px 40px;
+      padding: 0 0 30px 40px;
       background: #fff;
       display: flex;
       flex-direction: column;
@@ -368,6 +373,11 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
         height: 21px;
         color: var(--color-primary-grey-50);
         font-size: 16px;
+        
+        &:first-child {
+          padding-top: 10px;
+          height: 31px;
+        }
       }
       
       .pdp-nav-menu-item:active {
