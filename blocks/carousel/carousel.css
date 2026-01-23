@@ -111,8 +111,9 @@ p {
     margin-top: 0 ;
   }
 
-  .carousel-item-content h1, h2, h3, h4, h5, h6 {
+  .carousel-item-content h1, h2, h3, h4, h5, h6, p {
     margin: 0;
+    font-size: var(--fontsize-pc-h1);
   }
 
   .carousel-item-content.icon-svg {
@@ -192,6 +193,29 @@ p {
     }
   }
 
+  .video-play-icon {
+    width: min(var(--size-40), 40px);
+    height: min(var(--size-40), 40px);
+    position: absolute;
+    bottom: min(var(--size-24), 24px);
+    left: min(11.1111vw, 160px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--white-alpha-40, rgb(255 255 255 / 40%));
+    border-radius: min(var(--size-40), 40px);
+    cursor: pointer;
+    z-index: 1;
+
+    &.is-playing {
+      background-image: url('/content/dam/hisense/us/common-icons/pause.svg');
+    }
+
+    &.is-paused {
+      background-image: url('/content/dam/hisense/us/common-icons/play.svg');
+    }
+  }
+
   &.dark {
     color: var(--color-primary-grey-10);
 
@@ -212,6 +236,10 @@ p {
         }
       }
     }
+
+    .video-play-icon {
+      background-color: var(--grey-alpha-40, rgb(20 20 20 / 40%));
+    }
   }
 }
 
@@ -224,28 +252,6 @@ p {
 .video-auto-play {
   width: 100%;
   aspect-ratio: 1440 / 860;
-}
-
-.video-play-icon {
-  width: min(var(--size-36), 36px);
-  height: min(var(--size-36), 36px);
-  position: absolute;
-  bottom: 0;
-  right: 360px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-
-  &.is-playing {
-    background-image: url('/content/dam/hisense/us/common-icons/pause.svg');
-    filter: invert(.665);
-  }
-
-  &.is-paused {
-    background-image: url('/content/dam/hisense/us/common-icons/play.svg');
-    filter: invert(.665);
-  }
 }
 
 .carousel-item-indicators {
@@ -439,6 +445,15 @@ p {
   .video-auto-play {
     height: 100%;
     aspect-ratio: 390/640;
+  }
+
+  .carousel-item .video-play-icon {
+    width: min(var(--size-36), 36px);
+    height: min(var(--size-36), 36px);
+    border-radius: min(var(--size-36), 36px);
+    right: min(var(--size-24), 24px);
+    bottom: min(var(--size-48), 48px);
+    left: auto;
   }
 
   .only-picture .carousel-items-container{

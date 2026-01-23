@@ -6,6 +6,7 @@ import { isUniversalEditor } from '../../utils/ue-helper.js';
 let carouselTimer;
 let carouselInterval;
 let isInitializing = true; // 初始化锁
+let previousVideo;
 
 function updateActiveSlide(block, slide) {
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
@@ -63,11 +64,8 @@ function showSlide(block, targetLogicalIndex, init = false) {
     left: targetSlide.offsetLeft,
     behavior: init ? 'instant' : 'smooth',
   });
-
-  if (init) {
-    updateActiveSlide(block, targetSlide);
-    return;
-  }
+  updateActiveSlide(block, targetSlide);
+  if (init) return;
   // 4. 如果触碰了边界，等动画结束后“瞬移”回真实位置
   if (isBoundary) {
     // 清除之前的定时器防止冲突
@@ -79,6 +77,19 @@ function showSlide(block, targetLogicalIndex, init = false) {
         behavior: 'instant', // 瞬间跳转，用户无感知
       });
     }, 800);
+  }
+  // 5. if slide contains video, auto play the video
+  if (targetSlide.querySelector('video')) {
+    if (targetSlide.querySelector('.video-play-icon').classList.contains('is-playing')) return;
+    targetSlide.querySelector('.video-play-icon').click();
+    previousVideo = targetSlide.querySelector('video');
+  } else if (
+    !targetSlide.querySelector('video')
+    && previousVideo
+    && previousVideo.closest('li').querySelector('.video-play-icon').classList.contains('is-playing')
+  ) {
+    // record previous video and is playing to pause
+    previousVideo.closest('li').querySelector('.video-play-icon').click();
   }
 }
 function stopAutoPlay() {
@@ -148,7 +159,26 @@ function bindEvents(block) {
       e.target.classList.add('is-playing');
       e.target.closest('li').querySelector('video')?.play();
     }
-  }, 1000));
+  }, 300));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      const currentSlideIdx = parseInt(v.dataset.slideIndex, 10) || 0;
+      const currentSlide = block.querySelector(`.carousel-item[data-slide-index="${currentSlideIdx}"]`);
+      if (entry.isIntersecting) {
+        if (currentSlide) currentSlide.querySelector('.video-play-icon')?.click();
+      } else {
+        if (currentSlide) currentSlide.querySelector('video')?.pause();
+        if (currentSlide && currentSlide.querySelector('.video-play-icon')?.classList.contains('is-playing')) {
+          currentSlide.querySelector('.video-play-icon').classList.remove('is-playing');
+          currentSlide.querySelector('.video-play-icon').classList.add('is-paused');
+        }
+      }
+    });
+  }, {
+    threshold: 0,
+  });
+  observer.observe(block);
 }
 
 function initVideo(selector, type) {
