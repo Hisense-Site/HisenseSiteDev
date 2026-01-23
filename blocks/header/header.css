@@ -454,7 +454,6 @@
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list {
-  padding-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -481,6 +480,10 @@
   height: 24px;
   line-height: 1.2;
   font-size: 20px;
+  
+  &:first-child {
+    padding-top: 16px;
+  }
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list .mobile-product-item:active {
