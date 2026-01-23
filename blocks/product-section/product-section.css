@@ -1,5 +1,5 @@
-/* pdp-product-info */
-main .section.product-detail-banner-container.pdp-product-info-container {
+/* product-section */
+main .section.product-gallery-container.product-section-container {
   display: flex;
   justify-content: center;
 
@@ -10,12 +10,12 @@ main .section.product-detail-banner-container.pdp-product-info-container {
   gap: var(--size-82);
 }
 
-main .section.product-detail-banner-container.pdp-product-info-container .product-detail-banner-wrapper {
+main .section.product-gallery-container.product-section-container .product-gallery-wrapper {
   padding: 0;
   margin: 0;
 }
 
-main .section.product-detail-banner-container.pdp-product-info-container .pdp-product-info-wrapper {
+main .section.product-gallery-container.product-section-container .product-section-wrapper {
   flex: 1;
   padding: 0;
   margin: 0;
@@ -31,7 +31,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
   }
 }
 
-.pdp-product-info {
+.product-section {
   width: 100%;
 }
 
@@ -128,8 +128,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 .pdp-badges {
   display: flex;
   gap: var(--size-8);
-
-  /* margin-bottom: var(--size-40); */
+  margin-bottom: var(--size-24); 
 }
 
 .pdp-badges-mobile-group {
@@ -247,7 +246,7 @@ main .section.product-detail-banner-container.pdp-product-info-container .pdp-pr
 }
 
 @media (width < 860px) {
-  main .section.product-detail-banner-container.pdp-product-info-container{
+  main .section.product-gallery-container.product-section-container{
     flex-direction: column;
     align-items: center;
     gap: 0;

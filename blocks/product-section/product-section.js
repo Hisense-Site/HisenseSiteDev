@@ -17,7 +17,7 @@ export default async function decorate(block) {
     || block.querySelector('p');
   const sku = skuEl ? skuEl.textContent.trim() : '';
 
-  console.log('pdp-product-info: endpoint =', endpoint, 'sku =', sku);
+  console.log('product-section: endpoint =', endpoint, 'sku =', sku);
 
   if (!endpoint || !sku) return;
 
@@ -28,7 +28,7 @@ export default async function decorate(block) {
     const resp = await fetch(url);
     json = await resp.json();
   } catch (err) {
-    console.error('pdp-product-info: failed to fetch product data, using mock', err);
+    console.error('product-section: failed to fetch product data, using mock', err);
     /* mock data */
     json = {
       total: 42,

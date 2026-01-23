@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "product-detail-banner-item",
+      "id": "product-gallery-item",
       "fields": [
         {
           "component": "reference",
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "pdp-product-info",
+      "id": "product-section",
       "fields": [
         {
           "component": "text",
@@ -382,8 +382,8 @@
         "properties",
         "imageCarousel",
         "image-comparison-slider",
-        "product-detail-banner",
-        "pdp-product-info",
+        "product-gallery",
+        "product-section",
         "plp-product-card",
         "plp-product-tag",
         "plp-product-filters",
