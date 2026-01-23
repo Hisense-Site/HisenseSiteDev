@@ -59,34 +59,26 @@
       "id": "carouselItem",
       "fields": [
         {
-          "component": "container",
-          "label": "",
-          "name": "container_reference",
+          "component": "reference",
           "valueType": "string",
-          "fields": [
-            {
-              "component": "reference",
-              "valueType": "string",
-              "name": "image_pc",
-              "label": "Image",
-              "required": true,
-              "multi": false
-            },
-            {
-              "component": "reference",
-              "valueType": "string",
-              "name": "image_mobile",
-              "label": "Image For Mobile",
-              "required": true,
-              "multi": false
-            },
-            {
-              "component": "boolean",
-              "name": "image_theme",
-              "label": "Image Dark Theme",
-              "valueType": "boolean"
-            }
-          ]
+          "name": "image_pc",
+          "label": "Image/Video For PC",
+          "required": true,
+          "multi": false
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image_mobile",
+          "label": "Image/Video For Mobile",
+          "required": true,
+          "multi": false
+        },
+        {
+          "component": "boolean",
+          "name": "image_theme",
+          "label": "Image/Video Dark Theme",
+          "valueType": "boolean"
         },
         {
           "component": "boolean",

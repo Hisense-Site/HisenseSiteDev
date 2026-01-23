@@ -137,7 +137,7 @@ export function initCarouselVideo(carouselRoot, selector, resolveCallBack) {
 
 export function setupObserver(carouselRoot, selector, resolveCallBack, leaveCallBack) {
   const options = {
-    threshold: 0.8,
+    threshold: 0.5,
   };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
