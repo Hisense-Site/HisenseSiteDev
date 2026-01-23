@@ -280,7 +280,7 @@ export default function decorate(block) {
         const lastPart = (parts[parts.length - 1] || tagPath).trim();
         const matchedTitle = titlesMap[lastPart];
         const labelSpan = document.createElement('span');
-        labelSpan.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart;
+        labelSpan.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart.replace(/\b\w(.+)?\b/g, (match, rest) => match[0].toUpperCase() + (rest || ''));
 
         label.append(InputIcon, labelSpan);
         li.append(input, label);
