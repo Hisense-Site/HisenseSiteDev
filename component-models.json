@@ -1230,7 +1230,7 @@
     ]
   },
   {
-    "id": "icon-display",
+    "id": "icon-container",
     "fields": [
       {
         "component": "multiselect",

@@ -108,7 +108,7 @@
     ]
   },
   {
-    "id": "icon-display",
+    "id": "icon-container",
     "components": [
       "icon-item"
     ]
