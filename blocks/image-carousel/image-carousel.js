@@ -75,6 +75,7 @@ function createVideo(child, idx) {
   video.controls = true;
   video.preload = 'auto';
   video.autoplay = false;
+  video.loop = true;
   const source = document.createElement('source');
   source.src = videourl; // 替换为你的视频路径
   source.type = 'video/mp4';
