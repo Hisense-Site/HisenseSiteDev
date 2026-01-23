@@ -296,7 +296,7 @@ export default function decorate(block) {
         if (paramValue) {
           // 直接使用参数名和值组合成筛选条件
           const targetValue = `${paramName}/${paramValue}`;
-          const targetCheckbox = document.querySelector(`.plp-filter-item input[type="checkbox"][value$="${targetValue}"]`);
+          const targetCheckbox = document.querySelector(`.plp-filter-item input[value$="${targetValue}"]`);
 
           if (targetCheckbox) {
             // 触发checkbox的点击事件

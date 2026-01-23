@@ -275,9 +275,11 @@ export default function decorate(block) {
         const parts = tagPath.split('/');
         const lastPart = (parts[parts.length - 1] || tagPath).trim();
         const matchedTitle = titlesMap[lastPart];
-        label.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart;
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = (matchedTitle && String(matchedTitle).trim()) ? matchedTitle : lastPart;
 
-        li.append(input, InputIcon, label);
+        label.append(InputIcon, labelSpan);
+        li.append(input, label);
         list.append(li);
 
         input.addEventListener('change', () => {
