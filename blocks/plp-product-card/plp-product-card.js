@@ -626,6 +626,16 @@ export default function decorate(block) {
           item.productDetailPageLink = item.productDetailPageLink.replace('/us/en', '/us');
         }
       }
+      // 补全ConnectLife Enabled没有配置的情况;
+      const TAG_YES = 'hisense:product/tv/connectlife-enabled/yes';
+      const TAG_NO = 'hisense:product/tv/connectlife-enabled/no';
+      const hasYesTag = item.tags.includes(TAG_YES);
+      const hasNoTag = item.tags.includes(TAG_NO);
+
+      // 如果两个标签都不包含，就插入NO标签
+      if (!hasYesTag && !hasNoTag) {
+        item.tags.push(TAG_NO);
+      }
     });
 
     // 按 factoryModel 聚合
