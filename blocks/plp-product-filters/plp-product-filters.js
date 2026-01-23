@@ -30,10 +30,12 @@ function buildFilterTag(row, resource, isEditMode) {
   return tag;
 }
 
-function mobileSortByDom() {
-  document.body.style.overflow = 'hidden';
-  const originalSortByBoxEl = document.querySelector('.plp-sort-box');
-  originalSortByBoxEl.classList.add('mobile-sort-by-box');
+function closeMobileSortByDom() {
+  const sortBoxEl = document.querySelector('.plp-sort-box');
+  sortBoxEl.classList.remove('mobile-sort-by-box');
+  document.body.style.overflow = 'auto';
+  const sortMask = document.querySelector('.mobile-sort-by-mask');
+  sortMask.style.display = 'none';
 }
 
 export default function decorate(block) {
@@ -44,6 +46,9 @@ export default function decorate(block) {
 
   const mobileFilterBar = document.createElement('div');
   mobileFilterBar.className = 'mobile-plp-filters-bar';
+
+  const mobileSortMask = document.createElement('div');
+  mobileSortMask.className = 'mobile-sort-by-mask';
 
   const filtersLeft = document.createElement('div');
   filtersLeft.className = 'plp-filters-left';
@@ -191,7 +196,7 @@ export default function decorate(block) {
   const mobileFilterTit = document.createElement('div');
   mobileFilterTit.className = 'mobile-filter-title';
   const mobileFiltersSpan = document.createElement('span');
-  mobileFiltersSpan.textContent = 'Filters';
+  mobileFiltersSpan.textContent = 'FILTERS';
   const mobileFiltersImg = document.createElement('img');
   mobileFiltersImg.src = '/content/dam/hisense/us/common-icons/mobile-filters-title.svg';
   mobileFiltersImg.alt = 'Filters title';
@@ -231,9 +236,7 @@ export default function decorate(block) {
   // 移动端, sort by close 点击事件
   closeImg.addEventListener('click', (e) => {
     e.stopPropagation(); // 阻止事件冒泡
-    const sortBoxEl = document.querySelector('.plp-sort-box');
-    sortBoxEl.classList.remove('mobile-sort-by-box');
-    document.body.style.overflow = 'auto';
+    closeMobileSortByDom();
   });
   sort.append(sortSpan, sortImg, closeImg);
 
@@ -253,6 +256,8 @@ export default function decorate(block) {
     document.body.style.overflow = 'hidden';
     const originalSortByBoxEl = document.querySelector('.plp-sort-box');
     originalSortByBoxEl.classList.add('mobile-sort-by-box');
+    const sortMask = document.querySelector('.mobile-sort-by-mask');
+    sortMask.style.display = 'block';
   });
   // 为mobileFilters, mobileSort 创建独立类名为mobile-plp-filters-bar 的 div 元素
   mobileFilterBar.append(mobileFilters, mobileSort);
@@ -347,11 +352,11 @@ export default function decorate(block) {
   sortBox.append(sort, sortOptions);
 
   // 切换排序下拉框
-  sort.addEventListener('click', () => {
+  sort.addEventListener('click', (e) => {
     // sortBox.classList.toggle('show');
     // 为排序移动端添加样式
     if (isMobile() || isMobileWindow()) {
-      mobileSortByDom();
+      e.preventDefault();
     } else {
       sortBox.classList.toggle('show');
     }
@@ -379,9 +384,7 @@ export default function decorate(block) {
       sortBox.classList.remove('show');
       // 如果是移动端，点击sort by 选项要关闭全屏筛选内容，返回列表页面
       if (isMobile || isMobileWindow) {
-        const originalSortByBoxEl = document.querySelector('.plp-sort-box');
-        originalSortByBoxEl.classList.remove('mobile-sort-by-box');
-        document.body.style.overflow = 'auto';
+        closeMobileSortByDom();
       }
       try {
         const sortKey = (option.dataset && Object.prototype.hasOwnProperty.call(option.dataset, 'value'))
@@ -410,6 +413,6 @@ export default function decorate(block) {
     }
   });
 
-  filtersBar.append(filtersLeft, sortBox, mobileFilterBar);
+  filtersBar.append(filtersLeft, sortBox, mobileFilterBar, mobileSortMask);
   block.replaceChildren(filtersBar);
 }
