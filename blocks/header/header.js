@@ -320,7 +320,7 @@ function buildDropdown(data) {
 // }
 
 const handleChangeNavPosition = (navigation) => {
-  const pdpEl = document.querySelector('.pdp-product-info-container');
+  const pdpEl = document.querySelector('.product-section-container');
   const plpEl = document.querySelector('.plp-product-filters');
   if (window.innerWidth < 860 && (pdpEl || plpEl)) {
     navigation.style.position = 'absolute';
@@ -349,7 +349,7 @@ export default async function decorate(block) {
   // 构建新的导航DOM
   const navigation = document.createElement('div');
   navigation.id = 'navigation';
-  const pdpEl = document.querySelector('.pdp-product-info-container');
+  const pdpEl = document.querySelector('.product-section-container');
   const plpEl = document.querySelector('.plp-product-filters');
   window.addEventListener('resize', () => {
     handleChangeNavPosition(navigation);
