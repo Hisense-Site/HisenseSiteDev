@@ -1262,24 +1262,6 @@
             "value": "customize-feature-banner"
           }
         ]
-      },
-      {
-        "component": "select",
-        "name": "style_position",
-        "value": "",
-        "label": "options",
-        "description": "",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Left",
-            "value": "left"
-          },
-          {
-            "name": "Right",
-            "value": "right"
-          }
-        ]
       }
     ]
   },
