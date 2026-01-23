@@ -1,9 +1,9 @@
-.icon-display-wrapper{
+.icon-container-wrapper{
   width: 100%;
 }
 
 
-.icon-display-box{
+.icon-container-box{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +17,7 @@
   }
 }
 
-.top-space .icon-display-box{
+.top-space .icon-container-box{
     margin-top: var(--spacing-sm);
 
     @media (width >= 860px) {
@@ -26,7 +26,7 @@
      
 }
 
-.bottom-space .icon-display-box{
+.bottom-space .icon-container-box{
     margin-bottom: var(--spacing-sm);
 
     @media (width >= 860px) {
@@ -34,7 +34,7 @@
     }
 }
 
-.icon-display-item {
+.icon-container-item {
     display: flex;
     align-items: center;
     gap: var(--size-8);
@@ -42,11 +42,11 @@
 
 
 
-.text-center .icon-display-item .icon-text{
+.text-center .icon-container-item .icon-text{
   text-align: center;
 }
 
-.icon-display-item .icon-text:first-child,
+.icon-container-item .icon-text:first-child,
 [data-aue-prop = "title"]{
     font-size: var(--size-16);
     line-height: var(--size-20);
@@ -58,7 +58,7 @@
 
 }
 
-.icon-display-item .icon-text:nth-child(2),
+.icon-container-item .icon-text:nth-child(2),
 [data-aue-prop = "sub-title"]{
     font-size:  var(--size-10);
     line-height: var(--size-20);
@@ -70,7 +70,7 @@
 }
 
 
-.icon-display-item .icon-image img{
+.icon-container-item .icon-image img{
     height: var(--size-40);
     width: auto;
 
@@ -79,13 +79,13 @@
     }
 }
 
-.large-icon .icon-display-item .icon-image img{
+.large-icon .icon-container-item .icon-image img{
    @media (width >= 860px) {
          height: var(--size-88);
     }
 }
 
-.fixed-width .icon-display-box{
+.fixed-width .icon-container-box{
     align-items: flex-start;
     flex-direction: column;
     gap: var(--spacing-sm);
@@ -98,21 +98,21 @@
     }
 }
 
-.fixed-width .icon-display-box .icon-display-item{
+.fixed-width .icon-container-box .icon-container-item{
     @media (width >= 860px) {
        flex-direction: column;
     }
    
 }
 
-.fixed-width .icon-display-box .icon-text{
+.fixed-width .icon-container-box .icon-text{
      @media (width >= 860px) {
         text-align: center;
     }
    
 }
 
-.fixed-width .icon-display-item .icon-image{
+.fixed-width .icon-container-item .icon-image{
     width: var(--size-60);
 }
 

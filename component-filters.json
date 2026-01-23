@@ -37,7 +37,7 @@
       "plp-product-tag",
       "plp-product-filters",
       "product-filters-carousel",
-      "icon-display",
+      "icon-container",
       "product-spec"
     ]
   },
@@ -108,7 +108,7 @@
     ]
   },
   {
-    "id": "icon-display",
+    "id": "icon-container",
     "components": [
       "icon-item"
     ]
