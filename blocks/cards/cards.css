@@ -212,7 +212,7 @@
     font-size: var(--size-12);
     padding: 0 var(--spacing-xs);
     color: #fff !important;
-    background-color: var(--color-hisense-teal);
+    background-color: var(--color-primary-green-50);
     visibility: hidden;
     position: absolute;
     bottom: 0;

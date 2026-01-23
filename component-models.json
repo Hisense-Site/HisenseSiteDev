@@ -1230,7 +1230,7 @@
     ]
   },
   {
-    "id": "icon-display",
+    "id": "icon-container",
     "fields": [
       {
         "component": "multiselect",
@@ -1240,10 +1240,6 @@
           {
             "name": "Text Align Center",
             "value": "text-center"
-          },
-          {
-            "name": "Fixed Width Style",
-            "value": "fixed-width"
           },
           {
             "name": "Large Icon",
@@ -1256,6 +1252,14 @@
           {
             "name": "Bottom Space",
             "value": "bottom-space"
+          },
+          {
+            "name": "Customize Style -Fixed Width Style",
+            "value": "fixed-width"
+          },
+          {
+            "name": "Customize Style - Feature Banner",
+            "value": "customize-feature-banner"
           }
         ]
       }

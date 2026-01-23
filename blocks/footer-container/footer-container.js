@@ -420,11 +420,11 @@ export default function decorate(block) {
     lanGroup.className = 'footer-lan-group';
     lanGroup.innerHTML = `
   <img src="/content/dam/hisense/us/common-icons/global.svg" alt="" />
-  <div class="footer-lan-com">Canada</div>
+  <div class="footer-lan-com">United States</div>
   <div class="footer-lan-list">
     <div class="footer-lan-item active">English</div>
-    <div class="footer-lan-line"></div>
-    <div class="footer-lan-item">Français</div>
+<!--    <div class="footer-lan-line"></div>-->
+<!--    <div class="footer-lan-item">Français</div>-->
   </div>`;
     footerLegals.appendChild(lanGroup);
 

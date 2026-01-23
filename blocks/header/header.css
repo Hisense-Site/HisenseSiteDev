@@ -164,6 +164,10 @@
   font-weight: 400;
   font-size: 20px;
   color: #000;
+  
+  &:first-child {
+    padding-top: 32px;
+  }
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link .mobile-link-title-line {
@@ -454,7 +458,6 @@
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list {
-  padding-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -481,6 +484,10 @@
   height: 24px;
   line-height: 1.2;
   font-size: 20px;
+  
+  &:first-child {
+    padding-top: 16px;
+  }
 }
 
 #navigation .mobile-menu .mobile-links .mobile-link .mobile-link-second-list .mobile-product-item:active {
@@ -611,7 +618,7 @@
 
   #navigation.show-menu .mobile-menu {
     height: calc(100vh - 64px);
-    padding: 32px 24px;
+    padding: 0 24px 32px;
     overflow: auto;
     overscroll-behavior: contain;
   }

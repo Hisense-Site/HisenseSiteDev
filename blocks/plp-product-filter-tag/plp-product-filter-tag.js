@@ -258,6 +258,10 @@ export default function decorate(block) {
         const input = document.createElement('input');
         input.type = tagType;
         input.value = tagPath;
+        if (tagPath === 'hisense:product/tv/connectlife-enabled/no') {
+          input.setAttribute('checked', 'checked');
+        }
+        input.name = `plp-filter-${titleText}`;
         input.setAttribute('data-option-value', tagPath);
         input.id = `plp-filter-${tagCounter}`;
         tagCounter += 1;
