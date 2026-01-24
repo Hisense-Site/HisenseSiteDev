@@ -577,34 +577,20 @@ async function loadBlock(block) {
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
     const { blockName } = block.dataset;
-
-    // mapping for renamed blocks
-    const blockNameMapping = {
-      'hero-banner': 'carousel',
-      'card-carousel': 'icon-component',
-      'category-carousel': 'product-filters-carousel',
-      'product-sorting': 'plp-product-filters',
-      'product-filter': 'plp-product-filter-tag',
-      'product-card': 'plp-product-card',
-      'media-carousel': 'image-carousel',
-      text: 'description',
-    };
-
-    const mappedBlockName = blockNameMapping[blockName] || blockName;
     try {
-      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${mappedBlockName}/${mappedBlockName}.css`);
+      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
             const mod = await import(
-              `${window.hlx.codeBasePath}/blocks/${mappedBlockName}/${mappedBlockName}.js`
+              `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`
             );
             if (mod.default) {
               await mod.default(block);
             }
           } catch (error) {
             // eslint-disable-next-line no-console
-            console.error(`failed to load module for ${mappedBlockName}`, error);
+            console.error(`failed to load module for ${blockName}`, error);
           }
           resolve();
         })();
@@ -612,7 +598,7 @@ async function loadBlock(block) {
       await Promise.all([cssLoaded, decorationComplete]);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(`failed to load block ${mappedBlockName}`, error);
+      console.error(`failed to load block ${blockName}`, error);
     }
     block.dataset.blockStatus = 'loaded';
   }

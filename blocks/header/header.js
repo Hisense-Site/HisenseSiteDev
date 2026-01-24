@@ -78,12 +78,12 @@ function parseDropdownProducts(col) {
         text = item.textContent.trim();
       }
 
-      // 检查是否有第4个元素作为标签配置
+      // 检查是否有�?个元素作为标签配�?
       if (directChildren[3] && directChildren[3].textContent.trim()) {
         const tagsText = directChildren[3].textContent.trim();
         const tagParams = tagsText.split(',')
           .map((tag) => {
-            // 取最后两节并替换 / 为 =, type/xxxx = type=xxxx 链接参数
+            // 取最后两节并替换 / �?=, type/xxxx = type=xxxx 链接参数
             const parts = tag.trim().split('/');
             if (parts.length >= 2) {
               const key = parts[parts.length - 2];
@@ -114,12 +114,12 @@ function parseDropdownProducts(col) {
   const pictures = children.filter((child) => child.tagName === 'P' && child.querySelector('picture'));
   const pictureIndices = pictures.map((pic) => children.indexOf(pic));
 
-  // 为每个分组创建数据
+  // 为每个分组创建数�?
   for (let i = 0; i < pictureIndices.length; i += 1) {
     const startIdx = pictureIndices[i];
     const endIdx = i < pictureIndices.length - 1 ? pictureIndices[i + 1] : children.length;
 
-    // 获取当前分组的所有元素
+    // 获取当前分组的所有元�?
     const groupElements = children.slice(startIdx, endIdx);
 
     // 解析分组数据
@@ -129,12 +129,12 @@ function parseDropdownProducts(col) {
     const linkElement = groupElements[3]?.querySelector('a');
     let href = linkElement?.href || linkElement?.textContent.trim() || '#';
 
-    // 检查是否有第5个元素作为标签配置
+    // 检查是否有�?个元素作为标签配�?
     if (groupElements[4] && groupElements[4].textContent.trim()) {
       const tagsText = groupElements[4].textContent.trim();
       const tagParams = tagsText.split(',')
         .map((tag) => {
-          // 取最后两节并替换 / 为 = type/xxxx = type=xxxx 链接参数
+          // 取最后两节并替换 / �?= type/xxxx = type=xxxx 链接参数
           const parts = tag.trim().split('/');
           if (parts.length >= 2) {
             const key = parts[parts.length - 2];
@@ -529,7 +529,7 @@ export default async function decorate(block) {
     actionsEl.append(link);
   });
 
-  // 物理添加手机端菜单按钮
+  // 物理添加手机端菜单按�?
   const btn = document.createElement('div');
   btn.className = 'nav-action-btn mobile-menu-icon';
   const img = document.createElement('img');

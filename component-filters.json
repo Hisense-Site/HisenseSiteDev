@@ -15,21 +15,20 @@
       "button",
       "title",
       "hero",
-      "cards",
-      "carousel",
+      "collection-cards",
+      "hero-banner",
       "columns",
       "fragment",
-      "collectionsection",
-      "recards",
+      "collection-title",
       "video",
-      "banner",
-      "description",
+      "collection-banner",
+      "text",
       "disclaimer",
-      "featurebanner",
-      "iconComponent",
+      "feature-banner",
+      "card-carousel",
       "parallax",
       "properties",
-      "imageCarousel",
+      "media-carousel",
       "image-comparison-slider",
       "product-gallery",
       "product-section",
@@ -42,15 +41,15 @@
     ]
   },
   {
-    "id": "cards",
+    "id": "card-carousel",
     "components": [
-      "card"
+      "card-carouselItem"
     ]
   },
   {
-    "id": "carousel",
+    "id": "collection-cards",
     "components": [
-      "carouselItem"
+      "collection-card"
     ]
   },
   {
@@ -67,12 +66,6 @@
       "button",
       "title",
       "imageLink"
-    ]
-  },
-  {
-    "id": "description",
-    "components": [
-      "featureDisclaimer"
     ]
   },
   {
@@ -102,9 +95,9 @@
     ]
   },
   {
-    "id": "iconComponent",
+    "id": "hero-banner",
     "components": [
-      "iconItem"
+      "hero-bannerItem"
     ]
   },
   {
@@ -114,9 +107,9 @@
     ]
   },
   {
-    "id": "imageCarousel",
+    "id": "media-carousel",
     "components": [
-      "imageCarouselItem"
+      "media-carouselItem"
     ]
   },
   {
@@ -159,9 +152,9 @@
     ]
   },
   {
-    "id": "recards",
+    "id": "text",
     "components": [
-      "recard"
+      "featureDisclaimer"
     ]
   }
 ]

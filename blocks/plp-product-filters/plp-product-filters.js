@@ -99,7 +99,7 @@ export default function decorate(block) {
           option.isDefaultSearch = isDefaultText === 'true';
         }
 
-        // 获取所有 data-aue 开头的属性
+        // 获取所�?data-aue 开头的属�?
         const dataAueAttributes = {};
         Array.from(row.attributes).forEach((attr) => {
           if (attr.name.startsWith('data-aue-')) {
@@ -130,14 +130,14 @@ export default function decorate(block) {
   }
   const results = document.createElement('div');
   results.className = 'plp-results';
-  // 保留一个隐藏的占位符 span，用于后续更新数量
+  // 保留一个隐藏的占位�?span，用于后续更新数�?
   const placeholderMatch = resultsText.match(/\{[^}]*\}/);
   if (placeholderMatch) {
     const parts = resultsText.split(placeholderMatch[0]);
     if (parts[0]) results.append(document.createTextNode(parts[0]));
     const visibleCount = document.createElement('span');
     visibleCount.className = 'plp-results-count-visible';
-    visibleCount.textContent = ''; // 会在产品加载时填充
+    visibleCount.textContent = ''; // 会在产品加载时填�?
     results.append(visibleCount);
     if (parts[1]) results.append(document.createTextNode(parts[1]));
     const hiddenSpan = document.createElement('span');
@@ -156,7 +156,7 @@ export default function decorate(block) {
   }
   resultsBox.append(results);
 
-  // 筛选标签容器
+  // 筛选标签容�?
   const activeFilters = document.createElement('div');
   activeFilters.className = 'plp-active-filters';
   if (isEditMode && resourceTitle) {
@@ -210,7 +210,7 @@ export default function decorate(block) {
     filterDetailEl.classList.toggle('mobile-filter-show');
   });
 
-  // 排序下拉框
+  // 排序下拉�?
   const sortBox = document.createElement('div');
   sortBox.className = 'plp-sort-box';
   if (isEditMode && resourceSortBy) {
@@ -228,19 +228,19 @@ export default function decorate(block) {
   sortImg.src = '/content/dam/hisense/us/common-icons/chevron-up.svg';
   sortImg.alt = 'Sort options';
   sortImg.className = 'sort-arrow';
-  // 移动端 sort by close btn
+  // 移动�?sort by close btn
   const closeImg = document.createElement('img');
   closeImg.src = '/content/dam/hisense/us/common-icons/close.svg';
   closeImg.alt = 'mobile-close-sort-by';
   closeImg.className = 'mobile-sort-by-close';
-  // 移动端, sort by close 点击事件
+  // 移动�? sort by close 点击事件
   closeImg.addEventListener('click', (e) => {
     e.stopPropagation(); // 阻止事件冒泡
     closeMobileSortByDom();
   });
   sort.append(sortSpan, sortImg, closeImg);
 
-  // 移动端 sort by
+  // 移动�?sort by
   const mobileSort = document.createElement('div');
   mobileSort.className = 'mobile-plp-sort';
   const mobileSortSpan = document.createElement('span');
@@ -259,7 +259,7 @@ export default function decorate(block) {
     const sortMask = document.querySelector('.mobile-sort-by-mask');
     sortMask.style.display = 'block';
   });
-  // 为mobileFilters, mobileSort 创建独立类名为mobile-plp-filters-bar 的 div 元素
+  // 为mobileFilters, mobileSort 创建独立类名为mobile-plp-filters-bar �?div 元素
   mobileFilterBar.append(mobileFilters, mobileSort);
 
   const sortOptions = document.createElement('div');
@@ -312,7 +312,7 @@ export default function decorate(block) {
         optionDiv.setAttribute('data-aue-resource', option.resource);
       }
 
-      // 设置所有 data-aue 开头的属性
+      // 设置所�?data-aue 开头的属�?
       if (isEditMode && option.dataAueAttributes) {
         Object.keys(option.dataAueAttributes).forEach((attrName) => {
           optionDiv.setAttribute(attrName, option.dataAueAttributes[attrName]);
@@ -327,7 +327,7 @@ export default function decorate(block) {
       sortOptions.append(optionDiv);
     });
 
-    // 更新默认选中选项的文本显示
+    // 更新默认选中选项的文本显�?
     const selectedOption = sortOptions.querySelector('.plp-sort-option.selected');
     if (selectedOption) {
       const prefix = (typeof sortBy === 'string' && sortBy.trim()) ? sortBy : 'Sort By';
@@ -351,7 +351,7 @@ export default function decorate(block) {
 
   sortBox.append(sort, sortOptions);
 
-  // 切换排序下拉框
+  // 切换排序下拉�?
   sort.addEventListener('click', (e) => {
     // sortBox.classList.toggle('show');
     // 为排序移动端添加样式
@@ -365,7 +365,7 @@ export default function decorate(block) {
   // 选择排序
   sortOptions.querySelectorAll('.plp-sort-option').forEach((option) => {
     option.addEventListener('click', () => {
-      // 如果点击的排序option已经是选中的option，不做任何操作
+      // 如果点击的排序option已经是选中的option，不做任何操�?
       if (option.classList.contains('selected')) {
         sortBox.classList.remove('show');
         return;
@@ -392,7 +392,7 @@ export default function decorate(block) {
           : (option.getAttribute && option.getAttribute('data-value'));
         try {
           if (window && typeof window.applyPlpSort === 'function') {
-            // 如果 sortKey 为 undefined/null，则传空字符串以触发默认排序
+            // 如果 sortKey �?undefined/null，则传空字符串以触发默认排序
             window.applyPlpSort(sortKey == null ? '' : sortKey);
           }
         } catch (e) {
@@ -406,7 +406,7 @@ export default function decorate(block) {
     });
   });
 
-  // 点击关闭下拉框
+  // 点击关闭下拉�?
   document.addEventListener('click', (e) => {
     if (!sortBox.contains(e.target)) {
       sortBox.classList.remove('show');

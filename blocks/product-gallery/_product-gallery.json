@@ -17,14 +17,14 @@
       }
     },
     {
-      "title": "Product Gallery - Gallery Item",
+      "title": "Gallery Item",
       "id": "product-gallery-item",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Product Gallery - Gallery Item",
+              "name": "Gallery Item",
               "model": "product-gallery-item"
             }
           }

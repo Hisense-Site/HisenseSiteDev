@@ -66,19 +66,19 @@ export default function decorate(block) {
             'jcr:title': 'Screen Size (Range)',
             '32-43': {
               'jcr:description': '',
-              'jcr:title': '32” - 43” ',
+              'jcr:title': '32�?- 43�?',
             },
             '50-65': {
               'jcr:description': '',
-              'jcr:title': '50” - 65” ',
+              'jcr:title': '50�?- 65�?',
             },
             '70-85': {
               'jcr:description': '',
-              'jcr:title': '70” - 85” ',
+              'jcr:title': '70�?- 85�?',
             },
             '98-max': {
               'jcr:description': '',
-              'jcr:title': '98” and above ',
+              'jcr:title': '98�?and above ',
             },
           },
           type: {
@@ -333,7 +333,7 @@ export default function decorate(block) {
       sidebar.append(fragment);
       block.replaceChildren(sidebar);
     }
-    // mobile 端， 为 filter 添加标题
+    // mobile 端， �?filter 添加标题
     const filterTagWrapperEl = document.querySelector('.plp-product-filter-tag-wrapper');
     const filterTagEl = document.querySelector('.plp-product-filter-tag');
     if (filterTagEl) {

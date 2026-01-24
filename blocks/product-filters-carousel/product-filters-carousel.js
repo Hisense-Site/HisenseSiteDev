@@ -89,11 +89,11 @@ function buildTab(itemElement) {
           resetFiltersBtn.click();
         }
       } else {
-        // 移除其他 product-filter-item 的选中状态
+        // 移除其他 product-filter-item 的选中状�?
         const allFilterItems = document.querySelectorAll('.product-filter-item');
         allFilterItems.forEach((item) => item.classList.remove('selected'));
 
-        // 添加当前元素的选中状态
+        // 添加当前元素的选中状�?
         li.classList.add('selected');
 
         const resetFiltersBtn = document.querySelector('.plp-reset-filters');
@@ -108,7 +108,7 @@ function buildTab(itemElement) {
       }
     });
   }
-  // 如果只有链接没有标签，设置点击跳转
+  // 如果只有链接没有标签，设置点击跳�?
   else if (hasLink) {
     li.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -126,7 +126,7 @@ function updateButtons(tabsList, leftBtn, rightBtn) {
 }
 
 function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
-  // 左箭头点击
+  // 左箭头点�?
   leftBtn.addEventListener('click', () => {
     tabsList.scrollBy({
       left: -SCROLL_STEP,
@@ -135,7 +135,7 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
     setTimeout(() => updateButtons(tabsList, leftBtn, rightBtn), 300);
   });
 
-  // 右箭头点击
+  // 右箭头点�?
   rightBtn.addEventListener('click', () => {
     tabsList.scrollBy({
       left: SCROLL_STEP,
@@ -154,7 +154,7 @@ export default function decorate(block) {
   // 给main 元素添加类名，为了给整个窗口添加灰色背景
   const main = document.querySelector('main');
   main.classList.add('main-plp-gray');
-  // 编辑模式,如果有 data-aue-resource 属性，说明现在浏览的是编辑模式
+  // 编辑模式,如果�?data-aue-resource 属性，说明现在浏览的是编辑模式
   const isEditMode = block.hasAttribute('data-aue-resource');
 
   const tabs = document.createElement('ul');
@@ -170,7 +170,7 @@ export default function decorate(block) {
     const li = buildTab(item);
     const resource = item.getAttribute && item.getAttribute('data-aue-resource');
     if (resource) {
-      // 保留 data-aue-resource，用于编辑
+      // 保留 data-aue-resource，用于编�?
       li.setAttribute('data-aue-resource', resource);
     }
     tabs.append(li);

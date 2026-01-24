@@ -14,7 +14,7 @@ export default async function decorate(block) {
   try {
     const product = await waitForProductData();
 
-    // 创建包装器容器
+    // 创建包装器容�?
     const wrapper = document.createElement('div');
     wrapper.className = 'product-specifications-wrapper';
 
@@ -49,7 +49,7 @@ export default async function decorate(block) {
         // 如果没有二级配置，则使用一级标题作为二级的标题
         if (!level2) {
           level2 = level1;
-          level1 = 'Specifications'; // 默认一级标题
+          level1 = 'Specifications'; // 默认一级标�?
         }
 
         if (!specHierarchy[level1]) {
@@ -72,7 +72,7 @@ export default async function decorate(block) {
     const level1Keys = Object.keys(specHierarchy);
 
     level1Keys.forEach((level1) => {
-      // 创建一级分类标题
+      // 创建一级分类标�?
       const titleWrapper = document.createElement('div');
       titleWrapper.className = 'default-content-wrapper';
       const title = document.createElement('h3');
@@ -93,11 +93,11 @@ export default async function decorate(block) {
           const propertiesBlock = document.createElement('div');
           propertiesBlock.className = 'properties block';
 
-          // 计算索引用于first和last类
+          // 计算索引用于first和last�?
           const globalIndex = totalGroups;
           const totalGroupCount = Object.values(specHierarchy).reduce((sum, level2Obj) => sum + Object.keys(level2Obj).filter((key) => level2Obj[key].length > 0).length, 0);
 
-          // 添加全局first和last类
+          // 添加全局first和last�?
           if (globalIndex === 0) {
             propertiesBlock.classList.add('first');
           }
@@ -171,7 +171,7 @@ export default async function decorate(block) {
     wrapper.appendChild(container);
     block.replaceChildren(wrapper);
   } catch (error) {
-    // 加载失败，显示错误信息
+    // 加载失败，显示错误信�?
     const errorDiv = document.createElement('div');
     errorDiv.textContent = 'Unable to load product specifications';
     block.replaceChildren(errorDiv);

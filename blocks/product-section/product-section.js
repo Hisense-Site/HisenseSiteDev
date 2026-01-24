@@ -3023,7 +3023,7 @@ export default async function decorate(block) {
           subtitle: '116" Class RGB MiniLED 4K Google TV',
           series: 'UX Series',
           description_description: {
-            html: '<p>Hisense 116” Class UX Series RGB MiniLEDULED 4K Google TV</p>',
+            html: '<p>Hisense 116L Class UX Series RGB MiniLEDULED 4K Google TV</p>',
           },
           productLaunchDate: '2025-12-28T16:00:00.000Z',
           tags: [
