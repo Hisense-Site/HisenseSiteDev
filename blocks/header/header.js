@@ -60,10 +60,10 @@ function parseActions(root) {
 function parseDropdownProducts(col) {
   if (!col) return [];
 
-  const imageLinkItems = Array.from(col.querySelectorAll('.image-link'));
+  const subMenuLinkItems = Array.from(col.querySelectorAll('.sub-menu-link'));
 
-  if (imageLinkItems.length) {
-    return imageLinkItems.map((item) => {
+  if (subMenuLinkItems.length) {
+    return subMenuLinkItems.map((item) => {
       const img = item.querySelector('img')?.src || '';
       let href = item.querySelector('a')?.href || '#';
       const directChildren = Array.from(item.children);
@@ -78,12 +78,12 @@ function parseDropdownProducts(col) {
         text = item.textContent.trim();
       }
 
-      // 检查是否有�?个元素作为标签配�?
+      // 检查是否有一个元素作为标签配置
       if (directChildren[3] && directChildren[3].textContent.trim()) {
         const tagsText = directChildren[3].textContent.trim();
         const tagParams = tagsText.split(',')
           .map((tag) => {
-            // 取最后两节并替换 / �?=, type/xxxx = type=xxxx 链接参数
+            // 取最后两节并替换 / 为 =，type/xxxx -> type=xxxx 链接参数
             const parts = tag.trim().split('/');
             if (parts.length >= 2) {
               const key = parts[parts.length - 2];
@@ -114,12 +114,12 @@ function parseDropdownProducts(col) {
   const pictures = children.filter((child) => child.tagName === 'P' && child.querySelector('picture'));
   const pictureIndices = pictures.map((pic) => children.indexOf(pic));
 
-  // 为每个分组创建数�?
+  // 为每个分组创建数组
   for (let i = 0; i < pictureIndices.length; i += 1) {
     const startIdx = pictureIndices[i];
     const endIdx = i < pictureIndices.length - 1 ? pictureIndices[i + 1] : children.length;
 
-    // 获取当前分组的所有元�?
+    // 获取当前分组的所有元素
     const groupElements = children.slice(startIdx, endIdx);
 
     // 解析分组数据
@@ -129,12 +129,12 @@ function parseDropdownProducts(col) {
     const linkElement = groupElements[3]?.querySelector('a');
     let href = linkElement?.href || linkElement?.textContent.trim() || '#';
 
-    // 检查是否有�?个元素作为标签配�?
+    // 检查是否有一个元素作为标签配置
     if (groupElements[4] && groupElements[4].textContent.trim()) {
       const tagsText = groupElements[4].textContent.trim();
       const tagParams = tagsText.split(',')
         .map((tag) => {
-          // 取最后两节并替换 / �?= type/xxxx = type=xxxx 链接参数
+          // 取最后两节并替换 / 为 =，type/xxxx -> type=xxxx 链接参数
           const parts = tag.trim().split('/');
           if (parts.length >= 2) {
             const key = parts[parts.length - 2];
@@ -162,10 +162,10 @@ function parseDropdownProducts(col) {
 
 function parseDropdownLinks(col) {
   if (!col) return [];
-  const imageLinkItems = Array.from(col.querySelectorAll('.image-link'));
+  const subMenuLinkItems = Array.from(col.querySelectorAll('.sub-menu-link'));
 
-  if (imageLinkItems.length) {
-    return imageLinkItems.map((item) => {
+  if (subMenuLinkItems.length) {
+    return subMenuLinkItems.map((item) => {
       const textElement = item.querySelector('div:nth-child(3) > div');
       const text = textElement ? textElement.textContent.trim() : '';
 
@@ -194,12 +194,12 @@ function parseDropdownBtns(col) {
 
   const results = [];
 
-  const imageLinks = col.querySelectorAll('.image-link');
-  if (imageLinks.length > 0) {
-    imageLinks.forEach((imageLink) => {
-      const altText = imageLink.children[1]?.textContent.trim() ?? '';
-      const text = imageLink.children[2]?.textContent.trim() ?? '';
-      const linkElement = imageLink.querySelector('a');
+  const subMenuLinks = col.querySelectorAll('.sub-menu-link');
+  if (subMenuLinks.length > 0) {
+    subMenuLinks.forEach((subMenuLink) => {
+      const altText = subMenuLink.children[1]?.textContent.trim() ?? '';
+      const text = subMenuLink.children[2]?.textContent.trim() ?? '';
+      const linkElement = subMenuLink.querySelector('a');
       const href = linkElement ? linkElement.getAttribute('href') : '';
 
       if (text) {
@@ -210,10 +210,83 @@ function parseDropdownBtns(col) {
   }
 
   const paragraphs = Array.from(col.querySelectorAll('p'));
-  for (let i = 0; i < paragraphs.length; i += 2) {
-    const text = paragraphs[i]?.textContent.trim();
-    const href = paragraphs[i + 1]?.textContent.trim() || '#';
-    results.push({ text, href });
+  let i = 0;
+  while (i < paragraphs.length) {
+    const currentText = paragraphs[i]?.textContent.trim();
+    if (!currentText) {
+      i += 1;
+    } else if (currentText.startsWith('hisense:')) {
+      // 如果当前行是 hisense: 开头视为上一个 item 的标签，附加查询参数
+      const tagsText = currentText;
+      const tagParams = tagsText.split(',')
+        .map((tag) => {
+          const parts = tag.trim().split('/');
+          if (parts.length >= 2) {
+            const key = parts[parts.length - 2];
+            const value = parts[parts.length - 1];
+            return `${key}=${value}`;
+          }
+          return '';
+        })
+        .filter((param) => param)
+        .join('&');
+
+      if (results.length > 0) {
+        const prev = results[results.length - 1];
+        if (prev.href && prev.href !== '#' && tagParams) {
+          const separator = prev.href.includes('?') ? '&' : '?';
+          prev.href = `${prev.href}${separator}${tagParams}`;
+        }
+      }
+      i += 1;
+    } else {
+      // 如果不是hisense 行，视为文本。接下来的div通常是链接容器
+      const text = currentText;
+      let href = '#';
+      const hrefParagraph = paragraphs[i + 1];
+      if (hrefParagraph) {
+        const anchor = hrefParagraph.querySelector && hrefParagraph.querySelector('a');
+        if (anchor) {
+          href = anchor.getAttribute('href') || '#';
+        } else {
+          const maybeHrefText = hrefParagraph.textContent.trim();
+          href = maybeHrefText || '#';
+        }
+      }
+
+      results.push({ text, href });
+
+      // 如果 href 之后还有一行，并且那一行是 hisense 标签，那么把标签作为当前 item 的参数
+      if (i + 2 < paragraphs.length) {
+        const maybeTag = paragraphs[i + 2]?.textContent.trim();
+        if (maybeTag && maybeTag.startsWith('hisense:')) {
+          const tagsText = maybeTag;
+          const tagParams = tagsText.split(',')
+            .map((tag) => {
+              const parts = tag.trim().split('/');
+              if (parts.length >= 2) {
+                const key = parts[parts.length - 2];
+                const value = parts[parts.length - 1];
+                return `${key}=${value}`;
+              }
+              return '';
+            })
+            .filter((param) => param)
+            .join('&');
+
+          if (href !== '#' && tagParams) {
+            const separator = href.includes('?') ? '&' : '?';
+            const last = results[results.length - 1];
+            last.href = `${last.href}${separator}${tagParams}`;
+          }
+          i += 3;
+        } else {
+          i += 2;
+        }
+      } else {
+        i += 2;
+      }
+    }
   }
 
   return results;
@@ -529,7 +602,7 @@ export default async function decorate(block) {
     actionsEl.append(link);
   });
 
-  // 物理添加手机端菜单按�?
+  // 物理添加手机端菜单按钮
   const btn = document.createElement('div');
   btn.className = 'nav-action-btn mobile-menu-icon';
   const img = document.createElement('img');
