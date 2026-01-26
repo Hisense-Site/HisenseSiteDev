@@ -578,6 +578,47 @@
     ]
   },
   {
+    "id": "category-carousel-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Text",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag",
+        "multi": false,
+        "rootPath": "/content/cq:tags/hisense/product"
+      }
+    ]
+  },
+  {
     "id": "collection-banner",
     "fields": [
       {
@@ -1517,11 +1558,11 @@
     ]
   },
   {
-    "id": "plp-product-tag",
+    "id": "product-filter",
     "fields": []
   },
   {
-    "id": "plp-product-tag-item",
+    "id": "product-filter-item",
     "fields": [
       {
         "component": "text",
@@ -1552,104 +1593,6 @@
             "value": "checkbox"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "plp-product-filters",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "results",
-        "label": "Results Text",
-        "value": "{searchResultsCount} RESULT",
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "reset",
-        "label": "Reset Filters Text",
-        "value": "Reset filters",
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "sortBy",
-        "label": "Sort By Text",
-        "value": "Sort By",
-        "required": true
-      }
-    ]
-  },
-  {
-    "id": "plp-product-sort",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Sort Title",
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "property",
-        "label": "Sort Property",
-        "description": "Property comes from product model attributes",
-        "required": true
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "isDefaultSearch",
-        "label": "Is Default Search Option",
-        "description": "Whether this is the default search option",
-        "required": false
-      }
-    ]
-  },
-  {
-    "id": "product-filters-carousel-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "alt",
-        "label": "Alt Text",
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Text",
-        "required": true
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "link",
-        "label": "Link"
-      },
-      {
-        "component": "aem-tag",
-        "valueType": "string",
-        "name": "tag",
-        "label": "Tag",
-        "multi": false,
-        "rootPath": "/content/cq:tags/hisense/product"
       }
     ]
   },
@@ -1729,6 +1672,63 @@
             "value": "position"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "product-sorting",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "results",
+        "label": "Results Text",
+        "value": "{searchResultsCount} RESULT",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "reset",
+        "label": "Reset Filters Text",
+        "value": "Reset filters",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "sortBy",
+        "label": "Sort By Text",
+        "value": "Sort By",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "plp-product-sort",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Sort Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "property",
+        "label": "Sort Property",
+        "description": "Property comes from product model attributes",
+        "required": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "isDefaultSearch",
+        "label": "Is Default Search Option",
+        "description": "Whether this is the default search option",
+        "required": false
       }
     ]
   },

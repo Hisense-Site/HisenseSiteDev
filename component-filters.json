@@ -48,6 +48,12 @@
     ]
   },
   {
+    "id": "category-carousel",
+    "components": [
+      "category-carousel-item"
+    ]
+  },
+  {
     "id": "collection-cards",
     "components": [
       "collection-card"
@@ -129,27 +135,21 @@
     ]
   },
   {
-    "id": "plp-product-tag",
+    "id": "product-filter",
     "components": [
-      "plp-product-tag-item"
-    ]
-  },
-  {
-    "id": "plp-product-filters",
-    "components": [
-      "plp-product-sort"
-    ]
-  },
-  {
-    "id": "product-filters-carousel",
-    "components": [
-      "product-filters-carousel-item"
+      "product-filter-item"
     ]
   },
   {
     "id": "product-gallery",
     "components": [
       "product-gallery-item"
+    ]
+  },
+  {
+    "id": "product-sorting",
+    "components": [
+      "plp-product-sort"
     ]
   },
   {
