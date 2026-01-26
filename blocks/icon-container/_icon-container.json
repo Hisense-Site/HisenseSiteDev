@@ -68,6 +68,20 @@
                   "value": "customize-feature-banner"
               }
           ]
+        }, {
+          "component": "select",
+          "name": "style_position",
+          "label": "Content Position",
+          "options": [
+              {
+                  "name": "Text Align Center",
+                  "value": "left"
+              },
+              {
+                  "name": "Large Icon",
+                  "value": "large-icon"
+              }
+          ]
         }
       ]
     },
