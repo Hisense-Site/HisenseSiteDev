@@ -71,10 +71,16 @@
           "label": "Small title"
         },
         {
-          "component": "richtext",
-          "name": "text_text",
-          "label": "Text",
-          "valueType": "string"
+          "component": "text",
+          "valueType": "string",
+          "name": "big_title",
+          "label": "Big title"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description"
         }
       ]
     },
