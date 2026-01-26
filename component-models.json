@@ -1157,11 +1157,11 @@
         "label": "Content Position",
         "options": [
           {
-            "name": "Text Align Center",
+            "name": "Only Text",
             "value": "text-center"
           },
           {
-            "name": "Large Icon",
+            "name": "Only Icon",
             "value": "large-icon"
           },
           {
@@ -1173,12 +1173,20 @@
             "value": "bottom-space"
           },
           {
-            "name": "Customize Style -Fixed Width Style",
+            "name": "Icon and Text",
             "value": "fixed-width"
           },
           {
-            "name": "Customize Style - Feature Banner",
+            "name": "Icon and Label",
+            "value": "small-icon"
+          },
+          {
+            "name": "Icon Overlay_Left",
             "value": "customize-feature-banner"
+          },
+          {
+            "name": "Icon Overlay_Bottom",
+            "value": "customize-bottom"
           }
         ]
       }
