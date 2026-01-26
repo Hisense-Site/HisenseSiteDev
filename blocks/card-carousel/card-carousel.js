@@ -16,7 +16,6 @@ function bindEvent(block) {
   const viewportWidth = window.innerWidth;
   // text-left type展示button组件，卡片不需要点击，通过button跳转
   if (!block.classList.contains('text-left')) {
-    // mobile 模式需要按压动�?
     const goToNextPage = (card) => {
       const link = card.querySelector('a');
       const url = link?.href;

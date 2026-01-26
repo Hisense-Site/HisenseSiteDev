@@ -77,7 +77,7 @@ function createVideo(child, idx) {
   video.autoplay = false;
   video.loop = true;
   const source = document.createElement('source');
-  source.src = videourl; // 替换为你的视频路�?
+  source.src = videourl; // 替换为你的视频
   source.type = 'video/mp4';
   // 添加备用文本
   video.innerHTML = '';

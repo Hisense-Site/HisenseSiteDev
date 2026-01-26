@@ -84,7 +84,7 @@ function buildTabDot(itemElement, index) {
   div.className = 'indicator-button';
 
   li.addEventListener('click', () => {
-    // 需求变更，点击功能注释�?
+    // 需求变更，点击功能注释
     return;
     // eslint-disable-next-line no-unreachable
     const filterItems = document.querySelectorAll('.product-filter-item');
@@ -105,7 +105,7 @@ function updateButtons(tabsList, leftBtn, rightBtn) {
 }
 
 function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
-  // 左箭头点�?
+  // 左箭头
   leftBtn.addEventListener('click', () => {
     // eslint-disable-next-line no-mixed-operators
     const SCROLL_STEP = 130 * (window.innerWidth || 1440) / 1440; // 单个标签宽度 + 间隙
@@ -116,7 +116,7 @@ function attachScrollHandlers(tabsList, leftBtn, rightBtn) {
     setTimeout(() => updateButtons(tabsList, leftBtn, rightBtn), 300);
   });
 
-  // 右箭头点�?
+  // 右箭头
   rightBtn.addEventListener('click', () => {
     // eslint-disable-next-line no-mixed-operators
     const SCROLL_STEP = 130 * (window.innerWidth || 1440) / 1440; // 单个标签宽度 + 间隙
@@ -148,7 +148,7 @@ function updateActiveDot() {
 }
 
 export default function decorate(block) {
-  // 编辑模式,如果�?data-aue-resource 属性，说明现在浏览的是编辑模式
+  // 编辑模式,如果有data-aue-resource 属性，说明现在浏览的是编辑模式
   const isEditMode = block.hasAttribute('data-aue-resource');
 
   const tabs = document.createElement('ul');
@@ -168,7 +168,7 @@ export default function decorate(block) {
     const li = buildTab(itemClone1, index);
     const resource = itemClone1.getAttribute && itemClone1.getAttribute('data-aue-resource');
     if (resource) {
-      // 保留 data-aue-resource，用于编�?
+      // 保留 data-aue-resource，用于编辑
       li.setAttribute('data-aue-resource', resource);
     }
     tabs.append(li);

@@ -19,7 +19,6 @@ export default function decorate(block) {
       let isScrolling = false;
       let startX;
 
-      // 触摸开�?
       li.addEventListener('touchstart', (e) => {
         touchStartTime = Date.now();
         startX = e.touches[0].clientX;
@@ -42,7 +41,7 @@ export default function decorate(block) {
         li.classList.remove('touch-start');
         li.classList.add('touch-end');
         const touchDuration = Date.now() - touchStartTime;
-        // 如果不是滑动，且按压时间小于500ms，执行跳�?
+        // 如果不是滑动，且按压时间小于500ms，执行跳�?
         if (!isScrolling && touchDuration < 500) {
           const link = li.querySelector('a');
           const url = link?.href;

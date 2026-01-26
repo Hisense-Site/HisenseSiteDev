@@ -3,7 +3,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
     // 如果有筛选结果，就在筛选结果基础上排序，否则使用原始数据进行排序
     let listToSort;
     if (Array.isArray(window.filteredProducts) && window.filteredProducts.length > 0) {
-      // 使用当前筛选结果进行排�?
+      // 使用当前筛选结果进行排序
       listToSort = window.filteredProducts.slice();
     } else if (Array.isArray(window.productData)) {
       // 使用全部产品数据进行排序
@@ -15,7 +15,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       return;
     }
 
-    // 通过 key 获取 product model 的属�?
+    // 通过 key 获取 product model
     const getPropertyByKey = (item, propKey) => {
       if (!item || !propKey) return undefined;
       if (Object.prototype.hasOwnProperty.call(item, propKey)) return item[propKey];
@@ -23,7 +23,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       return parts.reduce((acc, p) => (acc && acc[p] !== undefined ? acc[p] : undefined), item);
     };
 
-    // 序列化属性，排序属性的值类型中包含尺寸，时间，价格，文�?
+    // 序列化属性，排序属性的值类型中包含尺寸，时间，价格
     const normalizeValueForSort = (value) => {
       if (value === null || value === undefined) return null;
       if (typeof value === 'number') return value;
@@ -38,7 +38,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       return String(value).toLowerCase();
     };
 
-    // �?factoryModel 分组，计算每个组在指定属性上的最大�?
+    // factoryModel 分组，计算每个组在指定属性上的最大
     const groupedByFactoryModel = {};
     const factoryModelMaxValues = {};
 
@@ -49,7 +49,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       }
       groupedByFactoryModel[factoryModel].push(item);
 
-      // 计算�?factoryModel 在指定属性上的最大�?
+      // 计算factoryModel 在指定属性上的最大
       const value = normalizeValueForSort(getPropertyByKey(item, sortProperty));
       if (value !== null && value !== undefined) {
         if (!factoryModelMaxValues[factoryModel]
@@ -71,11 +71,11 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       const maxValueA = factoryModelMaxValues[a.factoryModel];
       const maxValueB = factoryModelMaxValues[b.factoryModel];
 
-      // 处理空值情�?
+      // 处理空值
       if (maxValueA === null || maxValueA === undefined) return 1 * direction;
       if (maxValueB === null || maxValueB === undefined) return -1 * direction;
 
-      // 比较最大�?
+      // 比较最大
       let compareResult = 0;
       if (maxValueA === maxValueB) {
         // 先按数字9-0排序，再按字母Z-A排序
@@ -85,7 +85,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
         // 先按数字9-0
         const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
         const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
-        const numCompare = numB - numA; // 9-0排序，数字大的在�?
+        const numCompare = numB - numA; // 9-0排序，数字大的在前
 
         if (numCompare !== 0) {
           compareResult = numCompare;
@@ -102,7 +102,7 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       return compareResult;
     });
 
-    // 如果是按尺寸排序，设置标志表示产品卡片应默认选中最大尺�?
+    // 如果是按尺寸排序，设置标志表示产品卡片应默认选中最大尺寸
     if (!sortProperty || sortProperty === 'size') {
       window.isDefaultSortApplied = true;
     } else {
@@ -179,17 +179,17 @@ export default function decorate(block) {
   const productsLoadMore = document.createElement('div');
   productsLoadMore.className = 'plp-load-more';
   // const loadMoreUrl = loadMoreLink || '#';
-  // 新增：分页相关状�?
+  // 新增：分页相关状态
   let currentPage = 1;
   const loadMoreStep = 9;
-  let allGroupedData = []; // 存储所有聚合后的产品数�?
+  let allGroupedData = []; // 存储所有聚合后的产品数据
 
   // 修改：Load More 点击逻辑
   productsLoadMore.addEventListener('click', () => {
     currentPage += 1;
     // eslint-disable-next-line no-use-before-define
     renderPagedItems();
-    // 更新Load More显示状�?
+    // 更新Load More显示状态
     // eslint-disable-next-line no-use-before-define
     updateLoadMoreVisibility();
   });
@@ -261,7 +261,7 @@ export default function decorate(block) {
     }
 
     const { html } = item.description_shortDescription;
-    // �?<p> 标签中提取文本内�?
+    // 从 <p> 标签中提取文本内容
     const match = html.match(/<p>([^<]+)<\/p>/);
     return match ? match[1].trim() : null;
   }
@@ -294,12 +294,12 @@ export default function decorate(block) {
       // 遍历所有URL参数
       urlParams.forEach((paramValue, paramName) => {
         if (paramValue) {
-          // 直接使用参数名和值组合成筛选条�?
+          // 直接使用参数名和值组合成筛选条目
           const targetValue = `${paramName}/${paramValue}`;
           const targetCheckbox = document.querySelector(`.plp-filter-item input[value$="${targetValue}"]`);
 
           if (targetCheckbox) {
-            // 触发checkbox的点击事�?
+            // 触发checkbox的点击事件
             targetCheckbox.click();
 
             // 展开对应的筛选组
@@ -316,7 +316,7 @@ export default function decorate(block) {
     }
   }
 
-  // 新增：更新Load More按钮显示状�?
+  // 新增：更新Load More按钮显示状态
   function updateLoadMoreVisibility() {
     const totalPages = Math.ceil(allGroupedData.length / loadMoreStep);
     if (currentPage >= totalPages) {
@@ -326,7 +326,7 @@ export default function decorate(block) {
     }
   }
 
-  // 新增：渲染分页后的产�?
+  // 新增：渲染分页后的产品
   function renderPagedItems() {
     const start = (currentPage - 1) * loadMoreStep;
     const end = start + loadMoreStep;
@@ -361,7 +361,7 @@ export default function decorate(block) {
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
       const imgPath = (() => {
-        // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链�?
+        // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链接
         if (window.useShortDescriptionAsImage) {
           return extractImageFromShortDescription(item);
         }
@@ -417,11 +417,11 @@ export default function decorate(block) {
         }
       });
 
-      // sizes 区块（可点击，默认选中第一个尺寸，切换显示对应 variant�?
+      // sizes 区块（可点击，默认选中第一个尺寸，切换显示对应 variant 信息
       const sizesDiv = document.createElement('div');
       sizesDiv.className = 'plp-product-sizes';
 
-      // 构建 size -> variant 的映�?
+      // 构建 size -> variant 的映射
       const sizeToVariant = new Map();
       group.variants.forEach((v) => {
         // eslint-disable-next-line no-use-before-define
@@ -437,15 +437,15 @@ export default function decorate(block) {
       const sizesArray = (Array.isArray(group.sizes) && group.sizes.length)
         ? group.sizes
         : Array.from(sizeToVariant.keys());
-      // 如果用了默认排序，默认选中最大尺寸，其他排序选中第一个尺�?
+      // 如果用了默认排序，默认选中最大尺寸，其他排序选中第一个尺寸
       let [selectedSize] = sizesArray;
       let selectedVariant = selectedSize ? (sizeToVariant.get(selectedSize) || item) : item;
 
-      // 用来更新卡片显示为指定变�?
+      // 用来更新卡片显示为指定变体
       const updateCardWithVariant = (variant) => {
         // image
         const variantImg = (() => {
-          // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链�?
+          // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链接
           if (window.useShortDescriptionAsImage) {
             return extractImageFromShortDescription(variant);
           }
@@ -492,7 +492,7 @@ export default function decorate(block) {
             extraFields.appendChild(fld);
           }
         });
-        // productDetailPageLink - 先检查当前产品尺寸是否有productDetailPageLink链接，如果没有，才使用共享链�?
+        // productDetailPageLink - 先检查当前产品尺寸是否有productDetailPageLink链接，如果没有，才使用共享链接
         const productDetailPageLink = variant.productDetailPageLink || group.sharedProductDetailPageLink || '#';
         if (productDetailPageLink && productDetailPageLink !== '#') {
           let link = card.querySelector && card.querySelector('.plp-product-btn');
@@ -510,7 +510,7 @@ export default function decorate(block) {
         }
       };
 
-      // 创建尺寸节点并绑定事�?
+      // 创建尺寸节点并绑定事件
       sizesArray.forEach((s) => {
         const sp = document.createElement('span');
         sp.className = 'plp-product-size';
@@ -580,7 +580,7 @@ export default function decorate(block) {
     }
   }
 
-  // 包含多个相同 factoryModel 的不同尺�?
+  // 包含多个相同 factoryModel 的不同尺寸
   const extractSize = (item) => {
     if (!item) return null;
     if (item.size) return String(item.size).replace(/["\s]/g, '');
@@ -614,7 +614,7 @@ export default function decorate(block) {
   };
 
   function renderItems(items) {
-    // 重置分页状�?
+    // 重置分页状态
     currentPage = 1;
     productsGrid.innerHTML = ''; // 清空现有内容
 
@@ -626,7 +626,7 @@ export default function decorate(block) {
           item.productDetailPageLink = item.productDetailPageLink.replace('/us/en', '/us');
         }
       }
-      // 补全ConnectLife Enabled没有配置的情�?
+      // 补全ConnectLife Enabled没有配置的情况
       const TAG_YES = 'hisense:product/tv/connectlife-enabled/yes';
       const TAG_NO = 'hisense:product/tv/connectlife-enabled/no';
       const hasYesTag = item.tags.includes(TAG_YES);
@@ -638,7 +638,7 @@ export default function decorate(block) {
       }
     });
 
-    // �?factoryModel 聚合
+    // 按 factoryModel 聚合
     const groups = {};
     items.forEach((it) => {
       const key = it.factoryModel || it.spu || it.overseasModel;
@@ -651,7 +651,7 @@ export default function decorate(block) {
         };
       }
       groups[key].variants.push(it);
-      // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链�?
+      // 如果开关打开了，优先使用 description_shortDescription 属性作为图片链接
       if (window.useShortDescriptionAsImage) {
         if (!groups[key].representative.description_shortDescription
             && it.description_shortDescription) {
@@ -669,7 +669,7 @@ export default function decorate(block) {
       const g = groups[k];
       const sizes = Array.from(g.sizes).filter(Boolean).sort((a, b) => Number(b) - Number(a));
 
-      // 检查聚合产品是否有任意size有productDetailPageLink，有就共享这个链�?
+      // 检查聚合产品是否有任意size有productDetailPageLink，有就共享这个链接
       let sharedProductDetailPageLink = g.variants.find((variant) => variant && variant.productDetailPageLink)?.productDetailPageLink;
 
       if (sharedProductDetailPageLink && sharedProductDetailPageLink.startsWith('/')) {
@@ -697,9 +697,9 @@ export default function decorate(block) {
 
     productsGrid.setAttribute('data-group-length', allGroupedData.length);
 
-    // 渲染第一�?
+    // 渲染第一页
     renderPagedItems();
-    // 更新Load More显示状�?
+    // 更新Load More显示状态
     updateLoadMoreVisibility();
   }
 
@@ -712,7 +712,7 @@ export default function decorate(block) {
     })
     .then((data) => {
       const items = (data && data.data) || [];
-      // 缓存到全局，供过滤器使�?
+      // 缓存到全局，供过滤器使用
       window.productData = items;
       if (window.renderPlpProducts) {
         window.renderPlpProducts(items);
@@ -721,7 +721,7 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
-      // 检查URL参数并应用筛�?
+      // 检查URL参数并应用筛选
       applyUrlFilters();
     })
     .catch(() => {
@@ -734,24 +734,24 @@ export default function decorate(block) {
       }
       // 页面初始化查询用默认排序
       applyDefaultSort();
-      // 检查URL参数并应用筛�?
+      // 检查URL参数并应用筛选
       applyUrlFilters();
     });
   /* eslint-disable-next-line no-underscore-dangle */
   window.renderItems = renderItems;
 }
 
-// 是否使用 description_shortDescription 作为图片链接，默认使�?
+// 是否使用 description_shortDescription 作为图片链接，默认使用
 window.useShortDescriptionAsImage = false;
 
-// 暴露渲染和筛选接口到window全局，供 filter �?tags 使用（在 renderItems 定义后）
+// 暴露渲染和筛选接口到window全局，供 filter/tags 使用（在 renderItems 定义后）
 window.renderProductsInternal = function renderProductsInternalProxy(items) {
   if (typeof window.renderItems === 'function') {
     window.renderItems(items);
   }
 };
 window.lastRenderedProducts = null;
-// 当前排序状态，用于筛选时判断是否需要默认选中最大尺�?
+// 当前排序状态，用于筛选时判断是否需要默认选中最大尺寸
 window.currentSortKey = '';
 
 window.renderPlpProducts = function renderPlpProductsWrapper(items) {
@@ -765,7 +765,7 @@ window.applyPlpSort = function applyPlpSort(sortKey) {
   try {
     const sortProperty = String(sortKey || '').trim();
 
-    // 保存当前排序状�?
+    // 保存当前排序状态
     window.currentSortKey = sortProperty;
 
     let direction = -1; // 默认降序
@@ -788,30 +788,30 @@ window.applyPlpSort = function applyPlpSort(sortKey) {
   }
 };
 
-// filters：获取选中�?data-option-value checkbox，并�?window.productData 进行过滤
+// filters：获取选中 data-option-value checkbox，并用 window.productData 进行过滤
 window.applyPlpFilters = function applyPlpFilters() {
   try {
-    // 检查当前排序状态，如果是默认排序和size，需要筛选后后默认选中最大尺�?
+    // 检查当前排序状态，如果是默认排序和 size，需要筛选后默认选中最大尺寸
     const currentSort = String(window.currentSortKey || '').trim();
     const effectiveSort = currentSort.startsWith('-') ? currentSort.slice(1) : currentSort;
     window.isDefaultSortApplied = (!effectiveSort || effectiveSort === 'size');
 
     const allProducts = window.productData || [];
 
-    // 收集所有被选中�?filter group,同组内为 OR，不同组�?AND
+    // 收集所有被选中的 filter group，同组内为 OR，不同组为 AND
     const filterGroups = [...document.querySelectorAll('.plp-filter-group')];
     const selectedByGroup = filterGroups.map((group) => [...group.querySelectorAll('input[type="checkbox"][data-option-value]:checked')]
       .map((checkbox) => checkbox.getAttribute('data-option-value'))
       .filter(Boolean)).filter((arr) => arr && arr.length);
 
     if (!selectedByGroup.length) {
-      // 无过滤时恢复全部，清空筛选结�?
+      // 无过滤时恢复全部，清空筛选结果
       window.filteredProducts = null;
       window.renderPlpProducts(allProducts);
       return;
     }
 
-    // 执行过滤，要求产品必须要有tags属�?
+    // 执行过滤，要求产品必须要有 tags 属性
     const filtered = allProducts.filter((item) => {
       const tagsRaw = Array.isArray(item.tags) ? item.tags : [];
       const itemTags = tagsRaw.map((t) => String(t).toLowerCase());
