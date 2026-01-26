@@ -794,8 +794,8 @@
                   "name": "Text",
                   "model": "text",
                   "text_smallTit": "This is subheading",
-                  "headline": "This is headline",
-                  "description": "This is description text.",
+                  "text_headline": "This is headline",
+                  "text_description": "This is description text",
                   "filter": "text"
                 }
               }

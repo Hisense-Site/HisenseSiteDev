@@ -47,6 +47,20 @@ export default async function decorate(block) {
   [...block.children].forEach((row, idx) => {
     if (idx !== 0) {
       row.className = 'text-gray-tips';
+    } else {
+      row.className = 'text-main';
+      const subHeading = row.querySelector('p:first-of-type');
+      if (subHeading) {
+        subHeading.className = 'text-subheading';
+      }
+      const headline = row.querySelector('p:nth-of-type(2)');
+      if (headline) {
+        headline.className = 'text-headline';
+      }
+      const description = row.querySelector('p:nth-of-type(3)');
+      if (description) {
+        description.className = 'text-description';
+      }
     }
   });
 }
