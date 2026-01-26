@@ -48,16 +48,16 @@ function bindEvent(block) {
 }
 
 export default async function decorate(block) {
-  const iconContainer = createElement('div', 'card-carousel-viewport');
-  const iconBlocks = createElement('ul', 'icon-track');
-  const titleBox = createElement('div', 'icon-title-box');
+  const cardCarouselContainer = createElement('div', 'card-carousel-viewport');
+  const cardCarouselBlocks = createElement('ul', 'card-carousel-track');
+  const titleBox = createElement('div', 'card-carousel-title-box');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
     if (idx <= 1) {
       titleBox.appendChild(child);
       return;
     }
-    const iconBlock = document.createElement('li');
+    const cardCarouselBlock = document.createElement('li');
     child.classList.add('item');
     let ctaDiv;
     [...child.children].forEach((item, _i) => {
@@ -80,15 +80,15 @@ export default async function decorate(block) {
       }
       if (!item.innerHTML) item.remove();
     });
-    iconBlock.appendChild(child);
-    iconBlock.appendChild(ctaDiv);
-    iconBlocks.appendChild(iconBlock);
+    cardCarouselBlock.appendChild(child);
+    cardCarouselBlock.appendChild(ctaDiv);
+    cardCarouselBlocks.appendChild(cardCarouselBlock);
   });
-  iconContainer.appendChild(iconBlocks);
+  cardCarouselContainer.appendChild(cardCarouselBlocks);
   block.appendChild(titleBox);
-  block.appendChild(iconContainer);
+  block.appendChild(cardCarouselContainer);
 
-  if (iconBlocks.children) {
+  if (cardCarouselBlocks.children) {
     const buttonContainer = createElement('div', 'card-carousel-pagination');
     buttonContainer.innerHTML = `
       <button type="button" class="slide-prev" disabled></button>
@@ -96,7 +96,7 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.icon-component', () => {
+  resizeObserver('.card-carousel', () => {
     bindEvent(block);
   });
 }

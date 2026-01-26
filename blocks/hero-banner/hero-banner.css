@@ -250,6 +250,7 @@ p {
 
 .video-auto-play {
   width: 100%;
+  object-fit: cover;
   aspect-ratio: 1440 / 860;
 }
 
@@ -444,6 +445,7 @@ p {
 
   .video-auto-play {
     height: 100%;
+    object-fit: cover;
     aspect-ratio: 390/640;
   }
 
