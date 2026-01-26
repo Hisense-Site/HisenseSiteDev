@@ -74,13 +74,13 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "headline",
+          "name": "text_headline",
           "label": "Headline"
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "description",
+          "name": "text_description",
           "label": "Description"
         }
       ]
