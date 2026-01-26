@@ -40,28 +40,28 @@
           "component": "select",
           "name": "classes",
           "value": "",
-          "label": "Image Text Position",
+          "label": "Text Position",
           "description": "",
           "valueType": "string",
           "options": [
             {
-              "name": "Left Style",
+              "name": "overlay_text-left",
               "value": "left-style"
             },
             {
-              "name": "Left Bottom Style",
+              "name": "overlay_text-left-bottom",
               "value": "left-bottom-style"
             },
             {
-              "name": "Bottom Left Style",
+              "name": "image-top_text-left-bottom",
               "value": "bottom-left-style"
             },
             {
-              "name": "Center Style",
+              "name": "overlay_text-bottom-center",
               "value": "center-style"
             },
             {
-              "name": "Bottom Center Style",
+              "name": "video-top_text-center",
               "value": "bottom-center-style"
             }
           ]
