@@ -39,7 +39,6 @@
         {
           "component": "select",
           "name": "classes",
-          "value": "",
           "label": "Card options",
           "description": "",
           "valueType": "string",
@@ -66,7 +65,6 @@
          {
           "component": "richtext",
           "name": "title",
-          "value": "",
           "label": "Title",
           "valueType": "string"
         },
@@ -81,15 +79,13 @@
           "component": "aem-content",
           "name": "collection-card_ctaPrimary",
           "label": "Primary CTA",
-          "valueType": "string",
-          "value": "/"
+          "valueType": "string"
         },
         {
           "component": "text",
           "name": "collection-card_ctaPrimaryText",
           "label": "Primary CTA Label",
-          "valueType": "string",
-          "value": "Required if you has Primary CTA content"
+          "valueType": "string"
         }
       ]
     }

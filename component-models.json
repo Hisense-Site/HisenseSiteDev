@@ -690,7 +690,6 @@
       {
         "component": "select",
         "name": "classes",
-        "value": "",
         "label": "Card options",
         "description": "",
         "valueType": "string",
@@ -717,7 +716,6 @@
       {
         "component": "richtext",
         "name": "title",
-        "value": "",
         "label": "Title",
         "valueType": "string"
       },
@@ -732,15 +730,13 @@
         "component": "aem-content",
         "name": "collection-card_ctaPrimary",
         "label": "Primary CTA",
-        "valueType": "string",
-        "value": "/"
+        "valueType": "string"
       },
       {
         "component": "text",
         "name": "collection-card_ctaPrimaryText",
         "label": "Primary CTA Label",
-        "valueType": "string",
-        "value": "Required if you has Primary CTA content"
+        "valueType": "string"
       }
     ]
   },
@@ -1157,11 +1153,11 @@
         "label": "Content Position",
         "options": [
           {
-            "name": "Text Align Center",
+            "name": "Only Text",
             "value": "text-center"
           },
           {
-            "name": "Large Icon",
+            "name": "Only Icon",
             "value": "large-icon"
           },
           {
@@ -1173,12 +1169,20 @@
             "value": "bottom-space"
           },
           {
-            "name": "Customize Style -Fixed Width Style",
+            "name": "Icon and Text",
             "value": "fixed-width"
           },
           {
-            "name": "Customize Style - Feature Banner",
+            "name": "Icon and Label",
+            "value": "small-icon"
+          },
+          {
+            "name": "Icon Overlay_Left",
             "value": "customize-feature-banner"
+          },
+          {
+            "name": "Icon Overlay_Bottom",
+            "value": "customize-bottom"
           }
         ]
       }

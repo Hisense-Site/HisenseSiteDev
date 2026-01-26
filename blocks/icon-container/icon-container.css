@@ -85,6 +85,14 @@
     }
 }
 
+.small-icon .icon-container-item .icon-image img{
+    height: var(--size-20);
+    
+   @media (width >= 860px) {
+         height: var(--size-24);
+    }
+}
+
 .fixed-width .icon-container-box{
     align-items: flex-start;
     flex-direction: column;
@@ -114,6 +122,14 @@
 
 .fixed-width .icon-container-item .icon-image{
     width: var(--size-60);
+}
+
+.customize-feature-banner .icon-container-box {
+    justify-content: start;
+}
+
+.customize-bottom .icon-container-box {
+    margin-top: -100px;
 }
 
 p{
