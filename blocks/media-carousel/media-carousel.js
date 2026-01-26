@@ -91,10 +91,10 @@ function createVideo(child, idx) {
 
 export default async function decorate(block) {
   carouselId += 1;
-  block.setAttribute('id', `image-carousel-${carouselId}`);
+  block.setAttribute('id', `media-carousel-${carouselId}`);
   const contentType = block.children[2].innerHTML.includes('video') ? 'video' : 'Image';
-  const imageCarouselContainer = createElement('div', 'media-carousel-viewport');
-  const imageCarouselBlocks = createElement('ul', 'media-carousel-track');
+  const mediaCarouselContainer = createElement('div', 'media-carousel-viewport');
+  const mediaCarouselBlocks = createElement('ul', 'media-carousel-track');
   const titleBox = createElement('div', 'carousel-title-box');
   [...block.children].forEach((child, idx) => {
     // except subtitle and title
@@ -103,9 +103,9 @@ export default async function decorate(block) {
       else child.remove();
       return;
     }
-    const iconBlock = document.createElement('li');
+    const mediaBlock = document.createElement('li');
     child.classList.add('item');
-    iconBlock.dataset.slideIndex = idx - 3;
+    mediaBlock.dataset.slideIndex = idx - 3;
     if (contentType === 'video') {
       block.classList.add('video-media-carousel-block');
       let singleVideo;
@@ -134,14 +134,14 @@ export default async function decorate(block) {
         if (!item.innerHTML) item.remove();
       });
     }
-    iconBlock.appendChild(child);
-    imageCarouselBlocks.appendChild(iconBlock);
+    mediaBlock.appendChild(child);
+    mediaCarouselBlocks.appendChild(mediaBlock);
   });
-  imageCarouselContainer.appendChild(imageCarouselBlocks);
+  mediaCarouselContainer.appendChild(mediaCarouselBlocks);
   block.appendChild(titleBox);
-  block.appendChild(imageCarouselContainer);
+  block.appendChild(mediaCarouselContainer);
 
-  if (imageCarouselBlocks.children) {
+  if (mediaCarouselBlocks.children) {
     const buttonContainer = createElement('div', 'media-carousel-pagination');
     buttonContainer.innerHTML = `
       <button type="button" class="slide-prev" disabled></button>
@@ -149,7 +149,7 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.image-carousel', () => {
+  resizeObserver('.media-carousel', () => {
     bindEvent(block);
   });
 }
