@@ -3374,13 +3374,13 @@ export default async function decorate(block) {
   overviewMobileBtn.classList.add('pdp-nav-menu-item');
   overviewMobileBtn.textContent = 'Overview';
   overviewMobileBtn.addEventListener('click', () => {
-    const targetElement = document.getElementById('overview');
-    if (!targetElement) {
-      return;
-    }
-    const targetPosition = targetElement.getBoundingClientRect().top;
+    // const targetElement = document.getElementById('overview');
+    // if (!targetElement) {
+    //   return;
+    // }
+    // const targetPosition = targetElement.getBoundingClientRect().top;
     window.scrollTo({
-      top: targetPosition,
+      top: 0,
       behavior: 'auto',
     });
   });
@@ -3389,12 +3389,12 @@ export default async function decorate(block) {
   specsMobileBtn.textContent = 'Specs';
   specsMobileBtn.addEventListener('click', () => {
     const targetElement = document.getElementById('specifications');
+    const headerTop = document.querySelector('.pdp-nav').getBoundingClientRect().height || 0;
     if (!targetElement) {
       return;
     }
-    const targetPosition = targetElement.getBoundingClientRect().top;
     window.scrollTo({
-      top: targetPosition,
+      top: targetElement.offsetTop - headerTop,
       behavior: 'auto',
     });
   });
