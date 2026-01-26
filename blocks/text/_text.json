@@ -11,7 +11,8 @@
               "name": "Text",
               "model": "text",
               "text_smallTit": "This is subheading",
-              "text_text": "<h1>This is headline</h1><p>This is text.</p>",
+              "headline": "This is headline",
+              "description": "This is description text.",
               "filter": "text"
             }
           }
@@ -73,8 +74,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "big_title",
-          "label": "Big title"
+          "name": "headline",
+          "label": "Headline"
         },
         {
           "component": "text",
