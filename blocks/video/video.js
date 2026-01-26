@@ -29,7 +29,7 @@ export default function decorate(block) {
   source.type = 'video/mp4';
   // 添加备用文本
   video.innerHTML = '';
-  // 将source添加到video中
+  // 将source添加到video
   video.appendChild(source);
   newDiv.appendChild(video);
 
@@ -97,7 +97,7 @@ export default function decorate(block) {
     },
 
     addVolumeControls() {
-      // 添加音量控制按钮等...
+      // 添加音量控制按钮
     },
   };
   video.addEventListener('loadeddata', () => videoAutoplay.init());

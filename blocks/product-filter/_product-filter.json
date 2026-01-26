@@ -1,0 +1,91 @@
+{
+  "definitions": [
+    {
+      "title": "Product filter ",
+      "id": "product-filter",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Product filter ",
+              "model": "product-filter",
+              "modelFields": [],
+              "filter": "product-filter"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "PLP Product Tag Item",
+      "id": "product-filter-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "PLP Product Tag Item",
+              "model": "product-filter-item",
+              "modelFields": [
+                "title",
+                "tags"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "product-filter",
+      "fields": []
+    },
+    {
+      "id": "product-filter-item",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Filter Tag Title",
+          "required": true
+        },
+        {
+          "component": "aem-tag",
+          "valueType": "string",
+          "name": "tags",
+          "label": "Tags",
+          "rootPath": "/content/cq:tags/hisense/product"
+        },
+        {
+          "component": "select",
+          "name": "tags_type",
+          "label": "Tags Type",
+          "value": "checkbox",
+          "options": [
+            {
+              "name": "Radio",
+              "value": "radio"
+            },
+            {
+              "name": "Checkbox",
+              "value": "checkbox"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "product-filter",
+      "components": [
+        "product-filter-item"
+      ]
+    }
+  ]
+}
+
+
