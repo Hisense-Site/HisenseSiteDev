@@ -40,8 +40,8 @@
     /* flex: 0 0 auto;  */
     position: relative;
 		width: 70.7vw !important;
+    height: 70.7vw;
     aspect-ratio: 1;
-    height: auto !important;
     transition: transform 0.3s;
     pointer-events: auto; /* 允许事件穿透到容器 */
     
@@ -169,6 +169,7 @@
   @media (width >= 860px) {
     gap: var(--size-30);
     width:min(24.26111vw, 358px) ;
+    height:min(24.26111vw, 358px) ;
     padding: var(--spacing-lg) var(--spacing-md);
   }
 }
@@ -181,12 +182,13 @@
 
 .center-style > ul > li .cards-card-image {
   width: 46.154vw;
+  height: 46.154vw;;
   object-fit: contain;
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
-  aspect-ratio: 1;
 
   @media (width >= 860px) {
     width: min(13.0555555vw, 188px);
+    height: min(13.0555555vw, 188px);
   }
 }
 

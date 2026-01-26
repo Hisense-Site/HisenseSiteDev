@@ -1,13 +1,14 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import { whenElementReady, throttle } from '../../utils/carousel-common.js';
 import { createElement } from '../../utils/dom-helper.js';
+import { isUniversalEditor } from '../../utils/ue-helper.js';
 
 let carouselTimer;
 let carouselInterval;
 let isInitializing = true; // 初始化锁
+let previousVideo;
 
-function updateActiveSlide(slide) {
-  const block = slide.closest('.carousel');
+function updateActiveSlide(block, slide) {
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
   const indicators = block.querySelectorAll('.carousel-item-indicator');
   block.dataset.slideIndex = slideIndex;
@@ -63,11 +64,8 @@ function showSlide(block, targetLogicalIndex, init = false) {
     left: targetSlide.offsetLeft,
     behavior: init ? 'instant' : 'smooth',
   });
-
-  if (init) {
-    updateActiveSlide(targetSlide);
-    return;
-  }
+  updateActiveSlide(block, targetSlide);
+  if (init) return;
   // 4. 如果触碰了边界，等动画结束后“瞬移”回真实位置
   if (isBoundary) {
     // 清除之前的定时器防止冲突
@@ -79,6 +77,19 @@ function showSlide(block, targetLogicalIndex, init = false) {
         behavior: 'instant', // 瞬间跳转，用户无感知
       });
     }, 800);
+  }
+  // 5. if slide contains video, auto play the video
+  if (targetSlide.querySelector('video')) {
+    if (targetSlide.querySelector('.video-play-icon').classList.contains('is-playing')) return;
+    targetSlide.querySelector('.video-play-icon').click();
+    previousVideo = targetSlide.querySelector('video');
+  } else if (
+    !targetSlide.querySelector('video')
+    && previousVideo
+    && previousVideo.closest('li').querySelector('.video-play-icon').classList.contains('is-playing')
+  ) {
+    // record previous video and is playing to pause
+    previousVideo.closest('li').querySelector('.video-play-icon').click();
   }
 }
 function stopAutoPlay() {
@@ -111,7 +122,7 @@ function bindEvents(block) {
   const slideObserver = new IntersectionObserver((entries) => {
     if (isInitializing) return;
     entries.forEach((entry) => {
-      if (entry.isIntersecting) updateActiveSlide(entry.target);
+      if (entry.isIntersecting) updateActiveSlide(block, entry.target);
     });
   }, { threshold: 0.5 });
   block.querySelectorAll('.carousel-item').forEach((slide) => {
@@ -134,7 +145,64 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     }, 500));
   });
+  // ----- mouse observe
   observeMouse(block);
+  // ----- autoplay function
+  if (!block.querySelector('.video-play-icon')) return;
+  block.querySelector('.video-play-icon').addEventListener('click', throttle((e) => {
+    if (e.target.classList.contains('is-playing')) {
+      e.target.classList.remove('is-playing');
+      e.target.classList.add('is-paused');
+      e.target.closest('li').querySelector('video')?.pause();
+    } else {
+      e.target.classList.remove('is-paused');
+      e.target.classList.add('is-playing');
+      e.target.closest('li').querySelector('video')?.play();
+    }
+  }, 300));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      const currentSlideIdx = parseInt(v.dataset.slideIndex, 10) || 0;
+      const currentSlide = block.querySelector(`.carousel-item[data-slide-index="${currentSlideIdx}"]`);
+      if (entry.isIntersecting) {
+        if (currentSlide) currentSlide.querySelector('.video-play-icon')?.click();
+      } else {
+        if (currentSlide) currentSlide.querySelector('video')?.pause();
+        if (currentSlide && currentSlide.querySelector('.video-play-icon')?.classList.contains('is-playing')) {
+          currentSlide.querySelector('.video-play-icon').classList.remove('is-playing');
+          currentSlide.querySelector('.video-play-icon').classList.add('is-paused');
+        }
+      }
+    });
+  }, {
+    threshold: 0,
+  });
+  observer.observe(block);
+}
+
+function initVideo(selector, type) {
+  let videoUrl;
+  let link;
+  const [videoPC, videoMobile] = [...selector.querySelectorAll('a')];
+  if (type === 'desktop') link = videoPC;
+  else link = videoMobile;
+  if (link) videoUrl = link.href;
+  const videoDivDom = createElement('div', 'video-div-box');
+  const video = createElement('video', 'video-auto-play');
+  const span = createElement('span', 'video-play-icon is-playing');
+  video.loop = true;
+  video.preload = 'auto';
+  video.autoplay = true;
+  const source = document.createElement('source');
+  source.src = videoUrl;
+  source.type = 'video/mp4';
+  video.muted = true;
+  video.playsInline = true;
+  video.appendChild(source);
+  videoDivDom.appendChild(video);
+  videoDivDom.appendChild(span);
+  return videoDivDom;
 }
 
 function createSlide(block, row, slideIndex) {
@@ -148,14 +216,30 @@ function createSlide(block, row, slideIndex) {
     let theme;
     let contentType; // true is svg mode; false is text mode
     let buttonTheme;
+    let videoElement;
+    let videoDom;
     switch (colIdx) {
       case 0:
         // container-reference div
         column.classList.add('carousel-item-image');
         // 处理image-theme联动nav
-        theme = [...column.children][2]?.innerHTML || 'false';
+        if (column.lastElementChild?.innerHTML.length === 4) {
+          theme = column.lastElementChild?.innerHTML || 'false';
+          column.lastElementChild?.remove();
+        } else theme = 'false';
         slide.classList.add(theme === 'true' ? 'dark' : 'light');
-        column.lastElementChild.remove();
+        if (column.querySelector('a')) {
+          // video mode
+          column.classList.add('video-mode');
+          videoElement = initVideo(column, 'desktop');
+          videoDom = column.querySelectorAll('a')[0]?.closest('p');
+          if (window.innerWidth <= 860) {
+            // mobile video
+            videoElement = initVideo(column, 'mobile');
+            videoDom = column.querySelectorAll('a')[1]?.closest('p');
+          }
+          if (videoDom) column.replaceChild(videoElement, videoDom);
+        }
         break;
       case 1:
         // container-text or svg switch div
@@ -180,7 +264,7 @@ function createSlide(block, row, slideIndex) {
         column.classList.add('carousel-item-cta');
         buttonTheme = column.firstElementChild?.innerHTML || 'transparent';
         column.querySelector('a')?.classList.add(buttonTheme);
-        column.firstElementChild?.remove();
+        if (column.firstElementChild?.innerHTML.length <= 13) column.firstElementChild?.remove();
     }
 
     if (column.innerHTML === '') return;
@@ -242,11 +326,12 @@ export default async function decorate(block) {
     `;
     block.append(slideNavButtons);
   }
-  if (!isSingleSlide) {
-    bindEvents(block);
-  }
   // 初始化加载主题色
   whenElementReady('.carousel-items-container', () => {
     showSlide(block, 0, true);
   });
+  if (isUniversalEditor()) return;
+  if (!isSingleSlide) {
+    bindEvents(block);
+  }
 }
