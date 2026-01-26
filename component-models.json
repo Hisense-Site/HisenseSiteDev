@@ -341,12 +341,24 @@
         "multi": true,
         "options": [
           {
+            "name": "Favorite",
+            "value": "favorite"
+          },
+          {
             "name": "Title",
             "value": "title"
           },
           {
             "name": "Series",
             "value": "series"
+          },
+          {
+            "name": "Rating",
+            "value": "rating"
+          },
+          {
+            "name": "Buttons",
+            "value": "buttons"
           },
           {
             "name": "PriceInfo RegularPrice",
@@ -418,7 +430,7 @@
         "description": "Link for load more button"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "noResultMessage",
         "label": "No Result Message",
@@ -495,6 +507,1260 @@
         "label": "Sort Property",
         "description": "Property comes from product model attributes",
         "required": true
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "isDefaultSearch",
+        "label": "Is Default Search Option",
+        "description": "Whether this is the default search option",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "card-carousel",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Icon Options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "text-left",
+            "value": "text-left"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "value": "",
+        "label": "Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "card-carouselItem",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "",
+        "name": "container_cta",
+        "valueType": "string",
+        "fields": [
+          {
+            "component": "aem-content",
+            "name": "cta_icon",
+            "label": "CTA",
+            "valueType": "string",
+            "value": "/"
+          },
+          {
+            "component": "text",
+            "name": "cta_iconLabel",
+            "label": "CTA Label",
+            "valueType": "string",
+            "value": "label text"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "category-carousel-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Text",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag",
+        "multi": false,
+        "rootPath": "/content/cq:tags/hisense/product"
+      }
+    ]
+  },
+  {
+    "id": "collection-banner",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Banner classes options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "text-color-black",
+            "value": "text-color-black"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collection_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "collectionMobile_image",
+        "label": "Mobile Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "collection_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "collection_ctaGreen",
+        "label": "Green CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "collection_ctaGreenText",
+        "label": "Green CTA Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "collection_ctaPrimary",
+        "label": "Primary CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "collection_ctaPrimaryText",
+        "label": "Primary CTA Label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "collection-cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Card options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Cover Style",
+            "value": "cover-style"
+          },
+          {
+            "name": "Cover Style Width Dark Font",
+            "value": "cover-dark"
+          },
+          {
+            "name": "Center Style",
+            "value": "center-style"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "collection-card",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "collection-card_ctaPrimary",
+        "label": "Primary CTA",
+        "valueType": "string",
+        "value": "/"
+      },
+      {
+        "component": "text",
+        "name": "collection-card_ctaPrimaryText",
+        "label": "Primary CTA Label",
+        "valueType": "string",
+        "value": "Required if you has Primary CTA content"
+      }
+    ]
+  },
+  {
+    "id": "collection-title",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Sub Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "columns",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Variant",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Carousel - 1 Slide",
+            "value": "carousel-1-slide"
+          },
+          {
+            "name": "Carousel - 2 Slides",
+            "value": "carousel-2-slides"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "",
+        "label": "Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "rows",
+        "value": "",
+        "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "disclaimer",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "disclaimer_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "feature-banner",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "feature-banner_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "featureMobile_image",
+        "label": "Mobile Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "feature-banner_text",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "feature-banner_tips",
+        "label": "Feature banner tips"
+      }
+    ]
+  },
+  {
+    "id": "footerContainer",
+    "fields": []
+  },
+  {
+    "id": "footerLogo",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Logo Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "footerNavColumn",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Column Title",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "footerNavColumnList",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Link Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Link Icon",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "footerSocial",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Social Icon",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "footerLegalLinks",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "copyright",
+        "label": "Copyright Text",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "footerLegalLinkItem",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Link Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "hero-banner",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Hero Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "only-picture",
+            "value": "only-picture"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hero-bannerItem",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image_pc",
+        "label": "Image/Video For PC",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image_mobile",
+        "label": "Image/Video For Mobile",
+        "required": true,
+        "multi": false
+      },
+      {
+        "component": "boolean",
+        "name": "image_theme",
+        "label": "Image/Video Dark Theme",
+        "valueType": "boolean"
+      },
+      {
+        "component": "boolean",
+        "name": "mode_type",
+        "label": "Content Type is SVG Mode?",
+        "valueType": "boolean",
+        "description": "Switch OFF: Text Mode | Switch ON: SVG Mode"
+      },
+      {
+        "component": "container",
+        "label": "",
+        "name": "mode_text",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "mode_type"
+            },
+            false
+          ]
+        },
+        "fields": [
+          {
+            "component": "text",
+            "name": "special_text",
+            "value": "",
+            "label": "Colorful Text(teal)",
+            "valueType": "string"
+          },
+          {
+            "component": "richtext",
+            "name": "normal_text",
+            "value": "",
+            "label": "Content",
+            "valueType": "string"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon_text",
+        "label": "Icon SVG",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "mode_type"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "container",
+        "label": "Primary Button Container",
+        "name": "container_button1",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "select",
+            "name": "cta1_classes",
+            "value": "",
+            "label": "Button Background Color",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "transparent",
+                "value": "transparent"
+              },
+              {
+                "name": "hisense-green",
+                "value": "hisense-green"
+              },
+              {
+                "name": "hisense-black",
+                "value": "hisense-black"
+              }
+            ]
+          },
+          {
+            "component": "aem-content",
+            "name": "cta1_primary",
+            "label": "Primary CTA",
+            "valueType": "string",
+            "value": "/"
+          },
+          {
+            "component": "text",
+            "name": "cta1_primaryText",
+            "label": "Primary CTA Label",
+            "valueType": "string",
+            "value": "Required when Primary CTA content is provided"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Secondary Button Container",
+        "name": "container_button2",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "select",
+            "name": "cta2_classes",
+            "value": "",
+            "label": "Button Background Color",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "transparent",
+                "value": "transparent"
+              },
+              {
+                "name": "hisense-green",
+                "value": "hisense-green"
+              },
+              {
+                "name": "hisense-black",
+                "value": "hisense-black"
+              }
+            ]
+          },
+          {
+            "component": "aem-content",
+            "name": "cta2_secondary",
+            "label": "Secondary CTA",
+            "valueType": "string",
+            "value": "/"
+          },
+          {
+            "component": "text",
+            "name": "cta2_secondaryText",
+            "label": "Secondary CTA Label",
+            "valueType": "string",
+            "value": "Required when Secondary CTA content is provided"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "icon-container",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Content Position",
+        "options": [
+          {
+            "name": "Text Align Center",
+            "value": "text-center"
+          },
+          {
+            "name": "Large Icon",
+            "value": "large-icon"
+          },
+          {
+            "name": "Top Space",
+            "value": "top-space"
+          },
+          {
+            "name": "Bottom Space",
+            "value": "bottom-space"
+          },
+          {
+            "name": "Customize Style -Fixed Width Style",
+            "value": "fixed-width"
+          },
+          {
+            "name": "Customize Style - Feature Banner",
+            "value": "customize-feature-banner"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "icon-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "sub-title",
+        "value": "",
+        "label": "Sub Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "image-comparison-slider",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image_before",
+        "label": "Before Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image_after",
+        "label": "After Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "slider_icon",
+        "label": "Icon",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "slider_text",
+        "label": "Text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "media-carousel",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Image Text Position",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Left Style",
+            "value": "left-style"
+          },
+          {
+            "name": "Left Bottom Style",
+            "value": "left-bottom-style"
+          },
+          {
+            "name": "Bottom Left Style",
+            "value": "bottom-left-style"
+          },
+          {
+            "name": "Center Style",
+            "value": "center-style"
+          },
+          {
+            "name": "Bottom Center Style",
+            "value": "bottom-center-style"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "value": "",
+        "label": "Colorful Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "mainContent",
+        "label": "Section Content Type",
+        "options": [
+          {
+            "name": "Image",
+            "value": "Image"
+          },
+          {
+            "name": "video",
+            "value": "video"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "media-carouselItem",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image or Video",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "img",
+        "label": "Img Snapshot For Video",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "navigation",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logoAlt",
+        "label": "Logo Alt",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "navigationAction",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "darkIcon",
+        "label": "Dark Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "navigationItem",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "navigationLink",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "navigationLogo",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "navigationSecondaryContainer",
+    "fields": [
+      {
+        "component": "text",
+        "name": "section-name",
+        "label": "Section Name",
+        "value": "navigation-secondary-container",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "parallax",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "scroll_image",
+        "label": "Scroll Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "scroll_text",
+        "label": "Scroll Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "sub_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "sub_text",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "product-filter",
+    "fields": []
+  },
+  {
+    "id": "product-filter-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Filter Tag Title",
+        "required": true
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "tags",
+        "label": "Tags",
+        "rootPath": "/content/cq:tags/hisense/product"
+      },
+      {
+        "component": "select",
+        "name": "tags_type",
+        "label": "Tags Type",
+        "value": "checkbox",
+        "options": [
+          {
+            "name": "Radio",
+            "value": "radio"
+          },
+          {
+            "name": "Checkbox",
+            "value": "checkbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "product-gallery",
+    "fields": []
+  },
+  {
+    "id": "product-sorting",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "results",
+        "label": "Results Text",
+        "value": "{searchResultsCount} RESULT",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "reset",
+        "label": "Reset Filters Text",
+        "value": "Reset filters",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "sortBy",
+        "label": "Sort By Text",
+        "value": "Sort By",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "product-spec",
+    "fields": []
+  },
+  {
+    "id": "slide",
+    "fields": [
+      {
+        "component": "select",
+        "name": "style",
+        "value": "",
+        "label": "Card options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Cover Style",
+            "value": "cover-style"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "slide_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "slide_title",
+        "label": "Title",
+        "valueType": "string",
+        "required": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "slide_link",
+        "label": "Link",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "sub-menu-link",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "aem-tag",
+        "valueType": "string",
+        "name": "searchTags",
+        "label": "Search Tags",
+        "rootPath": "/content/cq:tags/hisense/product"
+      }
+    ]
+  },
+  {
+    "id": "text",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": [],
+        "label": "Description Alignment Class Name Options",
+        "valueType": "array",
+        "options": [
+          {
+            "name": "text-align-left",
+            "value": "text-align-left"
+          },
+          {
+            "name": "text-align-right",
+            "value": "text-align-right"
+          },
+          {
+            "name": "pb-40",
+            "value": "pb-40"
+          },
+          {
+            "name": "pb-80",
+            "value": "pb-80"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text_smallTit",
+        "label": "Small title"
+      },
+      {
+        "component": "richtext",
+        "name": "text_text",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "featureDisclaimer",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Feature disclaimer",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "",
+        "name": "Video",
+        "label": "Video",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Cover Image",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "videoinfo",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "info",
+        "value": "info",
+        "label": "Info",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "Description",
+        "label": "description",
+        "valueType": "string"
       }
     ]
   },
