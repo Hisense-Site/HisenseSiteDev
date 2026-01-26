@@ -2,6 +2,18 @@
   width: 100%;
 }
 
+.text-container.light {
+  p:first-child {
+    color: var(--color-primary-green-50);
+  }
+}
+
+.text-container.dark {
+  p:first-child {
+    color: var(--color-hisense-teal);
+  }
+}
+
 .text {
   text-align: center;
   margin: 0 auto;
@@ -20,7 +32,6 @@
   }
 
   p:first-child {
-    color: var(--color-hisense-teal);
     font-weight: var(--fontweight-medium);
     font-size: min(calc(20 / var(--breakpoint-pc) * 100vw), 20px);
     margin: 0 0 min(calc(12 / var(--breakpoint-pc) * 100vw), 12px);
@@ -36,7 +47,7 @@
   .text-gray-tips, div[data-aue-model="featureDisclaimer"] {
     p {
       font-size: min(calc(12 / var(--breakpoint-pc) * 100vw), 12px);
-      color: var(--color-primary-grey-50);
+      color: var(--color-primary-grey-50) !important;
       margin-bottom: 0;
       line-height: min(calc(18 / var(--breakpoint-pc) * 100vw), 18px);
       font-weight: var(--fontweight-book);
