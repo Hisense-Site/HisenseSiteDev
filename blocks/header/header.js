@@ -422,7 +422,9 @@ export default async function decorate(block) {
   // 构建新的导航DOM
   const navigation = document.createElement('div');
   navigation.id = 'navigation';
+  // eslint-disable-next-line no-unused-vars
   const pdpEl = document.querySelector('.product-section-container');
+  // eslint-disable-next-line no-unused-vars
   const plpEl = document.querySelector('.plp-product-filters');
   window.addEventListener('resize', () => {
     handleChangeNavPosition(navigation);
