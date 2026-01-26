@@ -3333,9 +3333,8 @@ export default async function decorate(block) {
     if (!targetElement) {
       return;
     }
-    const targetPosition = targetElement.getBoundingClientRect().top;
     window.scrollTo({
-      top: targetPosition,
+      top: targetElement.offsetTop,
       behavior: 'auto',
     });
   });
@@ -3374,27 +3373,29 @@ export default async function decorate(block) {
   overviewMobileBtn.classList.add('pdp-nav-menu-item');
   overviewMobileBtn.textContent = 'Overview';
   overviewMobileBtn.addEventListener('click', () => {
-    const targetElement = document.getElementById('overview');
-    if (!targetElement) {
-      return;
-    }
-    const targetPosition = targetElement.getBoundingClientRect().top;
+    // const targetElement = document.getElementById('overview');
+    // if (!targetElement) {
+    //   return;
+    // }
+    // const targetPosition = targetElement.getBoundingClientRect().top;
     window.scrollTo({
-      top: targetPosition,
+      top: 0,
       behavior: 'auto',
     });
   });
   const specsMobileBtn = document.createElement('div');
   specsMobileBtn.classList.add('pdp-nav-menu-item');
   specsMobileBtn.textContent = 'Specs';
-  specsMobileBtn.addEventListener('click', () => {
+  specsMobileBtn.addEventListener('click', (e) => {
     const targetElement = document.getElementById('specifications');
+    const headerTop = document.querySelector('.pdp-nav').getBoundingClientRect().height || 0;
     if (!targetElement) {
       return;
     }
-    const targetPosition = targetElement.getBoundingClientRect().top;
+    const grandParent = e.target.closest('.pdp-nav-menu');
+    grandParent.classList.add('hide');
     window.scrollTo({
-      top: targetPosition,
+      top: targetElement.offsetTop - headerTop,
       behavior: 'auto',
     });
   });
