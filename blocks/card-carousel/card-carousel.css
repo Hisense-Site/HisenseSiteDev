@@ -14,23 +14,23 @@
   }
 }
 
-.icon-title-box {
+.card-carousel-title-box {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3xs);
   font-weight: var(--fontweight-medium);
 }
 
-.icon-title-box > div:nth-child(1) {
+.card-carousel-title-box > div:nth-child(1) {
   color: var(--color-hisense-teal);
   font-size: var(--fontsize-title2);
 }
 
-.icon-title-box > div:nth-child(2) {
+.card-carousel-title-box > div:nth-child(2) {
   font-size: var(--fontsize-pc-h3);
 }
 
-.icon-viewport {
+.card-carousel-viewport {
   width: 100%;
 
   &::-webkit-scrollbar{
@@ -38,7 +38,7 @@
   }
 }
 
-.icon-viewport ul{
+.card-carousel-viewport ul{
   display: flex;
   gap: var(--spacing-sm);
   margin: 0;
@@ -46,7 +46,7 @@
   transition: transform 0.5s ease-in-out;
 }
 
-.icon-viewport ul>li {
+.card-carousel-viewport ul>li {
   box-sizing: border-box;
   list-style: none;
   border: 1px solid #8f8f8f;
@@ -96,7 +96,7 @@
 }
 
 .text-left {
-  .icon-viewport ul>li {
+  .card-carousel-viewport ul>li {
     border: none;
     height: min(18.05555556vw, 260px);
     width: min(18.19444444vw, 262px);
@@ -176,7 +176,7 @@
   }
 }
 
-.icon-pagination {
+.card-carousel-pagination {
   position: absolute;
   top: 0;
   right: 0;
@@ -224,12 +224,12 @@
   }
 }
 
-.icon-pagination.show {
+.card-carousel-pagination.show {
   display: flex;
 }
 
 @media (width < 860px) {
-  .icon-pagination.show {
+  .card-carousel-pagination.show {
     display: none;
   }
 
@@ -237,7 +237,7 @@
     gap: var(--spacing-s2);
   }
 
-  .icon-title-box {
+  .card-carousel-title-box {
     > div:nth-child(1) {
       font-size: var(--fontsize-body1);
     }
@@ -247,7 +247,7 @@
     }
   }
 
-  .icon-viewport {
+  .card-carousel-viewport {
     overflow: visible;
 
     ul {
@@ -271,7 +271,7 @@
       }
     }
 
-    .icon-track {
+    .card-carousel-track {
       margin: 0 -18px;
       padding: 0 18px;
       overflow-x: scroll;
@@ -283,7 +283,7 @@
   }
 
   .text-left {
-    .icon-viewport ul > li {
+    .card-carousel-viewport ul > li {
       width: 61.53846154vw;
       height: 61.53846154vw;
       padding: var(--spacing-xs) var(--spacing-s2) var(--spacing-sm);
