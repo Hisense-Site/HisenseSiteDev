@@ -653,10 +653,16 @@
         "multi": false
       },
       {
-        "component": "richtext",
-        "name": "collection_text",
-        "label": "Text",
-        "valueType": "string"
+        "component": "text",
+        "valueType": "string",
+        "name": "collection_headline",
+        "label": "Headline"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "collection_describe",
+        "label": "Description"
       },
       {
         "component": "aem-content",

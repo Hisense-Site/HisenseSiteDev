@@ -149,7 +149,8 @@
                   "name": "Collection Banner",
                   "model": "collection-banner",
                   "classes": "collection-banner-text",
-                  "collection_text": "<h5>Perfection, Any Content, Anytime</h5><p>From the first setup to everyday use.designed to feel effortless so you can focus on what really matters.</p>",
+                  "collection_headline": "This is headline",
+                  "collection_describe": "This is description text for collection banner block.",
                   "collection_ctaPrimary": "/",
                   "collection_ctaPrimaryText": "Learn more"
                 }
