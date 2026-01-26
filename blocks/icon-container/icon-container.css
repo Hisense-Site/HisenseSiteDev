@@ -2,6 +2,9 @@
   width: 100%;
 }
 
+.icon-container-wrapper img {
+    border-radius: 0 !important;
+}
 
 .icon-container-box{
   display: flex;
@@ -87,7 +90,7 @@
 
 .small-icon .icon-container-item .icon-image img{
     height: var(--size-20);
-    
+
    @media (width >= 860px) {
          height: var(--size-24);
     }
@@ -129,7 +132,7 @@
 }
 
 .customize-bottom .icon-container-box {
-    margin-top: -100px;
+    margin-top: calc(-1 * var(--size-75));
 }
 
 p{
