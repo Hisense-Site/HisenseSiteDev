@@ -431,7 +431,7 @@ export default async function decorate(block) {
   let lastScrollTop = 0;
   const scrollThreshold = 10;
   window.addEventListener('scroll', () => {
-    if (pdpEl || plpEl) return;
+    // if (pdpEl || plpEl) return;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold) {
       return;
