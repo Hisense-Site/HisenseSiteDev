@@ -79,11 +79,11 @@ function showSlide(block, targetLogicalIndex, init = false) {
         slides[jumpIndex].querySelector('.video-play-icon').click();
       }
     }, 800);
-  } else {
+  } else if (targetSlide.querySelector('video')
+    && targetSlide.querySelector('.video-play-icon').classList.contains('is-paused')
+  ) {
     // 5. if slide contains video, auto play the video
-    if (targetSlide.querySelector('video') && targetSlide.querySelector('.video-play-icon').classList.contains('is-paused')) {
-      targetSlide.querySelector('.video-play-icon').click();
-    }
+    targetSlide.querySelector('.video-play-icon').click();
   }
 }
 function stopAutoPlay() {
@@ -299,7 +299,7 @@ export default async function decorate(block) {
   // ----- autoplay function for Video
   if (!block.querySelector('video')) return;
   const videos = block.querySelectorAll('.video-mode');
-  videos.forEach(video=>{
+  videos.forEach((video) => {
     video.querySelector('.video-play-icon').addEventListener('click', throttle((e) => {
       if (e.target.classList.contains('is-playing')) {
         e.target.classList.remove('is-playing');
@@ -311,7 +311,7 @@ export default async function decorate(block) {
         e.target.closest('li').querySelector('video')?.play();
       }
     }, 300));
-  })
+  });
   const VideoObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const v = entry.target;
