@@ -41,7 +41,8 @@
       "text",
       "title",
       "video",
-      "industrial-cards"
+      "industrial-cards",
+      "honors-awards-cards"
     ]
   },
   {
@@ -108,6 +109,12 @@
     "id": "hero-banner",
     "components": [
       "hero-bannerItem"
+    ]
+  },
+  {
+    "id": "honors-awards-cards",
+    "components": [
+      "honors-awards-card"
     ]
   },
   {

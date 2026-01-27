@@ -11,8 +11,8 @@ export default function decorate(block) {
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) { div.className = 'collection-cards-card-image'; } else if (div.querySelector('.button-container')) div.className = 'collection-cards-card-cta';
-      else div.className = 'collection-cards-card-body';
+      if (div.children.length === 1 && div.querySelector('picture')) { div.className = 'industrial-cards-card-image'; } else if (div.querySelector('.button-container')) div.className = 'collection-cards-card-cta';
+      else div.className = 'industrial-cards-card-body';
     });
     if (viewportWidth < 860) {
       let touchStartTime;
