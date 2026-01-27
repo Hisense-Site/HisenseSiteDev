@@ -118,6 +118,8 @@ function applyAggregatedSort(sortProperty, direction = -1) {
 
 export default function decorate(block) {
   const isEditMode = block && block.hasAttribute && block.hasAttribute('data-aue-resource');
+  block.classList.add('plp-product-card');
+  block.classList.remove('product-card');
 
   const rows = [...(block.children || [])];
   let graphqlUrl = null;
@@ -297,6 +299,7 @@ export default function decorate(block) {
           // 直接使用参数名和值组合成筛选条目
           const targetValue = `${paramName}/${paramValue}`;
           const targetCheckbox = document.querySelector(`.plp-filter-item input[value$="${targetValue}"]`);
+          // const targetCheckbox = document.querySelector(`.product-filter-item[data-tag="${targetValue}"]`);
 
           if (targetCheckbox) {
             // 触发checkbox的点击事件
@@ -350,13 +353,13 @@ export default function decorate(block) {
       card.className = 'product-card';
 
       const titleDiv = document.createElement('div');
-      titleDiv.className = 'plp-product-card-title';
+      titleDiv.className = 'product-card-title';
       let tagTitle = '';
       const badgeList = group.representative.badge || [];
       const targetStr = badgeList[0] || '';
       const lastSlashIndex = targetStr.lastIndexOf('/');
       tagTitle = lastSlashIndex > -1 ? targetStr.slice(lastSlashIndex + 1) : targetStr;
-      titleDiv.innerHTML = `<div class="plp-product-card-tag">${tagTitle}</div>`;
+      titleDiv.innerHTML = `<div class="product-card-tag">${tagTitle}</div>`;
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
@@ -562,7 +565,7 @@ export default function decorate(block) {
     // 当结果为0时显示no result
     try {
       const noResultEl = document.querySelector('.plp-products-no-result');
-      const cardWrapperEl = document.querySelector('.plp-product-card-wrapper');
+      const cardWrapperEl = document.querySelector('.product-card-wrapper');
       if (noResultEl) {
         if (allGroupedData.length === 0) {
           noResultEl.style.display = 'flex';
