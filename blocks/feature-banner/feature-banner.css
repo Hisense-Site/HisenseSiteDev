@@ -183,4 +183,8 @@
   .feature-banner-wrapper + .icon-container-wrapper {
     margin: var(--size-24) 0;
   }
+
+  .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
+    margin-bottom: var(--size-24);
+  }
 }
