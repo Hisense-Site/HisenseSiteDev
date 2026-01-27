@@ -18,7 +18,7 @@
       }
     },
     {
-      "title": "Product Sorting - Sort item",
+      "title": "Sort item",
       "id": "plp-product-sort",
       "plugins": {
         "xwalk": {
