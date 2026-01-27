@@ -117,6 +117,12 @@
     ]
   },
   {
+    "id": "industrial-cards",
+    "components": [
+      "industrial-card"
+    ]
+  },
+  {
     "id": "media-carousel",
     "components": [
       "media-carouselItem"
