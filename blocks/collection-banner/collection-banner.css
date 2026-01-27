@@ -1,3 +1,5 @@
+@import url('../../styles/reset-rich-text.css');
+
 .collection-banner-container .collection-banner-wrapper {
   width: 100%;
   margin-block: var(--row-gap);
