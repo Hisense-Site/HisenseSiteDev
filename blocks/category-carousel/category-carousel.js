@@ -160,7 +160,7 @@ export default function decorate(block) {
 
   let itemElements = [...block.children];
   if (isEditMode) {
-    const nodeList = block.querySelectorAll('[data-aue-model="product-filters-carousel-item"], [data-aue-type="component"][data-aue-model]');
+    const nodeList = block.querySelectorAll('[data-aue-model="category-carousel-item"], [data-aue-type="component"][data-aue-model]');
     itemElements = [...nodeList];
   }
 
