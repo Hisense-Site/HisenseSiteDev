@@ -109,12 +109,21 @@ function buildTab(itemElement) {
     });
   } else if (hasLink) {
     // 如果只有链接没有标签，设置点击跳转?
-    li.classList.add('selected');
     li.addEventListener('click', (e) => {
       e.stopPropagation();
+      e.currentTarget.classList.add('selected');
       window.location.href = hasLink.href;
     });
   }
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.forEach((paramValue, paramName) => {
+    if (paramValue) {
+      const targetValue = `${paramName}/${paramValue}`;
+      if (tagValue.includes(targetValue)) {
+        li.classList.add('selected');
+      }
+    }
+  });
 
   li.append(imgBox, textSpan);
   return li;
