@@ -97,7 +97,7 @@
   
 }
 
-.feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .customize-feature-banner {
+.feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
   .customize-feature-banner {
     position: relative;
     z-index: 10;
@@ -105,7 +105,7 @@
   }
 }
 
-.feature-banner-wrapper + .icon-container-wrapper + .customize-feature-banner {
+.feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
   .customize-feature-banner {
     top: min(calc(-236 / var(--breakpoint-pc) * 100vw), -236px);
   }
@@ -170,7 +170,7 @@
     }
   }
 
-  .feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .customize-feature-banner {
+  .feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
     .customize-feature-banner {
       top: 0;
 
