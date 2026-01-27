@@ -409,7 +409,7 @@ const handleChangeNavPosition = (navigation) => {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  console.log('block')
+  console.log('block');
   const navPath = `${window.hlx.codeBasePath}${window.location.href.includes('hisense.com') ? '/us/nav' : '/us/en/nav'}`;
   const fragment = await loadFragment(navPath);
 
@@ -465,6 +465,22 @@ export default async function decorate(block) {
   const linksEl = document.createElement('div');
   linksEl.className = 'nav-links';
 
+  // Company 等第二nav
+  const navSecond = document.createElement('div');
+  navSecond.className = 'nav-second h-grid-container';
+  const CompanyEl = document.createElement('div');
+  CompanyEl.className = 'route-company';
+  CompanyEl.textContent = 'Company';
+  const CompanyGroupEl = document.createElement('div');
+  CompanyGroupEl.className = 'company-group';
+
+  const CompanyItemEl = document.createElement('div');
+  CompanyItemEl.className = 'company-item';
+  CompanyItemEl.textContent = 'About Hisense';
+  CompanyGroupEl.append(CompanyItemEl);
+  navSecond.append(CompanyEl, CompanyGroupEl);
+
+  // 悬浮展开
   const mobileMenu = document.createElement('div');
   mobileMenu.className = 'mobile-menu';
   const mobileLinks = document.createElement('div');
@@ -646,6 +662,7 @@ export default async function decorate(block) {
   mobileMenu.append(mobileActions);
 
   navigation.append(navContainer);
+  navigation.append(navSecond);
   navigation.append(mobileMenu);
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;

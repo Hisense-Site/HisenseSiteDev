@@ -136,6 +136,38 @@
   box-sizing: border-box;
 }
 
+#navigation .nav-second {
+  height: 66px;
+  background: #f00;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  
+  .route-company {
+    font-size: var(--fontsize-body1);
+    font-weight: var(--fontweight-medium);
+    line-height: 1.5;
+    height: 44px;
+    margin-top: 3px;
+    margin-bottom: 19px;
+    display: flex;
+    align-items: center;
+  }
+
+  .company-group {
+    height: 50px;
+    display: flex;
+    gap: 48px;
+    
+    .company-item {
+      font-size: var(--fontsize-body2);
+      font-weight: var(--fontweight-book);
+      border-bottom: 2px solid var(--color-hisense-black);
+    }
+  }
+}
+
+
 #navigation .mobile-menu {
   display: flex;
   width: 100%;
