@@ -1924,17 +1924,17 @@
     "fields": [
       {
         "component": "text",
-        "name": "label_title",
+        "name": "title",
         "label": "Title"
       },
       {
         "component": "richtext",
-        "name": "label_description",
+        "name": "description",
         "label": "Description"
       },
       {
         "component": "text",
-        "name": "label_button",
+        "name": "button",
         "label": "Button"
       }
     ]
