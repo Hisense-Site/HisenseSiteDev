@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "layout Cards",
-      "id": "layout-cards",
+      "title": "Industrial Cards",
+      "id": "industrial-cards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "layout Cards",
-              "model": "layout-cards",
-              "filter": "layout-cards"
+              "name": "industrial Cards",
+              "model": "industrial-cards",
+              "filter": "industrial-cards"
             }
           }
         }
       }
     },
     {
-      "title": "layout Card",
-      "id": "layout-card",
+      "title": "Industrial Card",
+      "id": "industrial-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "layout Card",
-              "model": "layout-card"
+              "name": "industrial Card",
+              "model": "industrial-card"
             }
           }
         }
@@ -34,7 +34,7 @@
   ],
   "models": [
      {
-      "id": "layout-cards",
+      "id": "industrial-cards",
       "fields": [
         {
           "component": "select",
@@ -60,9 +60,8 @@
       ]
     },
     {
-      "id": "layout-card",
+      "id": "industrial-card",
       "fields": [
-        
          {
           "component": "reference",
           "valueType": "string",
@@ -87,9 +86,9 @@
   ],
   "filters": [
     {
-      "id": "layout-cards",
+      "id": "industrial-cards",
       "components": [
-        "layout-card"
+        "industrial-card"
       ]
     }
   ]
