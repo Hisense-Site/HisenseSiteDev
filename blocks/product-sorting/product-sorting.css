@@ -182,7 +182,7 @@
   display: none;
 }
 
-@media (width <= 860px) {
+@media (width < 860px) {
   .mobile-filter-title {
     display: flex;
     align-items: center;
