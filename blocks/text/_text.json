@@ -47,6 +47,10 @@
           "valueType": "array",
           "options": [
             {
+              "name": "select",
+              "value": ""
+            },
+            {
               "name": "text-align-left",
               "value": "text-align-left"
             },
