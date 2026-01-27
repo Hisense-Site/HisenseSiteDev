@@ -1291,7 +1291,7 @@
     ]
   },
   {
-    "id": "plp-product-card",
+    "id": "product-card",
     "fields": [
       {
         "component": "text",

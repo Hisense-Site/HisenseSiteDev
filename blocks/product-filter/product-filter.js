@@ -334,8 +334,8 @@ export default function decorate(block) {
       block.replaceChildren(sidebar);
     }
     // mobile filter 添加标题
-    const filterTagWrapperEl = document.querySelector('.plp-product-filter-tag-wrapper');
-    const filterTagEl = document.querySelector('.plp-product-filter-tag');
+    const filterTagWrapperEl = document.querySelector('.product-filter-wrapper');
+    const filterTagEl = document.querySelector('.product-filter');
     if (filterTagEl) {
       const titleBoxEl = document.createElement('div');
       titleBoxEl.className = 'plp-mobile-filters-tit-box';
