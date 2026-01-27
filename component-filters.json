@@ -156,6 +156,12 @@
     ]
   },
   {
+    "id": "tech-information",
+    "components": [
+      "tech-items"
+    ]
+  },
+  {
     "id": "text",
     "components": [
       "featureDisclaimer"

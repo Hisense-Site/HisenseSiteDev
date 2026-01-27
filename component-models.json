@@ -1614,6 +1614,72 @@
     ]
   },
   {
+    "id": "tech-information",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "info-title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "info-subtitle",
+        "label": "SubTitle"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "info-text",
+        "label": "Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "tech-image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "btn-cta",
+        "label": "Button Link",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "btn-ctaLabel",
+        "label": "Button",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "tech-items",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "item-title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "item-text",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "text",
     "fields": [
       {
