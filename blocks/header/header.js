@@ -476,7 +476,7 @@ export default async function decorate(block) {
 
   const CompanyItemEl = document.createElement('div');
   CompanyItemEl.className = 'company-item';
-  CompanyItemEl.textContent = 'About Hisense';
+  CompanyItemEl.innerHTML = 'About<br/>Hisense';
   CompanyGroupEl.append(CompanyItemEl);
   navSecond.append(CompanyEl, CompanyGroupEl);
 
