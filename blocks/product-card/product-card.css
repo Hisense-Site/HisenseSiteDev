@@ -51,10 +51,9 @@
 }
 
 .plp-product-img {
-  width: 100%;
-  height: min(calc(188 / var(--breakpoint-pc) * 100vw), 188px);
-  margin-bottom: var(--size-8);
-  padding: 0 min(calc(11.3 / var(--breakpoint-pc) * 100vw), 11.3px);
+  width: min(calc(212 / var(--breakpoint-pc) * 100vw), 212px);
+  height: min(calc(212 / var(--breakpoint-pc) * 100vw), 212px);
+  margin:0 auto var(--size-8);
   text-align: center;
   display: flex;
   align-items: center;
