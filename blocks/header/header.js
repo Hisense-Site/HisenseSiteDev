@@ -394,7 +394,7 @@ function buildDropdown(data) {
 
 const handleChangeNavPosition = (navigation) => {
   const pdpEl = document.querySelector('.product-section-container');
-  const plpEl = document.querySelector('.plp-product-filters');
+  const plpEl = document.querySelector('.product-sorting');
   if (window.innerWidth < 860 && (pdpEl || plpEl)) {
     navigation.style.position = 'absolute';
     navigation.style.transition = 'none';
@@ -425,7 +425,7 @@ export default async function decorate(block) {
   // eslint-disable-next-line no-unused-vars
   const pdpEl = document.querySelector('.product-section-container');
   // eslint-disable-next-line no-unused-vars
-  const plpEl = document.querySelector('.plp-product-filters');
+  const plpEl = document.querySelector('.product-sorting');
   window.addEventListener('resize', () => {
     handleChangeNavPosition(navigation);
   });

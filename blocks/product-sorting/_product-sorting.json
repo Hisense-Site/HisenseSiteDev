@@ -25,7 +25,7 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "PLP Product Sort Item",
+              "name": "Sort Item",
               "model": "plp-product-sort",
               "key-value": true,
               "modelFields": [

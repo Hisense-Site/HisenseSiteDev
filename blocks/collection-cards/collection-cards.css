@@ -187,8 +187,8 @@
   transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
 
   @media (width >= 860px) {
-    width: min(13.0555555vw, 188px);
-    height: min(13.0555555vw, 188px);
+    width: min(14.7222222vw, 212px);
+    height: min(14.7222222vw, 212px);
   }
 }
 
@@ -199,7 +199,7 @@
 
 .center-style > ul > li:hover img {
   @media (width >= 860px) {
-    transform: scale(1.09574) translateY(-5px);
+    transform: scale(1.04) translateY(-5px);
   }
 }
 
