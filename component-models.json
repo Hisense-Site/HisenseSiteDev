@@ -1920,6 +1920,16 @@
     ]
   },
   {
+    "id": "subscribe",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title text field"
+      }
+    ]
+  },
+  {
     "id": "video",
     "fields": [
       {
