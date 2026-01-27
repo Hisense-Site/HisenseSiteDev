@@ -170,6 +170,10 @@
   color: var(--color-primary-grey-50);
   height: 100%;
   line-height: 1.5;
+  
+  p {
+    text-align: center;
+  }
 }
 
 @media (width < 860px) {
