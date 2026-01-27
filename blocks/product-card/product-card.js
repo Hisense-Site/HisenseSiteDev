@@ -118,6 +118,8 @@ function applyAggregatedSort(sortProperty, direction = -1) {
 
 export default function decorate(block) {
   const isEditMode = block && block.hasAttribute && block.hasAttribute('data-aue-resource');
+  block.classList.add('plp-product-card');
+  block.classList.remove('product-card');
 
   const rows = [...(block.children || [])];
   let graphqlUrl = null;
@@ -297,6 +299,7 @@ export default function decorate(block) {
           // 直接使用参数名和值组合成筛选条目
           const targetValue = `${paramName}/${paramValue}`;
           const targetCheckbox = document.querySelector(`.plp-filter-item input[value$="${targetValue}"]`);
+          // const targetCheckbox = document.querySelector(`.product-filter-item[data-tag="${targetValue}"]`);
 
           if (targetCheckbox) {
             // 触发checkbox的点击事件
