@@ -23,8 +23,18 @@
       "fields": [
         {
           "component": "text",
-          "name": "title",
-          "label": "Title text field"
+          "name": "label_title",
+          "label": "Title"
+        },
+        {
+          "component": "richtext",
+          "name": "label_description",
+          "label": "Description"
+        },
+        {
+          "component": "text",
+          "name": "label_button",
+          "label": "Button"
         }
       ]
     }
