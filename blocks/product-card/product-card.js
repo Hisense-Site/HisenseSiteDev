@@ -350,13 +350,13 @@ export default function decorate(block) {
       card.className = 'product-card';
 
       const titleDiv = document.createElement('div');
-      titleDiv.className = 'plp-product-card-title';
+      titleDiv.className = 'product-card-title';
       let tagTitle = '';
       const badgeList = group.representative.badge || [];
       const targetStr = badgeList[0] || '';
       const lastSlashIndex = targetStr.lastIndexOf('/');
       tagTitle = lastSlashIndex > -1 ? targetStr.slice(lastSlashIndex + 1) : targetStr;
-      titleDiv.innerHTML = `<div class="plp-product-card-tag">${tagTitle}</div>`;
+      titleDiv.innerHTML = `<div class="product-card-tag">${tagTitle}</div>`;
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
@@ -562,7 +562,7 @@ export default function decorate(block) {
     // 当结果为0时显示no result
     try {
       const noResultEl = document.querySelector('.plp-products-no-result');
-      const cardWrapperEl = document.querySelector('.plp-product-card-wrapper');
+      const cardWrapperEl = document.querySelector('.product-card-wrapper');
       if (noResultEl) {
         if (allGroupedData.length === 0) {
           noResultEl.style.display = 'flex';

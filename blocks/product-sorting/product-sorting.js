@@ -202,7 +202,7 @@ export default function decorate(block) {
   mobileFiltersImg.alt = 'Filters title';
   mobileFilterTit.append(mobileFiltersImg, mobileFiltersSpan);
   mobileFilters.append(mobileFilterTit);
-  const filterDetailEl = document.querySelector('.plp-product-filter-tag-wrapper');
+  const filterDetailEl = document.querySelector('.product-filter-wrapper');
 
   // mobile 端，Filters 点击事件，显示 filter 数据
   mobileFilters.addEventListener('click', () => {
