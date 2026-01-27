@@ -1619,12 +1619,14 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "value": [],
+        "value": [
+          ""
+        ],
         "label": "Description Alignment Class Name Options",
         "valueType": "array",
         "options": [
           {
-            "name": "select",
+            "name": "Default",
             "value": ""
           },
           {
