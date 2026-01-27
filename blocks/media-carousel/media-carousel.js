@@ -7,6 +7,7 @@ import {
   whenElementReady,
 } from '../../utils/carousel-common.js';
 import { createElement } from '../../utils/dom-helper.js';
+import { isUniversalEditor } from '../../utils/ue-helper.js';
 
 let carouselId = 0;
 
@@ -46,7 +47,7 @@ function bindEvent(block) {
       e.target.style.display = 'none';
     }
   });
-
+  if (isUniversalEditor()) return;
   whenElementReady('.video-media-carousel-block', () => {
     const videos = block.querySelectorAll('.video-autoPlay');
     setupObserver(block, videos, (e) => {
@@ -120,8 +121,8 @@ export default async function decorate(block) {
         child.querySelector('picture').closest('div').classList.add('video-play');
         child.querySelector('picture').closest('div').remove();
       }
-      if (singleVideo) child.replaceChild(singleVideo, child.firstElementChild);
-      child.lastElementChild.classList.add('item-content');
+      if (singleVideo && child.firstElementChild.querySelector('a')) child.replaceChild(singleVideo, child.firstElementChild);
+      child.lastElementChild?.classList.add('item-content');
     } else {
       [...child.children].forEach((item) => {
         if (item.querySelector('picture')) {
