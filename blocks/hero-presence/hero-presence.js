@@ -71,6 +71,10 @@ export default async function decorate(block) {
   animateContent.remove();
   // ========== CONSTRUCT DOM [END] ========== //
 
+  if (isUniversalEditor()) {
+    return;
+  }
+
   // ========== VIDEO [START] ========== //
   const playVideo = () => {
     video.play().catch(() => {
@@ -105,10 +109,6 @@ export default async function decorate(block) {
   // ========== VIDEO [END] ========== //
 
   // ========== ANIMATION [START] ========== //
-  if (isUniversalEditor()) {
-    return;
-  }
-
   const scrollTriggerLoaded = await loadScrollTrigger();
   if (!scrollTriggerLoaded) {
     return;
@@ -122,6 +122,7 @@ export default async function decorate(block) {
   ScrollTrigger.config({ autoRefreshEvents: 'DOMContentLoaded,load' });
 
   gsap.registerPlugin(ScrollTrigger);
+  gsap.set(block, { height: '100vh' });
 
   let scrollTriggerInstance = null;
 
