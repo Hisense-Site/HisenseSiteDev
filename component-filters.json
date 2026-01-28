@@ -38,6 +38,7 @@
       "product-spec",
       "properties",
       "slide",
+      "stats-strips",
       "sub-menu-link",
       "text",
       "title",
@@ -154,6 +155,12 @@
     "id": "product-sorting",
     "components": [
       "plp-product-sort"
+    ]
+  },
+  {
+    "id": "stats-strips",
+    "components": [
+      "stats-strip"
     ]
   },
   {

@@ -1602,6 +1602,58 @@
     ]
   },
   {
+    "id": "stats-strips",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text_title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text_subtitle",
+        "label": "Subtitle",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "background",
+        "label": "Background",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "stats-strip",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "stats_number",
+        "label": "Number",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "stats_text",
+        "label": "Label Text",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "sub-menu-link",
     "fields": [
       {
