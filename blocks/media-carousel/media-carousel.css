@@ -161,6 +161,26 @@
       border-radius: var(--radius-pc-xl);
       overflow: hidden;
       position: relative;
+      width: 100%;
+      height: 100%;
+
+      video {
+        object-fit: cover;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        object-fit: cover;
+      }
+    }
+
+    .media-carousel-pagination {
+      height: min(2.84722222vw, 48px);
     }
   }
 }
@@ -173,6 +193,7 @@
   .item {
     width: min(31.80555556vw, 458px);
     height: min(23.61111111vw, 340px);
+    overflow: hidden;
   }
 
   .item-content,
@@ -218,6 +239,7 @@
   .item {
     width: min(43.75vw, 630px);
     height: min(25.55555556vw, 368px);
+    overflow: hidden;
   }
 
   .item-content,
@@ -274,6 +296,7 @@
 
     video {
       border-radius: var(--radius-pc-xl);
+      overflow: hidden;
       object-fit: cover;
       height: 100%;
       width: 100%;
@@ -294,6 +317,7 @@
     width: 100%;
     height: min(25.55555556vw,368px);
     border-radius: var(--radius-pc-xl);
+    overflow: hidden;
     object-fit: cover;
   }
 
@@ -328,6 +352,7 @@
 
   .item-picture {
     border-radius: var(--radius-pc-xl);
+    overflow: hidden;
     object-fit: cover;
   }
 
@@ -378,6 +403,7 @@
 
       video {
         border-radius: var(--radius-pc-xl);
+        overflow: hidden;
         object-fit: cover;
         height: 100%;
         width: 100%;
@@ -412,6 +438,7 @@
 .media-carousel .item.video-only {
   height: min(25.55555556vw, 368px);
   width: min(45.27777778vw, 652px);
+  overflow: hidden;
 }
 
 .media-carousel-pagination.show {
@@ -589,6 +616,7 @@
 
   .video-div-box {
     border-radius: min(var(--radius-xl), 16px) !important;
+    overflow: hidden;
 
     video {
       border-radius: min(var(--radius-xl), 16px) !important;

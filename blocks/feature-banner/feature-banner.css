@@ -97,6 +97,20 @@
   
 }
 
+.feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
+  .customize-feature-banner {
+    position: relative;
+    z-index: 10;
+    top: min(calc(-250 / var(--breakpoint-pc) * 100vw), -250px);
+  }
+}
+
+.feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
+  .customize-feature-banner {
+    top: min(calc(-236 / var(--breakpoint-pc) * 100vw), -236px);
+  }
+}
+
 @media (width < 860px) {
   .feature-banner-container .feature-banner-wrapper {
     min-height: auto;
@@ -154,5 +168,23 @@
         height: auto;
       }
     }
+  }
+
+  .feature-banner-wrapper + .icon-container-wrapper, .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
+    .customize-feature-banner {
+      top: 0;
+
+      .icon-container-box {
+        justify-content: center;
+      }
+    }
+  }
+
+  .feature-banner-wrapper + .icon-container-wrapper {
+    margin: var(--size-24) 0;
+  }
+
+  .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
+    padding-bottom: var(--size-24);
   }
 }
