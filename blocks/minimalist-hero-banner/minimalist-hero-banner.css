@@ -1,0 +1,47 @@
+main > .section:first-of-type {
+	margin: 0;
+	background: transparent !important;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.minimalist-hero-banner-wrapper {
+	max-width: 2560px !important;
+	padding: 0 !important;
+}
+
+.minimalist-hero-banner {
+	height: min(27.77777778vw,400px);
+	width: 100%;
+	text-align: center;
+	color: var(--color-hisense-black);
+	line-height: 120%;
+	text-transform: capitalize;
+	position: relative;
+
+	img {
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1440/400;
+		object-fit: cover;
+	}
+
+	div:first-child {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+	div::nth-child(2) {
+		font-size: var(--size-34);
+		font-weight: var(--fontweight-medium);
+	}
+
+	div::nth-child(3) {
+		font-size: var(--size-18);
+		font-weight: 400;
+	}
+}
