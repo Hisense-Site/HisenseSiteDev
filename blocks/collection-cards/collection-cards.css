@@ -117,6 +117,7 @@
   color: white;
   font-style: normal;
   z-index: 1;
+  font-weight: 400;
 }
 
 .cover-dark  .collection-cards-card-body {
@@ -170,7 +171,7 @@
     gap: var(--size-16);
     width:min(24.26111vw, 358px) ;
     height:min(24.26111vw, 358px) ;
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md)  var(--spacing-md);
   }
 }
 
@@ -178,6 +179,7 @@
   width: 100%;
   text-align: center;
   color: #000;
+  font-weight: 400;
 }
 
 .center-style > ul > li .collection-cards-card-image {
