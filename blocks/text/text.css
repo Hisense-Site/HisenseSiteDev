@@ -29,7 +29,7 @@
   }
 
   h1 ~ p, h2 ~ p, h3 ~ p, h4 ~ p, h5 ~ p, h6 ~ p {
-    font-weight: var(--fontweight-book);
+    font-weight: var(--fontweight-light);
     font-size: min(calc(14 / var(--breakpoint-pc) * 100vw), 14px);
   }
 
@@ -77,6 +77,14 @@
   padding-bottom: min(calc(80 / var(--breakpoint-pc) * 100vw), 80px);
 }
 
+.block.text.pt-40 {
+  padding-top: min(calc(40 / var(--breakpoint-pc) * 100vw), 40px);
+}
+
+.block.text.pt-80 {
+  padding-top: min(calc(80 / var(--breakpoint-pc) * 100vw), 80px);
+}
+
 @media (width < 860px) {
   .text {
     p:first-child {
@@ -113,5 +121,13 @@
 
   .block.text.pb-80 {
     padding-bottom:  var(--spacing-sm);
+  }
+  
+  .block.text.pt-40 {
+    padding-top: var(--spacing-sm);
+  }
+
+  .block.text.pt-80 {
+    padding-top:  var(--spacing-sm);
   }
 }

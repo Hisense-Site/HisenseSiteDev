@@ -73,6 +73,7 @@
     margin-top: min(calc(20 / var(--breakpoint-pc) * 100vw), 20px);
     width: min(calc(340 / var(--breakpoint-pc) * 100vw), 340px);
     font-size: min(calc(16 / var(--breakpoint-pc) * 100vw), 16px);
+    font-weight: var(--fontweight-light);
     position: relative;
     z-index: 6;
     margin-bottom: 0;

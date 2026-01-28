@@ -1704,6 +1704,14 @@
             "value": "text-align-right"
           },
           {
+            "name": "pt-40",
+            "value": "pt-40"
+          },
+          {
+            "name": "pt-80",
+            "value": "pt-80"
+          },
+          {
             "name": "pb-40",
             "value": "pb-40"
           },
