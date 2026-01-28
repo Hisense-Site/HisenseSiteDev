@@ -92,10 +92,14 @@
     }
 }
 
-.large-icon .icon-container-item .icon-image img{
-   @media (width >= 860px) {
-         height: var(--size-88);
-    }
+.large-icon .icon-container-item .icon-image img {
+  margin: calc(-1 * min(48.71777vw,190px)) 0 min(48.71777vw,190px);
+  position: relative;
+
+  @media (width >= 860px) {
+    margin: calc(-1 * min(20.83333vw,300px)) 0 min(20.83333vw,300px);
+    height: var(--size-88);
+  }
 }
 
 .small-icon .icon-container-item .icon-image img{
