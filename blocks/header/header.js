@@ -474,17 +474,45 @@ export default async function decorate(block) {
   CompanyEl.textContent = 'Company';
   const CompanyGroupEl = document.createElement('div');
   CompanyGroupEl.className = 'company-group';
-
-  const CompanyItemEl = document.createElement('div');
-  CompanyItemEl.className = 'company-item';
-  CompanyItemEl.innerHTML = 'About<br/>Hisense';
-  CompanyItemEl.dataset.href = '/company/about/hisense';
-  CompanyItemEl.addEventListener('click', (e) => {
-    e.stopPropagation();
-    window.location.href = '/company/about/hisense';
+  const array = [{
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }, {
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }, {
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }, {
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }, {
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }, {
+    title: 'About<br/>Hisense',
+    link: '/company/about/hisense',
+  }];
+  array.forEach((item) => {
+    const CompanyItemEl = document.createElement('div');
+    CompanyItemEl.className = 'company-item';
+    CompanyItemEl.innerHTML = item.title;
+    CompanyItemEl.dataset.href = item.link;
+    CompanyItemEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = item.link;
+    });
+    CompanyGroupEl.append(CompanyItemEl);
   });
-  CompanyGroupEl.append(CompanyItemEl);
-  navSecond.append(CompanyEl, CompanyGroupEl);
+
+  const companyArrow = document.createElement('img');
+  companyArrow.className = 'company-arrow';
+  companyArrow.src = '/content/dam/hisense/us/common-icons/chevron-up-black.svg';
+  companyArrow.addEventListener('click', () => {
+    document.body.style.overflow = 'hidden';
+    navigation.classList.toggle('show-second-menu');
+  });
+  navSecond.append(CompanyEl, CompanyGroupEl, companyArrow);
 
   // 悬浮展开
   const mobileMenu = document.createElement('div');
@@ -667,9 +695,26 @@ export default async function decorate(block) {
   mobileMenu.append(dividingLine);
   mobileMenu.append(mobileActions);
 
+  // 悬浮展开二级菜单
+  const mobileSecondMenu = document.createElement('div');
+  mobileSecondMenu.className = 'mobile-second-menu';
+
+  array.forEach((item) => {
+    const mobileSecondMenuItem = document.createElement('div');
+    mobileSecondMenuItem.className = 'mobile-second-menu-item';
+    mobileSecondMenuItem.textContent = item.title;
+    mobileSecondMenuItem.dataset.href = item.link;
+    mobileSecondMenuItem.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.location.href = item.link;
+    });
+    mobileSecondMenu.append(mobileSecondMenuItem);
+  });
+
   navigation.append(navContainer);
   navigation.append(navSecond);
   navigation.append(mobileMenu);
+  navigation.append(mobileSecondMenu);
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     if (scrollTop >= 10) {
