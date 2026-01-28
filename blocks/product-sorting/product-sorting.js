@@ -186,6 +186,18 @@ export default function decorate(block) {
         cb.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
+    // 处理 radio 的情况，取消选中当前选中的 radio
+    document.querySelectorAll('input[type="radio"][data-option-value]').forEach((radio) => {
+      if (radio.checked) {
+        radio.checked = false;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+    // 勾选回 value 以 /no 结尾的 radio
+    const connectLifeNoRadio = document.querySelector('input[type="radio"][data-option-value$="/no"]');
+    if (connectLifeNoRadio) {
+      connectLifeNoRadio.checked = true;
+    }
   });
 
   filtersLeft.append(resultsBox, activeFilters, resetFilters);

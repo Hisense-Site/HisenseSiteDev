@@ -93,10 +93,21 @@ function applyAggregatedSort(sortProperty, direction = -1) {
         if (charCompare !== 0) {
           compareResult = charCompare;
         } else {
-          // 首字母相同，按数字9-0排序
-          const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
-          const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
-          compareResult = numB - numA; // 数字大的在前
+          // 首字母相同，比较第二个字符，字母排在数字前面
+          const secondCharA = String(titleA).charAt(1);
+          const secondCharB = String(titleB).charAt(1);
+          const isAlphaA = /^[A-Z]/i.test(secondCharA);
+          const isAlphaB = /^[A-Z]/i.test(secondCharB);
+
+          if (isAlphaA !== isAlphaB) {
+            // 一个是字母，一个是数字，字母排在前面
+            compareResult = isAlphaA ? -1 : 1;
+          } else {
+            // 都是字母或都是数字，按数字9-0排序
+            const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
+            const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
+            compareResult = numB - numA; // 数字大的在前
+          }
         }
       } else if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
         compareResult = (maxValueA - maxValueB) * direction;
@@ -868,13 +879,6 @@ window.applyPlpFilters = function applyPlpFilters() {
         })
         .filter((val) => val && val.length > 0);
     }).filter((arr) => arr && arr.length);
-
-    if (!selectedByGroup.length) {
-      // 无过滤时恢复全部，清空筛选结果
-      window.filteredProducts = null;
-      window.renderPlpProducts(allProducts);
-      return;
-    }
 
     // 执行过滤，要求产品必须要有 tags 属性
     const filtered = allProducts.filter((item) => {
