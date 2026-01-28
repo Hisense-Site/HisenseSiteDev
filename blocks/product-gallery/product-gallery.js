@@ -72,6 +72,8 @@ function buildTab(itemElement, index) {
   });
 
   li.append(imgBox, textSpan);
+  const urlParams = new URLSearchParams(window.location.search);
+  console.log(urlParams, li['data-tag']);
   return li;
 }
 

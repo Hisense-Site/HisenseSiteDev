@@ -1291,7 +1291,7 @@
     ]
   },
   {
-    "id": "plp-product-card",
+    "id": "product-card",
     "fields": [
       {
         "component": "text",
@@ -1685,10 +1685,16 @@
       {
         "component": "multiselect",
         "name": "classes",
-        "value": [],
+        "value": [
+          ""
+        ],
         "label": "Description Alignment Class Name Options",
         "valueType": "array",
         "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
           {
             "name": "text-align-left",
             "value": "text-align-left"
