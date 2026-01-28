@@ -1626,19 +1626,19 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "info-title",
+        "name": "info_title",
         "label": "Title"
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "info-subtitle",
+        "name": "info_subtitle",
         "label": "SubTitle"
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "info-text",
+        "name": "info_text",
         "label": "Text"
       },
       {
@@ -1667,13 +1667,13 @@
       },
       {
         "component": "text",
-        "name": "item-title",
+        "name": "item_title",
         "label": "Title",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "item-text",
+        "name": "item_text",
         "label": "Text",
         "valueType": "string"
       }
