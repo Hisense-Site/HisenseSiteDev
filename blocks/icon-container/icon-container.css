@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   gap:  var(--spacing-md);
-  color: white;
+  color: white !important;
   flex-wrap: wrap; 
   
 
