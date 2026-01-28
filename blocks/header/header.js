@@ -409,7 +409,6 @@ const handleChangeNavPosition = (navigation) => {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  console.log('block');
   const navPath = `${window.hlx.codeBasePath}${window.location.href.includes('hisense.com') ? '/us/nav' : '/us/en/nav'}`;
   const fragment = await loadFragment(navPath);
 
@@ -427,6 +426,8 @@ export default async function decorate(block) {
   const pdpEl = document.querySelector('.product-section-container');
   // eslint-disable-next-line no-unused-vars
   const plpEl = document.querySelector('.product-sorting');
+  const isCompanyPage = window.location.pathname.includes('company');
+  console.log(isCompanyPage);
   window.addEventListener('resize', () => {
     handleChangeNavPosition(navigation);
   });
@@ -467,7 +468,7 @@ export default async function decorate(block) {
 
   // Company 等第二nav
   const navSecond = document.createElement('div');
-  navSecond.className = 'nav-second h-grid-container';
+  navSecond.className = `nav-second h-grid-container ${isCompanyPage ? '' : 'hidden'}`;
   const CompanyEl = document.createElement('div');
   CompanyEl.className = 'route-company';
   CompanyEl.textContent = 'Company';
@@ -477,6 +478,11 @@ export default async function decorate(block) {
   const CompanyItemEl = document.createElement('div');
   CompanyItemEl.className = 'company-item';
   CompanyItemEl.innerHTML = 'About<br/>Hisense';
+  CompanyItemEl.dataset.href = '/company/about/hisense';
+  CompanyItemEl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    window.location.href = '/company/about/hisense';
+  });
   CompanyGroupEl.append(CompanyItemEl);
   navSecond.append(CompanyEl, CompanyGroupEl);
 
