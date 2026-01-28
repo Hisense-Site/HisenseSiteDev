@@ -10,7 +10,7 @@
   }
 }
 
-.text-container.dark {
+.text-container.dark,.text-container.gray-00 {
   p:first-child {
     color: var(--color-hisense-teal);
   }
@@ -29,7 +29,7 @@
   }
 
   h1 ~ p, h2 ~ p, h3 ~ p, h4 ~ p, h5 ~ p, h6 ~ p {
-    font-weight: var(--fontweight-light);
+    font-weight: var(--fontweight-book);
     font-size: min(calc(14 / var(--breakpoint-pc) * 100vw), 14px);
   }
 
