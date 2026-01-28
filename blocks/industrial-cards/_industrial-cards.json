@@ -50,12 +50,21 @@
                {
                   "name": "Cover Style Width Dark Font",
                   "value": "cover-dark"
-              },
-              {
-                  "name": "Center Style",
-                  "value": "center-style"
               }
           ]
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text_title",
+          "label": "Title",
+          "multi": false
+        },
+         {
+          "component": "richtext",
+          "name": "text_subtitle",
+          "label": "Sub Title",
+          "valueType": "string"
         }
       ]
     },
@@ -71,13 +80,13 @@
         },
          {
           "component": "richtext",
-          "name": "text_title",
+          "name": "item_title",
           "label": "Title",
           "valueType": "string"
         },
          {
           "component": "richtext",
-          "name": "text_subtitle",
+          "name": "item_subtitle",
           "label": "Sub Title",
           "valueType": "string"
         }
