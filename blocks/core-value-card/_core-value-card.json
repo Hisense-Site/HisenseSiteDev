@@ -1,31 +1,31 @@
 {
   "definitions": [
     {
-      "title": "Industrial Cards",
-      "id": "industrial-cards",
+      "title": "Core Value Cards",
+      "id": "core-value-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "industrial Cards",
-              "model": "industrial-cards",
-              "filter": "industrial-cards"
+              "name": "Core Value Cards",
+              "model": "core-value-card",
+              "filter": "core-value-card"
             }
           }
         }
       }
     },
     {
-      "title": "Industrial Card",
-      "id": "industrial-card",
+      "title": "Cards Items",
+      "id": "cards-items",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "industrial Card",
-              "model": "industrial-card"
+              "name": "Cards Items",
+              "model": "cards-items"
             }
           }
         }
@@ -34,12 +34,12 @@
   ],
   "models": [
      {
-      "id": "industrial-cards",
+      "id": "core-value-card",
       "fields": [
         {
           "component": "select",
           "name": "classes",
-          "label": "Card options",
+          "label": "style",
           "description": "",
           "valueType": "string",
           "options": [
@@ -54,7 +54,7 @@
           ]
         },
         {
-          "component": "richtext",
+          "component": "text",
           "valueType": "string",
           "name": "text_title",
           "label": "Title",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "industrial-card",
+      "id": "cards-items",
       "fields": [
          {
           "component": "reference",
@@ -79,7 +79,7 @@
           "multi": false
         },
          {
-          "component": "richtext",
+          "component": "text",
           "name": "item_title",
           "label": "Title",
           "valueType": "string"
@@ -87,7 +87,7 @@
          {
           "component": "richtext",
           "name": "item_subtitle",
-          "label": "Sub Title",
+          "label": "Text",
           "valueType": "string"
         }
       ]
@@ -95,9 +95,9 @@
   ],
   "filters": [
     {
-      "id": "industrial-cards",
+      "id": "core-value-card",
       "components": [
-        "industrial-card"
+        "cards-items"
       ]
     }
   ]

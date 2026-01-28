@@ -80,6 +80,12 @@
     ]
   },
   {
+    "id": "core-value-card",
+    "components": [
+      "cards-items"
+    ]
+  },
+  {
     "id": "footerContainer",
     "components": [
       "footerLogo",
@@ -121,12 +127,6 @@
     "id": "icon-container",
     "components": [
       "icon-item"
-    ]
-  },
-  {
-    "id": "industrial-cards",
-    "components": [
-      "industrial-card"
     ]
   },
   {
