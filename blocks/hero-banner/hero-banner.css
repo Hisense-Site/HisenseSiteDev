@@ -112,7 +112,7 @@ p {
     margin-top: 0 ;
   }
 
-  .hero-banner-item-content h1, h2, h3, h4, h5, h6, p {
+  .hero-banner-item-content h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-size: var(--fontsize-pc-h1);
   }
@@ -422,9 +422,9 @@ p {
           font-size: min(var(--fontsize-body2), 2.1875vh);
           font-weight: var(--fontweight-medium);
           box-sizing: border-box;
-          line-height: min(var(--size-40), 6.25vh);
+          line-height: min(var(--size-30), 4.6875vh);
           text-align: center;
-          padding: min(var(--size-4), 0.625vh) min(var(--size-32), 5vh);
+          padding: min(var(--size-4), 0.625vh) min(var(--size-24), 3.75vh);
         }
       }
 
