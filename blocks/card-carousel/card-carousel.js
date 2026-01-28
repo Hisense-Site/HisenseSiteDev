@@ -5,7 +5,7 @@ import {
   throttle,
   mobilePressEffect,
 } from '../../utils/carousel-common.js';
-import { createElement } from '../../utils/dom-helper.js';
+import { createElement, debounce } from '../../utils/dom-helper.js';
 
 let index = 0;
 
@@ -96,7 +96,7 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.card-carousel', () => {
+  resizeObserver('.card-carousel', debounce(() => {
     bindEvent(block);
-  });
+  }), 500);
 }
