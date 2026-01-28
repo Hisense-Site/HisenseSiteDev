@@ -111,6 +111,7 @@ async function loadEager(doc) {
   if (main) {
 	loadHeader(doc.querySelector('header'));
     decorateMain(main);
+    loadHeader(doc.querySelector('header'));
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
