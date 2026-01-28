@@ -109,8 +109,8 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+	loadHeader(doc.querySelector('header'));
     decorateMain(main);
-    loadHeader(doc.querySelector('header'));
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
