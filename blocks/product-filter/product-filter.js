@@ -391,7 +391,7 @@ export default function decorate(block) {
       closeImg.alt = 'mobile-filter';
       closeBtn.addEventListener('click', () => {
         filterTagWrapperEl.classList.remove('mobile-filter-show');
-        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
       });
       closeBtn.append(closeImg);
       titleBoxEl.append(mobileProdctTagTit, closeBtn);
