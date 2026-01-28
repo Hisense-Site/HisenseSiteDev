@@ -251,6 +251,37 @@
           }
         },
         {
+          "title": "Current Partnerships List",
+          "id": "current-partnerships-list",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "current partnerships list",
+                  "model": "current-partnerships-list",
+                  "filter": "current-partnerships-list"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Current Partnerships Item",
+          "id": "current-partnerships-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Current Partnerships Item",
+                  "model": "current-partnerships-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Disclaimer",
           "id": "disclaimer",
           "plugins": {
@@ -651,6 +682,37 @@
                 "template": {
                   "name": "Parallax",
                   "model": "parallax"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Past Partnerships List",
+          "id": "past-partnerships-list",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Past Partnerships List",
+                  "model": "past-partnerships-list",
+                  "filter": "past-partnerships-list"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Past Partnerships Item",
+          "id": "past-partnerships-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "honors-awards Card",
+                  "model": "past-partnerships-item"
                 }
               }
             }

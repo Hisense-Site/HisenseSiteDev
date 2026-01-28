@@ -221,8 +221,10 @@
         "text",
         "title",
         "video",
-        "industrial-cards",
-        "honors-awards-cards"
+        "past-partnerships-list",
+        "honors-awards-cards",
+        "core-value-card",
+        "current-partnerships-list"
       ]
     }
   ]

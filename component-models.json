@@ -656,6 +656,36 @@
     ]
   },
   {
+    "id": "current-partnerships-list",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Section Title",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "current-partnerships-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "item_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "item_title",
+        "label": "Image Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "disclaimer",
     "fields": [
       {
@@ -1402,6 +1432,50 @@
         "name": "sub_text",
         "label": "Description",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "past-partnerships-list",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Card options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Cover Style",
+            "value": "cover-style"
+          },
+          {
+            "name": "Cover Style Width Dark Font",
+            "value": "cover-dark"
+          },
+          {
+            "name": "Center Style",
+            "value": "center-style"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "past-partnerships-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       }
     ]
   },

@@ -41,8 +41,10 @@
       "text",
       "title",
       "video",
-      "industrial-cards",
-      "honors-awards-cards"
+      "past-partnerships-list",
+      "honors-awards-cards",
+      "core-value-card",
+      "current-partnerships-list"
     ]
   },
   {
@@ -83,6 +85,12 @@
     "id": "core-value-card",
     "components": [
       "cards-items"
+    ]
+  },
+  {
+    "id": "current-partnerships-list",
+    "components": [
+      "current-partnerships-item"
     ]
   },
   {
@@ -148,6 +156,12 @@
       "navigationItem",
       "navigationLink",
       "navigationAction"
+    ]
+  },
+  {
+    "id": "past-partnerships-list",
+    "components": [
+      "past-partnerships-item"
     ]
   },
   {
