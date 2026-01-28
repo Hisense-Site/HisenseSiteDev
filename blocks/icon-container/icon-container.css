@@ -20,6 +20,16 @@
   }
 }
 
+.icon-container-box .icon-text p,
+.icon-container-box .icon-text h1,
+.icon-container-box .icon-text h2,
+.icon-container-box .icon-text h3,
+.icon-container-box .icon-text h4,
+.icon-container-box .icon-text h5,
+.icon-container-box .icon-text h6{
+    color: white !important;
+}
+
 .top-space .icon-container-box{
     margin-top: var(--spacing-sm);
 
