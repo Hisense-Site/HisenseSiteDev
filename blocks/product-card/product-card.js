@@ -1,8 +1,14 @@
 function applyAggregatedSort(sortProperty, direction = -1) {
   try {
+    // 检查是否有已选中的 filter
+    const hasActiveFilters = () => {
+      const filterTags = document.querySelectorAll('.plp-filter-tag');
+      return filterTags && filterTags.length > 0;
+    };
+
     // 如果有筛选结果，就在筛选结果基础上排序，否则使用原始数据进行排序
     let listToSort;
-    if (Array.isArray(window.filteredProducts) && window.filteredProducts.length > 0) {
+    if (hasActiveFilters()) {
       // 使用当前筛选结果进行排序
       listToSort = window.filteredProducts.slice();
     } else if (Array.isArray(window.productData)) {
@@ -10,9 +16,6 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       listToSort = window.productData.slice();
     } else {
       listToSort = [];
-    }
-    if (!listToSort || !listToSort.length) {
-      return;
     }
 
     // 通过 key 获取 product model
@@ -78,20 +81,33 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       // 比较最大
       let compareResult = 0;
       if (maxValueA === maxValueB) {
-        // 先按数字9-0排序，再按字母Z-A排序
+        // 先按首字母Z-A排序，首字母相同再按数字9-0排序
         const titleA = getProductSeries(a);
         const titleB = getProductSeries(b);
 
-        // 先按数字9-0
-        const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
-        const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
-        const numCompare = numB - numA; // 9-0排序，数字大的在前
+        // 先按首字母Z-A排序
+        const firstCharA = String(titleA).charAt(0).toUpperCase();
+        const firstCharB = String(titleB).charAt(0).toUpperCase();
+        const charCompare = firstCharB.localeCompare(firstCharA); // Z-A排序
 
-        if (numCompare !== 0) {
-          compareResult = numCompare;
+        if (charCompare !== 0) {
+          compareResult = charCompare;
         } else {
-          // 数字相同，按字母Z-A排序
-          compareResult = String(titleB).localeCompare(String(titleA));
+          // 首字母相同，比较第二个字符，字母排在数字前面
+          const secondCharA = String(titleA).charAt(1);
+          const secondCharB = String(titleB).charAt(1);
+          const isAlphaA = /^[A-Z]/i.test(secondCharA);
+          const isAlphaB = /^[A-Z]/i.test(secondCharB);
+
+          if (isAlphaA !== isAlphaB) {
+            // 一个是字母，一个是数字，字母排在前面
+            compareResult = isAlphaA ? -1 : 1;
+          } else {
+            // 都是字母或都是数字，按数字9-0排序
+            const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
+            const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
+            compareResult = numB - numA; // 数字大的在前
+          }
         }
       } else if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
         compareResult = (maxValueA - maxValueB) * direction;
@@ -118,6 +134,8 @@ function applyAggregatedSort(sortProperty, direction = -1) {
 
 export default function decorate(block) {
   const isEditMode = block && block.hasAttribute && block.hasAttribute('data-aue-resource');
+  block.classList.add('plp-product-card');
+  block.classList.remove('product-card');
 
   const rows = [...(block.children || [])];
   let graphqlUrl = null;
@@ -267,22 +285,46 @@ export default function decorate(block) {
   }
 
   function applyDefaultSort() {
-    const selectedSortOption = document.querySelector('.plp-sort-option.selected');
-    if (selectedSortOption) {
-      const sortValue = selectedSortOption.dataset.value
-          || selectedSortOption.getAttribute('data-value')
-          || '';
-      if (sortValue && sortValue.trim()) {
-        if (window.applyPlpSort) {
-          window.applyPlpSort(sortValue);
+    // 检查是否有已选中的 filter（通过 plp-filter-tag 或选中的 input）
+    const hasActiveFilters = () => {
+      // 检查是否有 plp-filter-tag
+      const filterTags = document.querySelectorAll('.plp-filter-tag');
+      if (filterTags && filterTags.length > 0) return true;
+      // 检查是否有选中的 filter input
+      const checkedInputs = document.querySelectorAll('.plp-filter-item input[data-option-value]:checked');
+      return checkedInputs && checkedInputs.length > 0;
+    };
+
+    const sortAndApplyFilters = () => {
+      const selectedSortOption = document.querySelector('.plp-sort-option.selected');
+      if (selectedSortOption) {
+        const sortValue = selectedSortOption.dataset.value
+            || selectedSortOption.getAttribute('data-value')
+            || '';
+        if (sortValue && sortValue.trim()) {
+          if (window.applyPlpSort) {
+            window.applyPlpSort(sortValue);
+          } else {
+            applyAggregatedSort('size', -1);
+          }
         } else {
           applyAggregatedSort('size', -1);
         }
       } else {
         applyAggregatedSort('size', -1);
       }
+    };
+
+    if (hasActiveFilters()) {
+      // 如果有已选中的 filter，先应用筛选（筛选内部会处理排序）
+      if (window.applyPlpFilters) {
+        window.applyPlpFilters();
+      } else {
+        sortAndApplyFilters();
+      }
     } else {
-      applyAggregatedSort('size', -1);
+      // 没有筛选条件，直接排序
+      sortAndApplyFilters();
     }
   }
 
@@ -297,6 +339,7 @@ export default function decorate(block) {
           // 直接使用参数名和值组合成筛选条目
           const targetValue = `${paramName}/${paramValue}`;
           const targetCheckbox = document.querySelector(`.plp-filter-item input[value$="${targetValue}"]`);
+          // const targetCheckbox = document.querySelector(`.product-filter-item[data-tag="${targetValue}"]`);
 
           if (targetCheckbox) {
             // 触发checkbox的点击事件
@@ -350,13 +393,13 @@ export default function decorate(block) {
       card.className = 'product-card';
 
       const titleDiv = document.createElement('div');
-      titleDiv.className = 'plp-product-card-title';
+      titleDiv.className = 'product-card-title';
       let tagTitle = '';
       const badgeList = group.representative.badge || [];
       const targetStr = badgeList[0] || '';
       const lastSlashIndex = targetStr.lastIndexOf('/');
       tagTitle = lastSlashIndex > -1 ? targetStr.slice(lastSlashIndex + 1) : targetStr;
-      titleDiv.innerHTML = `<div class="plp-product-card-tag">${tagTitle}</div>`;
+      titleDiv.innerHTML = `<div class="product-card-tag">${tagTitle}</div>`;
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'plp-product-img';
@@ -562,7 +605,7 @@ export default function decorate(block) {
     // 当结果为0时显示no result
     try {
       const noResultEl = document.querySelector('.plp-products-no-result');
-      const cardWrapperEl = document.querySelector('.plp-product-card-wrapper');
+      const cardWrapperEl = document.querySelector('.product-card-wrapper');
       if (noResultEl) {
         if (allGroupedData.length === 0) {
           noResultEl.style.display = 'flex';
@@ -754,6 +797,23 @@ window.lastRenderedProducts = null;
 // 当前排序状态，用于筛选时判断是否需要默认选中最大尺寸
 window.currentSortKey = '';
 
+// 检查是否配置了默认排序
+const checkAndApplyDefaultSort = () => {
+  const selectedSortOption = document.querySelector('.plp-sort-option.selected');
+  if (selectedSortOption) {
+    const sortValue = selectedSortOption.dataset.value
+        || selectedSortOption.getAttribute('data-value')
+        || '';
+    window.currentSortKey = sortValue.trim();
+  }
+};
+// 确保 DOM 已加载完成
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', checkAndApplyDefaultSort);
+} else {
+  checkAndApplyDefaultSort();
+}
+
 window.renderPlpProducts = function renderPlpProductsWrapper(items) {
   window.lastRenderedProducts = Array.isArray(items) ? items.slice() : [];
   window.renderProductsInternal(items);
@@ -788,28 +848,37 @@ window.applyPlpSort = function applyPlpSort(sortKey) {
   }
 };
 
-// filters：获取选中 data-option-value checkbox，并用 window.productData 进行过滤
+// 获取选中的 filter（checkbox 和 radio）
 window.applyPlpFilters = function applyPlpFilters() {
   try {
     // 检查当前排序状态，如果是默认排序和 size，需要筛选后默认选中最大尺寸
     const currentSort = String(window.currentSortKey || '').trim();
     const effectiveSort = currentSort.startsWith('-') ? currentSort.slice(1) : currentSort;
-    window.isDefaultSortApplied = (!effectiveSort || effectiveSort === 'size');
+    const isDefaultSort = (!effectiveSort || effectiveSort === 'size');
+    window.isDefaultSortApplied = isDefaultSort;
 
     const allProducts = window.productData || [];
 
     // 收集所有被选中的 filter group，同组内为 OR，不同组为 AND
     const filterGroups = [...document.querySelectorAll('.plp-filter-group')];
-    const selectedByGroup = filterGroups.map((group) => [...group.querySelectorAll('input[type="checkbox"][data-option-value]:checked')]
-      .map((checkbox) => checkbox.getAttribute('data-option-value'))
-      .filter(Boolean)).filter((arr) => arr && arr.length);
+    const selectedByGroup = filterGroups.map((group) => {
+      // 同时收集 checkbox 和 radio 类型的选中项
+      const checkboxes = [...group.querySelectorAll('input[type="checkbox"][data-option-value]:checked')];
+      const radios = [...group.querySelectorAll('input[type="radio"][data-option-value]:checked')];
 
-    if (!selectedByGroup.length) {
-      // 无过滤时恢复全部，清空筛选结果
-      window.filteredProducts = null;
-      window.renderPlpProducts(allProducts);
-      return;
-    }
+      const allInputs = [...checkboxes, ...radios];
+
+      return allInputs
+        .map((input) => {
+          const value = input.getAttribute('data-option-value');
+          // 对于 radio 类型，如果标签以 /no 结尾，忽略这个 filter
+          if (input.type === 'radio' && value && value.toLowerCase().endsWith('/no')) {
+            return null;
+          }
+          return value;
+        })
+        .filter((val) => val && val.length > 0);
+    }).filter((arr) => arr && arr.length);
 
     // 执行过滤，要求产品必须要有 tags 属性
     const filtered = allProducts.filter((item) => {
@@ -826,7 +895,18 @@ window.applyPlpFilters = function applyPlpFilters() {
 
     // 保存筛选结果，用于后续排序
     window.filteredProducts = filtered;
-    window.renderPlpProducts(filtered);
+
+    // 如果有非默认排序，应用排序；否则直接渲染
+    if (currentSort !== '' && !isDefaultSort && window.applyPlpSort) {
+      // 非空且非默认排序 → 应用排序
+      window.applyPlpSort(currentSort);
+    } else if (currentSort === '' && window.filteredProducts && window.filteredProducts.length > 0) {
+      // currentSort 为空字符串但有筛选结果时，使用默认排序（size 降序）
+      applyAggregatedSort('size', -1);
+    } else {
+      // 无筛选或默认情况 → 直接渲染
+      window.renderPlpProducts(filtered);
+    }
   } catch (err) {
     /* eslint-disable-next-line no-console */
     if (window.renderPlpProducts) window.renderPlpProducts(window.productData || []);

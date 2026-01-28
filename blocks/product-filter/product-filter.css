@@ -1,4 +1,4 @@
-/* plp-product-filter-tag styles */
+/* product-filter styles */
 
 .plp-sidebar {
     width: min(calc(262 / var(--breakpoint-pc) * 100vw), 262px);
@@ -139,7 +139,7 @@
 }
 
 @media (width < 860px) {
-  .plp-product-filter-tag-wrapper {
+  .product-filter-wrapper {
     width: 100vw;
     position: fixed;
     inset: 0;

@@ -33,7 +33,7 @@ function buildFilterTag(row, resource, isEditMode) {
 function closeMobileSortByDom() {
   const sortBoxEl = document.querySelector('.plp-sort-box');
   sortBoxEl.classList.remove('mobile-sort-by-box');
-  document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
   const sortMask = document.querySelector('.mobile-sort-by-mask');
   sortMask.style.display = 'none';
 }
@@ -186,6 +186,18 @@ export default function decorate(block) {
         cb.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
+    // 处理 radio 的情况，取消选中当前选中的 radio
+    document.querySelectorAll('input[type="radio"][data-option-value]').forEach((radio) => {
+      if (radio.checked) {
+        radio.checked = false;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+    // 勾选回 value 以 /no 结尾的 radio
+    const connectLifeNoRadio = document.querySelector('input[type="radio"][data-option-value$="/no"]');
+    if (connectLifeNoRadio) {
+      connectLifeNoRadio.checked = true;
+    }
   });
 
   filtersLeft.append(resultsBox, activeFilters, resetFilters);
@@ -202,11 +214,11 @@ export default function decorate(block) {
   mobileFiltersImg.alt = 'Filters title';
   mobileFilterTit.append(mobileFiltersImg, mobileFiltersSpan);
   mobileFilters.append(mobileFilterTit);
-  const filterDetailEl = document.querySelector('.plp-product-filter-tag-wrapper');
+  const filterDetailEl = document.querySelector('.product-filter-wrapper');
 
   // mobile 端，Filters 点击事件，显示 filter 数据
   mobileFilters.addEventListener('click', () => {
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     filterDetailEl.classList.toggle('mobile-filter-show');
   });
 
@@ -253,7 +265,7 @@ export default function decorate(block) {
 
   // mobile 端，Sort by 点击事件，显示sort options数据
   mobileSort.addEventListener('click', () => {
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     const originalSortByBoxEl = document.querySelector('.plp-sort-box');
     originalSortByBoxEl.classList.add('mobile-sort-by-box');
     const sortMask = document.querySelector('.mobile-sort-by-mask');

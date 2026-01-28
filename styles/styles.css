@@ -591,7 +591,10 @@ body {
 	font-weight: lighter;
 	font-size: var(--body-font-size-l);
 	line-height: var(--line-height-l);
-  overflow-x: hidden;
+  
+  @media (width < 860px) {
+    overflow-x: hidden;
+  }
 }
 
 body.appear {

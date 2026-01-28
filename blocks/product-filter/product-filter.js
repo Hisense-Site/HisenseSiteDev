@@ -163,11 +163,41 @@ export default function decorate(block) {
       return document.querySelector('.plp-active-filters');
     }
 
-    function createActiveFilterElement(tagPath, labelText, inputId) {
+    /**
+     * 移除同组的所有 radio filter tag（单选互斥）
+     */
+    function removeSameGroupFilterTags(inputName, excludeTagPath) {
+      if (!inputName) return;
+      const selector = `.plp-filter-tag[data-filter-name="${CSS.escape(inputName)}"]${excludeTagPath ? `:not([data-option-value="${CSS.escape(excludeTagPath)}"])` : ''}`;
+      const sameNameTags = document.querySelectorAll(selector);
+      sameNameTags.forEach((tag) => {
+        const srcId = tag.getAttribute('data-source-id');
+        if (srcId) {
+          const src = document.getElementById(srcId);
+          if (src && src.checked) {
+            src.checked = false;
+          }
+        }
+        tag.remove();
+      });
+    }
+
+    /**
+     * 移除指定路径的 filter tag
+     */
+    function removeActiveFilter(tagPath) {
+      const container = getActiveFiltersContainer();
+      if (!container) return;
+      const existing = container.querySelector(`.plp-filter-tag[data-option-value="${CSS.escape(tagPath)}"]`);
+      if (existing) existing.remove();
+    }
+
+    function createActiveFilterElement(tagPath, labelText, inputId, inputName) {
       const tag = document.createElement('div');
       tag.className = 'plp-filter-tag';
       tag.setAttribute('data-option-value', tagPath);
       if (inputId) tag.setAttribute('data-source-id', inputId);
+      if (inputName) tag.setAttribute('data-filter-name', inputName);
 
       const textSpan = document.createElement('span');
       textSpan.textContent = labelText;
@@ -177,6 +207,16 @@ export default function decorate(block) {
 
       closeSpan.addEventListener('click', () => {
         const srcId = tag.getAttribute('data-source-id');
+        const filterName = tag.getAttribute('data-filter-name');
+
+        // 如果是 radio 类型，需要移除同组的所有其他 tag
+        if (srcId && filterName) {
+          const src = document.getElementById(srcId);
+          if (src && src.type === 'radio') {
+            removeSameGroupFilterTags(filterName, tagPath);
+          }
+        }
+
         if (srcId) {
           const src = document.getElementById(srcId);
           if (src && src.checked) {
@@ -191,21 +231,14 @@ export default function decorate(block) {
       return tag;
     }
 
-    function addActiveFilterIfMissing(tagPath, labelText, inputId) {
+    function addActiveFilterIfMissing(tagPath, labelText, inputId, inputName) {
       const container = getActiveFiltersContainer();
       if (!container) return;
       const existing = container.querySelector(`.plp-filter-tag[data-option-value="${CSS.escape(tagPath)}"]`);
       if (!existing) {
-        const el = createActiveFilterElement(tagPath, labelText, inputId);
+        const el = createActiveFilterElement(tagPath, labelText, inputId, inputName);
         container.append(el);
       }
-    }
-
-    function removeActiveFilter(tagPath) {
-      const container = getActiveFiltersContainer();
-      if (!container) return;
-      const existing = container.querySelector(`.plp-filter-tag[data-option-value="${CSS.escape(tagPath)}"]`);
-      if (existing) existing.remove();
     }
 
     rows.forEach((row, index) => {
@@ -289,8 +322,14 @@ export default function decorate(block) {
         input.addEventListener('change', () => {
           const labelText = label.textContent || lastPart;
           if (input.checked) {
-            addActiveFilterIfMissing(tagPath, labelText, input.id);
+            // 如果是 radio 类型，需要处理单选互斥逻辑
+            if (tagType === 'radio' && input.name) {
+              // 先移除同组的所有其他 active filter（通过 data-filter-name）
+              removeSameGroupFilterTags(input.name, tagPath);
+            }
+            addActiveFilterIfMissing(tagPath, labelText, input.id, input.name);
           } else {
+            // 如果取消选中，移除对应的 active filter
             removeActiveFilter(tagPath);
           }
           if (window && typeof window.applyPlpFilters === 'function') {
@@ -334,8 +373,8 @@ export default function decorate(block) {
       block.replaceChildren(sidebar);
     }
     // mobile filter 添加标题
-    const filterTagWrapperEl = document.querySelector('.plp-product-filter-tag-wrapper');
-    const filterTagEl = document.querySelector('.plp-product-filter-tag');
+    const filterTagWrapperEl = document.querySelector('.product-filter-wrapper');
+    const filterTagEl = document.querySelector('.product-filter');
     if (filterTagEl) {
       const titleBoxEl = document.createElement('div');
       titleBoxEl.className = 'plp-mobile-filters-tit-box';
