@@ -55,6 +55,8 @@
     margin: 0;
     position: relative;
     z-index: 6;
+    font-size: var(--size-16);
+    font-weight: var(--fontweight-light);
   }
 
   h1,
