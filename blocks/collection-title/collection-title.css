@@ -52,6 +52,6 @@
 
    @media (width >= 860px) {
     font-size: var(--size-34);
-    font-weight: var(--fontweight-book);
+    
   }
 }
