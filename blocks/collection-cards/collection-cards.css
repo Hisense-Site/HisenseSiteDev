@@ -117,7 +117,7 @@
   color: white;
   font-style: normal;
   z-index: 1;
-  font-weight: 400;
+  font-weight: var(--fontweight-medium);
 }
 
 .cover-dark  .collection-cards-card-body {
@@ -179,7 +179,7 @@
   width: 100%;
   text-align: center;
   color: #000;
-  font-weight: 400;
+  font-weight: var(--fontweight-medium);
 }
 
 .center-style > ul > li .collection-cards-card-image {
