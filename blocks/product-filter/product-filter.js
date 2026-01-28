@@ -210,8 +210,11 @@ export default function decorate(block) {
         const filterName = tag.getAttribute('data-filter-name');
 
         // 如果是 radio 类型，需要移除同组的所有其他 tag
-        if (filterName) {
-          removeSameGroupFilterTags(filterName, tagPath);
+        if (srcId && filterName) {
+          const src = document.getElementById(srcId);
+          if (src && src.type === 'radio') {
+            removeSameGroupFilterTags(filterName, tagPath);
+          }
         }
 
         if (srcId) {
