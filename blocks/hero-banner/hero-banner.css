@@ -16,7 +16,7 @@ p {
 }
 
 .hero-banner-items-container {
-  width: 100vw;
+  width: 100%;
   aspect-ratio: 1440/860;
   list-style: none;
   margin: 0;
@@ -461,7 +461,7 @@ p {
   }
 
   .hero-banner.only-picture .hero-banner-items-container{
-    max-height: 75vh !important;
+    max-height: 123.07692308vw !important;
 
     .hero-banner-content {
       line-height: 1.2;
