@@ -1617,6 +1617,13 @@
     "id": "tech-information",
     "fields": [
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "tech-image",
+        "label": "Image",
+        "multi": false
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "info-title",
@@ -1635,13 +1642,6 @@
         "label": "Text"
       },
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "tech-image",
-        "label": "Image",
-        "multi": false
-      },
-      {
         "component": "aem-content",
         "name": "btn-cta",
         "label": "Button Link",
@@ -1649,7 +1649,7 @@
       },
       {
         "component": "text",
-        "name": "btn-ctaLabel",
+        "name": "btn-ctaText",
         "label": "Button",
         "valueType": "string"
       }
