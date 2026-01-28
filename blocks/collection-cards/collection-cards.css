@@ -167,7 +167,7 @@
   aspect-ratio: 1;
 
   @media (width >= 860px) {
-    gap: var(--size-30);
+    gap: var(--size-16);
     width:min(24.26111vw, 358px) ;
     height:min(24.26111vw, 358px) ;
     padding: var(--spacing-lg) var(--spacing-md);
