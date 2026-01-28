@@ -17,7 +17,7 @@
     padding: var(--size-20);
 }
 
-[data-aue-model="product-card"].product-card >div:not(.plp-products-box) {
+[data-aue-model="product-card"].plp-product-card >div:not(.plp-products-box) {
   display: none;
 }
 
