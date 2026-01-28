@@ -59,6 +59,14 @@
               "value": "text-align-right"
             },
             {
+              "name": "pt-40",
+              "value": "pt-40"
+            },
+            {
+              "name": "pt-80",
+              "value": "pt-80"
+            },
+            {
               "name": "pb-40",
               "value": "pb-40"
             },
@@ -85,31 +93,6 @@
     {
       "id": "featureDisclaimer",
       "fields": [
-        {
-          "component": "select",
-          "name": "classes",
-          "value": "",
-          "label": "Feature disclaimer classes options",
-          "valueType": "string",
-          "options": [
-              {
-                "name": "None",
-                "value": ""
-              },
-              {
-                "name": "Small (40px)",
-                "value": "pt-s"
-              },
-              {
-                "name": "Large (80px)",
-                "value": "pt-l"
-              },
-              {
-                "name": "Extra Large (120px)",
-                "value": "pt-xl"
-              }
-          ]
-        },
         {
           "component": "text",
           "valueType": "string",
