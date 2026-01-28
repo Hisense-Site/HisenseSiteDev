@@ -793,9 +793,9 @@
                 "template": {
                   "name": "Tech Information",
                   "model": "tech-information",
-                  "info-title": "This is title",
-                  "info-subtitle": "This is subtitle",
-                  "info-text": "This is text.",
+                  "info_title": "This is title",
+                  "info_subtitle": "This is subtitle",
+                  "info_text": "This is text.",
                   "filter": "tech-information"
                 }
               }
