@@ -86,6 +86,31 @@
       "id": "featureDisclaimer",
       "fields": [
         {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Feature disclaimer classes options",
+          "valueType": "string",
+          "options": [
+              {
+                "name": "None",
+                "value": ""
+              },
+              {
+                "name": "Small (40px)",
+                "value": "pt-s"
+              },
+              {
+                "name": "Large (80px)",
+                "value": "pt-l"
+              },
+              {
+                "name": "Extra Large (120px)",
+                "value": "pt-xl"
+              }
+          ]
+        },
+        {
           "component": "text",
           "valueType": "string",
           "name": "text",
