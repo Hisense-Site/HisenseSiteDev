@@ -1,3 +1,5 @@
+@import url('../../styles/reset-rich-text.css');
+
 main > .section:first-of-type {
   margin: 0;
   background: transparent !important;
@@ -110,7 +112,7 @@ p {
     margin-top: 0 ;
   }
 
-  .hero-banner-item-content h1, h2, h3, h4, h5, h6 {
+  .hero-banner-item-content h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     font-size: var(--fontsize-pc-h1);
   }
