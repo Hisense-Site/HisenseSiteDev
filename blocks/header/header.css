@@ -170,8 +170,11 @@
       text-transform: capitalize;
     }
   }
-}
 
+  @media (width < 860px) {
+    display: none;
+  }
+}
 
 #navigation .mobile-menu {
   display: flex;
@@ -188,6 +191,10 @@
 
 #navigation .nav-second:not(.hidden) + .mobile-menu {
   margin-top: -66px;
+
+  @media (width < 860px) {
+    margin-top: 0;
+  }
 }
 
 #navigation.show-menu .mobile-menu {
