@@ -300,6 +300,7 @@
       span {
         white-space: nowrap;
         margin-right: var(--size-8);
+        font-weight: var(--fontweight-book);
       }
 
       img {
