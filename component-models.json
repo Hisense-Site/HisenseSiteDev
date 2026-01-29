@@ -299,6 +299,7 @@
   },
   {
     "id": "text-body-image",
+    "class": "text-body-image",
     "fields": [
       {
         "component": "reference",
@@ -319,6 +320,7 @@
   },
   {
     "id": "text-body-headline",
+    "class": "text-body-headline",
     "fields": [
       {
         "component": "text",
