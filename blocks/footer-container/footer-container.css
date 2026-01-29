@@ -368,6 +368,10 @@ footer footer {
   font-weight: var(--fontweight-book);
   color: rgb(51 51 51 / 100%);
   box-sizing: border-box;
+
+  @media (width < 860px) {
+    padding: var(--size-30) 0;
+  }
 }
 
 .footer-bottom .footer-legals {
@@ -391,14 +395,21 @@ footer footer {
     line-height: 1.2;
     gap: var(--size-8);
     color: var(--color-hisense-black);
+    
+    * {
+      box-sizing: border-box;
+    }
 
     @media (width < 860px) {
+      height: var(--size-30);
       width: 100%;
+      order: 1;
     }
 
     img {
       width: var(--size-20);
       height: var(--size-20);
+      margin-top: calc(-1 * var(--size-4));
     }
     
     .footer-lan-list {
@@ -408,15 +419,35 @@ footer footer {
       gap: var(--size-10);
       color: var(--color-primary-grey-50);
       align-items: center;
+
+      @media (width < 860px) {
+        height: var(--size-20);
+        line-height: var(--size-20);
+        margin-left: var(--size-16);
+      }
       
-      .footer-lan-item.active {
-        color: var(--color-hisense-black);
+      .footer-lan-item {
+        @media (width < 860px) {
+          font-size: var(--size-14);
+        }
+
+        &.active {
+          color: var(--color-hisense-black);
+        }
       }
       
       .footer-lan-line {
         width: 1px;
         height: 100%;
         background-color: var(--color-hisense-black);
+      }
+    }
+      
+    .footer-lan-com {
+      @media (width < 860px) {
+        font-size: var(--size-14);
+        height: var(--size-20);
+        line-height: 1.4;
       }
     }
 
@@ -429,6 +460,10 @@ footer footer {
 	justify-content: space-between;
 	gap: var(--size-20) var(--size-56);
 	flex-wrap: wrap;
+
+  @media (width < 860px) {
+    order: 2;
+  }
 }
 
 #footer .footer-legal-link {
@@ -452,7 +487,7 @@ footer footer {
   width: 100%;
 
   @media (width < 860px) {
-    order: inherit;
+    order: 3;
     width: auto;
   }
 }
