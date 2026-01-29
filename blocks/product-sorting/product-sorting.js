@@ -33,7 +33,7 @@ function buildFilterTag(row, resource, isEditMode) {
 function closeMobileSortByDom() {
   const sortBoxEl = document.querySelector('.plp-sort-box');
   sortBoxEl.classList.remove('mobile-sort-by-box');
-  document.documentElement.style.overflow = 'auto';
+  document.body.style.overflow = 'auto';
   const sortMask = document.querySelector('.mobile-sort-by-mask');
   sortMask.style.display = 'none';
 }
@@ -218,7 +218,7 @@ export default function decorate(block) {
 
   // mobile 端，Filters 点击事件，显示 filter 数据
   mobileFilters.addEventListener('click', () => {
-    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     filterDetailEl.classList.toggle('mobile-filter-show');
   });
 
@@ -265,7 +265,7 @@ export default function decorate(block) {
 
   // mobile 端，Sort by 点击事件，显示sort options数据
   mobileSort.addEventListener('click', () => {
-    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     const originalSortByBoxEl = document.querySelector('.plp-sort-box');
     originalSortByBoxEl.classList.add('mobile-sort-by-box');
     const sortMask = document.querySelector('.mobile-sort-by-mask');

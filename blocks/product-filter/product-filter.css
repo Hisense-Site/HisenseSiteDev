@@ -53,8 +53,9 @@
 }
 
 .plp-filter-title span {
-  font-weight: 500;
+  font-weight: var(--fontweight-medium);
   font-size: var(--size-14);
+  color: var(--color-primary-grey-100);
 }
 
 /* tags list */
@@ -81,7 +82,7 @@
   font-size: var(--fontsize-body2);
   line-height: 1;
   display: inline-block;
-  color: rgb(51 51 51 / 100%);
+  color: var(--color-primary-grey-70);
   font-weight: var(--fontweight-book);
 
   &:nth-child(2) {
