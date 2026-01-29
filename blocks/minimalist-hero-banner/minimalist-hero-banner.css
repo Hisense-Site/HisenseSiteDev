@@ -35,13 +35,23 @@ p {
 		height: 100%;
 	}
 
-	div::nth-child(2) {
-		font-size: var(--size-34);
+	div:last-child {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
+		gap: var(--spacing-sm);
 		font-weight: var(--fontweight-medium);
-	}
 
-	div::nth-child(3) {
-		font-size: var(--size-18);
-		font-weight: 400;
+		p:first-child {
+			font-size: var(--fontsize-h1);
+		}
+
+		p:last-child {
+			font-size: var(--fontsize-title1);
+		}
 	}
 }

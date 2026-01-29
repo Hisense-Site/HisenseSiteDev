@@ -1151,14 +1151,14 @@
       },
       {
         "component": "text",
-        "name": "title_hero",
+        "name": "text_title",
         "label": "Title",
         "valueType": "string",
         "value": ""
       },
       {
         "component": "text",
-        "name": "text_hero",
+        "name": "text_body",
         "label": "Text",
         "valueType": "string",
         "value": ""
