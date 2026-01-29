@@ -34,27 +34,50 @@
   ],
   "models": [
     {
-      "id": "text-body",
+      "id": "text-body-image",
       "fields": [
         {
           "component": "reference",
           "valueType": "string",
           "name": "image",
           "label": "Image",
-          "multi": false
+          "multi": false,
+          "required": true
         },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "alt",
+          "label": "Alt Text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "text-body-headline",
+      "fields": [
         {
           "component": "text",
           "name": "headline",
           "label": "Headline",
           "value": ""
-        },
+        }
+      ]
+    },
+    {
+      "id": "text-body-content",
+      "fields": [
         {
           "component": "richtext",
           "name": "content",
           "label": "Content",
           "value": ""
-        },
+        }
+      ]
+    },
+    {
+      "id": "text-body-quote",
+      "fields": [
         {
           "component": "richtext",
           "name": "quote",
@@ -68,7 +91,10 @@
     {
       "id": "article-body",
       "components": [
-        "text-body"
+        "text-body-image",
+        "text-body-headline",
+        "text-body-content",
+        "text-body-quote"
       ]
     }
   ]

@@ -48,7 +48,10 @@
   {
     "id": "article-body",
     "components": [
-      "text-body"
+      "text-body-image",
+      "text-body-headline",
+      "text-body-content",
+      "text-body-quote"
     ]
   },
   {
