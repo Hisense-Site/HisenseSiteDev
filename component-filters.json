@@ -20,6 +20,7 @@
       "disclaimer",
       "feature-banner",
       "fragment",
+      "global-presence",
       "header",
       "hero",
       "hero-banner",
@@ -38,7 +39,6 @@
       "product-spec",
       "properties",
       "slide",
-      "stats-strips",
       "sub-menu-link",
       "text",
       "title",
@@ -107,6 +107,12 @@
     ]
   },
   {
+    "id": "global-presence",
+    "components": [
+      "stats-strip"
+    ]
+  },
+  {
     "id": "hero-banner",
     "components": [
       "hero-bannerItem"
@@ -155,12 +161,6 @@
     "id": "product-sorting",
     "components": [
       "plp-product-sort"
-    ]
-  },
-  {
-    "id": "stats-strips",
-    "components": [
-      "stats-strip"
     ]
   },
   {

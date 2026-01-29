@@ -1,16 +1,16 @@
 {
   "definitions": [
     {
-      "title": "Stats Strips",
-      "id": "stats-strips",
+      "title": "Global Presence",
+      "id": "global-presence",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Stats Strips",
-              "model": "stats-strips",
-              "filter": "stats-strips"
+              "name": "Global Presence",
+              "model": "global-presence",
+              "filter": "global-presence"
             }
           }
         }
@@ -34,28 +34,28 @@
   ],
   "models": [
     {
-      "id": "stats-strips",
+      "id": "global-presence",
       "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "container_background",
+          "label": "Background Image",
+          "multi": false
+        },
         {
           "component": "text",
           "valueType": "string",
-          "name": "text_title",
+          "name": "container_title",
           "label": "Title",
           "value": ""
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "text_subtitle",
+          "name": "container_subtitle",
           "label": "Subtitle",
           "value": ""
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
-          "name": "background",
-          "label": "Background",
-          "multi": false
         },
         {
           "component": "reference",
@@ -74,21 +74,23 @@
           "valueType": "string",
           "name": "stats_number",
           "label": "Number",
-          "value": ""
+          "value": "",
+          "required": true
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "stats_text",
           "label": "Label Text",
-          "value": ""
+          "value": "",
+          "required": true
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "stats-strips",
+      "id": "global-presence",
       "components": [
         "stats-strip"
       ]
