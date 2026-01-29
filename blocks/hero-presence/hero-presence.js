@@ -1,6 +1,6 @@
 import { createElement, debounce } from '../../utils/dom-helper.js';
 import { loadScrollTrigger } from '../../utils/animation-helper.js';
-import { isUniversalEditor } from '../../utils/ue-helper.js';
+import { isUniversalEditorAsync } from '../../utils/ue-helper.js';
 
 export default async function decorate(block) {
   // ========== CONSTRUCT DOM [START] ========== //
@@ -71,7 +71,8 @@ export default async function decorate(block) {
   animateContent.remove();
   // ========== CONSTRUCT DOM [END] ========== //
 
-  if (isUniversalEditor()) {
+  const isEditing = await isUniversalEditorAsync();
+  if (isEditing) {
     return;
   }
 
