@@ -681,7 +681,13 @@
       },
       {
         "component": "richtext",
-        "name": "text",
+        "name": "image_text",
+        "label": "Image Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "image_text",
         "label": "Image Text",
         "valueType": "string"
       }
@@ -1496,27 +1502,6 @@
   {
     "id": "past-partnerships-list",
     "fields": [
-      {
-        "component": "select",
-        "name": "classes",
-        "label": "Card options",
-        "description": "",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Cover Style",
-            "value": "cover-style"
-          },
-          {
-            "name": "Cover Style Width Dark Font",
-            "value": "cover-dark"
-          },
-          {
-            "name": "Center Style",
-            "value": "center-style"
-          }
-        ]
-      },
       {
         "component": "text",
         "valueType": "string",

@@ -57,7 +57,13 @@
         },
          {
           "component": "richtext",
-          "name": "text",
+          "name": "image_text",
+          "label": "Image Title",
+          "valueType": "string"
+        },
+         {
+          "component": "richtext",
+          "name": "image_text",
           "label": "Image Text",
           "valueType": "string"
         }
