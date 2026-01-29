@@ -415,7 +415,7 @@ p {
         }
 
         h1,h2,h3,h4,h5,h6 {
-          font-size: min(var(--size-40), 6.25vh);
+          font-size: var(--size-40);
         }
 
         .button {
@@ -461,7 +461,8 @@ p {
   }
 
   .hero-banner.only-picture .hero-banner-items-container{
-    max-height: 123.07692308vw !important;
+    max-height: 100dvh !important;
+    aspect-ratio: 390/640;
 
     .hero-banner-content {
       line-height: 1.2;
@@ -472,6 +473,11 @@ p {
       .hero-banner-item-content {
         gap: 0;
       }
+    }
+
+    picture > img {
+      aspect-ratio: 390/640;
+      object-fit: cover;
     }
   }
 
