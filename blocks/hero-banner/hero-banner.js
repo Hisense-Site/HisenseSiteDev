@@ -7,6 +7,29 @@ let heroBannerTimer;
 let heroBannerInterval;
 let isInitializing = true; // 初始化锁
 
+function updateNavTheme(block, targetSlide, heroBannerHeight) {
+  const nav = document.querySelector('#navigation');
+  if (!nav) {
+    // 如果 nav 不存在，延迟 200ms 重试
+    setTimeout(() => {
+      updateNavTheme(block, targetSlide, heroBannerHeight);
+    }, 200);
+    return;
+  }
+
+  if (targetSlide.classList.contains('dark')) {
+    block.classList.add('dark');
+    if (block.getBoundingClientRect().top > -heroBannerHeight) {
+      nav.classList.add('header-dark-mode');
+    }
+  } else {
+    block.classList.remove('dark');
+    if (block.getBoundingClientRect().top > -heroBannerHeight) {
+      nav.classList.remove('header-dark-mode');
+    }
+  }
+}
+
 function updateActiveSlide(block, slide) {
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
   const indicators = block.querySelectorAll('.hero-banner-item-indicator');
@@ -22,7 +45,6 @@ function updateActiveSlide(block, slide) {
 }
 
 function showSlide(block, targetLogicalIndex, init = false) {
-  const nav = document.querySelector('#navigation');
   const heroBannerHeight = block.offsetHeight;
   const heroBannerContainer = block.querySelector('.hero-banner-items-container');
   const slides = block.querySelectorAll('.hero-banner-item');
@@ -51,13 +73,7 @@ function showSlide(block, targetLogicalIndex, init = false) {
   }
   const targetSlide = slides[physicalIndex];
   // 处理和navigation的联动
-  if (targetSlide.classList.contains('dark')) {
-    block.classList.add('dark');
-    if (nav && (block.getBoundingClientRect().top > -heroBannerHeight)) nav.classList.add('header-dark-mode');
-  } else {
-    block.classList.remove('dark');
-    if (nav && (block.getBoundingClientRect().top > -heroBannerHeight)) nav.classList.remove('header-dark-mode');
-  }
+  updateNavTheme(block, targetSlide, heroBannerHeight);
   // 3. 执行平滑滚动
   heroBannerContainer.scrollTo({
     left: targetSlide.offsetLeft,
