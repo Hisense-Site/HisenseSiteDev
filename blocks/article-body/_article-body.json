@@ -118,13 +118,21 @@
       "classes": "text-body-headline",
       "fields": [
         {
-          "component" : "container",
+          "component" : "text",
           "name" : "modeheadline",
+          "label": "label1",
           "valueType" : "string",
           "value": "modeheadline",
           "condition" : {
-            "===" : false
+            "===" : [true, false]
           }
+        },
+        {
+          "component" : "text",
+          "name" : "modeheadline2",
+          "label": "label2",
+          "valueType" : "string",
+          "value": "modeheadline3"
         },
         {
           "component": "text",
@@ -142,12 +150,12 @@
           "label": "",
           "name": "mode_text",
           "valueType": "string",
-          "condition": { "===": [{"var" : "mode_type"}, false] },
+          "condition": false,
           "fields": [
             {
               "component": "text",
               "name": "special_text",
-              "value": "text",
+              "value": "tex1111",
               "label": "Colorful Text(teal)",
               "valueType": "string"
             }
@@ -169,12 +177,12 @@
           "label": "",
           "name": "mode_text",
           "valueType": "string",
-          "condition": { "===": [true] },
+          "condition": false,
           "fields": [
             {
               "component": "text",
               "name": "special_text",
-              "value": "text",
+              "value": "tex1111",
               "label": "Colorful Text(teal)",
               "valueType": "string"
             }
