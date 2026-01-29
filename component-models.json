@@ -1140,7 +1140,7 @@
     ]
   },
   {
-    "id": "minimalistHeroBanner",
+    "id": "minimalist-hero-banner",
     "fields": [
       {
         "component": "reference",
