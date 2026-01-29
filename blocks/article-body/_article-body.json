@@ -119,9 +119,9 @@
       "fields": [
         {
           "component" : "container",
-          "label" : "",
           "name" : "modeheadline",
           "valueType" : "string",
+          "value": "modeheadline",
           "condition" : {
             "===" : false
           }
@@ -171,6 +171,15 @@
     {
       "id": "text-body-quote",
       "fields": [
+        {
+          "component" : "text",
+          "name" : "modeheadquote",
+          "valueType" : "string",
+          "value": "modeheadquote",
+          "condition" : {
+            "===" : false
+          }
+        },
         {
           "component": "richtext",
           "name": "quote",
