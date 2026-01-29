@@ -200,7 +200,6 @@
 }
 
 .center-style > ul > li:hover img {
-  
   @media (width >= 860px) {
     transform: scale(1.04)
   }
