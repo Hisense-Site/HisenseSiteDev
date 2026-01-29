@@ -199,6 +199,8 @@
         line-height: var(--size-32);
         text-align: center;
         border-radius: var(--size-16);
+        background-color: var(--color-primary-grey-10);
+        color: var(--color-primary-grey-100);
       }
     }
 
