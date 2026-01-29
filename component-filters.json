@@ -44,7 +44,8 @@
       "past-partnerships-list",
       "honors-awards-cards",
       "current-partnerships-list",
-      "core-value-card"
+      "core-value-card",
+      "industry-categories"
     ]
   },
   {
@@ -84,13 +85,13 @@
   {
     "id": "core-value-card",
     "components": [
-      "cards-items"
+      "core-value-card-item"
     ]
   },
   {
     "id": "current-partnerships-list",
     "components": [
-      "current-partnerships-item"
+      "current-partnerships-list-item"
     ]
   },
   {
@@ -123,6 +124,12 @@
     "id": "hero-banner",
     "components": [
       "hero-bannerItem"
+    ]
+  },
+  {
+    "id": "industry-categories",
+    "components": [
+      "industry-categories-item"
     ]
   },
   {
@@ -161,7 +168,7 @@
   {
     "id": "past-partnerships-list",
     "components": [
-      "past-partnerships-item"
+      "past-partnerships-list-item"
     ]
   },
   {

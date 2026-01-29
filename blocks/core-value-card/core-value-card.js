@@ -2,7 +2,6 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  console.log('show111');
   /* change to ul, li */
   const ul = document.createElement('ul');
   const title = document.createElement('div');

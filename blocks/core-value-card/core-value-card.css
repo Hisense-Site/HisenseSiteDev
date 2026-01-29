@@ -1,7 +1,6 @@
 
 .core-value-card-wrapper {
   width: 100%;
-  margin: 20px auto;
 }
 
 .core-value-card-wrapper p,
@@ -16,7 +15,7 @@
 }
 
 .core-value-card > ul {
-  gap: var(--spacing-sm);
+  gap: var(--size-26);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -25,26 +24,49 @@
 
   @media (width < 860px) {
     grid-template-columns: 1fr;
-    font-size: var(--size-24);
+  
   }
 }
 
-.core-value-card > ul > li {
+.core-value-card > ul > li{
   font-family: var(--font-family);
-  border-radius: var(--size-20);
   overflow: hidden;
   position: relative;
-
+  gap: var(--size-24);
 }
 
-.core-value-card .card-body > p,
-.core-value-card .card-body > h6{
-  font-size: var(--size-20);
+.core-value-card > ul > li .card-image{
+  border-radius: var(--spacing-xs);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 544 / 220;
 
-  @media (width >= 860px) {
-    font-size: var(--size-24);
+   @media (width < 860px) {
+    aspect-ratio: 354 / 120;
   }
 }
+
+.core-value-card .card-body{
+  gap: var(--size-16);
+}
+
+.core-value-card .card-body:first-child {
+  font-weight: var(--fontweight-medium);
+  font-size: var(--fontsize-title1);
+
+  @media (width < 860px) {
+    font-size: var(--size-14);
+  }
+}
+
+.core-value-card .card-body:nth-child(2) {
+
+
+  @media (width < 860px) {
+    
+  }
+}
+
 
 .core-value-card .card-body {
   width: 100%;

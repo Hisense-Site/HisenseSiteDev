@@ -17,15 +17,15 @@
       }
     },
     {
-      "title": "Current Partnerships Item",
-      "id": "current-partnerships-item",
+      "title": "Current Partnerships List Item",
+      "id": "current-partnerships-list-item",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Current Partnerships Item",
-              "model": "current-partnerships-item"
+              "name": "Current Partnerships List Item",
+              "model": "current-partnerships-list-item"
             }
           }
         }
@@ -36,7 +36,6 @@
      {
       "id": "current-partnerships-list",
       "fields": [
-       
         {
           "component": "text",
           "valueType": "string",
@@ -44,26 +43,24 @@
           "label": "Section Title",
           "multi": false
         }
-         
       ]
     },
     {
-      "id": "current-partnerships-item",
+      "id": "current-partnerships-list-item",
       "fields": [
          {
           "component": "reference",
           "valueType": "string",
-          "name": "item_image",
+          "name": "image",
           "label": "Image",
           "multi": false
         },
          {
-          "component": "text",
-          "name": "item_title",
+          "component": "richtext",
+          "name": "text",
           "label": "Image Text",
           "valueType": "string"
         }
-        
       ]
     }
   ],
@@ -71,7 +68,7 @@
     {
       "id": "current-partnerships-list",
       "components": [
-        "current-partnerships-item"
+        "current-partnerships-list-item"
       ]
     }
   ]

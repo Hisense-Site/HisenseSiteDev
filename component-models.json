@@ -615,7 +615,7 @@
     ]
   },
   {
-    "id": "cards-items",
+    "id": "core-value-card-item",
     "fields": [
       {
         "component": "reference",
@@ -632,7 +632,7 @@
       },
       {
         "component": "richtext",
-        "name": "item_subtitle",
+        "name": "item_text",
         "label": "Text",
         "valueType": "string"
       }
@@ -651,18 +651,18 @@
     ]
   },
   {
-    "id": "current-partnerships-item",
+    "id": "current-partnerships-list-item",
     "fields": [
       {
         "component": "reference",
         "valueType": "string",
-        "name": "item_image",
+        "name": "image",
         "label": "Image",
         "multi": false
       },
       {
-        "component": "text",
-        "name": "item_title",
+        "component": "richtext",
+        "name": "text",
         "label": "Image Text",
         "valueType": "string"
       }
@@ -1012,6 +1012,62 @@
             "value": "Required when Secondary CTA content is provided"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "industry-categories",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Card options",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Cover Style",
+            "value": "cover-style"
+          },
+          {
+            "name": "Cover Style Width Dark Font",
+            "value": "cover-dark"
+          },
+          {
+            "name": "Center Style",
+            "value": "center-style"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "industry-categories-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "industry-categories-item_ctaPrimary",
+        "label": "Primary CTA",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "industry-categories-item_ctaPrimaryText",
+        "label": "Primary CTA Label",
+        "valueType": "string"
       }
     ]
   },
@@ -1441,24 +1497,31 @@
             "value": "center-style"
           }
         ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "section_title",
+        "label": "Section Title",
+        "multi": false
       }
     ]
   },
   {
-    "id": "past-partnerships-item",
+    "id": "past-partnerships-list-item",
     "fields": [
-      {
-        "component": "richtext",
-        "name": "title",
-        "label": "Title",
-        "valueType": "string"
-      },
       {
         "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Image Text",
+        "valueType": "string"
       }
     ]
   },

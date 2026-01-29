@@ -24,7 +24,7 @@
 
   @media (width < 860px) {
     grid-template-columns: 1fr;
-    font-size: var(--size-24);
+   
   }
 }
 
@@ -36,22 +36,21 @@
 
 }
 
-.current-partnerships-list .card-body > p,
-.current-partnerships-list .card-body > h6{
+.current-partnerships-list .card-body:first> p,
+.current-partnerships-list .card-body:first > h6{
   font-size: var(--size-20);
 
-  @media (width >= 860px) {
-    font-size: var(--size-24);
+  @media (width < 860px) {
   }
 }
 
-.current-partnerships-list .card-body {
-  width: 100%;
-  text-align: center;
-  color: #000;
+.current-partnerships-list .card-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
- ul >li img {
+.current-partnerships-list ul >li img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
