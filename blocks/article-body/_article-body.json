@@ -88,6 +88,15 @@
       "classes": "text-body-image",
       "fields": [
         {
+          "component" : "container",
+          "label" : "",
+          "name" : "modeimage",
+          "valueType" : "string",
+          "condition" : {
+            "===" : false
+          }
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "image",
@@ -109,6 +118,15 @@
       "classes": "text-body-headline",
       "fields": [
         {
+          "component" : "container",
+          "label" : "",
+          "name" : "modeheadline",
+          "valueType" : "string",
+          "condition" : {
+            "===" : false
+          }
+        },
+        {
           "component": "text",
           "name": "headline",
           "label": "Headline",
@@ -119,6 +137,29 @@
     {
       "id": "text-body-content",
       "fields": [
+        {
+          "component": "container",
+          "label": "",
+          "name": "mode_text",
+          "valueType": "string",
+          "condition": { "===": [{"var" : "mode_type"}, false] },
+          "fields": [
+            {
+              "component": "text",
+              "name": "special_text",
+              "value": "",
+              "label": "Colorful Text(teal)",
+              "valueType": "string"
+            },
+            {
+              "component": "richtext",
+              "name": "normal_text",
+              "value": "",
+              "label": "Content",
+              "valueType": "string"
+            }
+          ]
+        },
         {
           "component": "richtext",
           "name": "content",
