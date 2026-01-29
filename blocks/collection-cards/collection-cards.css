@@ -186,7 +186,6 @@
   width: 46.154vw;
   height: 46.154vw;;
   object-fit: contain;
-  transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
 
   @media (width >= 860px) {
     width: min(14.7222222vw, 212px);
@@ -195,13 +194,14 @@
 }
 
 .center-style > ul > li img {
+  transition: transform .5s cubic-bezier(0.35, 0, 0.36, 1), -webkit-transform .5s cubic-bezier(0.35, 0, 0.36, 1);
   width: 100%;
   height: 100%;
 }
 
 .center-style > ul > li:hover img {
   @media (width >= 860px) {
-    transform: scale(1.04) translateY(-5px);
+    transform: scale(1.04)
   }
 }
 

@@ -53,6 +53,7 @@
     color: #fff;
     width: min(calc(340 / var(--breakpoint-pc) * 100vw), 340px);
     font-size: min(calc(40 / var(--breakpoint-pc) * 100vw), 40px);
+    font-weight: var(--fontweight-medium);
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
@@ -96,6 +97,7 @@
       background-color: transparent;
       color: #fff;
       font-size: var(--size-14);
+      font-weight: var(--fontweight-medium);
       line-height: min(calc(50 / var(--breakpoint-pc) * 100vw), 50px);
       text-align: center;
       border: 1px solid #fff;
@@ -229,11 +231,11 @@
       height: calc(40 / var(--breakpoint-mobile) * 100vw);
 
       .button {
-        padding: 0 calc(20 / var(--breakpoint-mobile) * 100vw);
+        padding: 0 calc(24 / var(--breakpoint-mobile) * 100vw);
         height: calc(40 / var(--breakpoint-mobile) * 100vw);
         line-height: calc(40 / var(--breakpoint-mobile) * 100vw);
         border-radius: calc(20 / var(--breakpoint-mobile) * 100vw);
-        font-size: calc(12 / var(--breakpoint-mobile) * 100vw);
+        font-size: calc(14 / var(--breakpoint-mobile) * 100vw);
       }
     }
 

@@ -6,7 +6,7 @@ import {
   setupObserver,
   whenElementReady,
 } from '../../utils/carousel-common.js';
-import { createElement } from '../../utils/dom-helper.js';
+import { createElement, debounce } from '../../utils/dom-helper.js';
 import { isUniversalEditor } from '../../utils/ue-helper.js';
 
 let carouselId = 0;
@@ -150,7 +150,7 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.media-carousel', () => {
+  resizeObserver('.media-carousel', debounce(() => {
     bindEvent(block);
-  });
+  }), 500);
 }
