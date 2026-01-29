@@ -575,7 +575,7 @@
     }
   }
 
-  .media-carousel.bottom-left-style .item.video-only{
+  .media-carousel .item.video-only{
     width: 85.38461538vw;
     height: 47.43589744vw;
   }

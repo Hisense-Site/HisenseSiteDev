@@ -14,7 +14,8 @@
 
 html {
 	scroll-behavior: auto !important;
-  overflow-x: hidden;
+
+  /* overflow-x: hidden; */
 }
 
 :root {
