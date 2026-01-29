@@ -22,6 +22,14 @@ p {
 	text-transform: capitalize;
 	position: relative;
 
+	&.black-font {
+		color: black;
+	}
+
+	&.white-font {
+		color: white;
+	}
+
 	img {
 		width: 100%;
 		height: 100%;
@@ -29,13 +37,13 @@ p {
 		object-fit: cover;
 	}
 
-	div:first-child {
+	.banner-image {
 		position: absolute;
 		width: 100%;
 		height: 100%;
 	}
 
-	div:last-child {
+	.text-container {
 		position: absolute;
 		top: 50%;
 		left: 50%;
