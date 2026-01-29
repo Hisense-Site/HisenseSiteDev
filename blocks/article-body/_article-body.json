@@ -88,13 +88,13 @@
       "classes": "text-body-image",
       "fields": [
         {
-          "component" : "container",
-          "label" : "",
-          "name" : "modeimage",
+          "component" : "text",
+          "name" : "component_type",
+          "label": "",
           "valueType" : "string",
-          "condition" : {
-            "===" : false
-          }
+          "value": "image",
+          "hidden": true,
+          "readonly": true
         },
         {
           "component": "reference",
@@ -138,6 +138,15 @@
       "id": "text-body-content",
       "fields": [
         {
+          "component" : "text",
+          "name" : "component_type",
+          "label": "",
+          "valueType" : "string",
+          "value": "content",
+          "hidden": true,
+          "readonly": true
+        },
+        {
           "component": "richtext",
           "name": "content",
           "label": "Content",
@@ -154,7 +163,8 @@
           "label": "",
           "valueType" : "string",
           "value": "quote",
-          "condition" : false
+          "hidden": true,
+          "readonly": true
         },
         {
           "component": "richtext",
