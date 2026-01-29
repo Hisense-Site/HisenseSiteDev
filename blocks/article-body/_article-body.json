@@ -58,7 +58,8 @@
             "template": {
               "name": "Text Body Content",
               "model": "text-body-content",
-              "itemType": "content"
+              "itemType": "content",
+              "data-item-type": "content"
             }
           }
         }
