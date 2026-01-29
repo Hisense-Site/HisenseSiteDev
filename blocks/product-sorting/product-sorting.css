@@ -53,6 +53,7 @@
   cursor: pointer;
   font-size: var(--size-16);
   color: var(--color-primary-grey-50);
+  font-weight: var(--fontweight-light);
 }
 
 .product-sorting .plp-reset-filters {
@@ -236,7 +237,7 @@
 
       /* height: 100vh; */
       height: auto;
-      max-height: 300px;
+      max-height: calc(300 / var(--breakpoint-mobile) * 100vw);
       left: 0;
 
       /* top: -100vh; */
