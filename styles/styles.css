@@ -169,8 +169,8 @@ html {
   --font-size-normal-mobile: 18px;
   --font-size-normal: 24px;
   --font-size-large: 32px;
-  
-  
+
+
   /* font-size */
   --fontsize-h1: var(--size-40);
   --fontsize-h2: var(--size-34);
@@ -592,7 +592,7 @@ body {
 	font-weight: lighter;
 	font-size: var(--body-font-size-l);
 	line-height: var(--line-height-l);
-  
+
   @media (width < 860px) {
     overflow-x: hidden;
   }
@@ -875,6 +875,11 @@ main {
 		color: var(--text-dark);
 	}
 
+  .section.green {
+    background-color: var(--color-hisense-green-04);
+    color: var(--text-light);
+  }
+
 	/* section container type */
 
 	.section.fluid > div {
@@ -936,7 +941,7 @@ main {
     .section.pt-l {
       padding-top: var(--spacing-xl);
     }
-  
+
     .section.pt-xl {
       padding-top: var(--spacing-xl);
     }
@@ -948,7 +953,7 @@ main {
     .section.pb-l {
       padding-bottom: var(--spacing-xl);
     }
-  
+
     .section.pb-xl {
       padding-bottom: var(--spacing-xl);
     }
