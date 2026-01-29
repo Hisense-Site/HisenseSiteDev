@@ -386,13 +386,24 @@
     "id": "text-body-quote",
     "fields": [
       {
-        "component": "text",
-        "name": "modeheadquote",
+        "component": "container",
+        "label": "",
+        "name": "mode_text",
         "valueType": "string",
-        "value": "modeheadquote",
         "condition": {
-          "===": true
-        }
+          "===": [
+            true
+          ]
+        },
+        "fields": [
+          {
+            "component": "text",
+            "name": "special_text",
+            "value": "text",
+            "label": "Colorful Text(teal)",
+            "valueType": "string"
+          }
+        ]
       },
       {
         "component": "richtext",
