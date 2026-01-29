@@ -298,7 +298,7 @@
     ]
   },
   {
-    "id": "articleBody",
+    "id": "article-body",
     "fields": [
       {
         "component": "reference",

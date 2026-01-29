@@ -2,7 +2,7 @@
   "definitions": [
     {
       "title": "Article Body",
-      "id": "articleBody",
+      "id": "article-body",
       "plugins": {
         "xwalk": {
           "page": {
@@ -19,7 +19,7 @@
   ],
   "models": [
     {
-      "id": "articleBody",
+      "id": "article-body",
       "fields": [
         {
           "component": "reference",
