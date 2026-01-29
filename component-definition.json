@@ -93,6 +93,21 @@
           }
         },
         {
+          "title": "Text Body",
+          "id": "text-body",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Text Body",
+                  "model": "text-body"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Card Carousel",
           "id": "card-carousel",
           "plugins": {
