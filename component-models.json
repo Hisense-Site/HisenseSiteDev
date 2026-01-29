@@ -368,15 +368,8 @@
           {
             "component": "text",
             "name": "special_text",
-            "value": "",
+            "value": "text",
             "label": "Colorful Text(teal)",
-            "valueType": "string"
-          },
-          {
-            "component": "richtext",
-            "name": "normal_text",
-            "value": "",
-            "label": "Content",
             "valueType": "string"
           }
         ]
@@ -398,7 +391,7 @@
         "valueType": "string",
         "value": "modeheadquote",
         "condition": {
-          "===": false
+          "===": true
         }
       },
       {
