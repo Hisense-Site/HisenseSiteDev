@@ -21,6 +21,7 @@
       "feature-banner",
       "fragment",
       "global-presence",
+      "globalization-timeline",
       "header",
       "hero",
       "hero-banner",
@@ -110,6 +111,12 @@
     "id": "global-presence",
     "components": [
       "stats-strip"
+    ]
+  },
+  {
+    "id": "globalization-timeline",
+    "components": [
+      "phase-bar"
     ]
   },
   {
