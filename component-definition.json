@@ -793,10 +793,11 @@
                 "template": {
                   "name": "Tech Information",
                   "model": "tech-information",
+                  "filter": "tech-information",
                   "info_title": "This is title",
                   "info_subtitle": "This is subtitle",
                   "info_text": "This is text.",
-                  "filter": "tech-information"
+                  "btn-ctaText": "Learn More"
                 }
               }
             }
