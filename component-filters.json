@@ -46,6 +46,12 @@
     ]
   },
   {
+    "id": "article-body",
+    "components": [
+      "text-body"
+    ]
+  },
+  {
     "id": "card-carousel",
     "components": [
       "card-carouselItem"

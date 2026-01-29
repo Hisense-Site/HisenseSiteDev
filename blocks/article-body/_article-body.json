@@ -19,7 +19,7 @@
   ],
   "models": [
     {
-      "id": "article-body",
+      "id": "text-body",
       "fields": [
         {
           "component": "reference",
@@ -49,6 +49,13 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "article-body",
+      "components": [
+        "text-body"
+      ]
+    }
+  ]
 }
 
