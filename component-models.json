@@ -337,12 +337,8 @@
         "label": "",
         "valueType": "string",
         "value": "headline",
-        "condition": {
-          "===": [
-            true,
-            false
-          ]
-        }
+        "hidden": true,
+        "readonly": true
       },
       {
         "component": "text",
