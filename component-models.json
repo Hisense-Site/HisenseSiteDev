@@ -540,25 +540,6 @@
     ]
   },
   {
-    "id": "partnerships-section-title",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "title",
-        "value": "",
-        "label": "Title",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "subtitle",
-        "value": "",
-        "label": "Sub Title",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "collection-title",
     "fields": [
       {
@@ -1495,6 +1476,25 @@
         "component": "richtext",
         "name": "sub_text",
         "label": "Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "partnerships-section-title",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "value": "",
+        "label": "Sub Title",
         "valueType": "string"
       }
     ]

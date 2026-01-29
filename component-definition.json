@@ -189,22 +189,6 @@
           }
         },
         {
-          "title": "Partnerships Section Title",
-          "id": "partnerships-section-title",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Partnerships Section Title",
-                  "model": "partnerships-section-title",
-                  "classes": "partnerships-section-title"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Collection Title",
           "id": "collection-title",
           "plugins": {
@@ -729,6 +713,22 @@
                 "template": {
                   "name": "Parallax",
                   "model": "parallax"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Partnerships Section Title",
+          "id": "partnerships-section-title",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Partnerships Section Title",
+                  "model": "partnerships-section-title",
+                  "classes": "partnerships-section-title"
                 }
               }
             }
