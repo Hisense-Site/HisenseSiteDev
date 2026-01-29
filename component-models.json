@@ -333,23 +333,16 @@
     "fields": [
       {
         "component": "text",
-        "name": "modeheadline",
-        "label": "label1",
+        "name": "component_type",
+        "label": "",
         "valueType": "string",
-        "value": "modeheadline",
+        "value": "headline",
         "condition": {
           "===": [
             true,
             false
           ]
         }
-      },
-      {
-        "component": "text",
-        "name": "modeheadline2",
-        "label": "label2",
-        "valueType": "string",
-        "value": "modeheadline3"
       },
       {
         "component": "text",
@@ -363,22 +356,6 @@
     "id": "text-body-content",
     "fields": [
       {
-        "component": "container",
-        "label": "",
-        "name": "mode_text",
-        "valueType": "string",
-        "condition": false,
-        "fields": [
-          {
-            "component": "text",
-            "name": "special_text",
-            "value": "tex1111",
-            "label": "Colorful Text(teal)",
-            "valueType": "string"
-          }
-        ]
-      },
-      {
         "component": "richtext",
         "name": "content",
         "label": "Content",
@@ -390,20 +367,12 @@
     "id": "text-body-quote",
     "fields": [
       {
-        "component": "container",
+        "component": "text",
+        "name": "component_type",
         "label": "",
-        "name": "mode_text",
         "valueType": "string",
-        "condition": false,
-        "fields": [
-          {
-            "component": "text",
-            "name": "special_text",
-            "value": "tex1111",
-            "label": "Colorful Text(teal)",
-            "valueType": "string"
-          }
-        ]
+        "value": "quote",
+        "condition": false
       },
       {
         "component": "richtext",
