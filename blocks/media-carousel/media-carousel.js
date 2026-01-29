@@ -1,10 +1,10 @@
 import {
   getSlideWidth,
   updatePosition,
-  resizeObserver,
   throttle,
   setupObserver,
   whenElementReady,
+  cancelListener,
 } from '../../utils/carousel-common.js';
 import { createElement, debounce } from '../../utils/dom-helper.js';
 import { isUniversalEditor } from '../../utils/ue-helper.js';
@@ -20,12 +20,14 @@ function bindEvent(block) {
     block.querySelector('.media-carousel-pagination').classList.add('show');
   }
   // 按钮处理
+  cancelListener(block, '.slide-prev');
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
     if (index > 0) {
       index -= 1;
       updatePosition(block, index, true);
     }
   }, 500));
+  cancelListener(block, '.slide-next');
   block.querySelector('.slide-next').addEventListener('click', throttle(() => {
     if (index < cards.length) {
       index += 1;
@@ -91,6 +93,7 @@ function createVideo(child, idx) {
 }
 
 export default async function decorate(block) {
+  const index = 0;
   carouselId += 1;
   block.setAttribute('id', `media-carousel-${carouselId}`);
   const contentType = block.children[2].innerHTML.includes('video') ? 'video' : 'Image';
@@ -150,7 +153,8 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.media-carousel', debounce(() => {
-    bindEvent(block);
-  }), 500);
+  bindEvent(block, index);
+  window.onresize = debounce(() => {
+    updatePosition(block, index, true);
+  }, 500);
 }

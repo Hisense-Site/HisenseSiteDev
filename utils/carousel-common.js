@@ -188,3 +188,10 @@ export function mobilePressEffect(viewport, card, callback) {
     }
   });
 }
+
+export function cancelListener(block, selector) {
+  block.querySelector(selector).removeEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+}
