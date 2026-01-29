@@ -298,6 +298,36 @@
     ]
   },
   {
+    "id": "articleBody",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "headline",
+        "label": "Headline",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "quote",
+        "label": "Quote",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "card-carousel",
     "fields": [
       {
