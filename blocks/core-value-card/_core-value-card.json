@@ -39,13 +39,13 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "text_title",
+          "name": "title",
           "label": "Title",
           "multi": false
         },
          {
           "component": "richtext",
-          "name": "text_subtitle",
+          "name": "subtitle",
           "label": "Sub Title",
           "valueType": "string"
         }
