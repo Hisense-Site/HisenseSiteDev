@@ -69,13 +69,6 @@
         },
         {
           "component": "text",
-          "name": "info_component_type",
-          "value": "component-tech-info",
-          "hidden": true,
-          "readonly": true
-        },
-        {
-          "component": "text",
           "valueType": "string",
           "name": "info_title",
           "label": "Title"

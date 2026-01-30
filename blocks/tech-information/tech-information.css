@@ -3,6 +3,8 @@
   border-radius: var(--size-20);
   overflow: hidden;
   min-height: 558px;
+  flex-direction: row-reverse;
+
 
   .tech-img-wrapper {
     width: 48%;
@@ -46,4 +48,8 @@
       display: flex;
     }
   }
+}
+
+.tech-information.img-left {
+  flex-direction: row;
 }
