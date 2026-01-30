@@ -17,6 +17,7 @@
   .tech-info-container {
     background: var(--color-primary-grey-20);
     padding: var(--size-48) var(--size-32) var(--size-48) var(--size-48);
+    flex: 1;
 
     .tech-text-wrapper {
       max-width: 100%;
@@ -33,15 +34,16 @@
       .tech-info-subtitle {
         font-size: var(--fontsize-heading5);
         font-weight: var(--fontweight-medium);
-        margin: 0 0 var(--size-16) 0;
       }
 
       .tech-info-text {
         font-size: var(--fontsize-body2);
         font-weight: var(--fontweight-normal);
-        margin: 0;
-        line-height: 1.5;
       }
+    }
+
+    .tech-item-box {
+      display: flex;
     }
   }
 }

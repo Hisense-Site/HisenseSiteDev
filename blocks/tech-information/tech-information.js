@@ -1,5 +1,5 @@
 export default async function decorate(block) {
-  console.log(block, 'bb');
+  // console.log(block, 'bb');
   // Create a wrapper for tech items
   const techItemWrapperDom = document.createElement('div');
   techItemWrapperDom.className = 'tech-item-wrapper';

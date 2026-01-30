@@ -42,6 +42,23 @@
       "id": "tech-information",
       "fields": [
         {
+          "component": "select",
+          "name": "classes",
+          "label": "Image Position",
+          "valueType": "string",
+          "value": "img-right",
+          "options": [
+              {
+                "name": "Image Position Left",
+                "value": "img-left"
+              },
+              {
+                "name": "Image Position Right",
+                "value": "img-right"
+              }
+          ]
+        },
+        {
           "component": "reference",
           "valueType": "string",
           "name": "tech-image",
@@ -84,8 +101,26 @@
       "id": "tech-items",
       "fields": [
         {
+          "component": "select",
+          "name": "classes",
+          "label": "Style",
+          "valueType": "string",
+          "value": "icon-style",
+          "options": [
+              {
+                "name": "Icon",
+                "value": "icon-style"
+              },
+              {
+                "name": "Stats",
+                "value": "stats-style"
+              }
+          ]
+        },
+        {
           "component": "reference",
           "valueType": "string",
+          "condition": { "===": [{"var" : "classes"}, "icon-style"] },
           "name": "icon",
           "label": "Icon",
           "multi": false
