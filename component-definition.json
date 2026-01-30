@@ -794,10 +794,10 @@
                   "name": "Tech Information",
                   "model": "tech-information",
                   "filter": "tech-information",
-                  "info_title": "This is title",
-                  "info_subtitle": "This is subtitle",
-                  "info_text": "This is text.",
-                  "btn-ctaLabel": "Learn More"
+                  "info_title": "This is the title",
+                  "info_subtitle": "This is the subtitle",
+                  "info_text": "This is the text.",
+                  "btn_ctaLabel": "Learn More"
                 }
               }
             }
@@ -813,7 +813,9 @@
                 "template": {
                   "name": "Tech Items",
                   "model": "tech-items",
-                  "classes": "tech-items-box"
+                  "classes": "tech-items-box",
+                  "item_title": "Item Title",
+                  "item_text": "Item text goes here."
                 }
               }
             }

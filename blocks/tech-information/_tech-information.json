@@ -11,10 +11,10 @@
               "name": "Tech Information",
               "model": "tech-information",
               "filter": "tech-information",
-              "info_title": "This is title",
-              "info_subtitle": "This is subtitle",
-              "info_text": "This is text.",
-              "btn-ctaLabel": "Learn More"
+              "info_title": "This is the title",
+              "info_subtitle": "This is the subtitle",
+              "info_text": "This is the text.",
+              "btn_ctaLabel": "Learn More"
             }
           }
         }
@@ -30,7 +30,9 @@
             "template": {
               "name": "Tech Items",
               "model": "tech-items",
-              "classes": "tech-items-box"
+              "classes": "tech-items-box",
+              "item_title": "Item Title",
+              "item_text": "Item text goes here."
             }
           }
         }
@@ -59,11 +61,25 @@
           ]
         },
         {
+          "component": "text",
+          "name": "tech_component_type",
+          "value": "component-tech-img",
+          "hidden": true,
+          "readonly": true
+        },
+        {
           "component": "reference",
           "valueType": "string",
-          "name": "tech-image",
+          "name": "tech_image",
           "label": "Image",
           "multi": false
+        },
+        {
+          "component": "text",
+          "name": "info_component_type",
+          "value": "component-tech-info",
+          "hidden": true,
+          "readonly": true
         },
         {
           "component": "text",
@@ -84,14 +100,21 @@
           "label": "Text"
         },
         {
+          "component": "text",
+          "name": "btn_component_type",
+          "value": "component-tech-btn",
+          "hidden": true,
+          "readonly": true
+        },
+        {
           "component": "aem-content",
-          "name": "btn-cta",
+          "name": "btn_cta",
           "label": "Button Link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "name": "btn-ctaLabel",
+          "name": "btn_ctaLabel",
           "label": "Button",
           "valueType": "string"
         }
@@ -101,8 +124,15 @@
       "id": "tech-items",
       "fields": [
         {
+          "component": "text",
+          "name": "component_type",
+          "value": "component-tech-items",
+          "hidden": true,
+          "readonly": true
+        },
+        {
           "component": "select",
-          "name": "classes",
+          "name": "item-style",
           "label": "Style",
           "valueType": "string",
           "value": "icon-style",
