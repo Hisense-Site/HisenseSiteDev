@@ -851,6 +851,14 @@
         "required": true
       },
       {
+        "component": "text",
+        "valueType": "string",
+        "name": "phase_desc",
+        "label": "Phase Description",
+        "value": "",
+        "required": true
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "phase_image",

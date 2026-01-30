@@ -53,8 +53,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "container_subtitle",
-          "label": "Subtitle",
+          "name": "container_desc",
+          "label": "Description",
           "value": ""
         },
         {
