@@ -1634,13 +1634,6 @@
         ]
       },
       {
-        "component": "text",
-        "name": "tech_component_type",
-        "value": "component-tech-img",
-        "hidden": true,
-        "readonly": true
-      },
-      {
         "component": "reference",
         "valueType": "string",
         "name": "tech_image",
@@ -1673,21 +1666,14 @@
         "label": "Text"
       },
       {
-        "component": "text",
-        "name": "btn_component_type",
-        "value": "component-tech-btn",
-        "hidden": true,
-        "readonly": true
-      },
-      {
         "component": "aem-content",
-        "name": "btn_cta",
+        "name": "btn-cta",
         "label": "Button Link",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "btn_ctaLabel",
+        "name": "btn-ctaLabel",
         "label": "Button",
         "valueType": "string"
       }
@@ -1726,7 +1712,7 @@
         "condition": {
           "===": [
             {
-              "var": "classes"
+              "var": "item-style"
             },
             "icon-style"
           ]

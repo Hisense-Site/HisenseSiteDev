@@ -14,7 +14,7 @@
               "info_title": "This is the title",
               "info_subtitle": "This is the subtitle",
               "info_text": "This is the text.",
-              "btn_ctaLabel": "Learn More"
+              "btn-ctaLabel": "Learn More"
             }
           }
         }
@@ -61,13 +61,6 @@
           ]
         },
         {
-          "component": "text",
-          "name": "tech_component_type",
-          "value": "component-tech-img",
-          "hidden": true,
-          "readonly": true
-        },
-        {
           "component": "reference",
           "valueType": "string",
           "name": "tech_image",
@@ -100,21 +93,14 @@
           "label": "Text"
         },
         {
-          "component": "text",
-          "name": "btn_component_type",
-          "value": "component-tech-btn",
-          "hidden": true,
-          "readonly": true
-        },
-        {
           "component": "aem-content",
-          "name": "btn_cta",
+          "name": "btn-cta",
           "label": "Button Link",
           "valueType": "string"
         },
         {
           "component": "text",
-          "name": "btn_ctaLabel",
+          "name": "btn-ctaLabel",
           "label": "Button",
           "valueType": "string"
         }
@@ -150,7 +136,7 @@
         {
           "component": "reference",
           "valueType": "string",
-          "condition": { "===": [{"var" : "classes"}, "icon-style"] },
+          "condition": { "===": [{"var" : "item-style"}, "icon-style"] },
           "name": "icon",
           "label": "Icon",
           "multi": false
