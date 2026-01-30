@@ -828,6 +828,14 @@
         "name": "container_title",
         "label": "Title",
         "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "container_image",
+        "label": "Image",
+        "multi": false,
+        "required": true
       }
     ]
   },
