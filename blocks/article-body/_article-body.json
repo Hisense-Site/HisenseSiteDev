@@ -66,7 +66,7 @@
       }
     },
     {
-      "title": "Text Body Quote",
+      "title": "Quote",
       "id": "text-body-quote",
       "plugins": {
         "xwalk": {
@@ -76,6 +76,22 @@
               "name": "Text Body Quote",
               "model": "text-body-quote",
               "itemType": "quote"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Text and Image Side-by-Side",
+      "id": "text-body-side-by-side",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Text and Image Side-by-Side",
+              "model": "text-body-side-by-side",
+              "itemType": "side-by-side"
             }
           }
         }
@@ -173,6 +189,40 @@
           "value": ""
         }
       ]
+    },
+    {
+      "id": "text-body-side-by-side",
+      "fields": [
+        {
+          "component" : "text",
+          "name" : "component_type",
+          "label": "",
+          "valueType" : "string",
+          "value": "flexend-side-by-side",
+          "hidden": true,
+          "readonly": true
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "value": ""
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Text",
+          "value": ""
+        }
+      ]
     }
   ],
   "filters": [
@@ -182,7 +232,8 @@
         "text-body-image",
         "text-body-headline",
         "text-body-content",
-        "text-body-quote"
+        "text-body-quote",
+        "text-body-side-by-side"
       ]
     }
   ]

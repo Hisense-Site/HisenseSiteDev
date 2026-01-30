@@ -51,7 +51,8 @@
       "text-body-image",
       "text-body-headline",
       "text-body-content",
-      "text-body-quote"
+      "text-body-quote",
+      "text-body-side-by-side"
     ]
   },
   {

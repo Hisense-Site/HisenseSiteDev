@@ -389,6 +389,40 @@
     ]
   },
   {
+    "id": "text-body-side-by-side",
+    "fields": [
+      {
+        "component": "text",
+        "name": "component_type",
+        "label": "",
+        "valueType": "string",
+        "value": "flexend-side-by-side",
+        "hidden": true,
+        "readonly": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Text",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "card-carousel",
     "fields": [
       {

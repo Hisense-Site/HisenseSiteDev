@@ -142,7 +142,7 @@
           }
         },
         {
-          "title": "Text Body Quote",
+          "title": "Quote",
           "id": "text-body-quote",
           "plugins": {
             "xwalk": {
@@ -152,6 +152,22 @@
                   "name": "Text Body Quote",
                   "model": "text-body-quote",
                   "itemType": "quote"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Text and Image Side-by-Side",
+          "id": "text-body-side-by-side",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Text and Image Side-by-Side",
+                  "model": "text-body-side-by-side",
+                  "itemType": "side-by-side"
                 }
               }
             }
