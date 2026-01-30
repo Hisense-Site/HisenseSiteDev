@@ -14,7 +14,7 @@
               "info_title": "This is title",
               "info_subtitle": "This is subtitle",
               "info_text": "This is text.",
-              "btn-ctaText": "Learn More"
+              "btn-ctaLabel": "Learn More"
             }
           }
         }
@@ -91,7 +91,7 @@
         },
         {
           "component": "text",
-          "name": "btn-ctaText",
+          "name": "btn-ctaLabel",
           "label": "Button",
           "valueType": "string"
         }

@@ -1666,7 +1666,7 @@
       },
       {
         "component": "text",
-        "name": "btn-ctaText",
+        "name": "btn-ctaLabel",
         "label": "Button",
         "valueType": "string"
       }
