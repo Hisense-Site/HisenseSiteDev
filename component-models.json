@@ -1705,7 +1705,7 @@
         "condition": {
           "===": [
             {
-              "var": "item-style"
+              "var": "component-style"
             },
             "icon-style"
           ]

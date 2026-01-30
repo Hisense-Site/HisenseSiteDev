@@ -111,7 +111,7 @@
         },
         {
           "component": "select",
-          "name": "item-style",
+          "name": "component-style",
           "label": "Style",
           "valueType": "string",
           "value": "icon-style",
@@ -129,7 +129,7 @@
         {
           "component": "reference",
           "valueType": "string",
-          "condition": { "===": [{"var" : "item-style"}, "icon-style"] },
+          "condition": { "===": [{"var" : "component-style"}, "icon-style"] },
           "name": "icon",
           "label": "Icon",
           "multi": false
