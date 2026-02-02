@@ -397,7 +397,7 @@ const handleChangeNavPosition = (navigation) => {
   const plpEl = document.querySelector('.product-sorting');
   if (window.innerWidth < 860 && (pdpEl || plpEl)) {
     navigation.style.position = 'absolute';
-    navigation.style.transition = 'none';
+    // navigation.style.transition = 'none';
   } else {
     navigation.style.position = '';
     navigation.style.transition = '';

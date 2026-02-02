@@ -1,11 +1,11 @@
 import {
   updatePosition,
   getSlideWidth,
-  resizeObserver,
   throttle,
   mobilePressEffect,
+  cancelListener,
 } from '../../utils/carousel-common.js';
-import { createElement } from '../../utils/dom-helper.js';
+import { createElement, debounce } from '../../utils/dom-helper.js';
 
 let index = 0;
 
@@ -33,12 +33,14 @@ function bindEvent(block) {
   if (cards.length * getSlideWidth(block) - parseFloat(gap) > containerWidth) {
     block.querySelector('.card-carousel-pagination').classList.add('show');
   }
+  cancelListener(block, '.slide-prev');
   block.querySelector('.slide-prev').addEventListener('click', throttle(() => {
     if (index > 0) {
       index -= 1;
       updatePosition(block, index, true);
     }
   }, 500));
+  cancelListener(block, '.slide-next');
   block.querySelector('.slide-next').addEventListener('click', throttle(() => {
     if (index < cards.length) {
       index += 1;
@@ -96,7 +98,8 @@ export default async function decorate(block) {
     `;
     block.appendChild(buttonContainer);
   }
-  resizeObserver('.card-carousel', () => {
-    bindEvent(block);
-  });
+  bindEvent(block);
+  window.onresize = debounce(() => {
+    updatePosition(block, index, true);
+  }, 500);
 }

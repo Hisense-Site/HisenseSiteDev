@@ -55,6 +55,8 @@
     margin: 0;
     position: relative;
     z-index: 6;
+    font-size: var(--size-16);
+    font-weight: var(--fontweight-light);
   }
 
   h1,
@@ -101,13 +103,13 @@
   .customize-feature-banner {
     position: relative;
     z-index: 10;
-    top: min(calc(-250 / var(--breakpoint-pc) * 100vw), -250px);
+    top: max(calc(-250 / var(--breakpoint-pc) * 100vw), -250px);
   }
 }
 
 .feature-banner-wrapper + .icon-container-wrapper + .icon-container-wrapper {
   .customize-feature-banner {
-    top: min(calc(-236 / var(--breakpoint-pc) * 100vw), -236px);
+    top: max(calc(-236 / var(--breakpoint-pc) * 100vw), -236px);
   }
 }
 

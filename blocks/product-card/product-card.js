@@ -1,8 +1,14 @@
 function applyAggregatedSort(sortProperty, direction = -1) {
   try {
+    // 检查是否有已选中的 filter
+    const hasActiveFilters = () => {
+      const filterTags = document.querySelectorAll('.plp-filter-tag');
+      return filterTags && filterTags.length > 0;
+    };
+
     // 如果有筛选结果，就在筛选结果基础上排序，否则使用原始数据进行排序
     let listToSort;
-    if (Array.isArray(window.filteredProducts) && window.filteredProducts.length > 0) {
+    if (hasActiveFilters()) {
       // 使用当前筛选结果进行排序
       listToSort = window.filteredProducts.slice();
     } else if (Array.isArray(window.productData)) {
@@ -10,9 +16,6 @@ function applyAggregatedSort(sortProperty, direction = -1) {
       listToSort = window.productData.slice();
     } else {
       listToSort = [];
-    }
-    if (!listToSort || !listToSort.length) {
-      return;
     }
 
     // 通过 key 获取 product model
@@ -90,10 +93,21 @@ function applyAggregatedSort(sortProperty, direction = -1) {
         if (charCompare !== 0) {
           compareResult = charCompare;
         } else {
-          // 首字母相同，按数字9-0排序
-          const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
-          const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
-          compareResult = numB - numA; // 数字大的在前
+          // 首字母相同，比较第二个字符，字母排在数字前面
+          const secondCharA = String(titleA).charAt(1);
+          const secondCharB = String(titleB).charAt(1);
+          const isAlphaA = /^[A-Z]/i.test(secondCharA);
+          const isAlphaB = /^[A-Z]/i.test(secondCharB);
+
+          if (isAlphaA !== isAlphaB) {
+            // 一个是字母，一个是数字，字母排在前面
+            compareResult = isAlphaA ? -1 : 1;
+          } else {
+            // 都是字母或都是数字，按数字9-0排序
+            const numA = parseFloat(titleA.replace(/[^\d.]/g, '')) || 0;
+            const numB = parseFloat(titleB.replace(/[^\d.]/g, '')) || 0;
+            compareResult = numB - numA; // 数字大的在前
+          }
         }
       } else if (typeof maxValueA === 'number' && typeof maxValueB === 'number') {
         compareResult = (maxValueA - maxValueB) * direction;
@@ -783,6 +797,23 @@ window.lastRenderedProducts = null;
 // 当前排序状态，用于筛选时判断是否需要默认选中最大尺寸
 window.currentSortKey = '';
 
+// 检查是否配置了默认排序
+const checkAndApplyDefaultSort = () => {
+  const selectedSortOption = document.querySelector('.plp-sort-option.selected');
+  if (selectedSortOption) {
+    const sortValue = selectedSortOption.dataset.value
+        || selectedSortOption.getAttribute('data-value')
+        || '';
+    window.currentSortKey = sortValue.trim();
+  }
+};
+// 确保 DOM 已加载完成
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', checkAndApplyDefaultSort);
+} else {
+  checkAndApplyDefaultSort();
+}
+
 window.renderPlpProducts = function renderPlpProductsWrapper(items) {
   window.lastRenderedProducts = Array.isArray(items) ? items.slice() : [];
   window.renderProductsInternal(items);
@@ -849,13 +880,6 @@ window.applyPlpFilters = function applyPlpFilters() {
         .filter((val) => val && val.length > 0);
     }).filter((arr) => arr && arr.length);
 
-    if (!selectedByGroup.length) {
-      // 无过滤时恢复全部，清空筛选结果
-      window.filteredProducts = null;
-      window.renderPlpProducts(allProducts);
-      return;
-    }
-
     // 执行过滤，要求产品必须要有 tags 属性
     const filtered = allProducts.filter((item) => {
       const tagsRaw = Array.isArray(item.tags) ? item.tags : [];
@@ -874,11 +898,13 @@ window.applyPlpFilters = function applyPlpFilters() {
 
     // 如果有非默认排序，应用排序；否则直接渲染
     if (currentSort !== '' && !isDefaultSort && window.applyPlpSort) {
+      // 非空且非默认排序 → 应用排序
       window.applyPlpSort(currentSort);
-    } else if (currentSort === '') {
-      // currentSort 为空字符串时，使用默认排序（size 降序）
+    } else if (currentSort === '' && window.filteredProducts && window.filteredProducts.length > 0) {
+      // currentSort 为空字符串但有筛选结果时，使用默认排序（size 降序）
       applyAggregatedSort('size', -1);
     } else {
+      // 无筛选或默认情况 → 直接渲染
       window.renderPlpProducts(filtered);
     }
   } catch (err) {
